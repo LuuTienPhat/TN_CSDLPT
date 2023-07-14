@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using TN_CSDLPT.views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace QLSV_HTC
+namespace TN_CSDLPT
 {
     public partial class FormSignIn : DevExpress.XtraEditors.XtraForm
     {
@@ -73,16 +74,8 @@ namespace QLSV_HTC
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            if (teUsername.Text.Trim().Length == 0)
-            {
-                teUsername.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._usernameLabel);
-                
-            }
-            if(tePassword.Text.Trim().Length == 0)
-            {
-                tePassword.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._passwordLabel);
-            }
-            else
+            //Validate the input username and password
+            if(ValidateInput())
             {
                 // lấy mã cơ sở
                 // lấy vị trí của mã đã chọn trên combobox
@@ -91,18 +84,63 @@ namespace QLSV_HTC
 
                 //if(Program.)
 
+                FormMain formMain = new FormMain();
+                this.Hide();
+                formMain.Show();
+
+
             }
+        }
+
+        private bool ValidateInput()
+        {
+            bool validated = true;
+            if (teUsername.Text.Trim().Length == 0)
+            {
+                teUsername.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._usernameLabel);
+                validated = false;
+            }
+            if (tePassword.Text.Trim().Length == 0)
+            {
+                tePassword.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._passwordLabel);
+                validated = false;
+            }
+            return validated;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if(connectionPublisher.State != ConnectionState.Closed)
+            //Check connection to database, in case of being actived then close
+            if (connectionPublisher.State != ConnectionState.Closed)
             {
                 connectionPublisher.Close();
             }
 
+            //Close the application, Shutdown all running threads
             Application.Exit();
             System.Environment.Exit(1);
         }
+
+        private void ceTeacher_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ceTeacher.Checked)
+            {
+                ceTeacher.CheckState = CheckState.Checked;
+                ceStudent.CheckState = CheckState.Unchecked;
+                lbUsername.Text = Translation._usernameTeacherLabel;
+            }
+        }
+
+        private void ceStudent_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ceStudent.Checked)
+            {
+                ceStudent.CheckState = CheckState.Checked;
+                ceTeacher.CheckState = CheckState.Unchecked;
+                lbUsername.Text = Translation._usernameStudentLabel;
+            }
+        }
+
+
     }
 }

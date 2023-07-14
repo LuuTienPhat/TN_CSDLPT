@@ -13,4 +13,7 @@ class Translation
 
     public static string _usernameLabel = "Username";
     public static string _passwordLabel = "Password";
+    public static string _usernameTeacherLabel = "Username";
+    public static string _usernameStudentLabel = "Student Code";
+
 }

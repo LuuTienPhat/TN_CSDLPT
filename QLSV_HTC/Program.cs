@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace QLSV_HTC
+namespace TN_CSDLPT
 {
     internal static class Program
     {

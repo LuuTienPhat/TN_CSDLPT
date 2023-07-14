@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLSV_HTC.Properties
+namespace TN_CSDLPT.Properties
 {
 
 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV_HTC", "QLSV_HTC\QLSV_HTC.csproj", "{2E67374C-2BF8-47E6-AC59-6CF1D5ADD6AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TN_CSDLPT", "QLSV_HTC\TN_CSDLPT.csproj", "{2E67374C-2BF8-47E6-AC59-6CF1D5ADD6AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
