@@ -7,8 +7,8 @@
     <ProjectGuid>{2E67374C-2BF8-47E6-AC59-6CF1D5ADD6AB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QLSV_HTC</RootNamespace>
-    <AssemblyName>QLSV_HTC</AssemblyName>
+    <RootNamespace>TN_CSDLPT</RootNamespace>
+    <AssemblyName>TN_CSDLPT</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
@@ -74,12 +74,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="constants\ActionMode.cs" />
+    <Compile Include="constants\CustomMessageBox.cs" />
     <Compile Include="constants\Translation.cs" />
     <Compile Include="constants\Database.cs" />
+    <Compile Include="constants\FormUtils.cs" />
+    <Compile Include="views\FormClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormClass.Designer.cs">
+      <DependentUpon>FormClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\FormDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormDepartment.Designer.cs">
+      <DependentUpon>FormDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="models\InputValidation.cs" />
+    <Compile Include="Share\Action.cs" />
+    <Compile Include="Share\CallBackAction.cs" />
+    <Compile Include="Share\ErrorCode.cs" />
+    <Compile Include="Share\ErrorHandler.cs" />
+    <Compile Include="Share\ExamTest.cs" />
+    <Compile Include="Share\RegisterExamInfo.cs" />
+    <Compile Include="Share\StringLibrary.cs" />
+    <Compile Include="Share\StudentInfo.cs" />
+    <Compile Include="Share\TestInfo.cs" />
+    <Compile Include="Share\TimerAction.cs" />
+    <Compile Include="Share\Transcript.cs" />
+    <Compile Include="SupportForm\Frm_ActionInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForm\Frm_ActionInfo.Designer.cs">
+      <DependentUpon>Frm_ActionInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportForm\Frm_RegisterExamSuccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForm\Frm_RegisterExamSuccess.Designer.cs">
+      <DependentUpon>Frm_RegisterExamSuccess.cs</DependentUpon>
+    </Compile>
     <Compile Include="TN_CSDLPT_PRODDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TN_CSDLPT_PRODDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="utils\DatabaseUtils.cs" />
+    <Compile Include="views\CauHoi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="views\CauHoi.Designer.cs">
+      <DependentUpon>CauHoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\FormExamResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormExamResult.Designer.cs">
+      <DependentUpon>FormExamResult.cs</DependentUpon>
     </Compile>
     <Compile Include="views\FormMain.cs">
       <SubType>Form</SubType>
@@ -95,12 +147,42 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="views\FormSignUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormSignUp.Designer.cs">
+      <DependentUpon>FormSignUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\FormSubject.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="views\FormSubject.Designer.cs">
       <DependentUpon>FormSubject.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="views\FormClass.resx">
+      <DependentUpon>FormClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\FormDepartment.resx">
+      <DependentUpon>FormDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportForm\Frm_ActionInfo.resx">
+      <DependentUpon>Frm_ActionInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportForm\Frm_RegisterExamSuccess.resx">
+      <DependentUpon>Frm_RegisterExamSuccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\CauHoi.resx">
+      <DependentUpon>CauHoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\FormExamResult.resx">
+      <DependentUpon>FormExamResult.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,9 +198,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="views\FormSignUp.resx">
+      <DependentUpon>FormSignUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\FormSubject.resx">
       <DependentUpon>FormSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

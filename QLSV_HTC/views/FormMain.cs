@@ -23,6 +23,13 @@ namespace TN_CSDLPT.views
             System.Environment.Exit(0);
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            //nếu là quyền cơ sở thì tất cả đều enable
+
+
+        }
+
         private void btnSignOut_ItemClick(object sender, ItemClickEventArgs e)
         {
             // lặp qua các form đang mở trên mdi và đóng tất
@@ -45,5 +52,27 @@ namespace TN_CSDLPT.views
             //Program.formDangNhap.textBoxMatKhau.Text = "";
             //Program.formSignIn.Show();
         }
+
+        private void btnSubjectManagement_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormSubject));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormSubject f = new FormSubject();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private Form CheckExists(Type ftype)
+        {
+            foreach (Form f in this.MdiChildren)
+                if (f.GetType() == ftype)
+                    return f;
+            return null;
+        }
+
+
     }
 }

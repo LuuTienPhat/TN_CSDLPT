@@ -33,7 +33,7 @@
             this.tePassword = new DevExpress.XtraEditors.TextEdit();
             this.btnSignIn = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.cbxDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxLocation = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.lbUsername = new DevExpress.XtraEditors.LabelControl();
@@ -44,7 +44,7 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.teUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceTeacher.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceStudent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -61,8 +61,6 @@
             this.teUsername.Properties.UseAdvancedMode = DevExpress.Utils.DefaultBoolean.True;
             this.teUsername.Size = new System.Drawing.Size(312, 22);
             this.teUsername.TabIndex = 3;
-            this.teUsername.ToolTip = "Please enter Username.";
-            this.teUsername.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             // 
             // tePassword
             // 
@@ -75,8 +73,6 @@
             this.tePassword.Properties.UseSystemPasswordChar = true;
             this.tePassword.Size = new System.Drawing.Size(312, 22);
             this.tePassword.TabIndex = 4;
-            this.tePassword.ToolTip = "Please enter Password.";
-            this.tePassword.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             // 
             // btnSignIn
             // 
@@ -105,24 +101,25 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // cbxDepartment
+            // cbxLocation
             // 
-            this.cbxDepartment.Location = new System.Drawing.Point(25, 121);
-            this.cbxDepartment.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxDepartment.Name = "cbxDepartment";
-            this.cbxDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxLocation.Location = new System.Drawing.Point(25, 121);
+            this.cbxLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxLocation.Name = "cbxLocation";
+            this.cbxLocation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxDepartment.Size = new System.Drawing.Size(312, 22);
-            this.cbxDepartment.TabIndex = 7;
+            this.cbxLocation.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbxLocation.Size = new System.Drawing.Size(312, 22);
+            this.cbxLocation.TabIndex = 7;
             // 
             // labelControl4
             // 
             this.labelControl4.Location = new System.Drawing.Point(25, 98);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(59, 15);
+            this.labelControl4.Size = new System.Drawing.Size(46, 15);
             this.labelControl4.TabIndex = 8;
-            this.labelControl4.Text = "Deparment";
+            this.labelControl4.Text = "Location";
             // 
             // labelControl3
             // 
@@ -214,7 +211,7 @@
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.cbxDepartment);
+            this.Controls.Add(this.cbxLocation);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.tePassword);
@@ -231,7 +228,7 @@
             this.Load += new System.EventHandler(this.FormSignIn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceTeacher.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceStudent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -246,7 +243,7 @@
         private DevExpress.XtraEditors.TextEdit tePassword;
         private DevExpress.XtraEditors.SimpleButton btnSignIn;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxDepartment;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxLocation;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl lbUsername;

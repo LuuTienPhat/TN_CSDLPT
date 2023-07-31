@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraEditors.Controls;
 
 namespace TN_CSDLPT
 {
@@ -24,17 +25,27 @@ namespace TN_CSDLPT
 
         private void FormSignIn_Load(object sender, EventArgs e)
         {
-            //if (ConnectDatabase())
-            //{
-            //    return;
-            //}
+            if (ConnectDatabase()) //Database connected successfully
+            {
+                LayDanhSachPhanManh(string.Format(Database.STATEMENT_SELECT_ALL, Database.VIEW_ALL_LOCATIONS));
+                Program.servername = cbxLocation.SelectedText.ToString();
+                ceTeacher.Select();
 
-            //LayDanhSachPhanManh("SELECT * FROM VIEW_DS_KHOA");
+                //set Tooltip for username/student code field
+                this.teUsername.ToolTip = string.Format(Translation._argsInputFieldTooltipMsg, Translation._usernameTeacherLabel);
+                this.teUsername.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
 
-            //Database.servername = cbxDepartment.SelectedItem.ToString();
+                //set Tooltip for password field
+                this.tePassword.ToolTip = string.Format(Translation._argsInputFieldTooltipMsg, Translation._passwordLabel);
+                this.tePassword.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
+            }
 
         }
 
+        /// <summary>
+        /// Check connetion to database is opened or not
+        /// </summary>
+        /// <returns> true if connected to dabase successfully; otherwise, false.</returns>
         private bool ConnectDatabase()
         {
             if (connectionPublisher != null && connectionPublisher.State == ConnectionState.Open)
@@ -44,13 +55,14 @@ namespace TN_CSDLPT
 
             try
             {
-                connectionPublisher.ConnectionString = Database.connectionStringPublisher;
+                connectionPublisher.ConnectionString = Program.connstr_publisher;
                 connectionPublisher.Open();
                 return true;
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(string.Format(Translation._argsDatabaseConnectErrorMsg, ex.Message.ToString()), Translation._errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(string.Format(Translation._argsDatabaseConnectErrorMsg, ex.Message.ToString()),
+                    Translation._errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return false;
@@ -66,24 +78,101 @@ namespace TN_CSDLPT
             SqlDataAdapter sda = new SqlDataAdapter(cmd, connectionPublisher);
             sda.Fill(dt);
             connectionPublisher.Close();
-            //Program.bds_DanhSachPhanManh.DataSource = dt;
-            //comboBoxCoSo.DataSource = Program.bds_DanhSachPhanManh;
-            //cbxDepartment.DisplayMember = "TENCS";
-            //cbxDepartment.ValueMember = "TENSERVER";
+            Program.bds_DanhSachPhanManh.DataSource = dt;
+
+            Program.FillComboxBox(cbxLocation, Program.bds_DanhSachPhanManh, "TENCS");
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             //Validate the input username and password
-            if(ValidateInput())
+            if (ValidateInput())
             {
                 // lấy mã cơ sở
                 // lấy vị trí của mã đã chọn trên combobox
-                //Program.MLogin = teUsername.Text;
-                //Program.MPassword = tePassword.Text;
+                Program.mlogin = teUsername.Text.Trim();
+                Program.indexCoSo = cbxLocation.SelectedIndex;
 
-                //if(Program.)
+                if (ceTeacher.Checked)
+                {
+                    Program.mlogin = teUsername.Text.Trim();
+                    Program.password = tePassword.Text.Trim();
+                    if (Program.ConnectDatabase())
+                    {
+                        Program.mLoginDN = Program.mlogin;
+                        Program.passwordDN = Program.password;
+                        string query = "EXEC SP_LAY_TT_GIANGVIEN_LOGIN '" + Program.mlogin + "'";
+                        Program.myReader = Program.ExecSqlDataReader(query);
 
+                        if (Program.myReader != null)
+                        {
+                            Program.myReader.Read();
+                            Program.username = Program.myReader.GetString(0);
+                            if (Convert.IsDBNull(Program.username))
+                            {
+                                MessageBox.Show("Tài khoản bạn dùng không có quyền truy cập dữ liệu\nXem lại tên đăng nhập và mật khẩu", "", MessageBoxButtons.OK);
+                                return;
+                            }
+
+                            Program.mHoTen = Program.myReader.GetString(1);
+                            Program.mGroup = Program.myReader.GetString(2);
+                            Program.myReader.Close();
+                            Program.conn.Close();
+
+
+                        }
+                    }
+
+                    return;
+                }
+
+                if (ceStudent.Checked)
+                {
+                    Program.mlogin = "sv_dungchung";
+                    Program.password = "123";
+                    if (Program.ConnectDatabase())
+                    {
+                        Program.mLoginDN = Program.mlogin;
+                        Program.passwordDN = Program.password;
+                        string strLenh = "EXEC SP_LAY_TT_SV '"
+                            + teUsername.Text.Trim() + "', '" + tePassword.Text.Trim() + "'";
+                        Program.myReader = Program.ExecSqlDataReader(strLenh);
+
+                        if (Program.myReader != null)
+                        {
+                            Program.myReader.Read();
+                            try
+                            {
+                                Program.maSinhVien = Program.myReader.GetString(0);
+                                Program.mHoTen = Program.myReader.GetString(1);
+                                Program.maLop = Program.myReader.GetString(2);
+                                Program.tenLop = Program.myReader.GetString(3);
+                                Program.mGroup = "SINHVIEN";
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Đăng nhập không thành công, xem lại mã sinh viên và mật khẩu:", "Lỗi", MessageBoxButtons.OK);
+                                return;
+                            }
+
+                            if (Convert.IsDBNull(Program.username))
+                            {
+                                MessageBox.Show("Tài khoản bạn dùng không có quyền truy cập dữ liệu\nXem lại tên đăng nhập và mật khẩu", "", MessageBoxButtons.OK);
+                                return;
+                            }
+
+
+                            Program.myReader.Close();
+                            Program.conn.Close();
+
+                            //Program.formChinh.toolStripMaUser.Text = Program.maSinhVien;
+                            //Program.formChinh.toolStripHoTen.Text = Program.mHoTen;
+                            //Program.formChinh.toolStripNhomPhanQuyen.Text = Program.mGroup;
+                        }
+                    }
+
+                    return;
+                }
                 FormMain formMain = new FormMain();
                 this.Hide();
                 formMain.Show();
@@ -128,6 +217,10 @@ namespace TN_CSDLPT
                 ceTeacher.CheckState = CheckState.Checked;
                 ceStudent.CheckState = CheckState.Unchecked;
                 lbUsername.Text = Translation._usernameTeacherLabel;
+
+                //set Tooltip for username/student code field
+                this.teUsername.ToolTip = string.Format(Translation._argsInputFieldTooltipMsg, Translation._usernameTeacherLabel);
+                this.teUsername.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             }
         }
 
@@ -138,9 +231,11 @@ namespace TN_CSDLPT
                 ceStudent.CheckState = CheckState.Checked;
                 ceTeacher.CheckState = CheckState.Unchecked;
                 lbUsername.Text = Translation._usernameStudentLabel;
+
+                //set Tooltip for username/student code field
+                this.teUsername.ToolTip = string.Format(Translation._argsInputFieldTooltipMsg, Translation._usernameStudentLabel);
+                this.teUsername.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             }
         }
-
-
     }
 }

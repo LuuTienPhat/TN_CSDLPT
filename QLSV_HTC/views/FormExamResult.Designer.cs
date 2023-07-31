@@ -1,6 +1,6 @@
 ﻿namespace TN_CSDLPT.views
 {
-    partial class FormSubject
+    partial class FormExamResult
     {
         /// <summary>
         /// Required designer variable.
@@ -29,16 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSubject));
-            this.bar1 = new DevExpress.XtraBars.Bar();
-            this.DataSet = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
-            this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
-            this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
-            this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
-            this.gcSubject = new DevExpress.XtraGrid.GridControl();
-            this.gvSubject = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMAMH = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTENMH = new DevExpress.XtraGrid.Columns.GridColumn();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormExamResult));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnNew = new DevExpress.XtraBars.BarButtonItem();
@@ -59,99 +50,11 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gcInfo = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lbId = new DevExpress.XtraEditors.LabelControl();
-            this.teName = new DevExpress.XtraEditors.TextEdit();
-            this.teID = new DevExpress.XtraEditors.TextEdit();
-            this.bdsLocation = new System.Windows.Forms.BindingSource(this.components);
-            this.taLocation = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSubject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvSubject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcInfo)).BeginInit();
-            this.gcInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLocation)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bar1
-            // 
-            this.bar1.BarName = "Tools";
-            this.bar1.DockCol = 0;
-            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar1.Text = "Tools";
-            // 
-            // DataSet
-            // 
-            this.DataSet.DataSetName = "TN_CSDLPT_PRODDataSet";
-            this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bdsSubject
-            // 
-            this.bdsSubject.DataMember = "MONHOC";
-            this.bdsSubject.DataSource = this.DataSet;
-            // 
-            // taSubject
-            // 
-            this.taSubject.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BANGDIEMTableAdapter = null;
-            this.tableAdapterManager.BODETableAdapter = null;
-            this.tableAdapterManager.COSOTableAdapter = null;
-            this.tableAdapterManager.CT_BAITHITableAdapter = null;
-            this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
-            this.tableAdapterManager.GIAOVIENTableAdapter = null;
-            this.tableAdapterManager.KHOATableAdapter = null;
-            this.tableAdapterManager.LOPTableAdapter = null;
-            this.tableAdapterManager.MONHOCTableAdapter = this.taSubject;
-            this.tableAdapterManager.SINHVIENTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // gcSubject
-            // 
-            this.gcSubject.DataSource = this.bdsSubject;
-            this.gcSubject.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gcSubject.Location = new System.Drawing.Point(0, 80);
-            this.gcSubject.MainView = this.gvSubject;
-            this.gcSubject.Name = "gcSubject";
-            this.gcSubject.Size = new System.Drawing.Size(1280, 388);
-            this.gcSubject.TabIndex = 10;
-            this.gcSubject.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvSubject});
-            // 
-            // gvSubject
-            // 
-            this.gvSubject.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMAMH,
-            this.colTENMH});
-            this.gvSubject.GridControl = this.gcSubject;
-            this.gvSubject.Name = "gvSubject";
-            // 
-            // colMAMH
-            // 
-            this.colMAMH.Caption = "ID";
-            this.colMAMH.FieldName = "MAMH";
-            this.colMAMH.Name = "colMAMH";
-            this.colMAMH.Visible = true;
-            this.colMAMH.VisibleIndex = 0;
-            // 
-            // colTENMH
-            // 
-            this.colTENMH.Caption = "Name";
-            this.colTENMH.FieldName = "TENMH";
-            this.colTENMH.Name = "colTENMH";
-            this.colTENMH.Visible = true;
-            this.colTENMH.VisibleIndex = 1;
             // 
             // barManager1
             // 
@@ -206,7 +109,6 @@
             this.btnNew.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnNew.Name = "btnNew";
             this.btnNew.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNew_ItemClick);
             // 
             // btnEdit
             // 
@@ -216,7 +118,6 @@
             this.btnEdit.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEdit_ItemClick);
             // 
             // btnCommit
             // 
@@ -226,7 +127,6 @@
             this.btnCommit.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnCommit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCommit_ItemClick);
             // 
             // btnDelete
             // 
@@ -236,7 +136,6 @@
             this.btnDelete.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDelete_ItemClick);
             // 
             // btnUndo
             // 
@@ -246,7 +145,6 @@
             this.btnUndo.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
             // 
             // btnCancel
             // 
@@ -256,7 +154,6 @@
             this.btnCancel.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnCancel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancel_ItemClick);
             // 
             // btnRefresh
             // 
@@ -266,7 +163,6 @@
             this.btnRefresh.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
             // 
             // bar3
             // 
@@ -291,7 +187,6 @@
             this.cbxLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cbxLocation.ImageOptions.SvgImage")));
             this.cbxLocation.Name = "cbxLocation";
             this.cbxLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
-            this.cbxLocation.EditValueChanged += new System.EventHandler(this.cbxLocation_EditValueChanged);
             // 
             // repositoryItemComboBox2
             // 
@@ -306,7 +201,6 @@
             this.btnExit.Id = 9;
             this.btnExit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnExit.ImageOptions.SvgImage")));
             this.btnExit.Name = "btnExit";
-            this.btnExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExit_ItemClick);
             // 
             // btnHelp
             // 
@@ -321,15 +215,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1280, 80);
+            this.barDockControlTop.Size = new System.Drawing.Size(843, 80);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 690);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 435);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1280, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(843, 0);
             // 
             // barDockControlLeft
             // 
@@ -337,15 +231,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 80);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 610);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 355);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1280, 80);
+            this.barDockControlRight.Location = new System.Drawing.Point(843, 80);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 610);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 355);
             // 
             // repositoryItemSpinEdit1
             // 
@@ -361,135 +255,47 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             // 
-            // gcInfo
-            // 
-            this.gcInfo.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("gcInfo.CaptionImageOptions.SvgImage")));
-            this.gcInfo.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.gcInfo.Controls.Add(this.labelControl1);
-            this.gcInfo.Controls.Add(this.lbId);
-            this.gcInfo.Controls.Add(this.teName);
-            this.gcInfo.Controls.Add(this.teID);
-            this.gcInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInfo.Location = new System.Drawing.Point(0, 468);
-            this.gcInfo.Name = "gcInfo";
-            this.gcInfo.Size = new System.Drawing.Size(1280, 222);
-            this.gcInfo.TabIndex = 15;
-            this.gcInfo.Text = "Info";
-            this.gcInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.gcInfo_Paint);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(87, 111);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(35, 15);
-            this.labelControl1.TabIndex = 5;
-            this.labelControl1.Text = "Name:";
-            // 
-            // lbId
-            // 
-            this.lbId.Location = new System.Drawing.Point(87, 69);
-            this.lbId.Name = "lbId";
-            this.lbId.Size = new System.Drawing.Size(14, 15);
-            this.lbId.TabIndex = 4;
-            this.lbId.Text = "ID:";
-            // 
-            // teName
-            // 
-            this.teName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSubject, "TENMH", true));
-            this.teName.Location = new System.Drawing.Point(149, 104);
-            this.teName.MenuManager = this.barManager1;
-            this.teName.Name = "teName";
-            this.teName.Size = new System.Drawing.Size(289, 22);
-            this.teName.TabIndex = 3;
-            // 
-            // teID
-            // 
-            this.teID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSubject, "MAMH", true));
-            this.teID.Location = new System.Drawing.Point(149, 62);
-            this.teID.MenuManager = this.barManager1;
-            this.teID.Name = "teID";
-            this.teID.Size = new System.Drawing.Size(289, 22);
-            this.teID.TabIndex = 1;
-            // 
-            // bdsLocation
-            // 
-            this.bdsLocation.DataMember = "COSO";
-            this.bdsLocation.DataSource = this.DataSet;
-            // 
-            // taLocation
-            // 
-            this.taLocation.ClearBeforeFill = true;
-            // 
-            // FormSubject
+            // FormExamResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 690);
-            this.Controls.Add(this.gcInfo);
-            this.Controls.Add(this.gcSubject);
+            this.ClientSize = new System.Drawing.Size(843, 435);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "FormSubject";
-            this.Text = "Subject Management";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormSubject_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSubject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvSubject)).EndInit();
+            this.Name = "FormExamResult";
+            this.Text = "FormExamResult";
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcInfo)).EndInit();
-            this.gcInfo.ResumeLayout(false);
-            this.gcInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLocation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private DevExpress.XtraBars.Bar bar1;
-        private TN_CSDLPT_PRODDataSet DataSet;
-        private System.Windows.Forms.BindingSource bdsSubject;
-        private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
-        private TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraGrid.GridControl gcSubject;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvSubject;
+
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.Bar bar3;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraEditors.GroupControl gcInfo;
         private DevExpress.XtraBars.BarButtonItem btnNew;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
         private DevExpress.XtraBars.BarButtonItem btnEdit;
         private DevExpress.XtraBars.BarButtonItem btnCommit;
         private DevExpress.XtraBars.BarButtonItem btnDelete;
         private DevExpress.XtraBars.BarButtonItem btnUndo;
         private DevExpress.XtraBars.BarButtonItem btnCancel;
-        private DevExpress.XtraBars.BarButtonItem btnExit;
         private DevExpress.XtraBars.BarButtonItem btnRefresh;
-        private DevExpress.XtraBars.BarButtonItem btnHelp;
-        private System.Windows.Forms.BindingSource bdsLocation;
-        private TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter taLocation;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarEditItem cbxLocation;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
-        private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
-        private DevExpress.XtraGrid.Columns.GridColumn colTENMH;
-        private DevExpress.XtraEditors.TextEdit teName;
-        private DevExpress.XtraEditors.TextEdit teID;
-        private DevExpress.XtraEditors.LabelControl lbId;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraBars.BarButtonItem btnExit;
+        private DevExpress.XtraBars.BarButtonItem btnHelp;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
     }
 }
