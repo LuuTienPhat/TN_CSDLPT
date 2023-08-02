@@ -79,6 +79,7 @@
     <Compile Include="constants\Translation.cs" />
     <Compile Include="constants\Database.cs" />
     <Compile Include="constants\FormUtils.cs" />
+    <Compile Include="models\CallBackAction.cs" />
     <Compile Include="views\FormClass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,7 +94,7 @@
     </Compile>
     <Compile Include="models\InputValidation.cs" />
     <Compile Include="Share\Action.cs" />
-    <Compile Include="Share\CallBackAction.cs" />
+    <Compile Include="Share\CallBackAction1.cs" />
     <Compile Include="Share\ErrorCode.cs" />
     <Compile Include="Share\ErrorHandler.cs" />
     <Compile Include="Share\ExamTest.cs" />
@@ -165,6 +166,12 @@
     <Compile Include="views\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\FormTopic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormTopic.Designer.cs">
+      <DependentUpon>FormTopic.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="views\FormClass.resx">
       <DependentUpon>FormClass.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\FormTopic.resx">
+      <DependentUpon>FormTopic.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

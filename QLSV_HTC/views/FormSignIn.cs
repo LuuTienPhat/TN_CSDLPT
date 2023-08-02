@@ -10,13 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
+using TN_CSDLPT.constants;
+using TN_CSDLPT.utils;
 
 namespace TN_CSDLPT
 {
     public partial class FormSignIn : DevExpress.XtraEditors.XtraForm
     {
 
-        private SqlConnection connectionPublisher = new SqlConnection();
+        private SqlConnection databaseConnection = new SqlConnection();
 
         public FormSignIn()
         {
@@ -25,10 +27,12 @@ namespace TN_CSDLPT
 
         private void FormSignIn_Load(object sender, EventArgs e)
         {
-            if (ConnectDatabase()) //Database connected successfully
+            if (IsDatabaseOnline()) //Database online
             {
-                LayDanhSachPhanManh(string.Format(Database.STATEMENT_SELECT_ALL, Database.VIEW_ALL_LOCATIONS));
-                Program.servername = cbxLocation.SelectedText.ToString();
+                RetrieveAllSubcriber();
+                FormUtils.FillComboxBox(cbxLocation, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
+                Program.servername = FormUtils.GetBindingSourceData(Program.bdsSubcriber, cbxLocation.SelectedIndex, Database.VIEW_ALL_LOCATION_COL_LOCATION_SERVER);
+
                 ceTeacher.Select();
 
                 //set Tooltip for username/student code field
@@ -42,21 +46,17 @@ namespace TN_CSDLPT
 
         }
 
-        /// <summary>
-        /// Check connetion to database is opened or not
-        /// </summary>
-        /// <returns> true if connected to dabase successfully; otherwise, false.</returns>
-        private bool ConnectDatabase()
+        private bool IsDatabaseOnline()
         {
-            if (connectionPublisher != null && connectionPublisher.State == ConnectionState.Open)
+            if (databaseConnection != null && databaseConnection.State == ConnectionState.Open)
             {
-                connectionPublisher.Close();
+                databaseConnection.Close();
             }
 
             try
             {
-                connectionPublisher.ConnectionString = Program.connstr_publisher;
-                connectionPublisher.Open();
+                databaseConnection.ConnectionString = Program.connstr_publisher;
+                databaseConnection.Open();
                 return true;
             }
             catch (Exception ex)
@@ -68,41 +68,45 @@ namespace TN_CSDLPT
             return false;
         }
 
-        private void LayDanhSachPhanManh(String cmd)
+        private void RetrieveAllSubcriber()
         {
-            DataTable dt = new DataTable();
-            if (connectionPublisher.State == ConnectionState.Closed)
-            {
-                connectionPublisher.Open();
-            }
-            SqlDataAdapter sda = new SqlDataAdapter(cmd, connectionPublisher);
-            sda.Fill(dt);
-            connectionPublisher.Close();
-            Program.bds_DanhSachPhanManh.DataSource = dt;
+            string queryRetrieveAllLocation = DatabaseUtils.BuildQuery(Database.STATEMENT_SELECT_ALL, Database.VIEW_ALL_LOCATIONS);
 
-            Program.FillComboxBox(cbxLocation, Program.bds_DanhSachPhanManh, "TENCS");
+            DataTable dt = new DataTable();
+            //https://stackoverflow.com/questions/6943933/check-if-sql-connection-is-open-or-closed
+            if (databaseConnection.State != ConnectionState.Open)
+            {
+                databaseConnection.Close();
+                databaseConnection.Open();
+            }
+
+            SqlDataAdapter sda = new SqlDataAdapter(queryRetrieveAllLocation, databaseConnection);
+            sda.Fill(dt);
+            databaseConnection.Close();
+            Program.bdsSubcriber.DataSource = dt;
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            //Validate the input username and password
             if (ValidateInput())
             {
-                // lấy mã cơ sở
-                // lấy vị trí của mã đã chọn trên combobox
-                Program.mlogin = teUsername.Text.Trim();
+                Program.mlogin = teUsername.Text;
+                Program.password = tePassword.Text;
                 Program.indexCoSo = cbxLocation.SelectedIndex;
 
                 if (ceTeacher.Checked)
                 {
-                    Program.mlogin = teUsername.Text.Trim();
-                    Program.password = tePassword.Text.Trim();
-                    if (Program.ConnectDatabase())
+                    if (!Program.ConnectDatabase())
+                    {
+                        return;
+                    }
+                    else
                     {
                         Program.mLoginDN = Program.mlogin;
                         Program.passwordDN = Program.password;
-                        string query = "EXEC SP_LAY_TT_GIANGVIEN_LOGIN '" + Program.mlogin + "'";
-                        Program.myReader = Program.ExecSqlDataReader(query);
+
+                        string getTeacherLoginInfoQuery = DatabaseUtils.BuildQuery(Database.SP_GET_TEACHER_LOGIN_INFO, Program.mlogin);
+                        Program.myReader = Program.ExecSqlDataReader(getTeacherLoginInfoQuery);
 
                         if (Program.myReader != null)
                         {
@@ -110,7 +114,8 @@ namespace TN_CSDLPT
                             Program.username = Program.myReader.GetString(0);
                             if (Convert.IsDBNull(Program.username))
                             {
-                                MessageBox.Show("Tài khoản bạn dùng không có quyền truy cập dữ liệu\nXem lại tên đăng nhập và mật khẩu", "", MessageBoxButtons.OK);
+                                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._incorectSignInUsernamePasswordMsg);
+                                //MessageBox.Show("Tài khoản bạn dùng không có quyền truy cập dữ liệu\nXem lại tên đăng nhập và mật khẩu", "", MessageBoxButtons.OK);
                                 return;
                             }
 
@@ -119,18 +124,22 @@ namespace TN_CSDLPT
                             Program.myReader.Close();
                             Program.conn.Close();
 
-
+                            Program.formMain.lbUserId.Caption = Program.username;
+                            Program.formMain.lbUserFullName.Caption = Program.mHoTen;
+                            Program.formMain.lbUserRole.Caption = Program.mGroup;
                         }
                     }
-
-                    return;
                 }
 
                 if (ceStudent.Checked)
                 {
                     Program.mlogin = "sv_dungchung";
                     Program.password = "123";
-                    if (Program.ConnectDatabase())
+                    if (!Program.ConnectDatabase())
+                    {
+                        return;
+                    }
+                    else
                     {
                         Program.mLoginDN = Program.mlogin;
                         Program.passwordDN = Program.password;
@@ -161,23 +170,19 @@ namespace TN_CSDLPT
                                 return;
                             }
 
-
                             Program.myReader.Close();
                             Program.conn.Close();
 
-                            //Program.formChinh.toolStripMaUser.Text = Program.maSinhVien;
-                            //Program.formChinh.toolStripHoTen.Text = Program.mHoTen;
-                            //Program.formChinh.toolStripNhomPhanQuyen.Text = Program.mGroup;
+                            Program.formMain.lbUserId.Caption = Program.maSinhVien;
+                            Program.formMain.lbUserFullName.Caption = Program.mHoTen;
+                            Program.formMain.lbUserRole.Caption = Program.mGroup;
                         }
                     }
-
-                    return;
                 }
-                FormMain formMain = new FormMain();
+
                 this.Hide();
-                formMain.Show();
-
-
+                Program.formMain.FormMain_Load(sender, e);
+                Program.formMain.Show();
             }
         }
 
@@ -200,9 +205,9 @@ namespace TN_CSDLPT
         private void btnCancel_Click(object sender, EventArgs e)
         {
             //Check connection to database, in case of being actived then close
-            if (connectionPublisher.State != ConnectionState.Closed)
+            if (databaseConnection.State != ConnectionState.Closed)
             {
-                connectionPublisher.Close();
+                databaseConnection.Close();
             }
 
             //Close the application, Shutdown all running threads

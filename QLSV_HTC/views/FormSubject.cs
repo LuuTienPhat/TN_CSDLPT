@@ -16,7 +16,7 @@ namespace TN_CSDLPT.views
     {
         ArrayList undoCommands = new ArrayList();
 
-        private CallBackAction _callAction = new CallBackAction();
+        private CallBackAction1 _callAction = new CallBackAction1();
         int vitri = -1;
         String maCoSo;
         ActionMode mode;
@@ -74,7 +74,7 @@ namespace TN_CSDLPT.views
 
                     Frm_ActionInfo info = new Frm_ActionInfo(
                                         new Object[] { this.gvSubject, barManager1 },
-                                        new CallBackAction(TracNghiem_CSDLPT.Share.Action.AddSuccess, this._callAction.Table)
+                                        new CallBackAction1(TracNghiem_CSDLPT.Share.Action.AddSuccess, this._callAction.Table)
                                         );
                 }
             }

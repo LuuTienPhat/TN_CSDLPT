@@ -61,7 +61,7 @@ namespace TN_CSDLPT.views
             try
             {
                 bdsStudent.AddNew();
-                FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem> { });
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { });
 
                 pcClass.Enabled = false;
                 pcStudent.Enabled = true;
@@ -131,7 +131,7 @@ namespace TN_CSDLPT.views
                 lOPGridControl.Enabled = sINHVIENGridControl.Enabled = false;
                 bdsClass.AddNew();
 
-                FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
                 ctxMenu.Enabled = false;
 
                 //Fill data cho bdsKhoa
@@ -162,7 +162,7 @@ namespace TN_CSDLPT.views
             else
             {
                 teClassId.Enabled = false;
-                FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
                 ctxMenu.Enabled = false;
                 pcClass.Enabled = true;
                 gcClass.Enabled = gcStudent.Enabled = false;
@@ -307,7 +307,7 @@ namespace TN_CSDLPT.views
 
                 //});
 
-                FormUtils.EnableMatrixBarMangagerItems(barManager1, new List<BarItem>
+                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
             {
                 btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
             });
@@ -353,9 +353,9 @@ namespace TN_CSDLPT.views
                 this.taStudent.Fill(this.DataSet.SINHVIEN);
                 // TODO: This line of code loads data into the 'tNDataSet.DSKHOA' table. You can move, or remove it, as needed.
                 this.taDepartment.Connection.ConnectionString = Program.connstr;
-                this.taDepartment.Fill(this.DataSet.DSKHOA);
+                //this.taDepartment.Fill(this.DataSet.DSKHOA);
 
-                FormUtils.EnableMatrixBarMangagerItems(barManager1, new List<BarItem>
+                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
                 {
                     btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
                 });
@@ -415,7 +415,7 @@ namespace TN_CSDLPT.views
             }
             else
             {
-                FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem>
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
                 {
                     btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
                 });
@@ -504,7 +504,7 @@ namespace TN_CSDLPT.views
                 if (result == 1)
                 {
 
-                    FormUtils.EnableMatrixBarMangagerItems(barManager1, new List<BarItem>
+                    FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
                     {
                         btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
                     });
@@ -546,7 +546,7 @@ namespace TN_CSDLPT.views
                 }
                 else
                 {
-                    FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem>
+                    FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
                     {
                         btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
                     });
@@ -581,6 +581,11 @@ namespace TN_CSDLPT.views
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, 
                     Translation._errorTitle, $"cbxStudentClass\n{ex.Message}");
             }
+        }
+
+        private void deBirthDate_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

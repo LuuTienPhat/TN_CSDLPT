@@ -29,7 +29,7 @@ namespace TracNghiem_CSDLPT.SupportForm
 
         }
 
-        public Frm_ActionInfo(Object[] lControl, CallBackAction cb)
+        public Frm_ActionInfo(Object[] lControl, CallBackAction1 cb)
         {
             InitializeComponent();
 
@@ -125,7 +125,7 @@ namespace TracNghiem_CSDLPT.SupportForm
            
         }
 
-        public void SetupForm(CallBackAction cb)
+        public void SetupForm(CallBackAction1 cb)
         {
             this.TopLevel = false;
             this.BringToFront();

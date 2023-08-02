@@ -23,7 +23,7 @@ namespace TN_CSDLPT.views
             System.Environment.Exit(0);
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        public void FormMain_Load(object sender, EventArgs e)
         {
             //nếu là quyền cơ sở thì tất cả đều enable
 

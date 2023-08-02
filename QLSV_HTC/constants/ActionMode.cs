@@ -8,6 +8,7 @@ namespace TN_CSDLPT.constants
 {
     public enum ActionMode
     {
+        None,
         Add,
         Edit,
         Delete,

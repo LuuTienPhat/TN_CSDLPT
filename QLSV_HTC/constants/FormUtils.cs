@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -31,32 +33,32 @@ namespace TN_CSDLPT.constants
             }
         }
 
-        public static void DisableMatrixBarMangagerItems(BarManager barManager, List<BarItem> disabledBarButtonItems)
+        public static void DisableBarMangagerItems(BarManager barManager, List<BarItem> barManagerItems)
         {
 
             BarItems barItems = barManager.Items;
             foreach (BarItem barItem in barItems)
             {
 
-                barItem.Enabled = true;
+                //barItem.Enabled = true;
 
-                if (disabledBarButtonItems.Contains(barItem))
+                if (barManagerItems.Contains(barItem))
                 {
                     barItem.Enabled = false;
                 }
             }
         }
 
-        public static void EnableMatrixBarMangagerItems(BarManager barManager, List<BarItem> disabledBarButtonItems)
+        public static void EnableBarMangagerItems(BarManager barManager, List<BarItem> barManagerItems)
         {
 
             BarItems barItems = barManager.Items;
             foreach (BarItem barItem in barItems)
             {
 
-                barItem.Enabled = false;
+                //barItem.Enabled = false;
 
-                if (disabledBarButtonItems.Contains(barItem))
+                if (barManagerItems.Contains(barItem))
                 {
                     barItem.Enabled = true;
                 }
@@ -121,7 +123,7 @@ namespace TN_CSDLPT.constants
 
         }
 
-        public static string getSelectedStringOfComboBox(BindingSource bds,ComboBoxEdit cbx, string value)
+        public static string getSelectedStringOfComboBox(BindingSource bds, ComboBoxEdit cbx, string value)
         {
             string returnValue = "";
             if (bds != null || cbx != null || !string.IsNullOrEmpty(value))
@@ -134,8 +136,71 @@ namespace TN_CSDLPT.constants
 
         public static void FillDataTable(object tableAdapter, string connectionString)
         {
-            
+
         }
 
+
+        public static string GetBindingSourceData(BindingSource source, int position, string key)
+        {
+            string result = null;
+            result = (string)((DataRowView)source[position])[key].ToString();
+            return result;
+        }
+
+        public static bool UpdateTableAdapter()
+        {
+            bool updateSuccessfully = false;
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return updateSuccessfully;
+        }
+
+        public static void FillComboxBox(ComboBoxEdit comboBox, DataTable dataTable, string rowName)
+        {
+            ComboBoxItemCollection itemsCollection = comboBox.Properties.Items;
+            itemsCollection.BeginUpdate();
+            try
+            {
+                foreach (DataRowView item in dataTable.Rows)
+                {
+                    itemsCollection.Add(item.Row[rowName]);
+                }
+
+            }
+            finally
+            {
+                itemsCollection.EndUpdate();
+            }
+        }
+
+        public static void FillComboxBox(ComboBoxEdit comboBox, BindingSource dataSource, string rowName)
+        {
+            IList rows = dataSource.List;
+            if (rows.Count > 0)
+            {
+                ComboBoxItemCollection itemsCollection = comboBox.Properties.Items;
+                itemsCollection.BeginUpdate();
+                try
+                {
+                    foreach (DataRowView item in rows)
+                    {
+                        itemsCollection.Add(item.Row[rowName]);
+                    }
+
+                }
+                finally
+                {
+                    itemsCollection.EndUpdate();
+                    comboBox.SelectedIndex = 0;
+                }
+            }
+        }
     }
 }

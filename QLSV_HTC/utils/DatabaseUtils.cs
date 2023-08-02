@@ -13,7 +13,17 @@ namespace TN_CSDLPT.utils
             string query = null;
             if(name != null)
             {
-                query = string.Format(query, args);
+                query = string.Format(name, args);
+            }
+            return query;
+        }
+
+        public static string BuildQuery(string name, string args)
+        {
+            string query = null;
+            if (name != null)
+            {
+                query = string.Format(name, args);
             }
             return query;
         }

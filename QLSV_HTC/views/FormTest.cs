@@ -127,7 +127,7 @@ namespace TN_CSDLPT.views
 
                     isSubmitted = true;
 
-                    FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem> { btnSubmit });
+                    FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnSubmit });
                     cbxSubject.Enabled = true;
                     seNumberOfTimes.Enabled = true;
                     deExamDate.Enabled = true;
@@ -249,7 +249,7 @@ namespace TN_CSDLPT.views
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem> { btnSubmit });
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnSubmit });
             btnFindExam.Enabled = false;
 
             string query = "EXEC SP_KT_SINHVIEN_DATHI '" + Program.maSinhVien.Trim() + "', '" +

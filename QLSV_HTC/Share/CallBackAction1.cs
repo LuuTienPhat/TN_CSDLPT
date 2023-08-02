@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace TracNghiem_CSDLPT.Share
 {
-    public class CallBackAction
+    public class CallBackAction1
     {
         public Action BackAction { get; set; }
         public DataTable Table { get; set; } 
 
-        public CallBackAction()
+        public CallBackAction1()
         {
             this.BackAction = Action.None;
             this.Table = null;
         }
 
-        public CallBackAction(Action action, DataTable table)
+        public CallBackAction1(Action action, DataTable table)
         {
             this.BackAction = action;
             this.Table = table;

@@ -10,6 +10,8 @@ class Translation
     public static string _argsNotEmptyMsg = "{0} should not be empty!";
     public static string _argsInputFieldTooltipMsg = "Please enter {0}.";
 
+    public static string _incorectSignInUsernamePasswordMsg = "Username or Password is incorrect!";
+
     public static string _errorTitle = "Error";
     public static string _warningTitle = "Warning";
     public static string _infomationTitle = "Information";

@@ -109,6 +109,7 @@
             this.pcClass = new DevExpress.XtraEditors.PanelControl();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.taDepartment = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.KHOATableAdapter();
+            this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
             mAKHLabel = new System.Windows.Forms.Label();
@@ -153,6 +154,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcClass)).BeginInit();
             this.pcClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // mALOPLabel
@@ -427,11 +429,12 @@
             this.cbxLocation,
             this.barButtonItem1});
             this.barManager1.MainMenu = this.bar4;
-            this.barManager1.MaxItemId = 16;
+            this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
             this.repositoryItemComboBox1,
-            this.repositoryItemComboBox2});
+            this.repositoryItemComboBox2,
+            this.repositoryItemComboBox3});
             // 
             // bar1
             // 
@@ -821,6 +824,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deBirthDate.Size = new System.Drawing.Size(100, 22);
             this.deBirthDate.TabIndex = 7;
+            this.deBirthDate.EditValueChanged += new System.EventHandler(this.deBirthDate_EditValueChanged);
             // 
             // teFirstName
             // 
@@ -869,6 +873,13 @@
             // taDepartment
             // 
             this.taDepartment.ClearBeforeFill = true;
+            // 
+            // repositoryItemComboBox3
+            // 
+            this.repositoryItemComboBox3.AutoHeight = false;
+            this.repositoryItemComboBox3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox3.Name = "repositoryItemComboBox3";
             // 
             // FormClass
             // 
@@ -921,6 +932,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcClass)).EndInit();
             this.pcClass.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -996,5 +1008,6 @@
         private DevExpress.XtraEditors.TextEdit teStudentClassId;
         private System.Windows.Forms.BindingSource lOPBindingSource;
         private DevExpress.XtraEditors.ComboBoxEdit cbxStudentClass;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox3;
     }
 }
