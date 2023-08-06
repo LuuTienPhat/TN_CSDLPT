@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -199,6 +200,28 @@ namespace TN_CSDLPT.constants
                 {
                     itemsCollection.EndUpdate();
                     comboBox.SelectedIndex = 0;
+                }
+            }
+        }
+
+        public static void FillComboxBox(RepositoryItemComboBox comboBox, BindingSource dataSource, string rowName)
+        {
+            IList rows = dataSource.List;
+            if (rows.Count > 0)
+            {
+                ComboBoxItemCollection itemsCollection = comboBox.Items;
+                itemsCollection.BeginUpdate();
+                try
+                {
+                    foreach (DataRowView item in rows)
+                    {
+                        itemsCollection.Add(item.Row[rowName]);
+                    }
+
+                }
+                finally
+                {
+                    itemsCollection.EndUpdate();
                 }
             }
         }

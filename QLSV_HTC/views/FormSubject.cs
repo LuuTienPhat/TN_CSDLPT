@@ -3,9 +3,11 @@ using DevExpress.XtraEditors;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using TN_CSDLPT.constants;
+using TN_CSDLPT.models;
 using TN_CSDLPT.utils;
 using TracNghiem_CSDLPT.Share;
 using TracNghiem_CSDLPT.SupportForm;
@@ -14,168 +16,241 @@ namespace TN_CSDLPT.views
 {
     public partial class FormSubject : DevExpress.XtraEditors.XtraForm
     {
-        ArrayList undoCommands = new ArrayList();
-
-        private CallBackAction1 _callAction = new CallBackAction1();
-        int vitri = -1;
-        String maCoSo;
-        ActionMode mode;
+        int position = -1;
+        ActionMode mode = ActionMode.None;
+        BindingList<CallBackAction> callBackActions = new BindingList<CallBackAction>();
 
         public FormSubject()
         {
             InitializeComponent();
-        }
-
-        private void mONHOCBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsSubject.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DataSet);
-
+            InitializeCallBackActions();
         }
 
         private void FormSubject_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'DataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+            this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
+            // TODO: This line of code loads data into the 'DataSet.BODE' table. You can move, or remove it, as needed.
+            this.taTopic.Fill(this.DataSet.BODE);
+            // TODO: This line of code loads data into the 'DataSet.BANGDIEM' table. You can move, or remove it, as needed.
+            this.taScore.Fill(this.DataSet.BANGDIEM);
             // TODO: This line of code loads data into the 'DataSet.COSO' table. You can move, or remove it, as needed.
-            this.taLocation.Fill(this.DataSet.COSO);
+            taLocation.Fill(DataSet.COSO);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.MONHOC' table. You can move, or remove it, as needed.
-            this.taSubject.Fill(this.DataSet.MONHOC);
-            // TODO: This line of code loads data into the 'tN_CSDLPTDataSet.MONHOC' table. You can move, or remove it, as needed.
-            this.taSubject.Fill(this.DataSet.MONHOC);
-            // TODO: This line of code loads data into the 'tN_CSDLPTDataSet.MONHOC' table. You can move, or remove it, as needed.
-            this.taSubject.Fill(this.DataSet.MONHOC);
+            taSubject.Fill(DataSet.MONHOC);
 
-        }
+            FormUtils.FillComboxBox(repositoryItemComboBox2, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
 
+            if (Program.mGroup == Database.ROLE_SCHOOL)
+            {
+                cbxLocation.Enabled = true;
+            }
 
-        private void btnCommit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (ValidateInput()) // Pass validation
+            if (((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            {
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNew, btnEdit, btnDelete, btnCommit, btnUndo, btnCancel
+                });
+            }
+            else
             {
 
-                string id = teID.Text;
-                string name = teName.Text;
+                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNew, btnEdit, btnDelete, btnCommit
+                });
 
-                string query = DatabaseUtils.BuildQuery(Database.SP_INSERT_SUBJECT, new string[] { id, name });
-                int result = Program.ExecSqlNonQuery(query);
-                if (result == 1) //subject id is already existed
-                {
-                    teID.Focus();
-                    FillTable();
-                    int position = bdsSubject.Find("ID", id); //get row position of existed id
-                    bdsSubject.Position = position; //Hightlight that row
-                }
-                else
-                {
-                    bdsSubject.EndEdit();
-                    bdsSubject.ResetCurrentItem();
-                    CommitDB();
-
-
-                    Frm_ActionInfo info = new Frm_ActionInfo(
-                                        new Object[] { this.gvSubject, barManager1 },
-                                        new CallBackAction1(TracNghiem_CSDLPT.Share.Action.AddSuccess, this._callAction.Table)
-                                        );
-                }
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                   btnCancel
+                });
             }
-        }
-
-        private void cbxLocation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+            gcInfo.Enabled = false;
 
         }
 
-        private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            this.Dispose();
-        }
-
-        private void cbxLocation_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnNew_ItemClick(object sender, ItemClickEventArgs e)
         {
             mode = ActionMode.Add;
-            vitri = bdsSubject.Position;
-
+            position = bdsSubject.Position;
             bdsSubject.AddNew();
-            FormUtils.DisableMatrixButtons(barManager1, new List<BarButtonItem> { btnNew, btnEdit, btnExit, btnRefresh, btnUndo });
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh, btnUndo
+            });
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
+
+            gcInfo.Enabled = true;
             gcSubject.Enabled = true;
             teID.Enabled = true;
-        }
-
-
-
-        private void gcInfo_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e)
         {
             mode = ActionMode.Edit;
-            vitri = bdsSubject.Position;
+            position = bdsSubject.Position;
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh, btnUndo
+            });
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
 
             gcInfo.Enabled = true;
             teID.Enabled = false;
             gcSubject.Enabled = false;
         }
 
-        private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnCommit_ItemClick(object sender, ItemClickEventArgs e)
         {
-            mode = ActionMode.Delete;
-            string id = "";
-            string name = "";
-
-            int dialogResult = (int)XtraMessageBox.Show("Bạn có chắc muốn xóa môn học này?", "Xác nhận", MessageBoxButtons.OKCancel);
-            if (dialogResult == (int)DialogResult.OK)
+            string oldSujectId = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+            string oldSubjectName = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_NAME);
+            if (mode.Equals(ActionMode.Edit))
             {
-                try
+                if (ValidateInput())
                 {
-                    id = (string)((DataRowView)bdsSubject[bdsSubject.Position])["MAMH"].ToString();
-                    name = (string)((DataRowView)bdsSubject[bdsSubject.Position])["TENMH"].ToString();
-                    bdsSubject.RemoveCurrent();
-                    this.taSubject.Connection.ConnectionString = Program.connstr;
-                    this.taSubject.Update(this.DataSet.MONHOC);
-                    undoCommands.Add("EXEC SP_ADD_SUBJECT '" + id + "', '" + name + "'");
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("Xóa môn học thất bại, hãy thử lại\n" + ex.Message, "", MessageBoxButtons.OK);
-                    this.taSubject.Update(this.DataSet.MONHOC);
-                    bdsSubject.Position = bdsSubject.Find("MAMH", id);
-                    return;
-                }
-
-                if (bdsSubject.Count == 0)
-                {
-                    btnDelete.Enabled = false;
-                }
-
-                //mode = "";
-                if (undoCommands.Count > 0)
-                {
-                    btnUndo.Enabled = true;
+                    CommitDB();
+                    string[] args = new string[] { oldSujectId, oldSubjectName };
+                    callBackActions.Add(
+                        new CallBackAction(mode, DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, args)));
                 }
                 else
                 {
-                    btnUndo.Enabled = false;
+                    return;
+                }
+            }
+            if (mode.Equals(ActionMode.Add))
+            {
+                if (ValidateInput())
+                {
+                    CommitDB();
+                    Hashtable refs = new Hashtable();
+                    refs.Add(Database.TABLE_SUBJECT_COL_SUBJECT_ID, oldSujectId);
+                    string[] args = new string[] { oldSujectId };
+                    callBackActions.Add(
+                        new CallBackAction(
+                            mode,
+                            DatabaseUtils.BuildQuery(Database.SP_DELETE_STUDENT, args),
+                            refs
+                        ));
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            mode = ActionMode.None;
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh
+            });
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
+
+            gcInfo.Enabled = false;
+            gcSubject.Enabled = true;
+        }
+
+        private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            mode = ActionMode.Delete;
+            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+
+            if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
+                string.Format(Translation._argsDeleteWarningMsg, $"Subject {subjectId}")) == DialogResult.OK)
+            {
+                if (bdsScore.Count <= 0)
+                {
+                    if (bdsTopic.Count <= 0)
+                    {
+                        if (bdsTeacher_Register.Count <= 0)
+                        {
+                            try
+                            {
+                                string subjectName = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_NAME);
+                                bdsSubject.RemoveCurrent();
+                                taSubject.Connection.ConnectionString = Program.connstr;
+                                taSubject.Update(DataSet.MONHOC);
+                                string[] args = new string[] { subjectId, subjectName };
+                                callBackActions.Add(
+                                    new CallBackAction(
+                                        mode,
+                                        DatabaseUtils.BuildQuery(Database.SP_INSERT_SUBJECT, args)
+                                    ));
+                            }
+                            catch (Exception ex)
+                            {
+                                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsDeleteErrorMsg, ex.Message));
+                                taSubject.Update(DataSet.MONHOC);
+                                bdsSubject.Position = bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_NAME, subjectId);
+                                return;
+                            }
+                            mode = ActionMode.None;
+                        }
+                        else
+                        {
+                            CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasTeacher);
+                        }
+                    }
+                    else
+                    {
+                        CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasTopic);
+                    }
+                }
+                else
+                {
+                    CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasScoreList);
                 }
             }
         }
 
         private void btnUndo_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (undoCommands.Count == 0)
+            CallBackAction action = callBackActions[callBackActions.Count - 1];
+            if (action.BackAction.Equals(ActionMode.Add))
             {
-                btnUndo.Enabled = false;
+                string subjectId = action.Reference[Database.TABLE_SUBJECT_COL_SUBJECT_ID].ToString();
+                if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, string.Format(Translation._argsDeleteWarningMsg, $"Subject {subjectId}")) == DialogResult.OK)
+                {
+                    try
+                    {
+                        Program.myReader = Program.ExecSqlDataReader(action.Query);
+                        Program.myReader.Read();
+                        string key = "";
+                        key = Program.myReader.GetString(0).Trim();
+                        Program.myReader.Close();
+                        Program.databaseConnection.Close();
+                        btnRefresh.PerformClick();
+                        if (key.Length != 0)
+                        {
+                            bdsSubject.Position = bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, key);
+                        }
+                        callBackActions.RemoveAt(callBackActions.Count - 1);
+                    }
+                    catch (Exception ex)
+                    {
+                        CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
+                        taSubject.Update(DataSet.MONHOC);
+                        Program.myReader.Close();
+                        Program.databaseConnection.Close();
+                    }
+                }
             }
-            else
-            {
+        }
 
-            }
+        private void btnExit_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Dispose();
         }
 
         private void btnCancel_ItemClick(object sender, ItemClickEventArgs e)
@@ -184,23 +259,32 @@ namespace TN_CSDLPT.views
             {
                 gvSubject.DeleteRow(gvSubject.FocusedRowHandle);
             }
-            bdsSubject.CancelEdit(); //Stop editing on binding source
-
-            bdsSubject.Position = vitri; //Point to previous row
+            bdsSubject.CancelEdit();
+            bdsSubject.Position = position;
             gcInfo.Enabled = false;
+            gcSubject.Enabled = true;
 
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh
+            });
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
         }
 
         private void btnRefresh_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
             {
-                taSubject.Fill(this.DataSet.MONHOC);
-                bdsSubject.Position = vitri;
+                taSubject.Fill(DataSet.MONHOC);
+                bdsSubject.Position = position;
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Lỗi reload: " + ex.Message, "", MessageBoxButtons.OK);
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsRefreshErrorMsg, ex.Message));
             }
         }
 
@@ -209,12 +293,12 @@ namespace TN_CSDLPT.views
             bool validated = true;
             if (teID.Text.Trim().Length == 0)
             {
-                teID.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._idLabel);
+                //teID.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._idLabel);
                 validated = false;
             }
             if (teName.Text.Trim().Length == 0)
             {
-                teName.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._nameLabel);
+                //teName.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._nameLabel);
                 validated = false;
             }
             return validated;
@@ -222,43 +306,88 @@ namespace TN_CSDLPT.views
 
         private void FillTable()
         {
-            this.DataSet.EnforceConstraints = false;
-            this.taSubject.Connection.ConnectionString = Program.connstr;
-            this.taSubject.Fill(this.DataSet.MONHOC);
+            DataSet.EnforceConstraints = false;
+            taSubject.Connection.ConnectionString = Program.connstr;
+            taSubject.Fill(DataSet.MONHOC);
         }
 
         private void CommitDB()
         {
-            this.bdsSubject.EndEdit();
-            this.bdsSubject.ResetCurrentItem();
-            this.taSubject.Update(this.DataSet.MONHOC);
+            try
+            {
+                bdsSubject.EndEdit();
+                bdsSubject.ResetCurrentItem();
+                taSubject.Connection.ConnectionString = Program.connstr;
+                taSubject.Update(DataSet.MONHOC);
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitErrorMsg, ex.Message));
+                taSubject.Update(DataSet);
+            }
         }
 
+        private void repositoryItemComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxEdit comboboxEdit = (ComboBoxEdit)sender;
+            object editValue = comboboxEdit.EditValue;
+            if (comboboxEdit.SelectedItem.ToString() != "System.Data.DataRowView")
+            {
+                Program.servername = FormUtils.GetBindingSourceData(Program.bdsSubcriber, comboboxEdit.SelectedIndex, Database.VIEW_ALL_LOCATION_COL_LOCATION_SERVER);
+                if (comboboxEdit.SelectedIndex != Program.indexCoSo)
+                {
+                    Program.mlogin = Program.remoteLogin;
+                    Program.password = Program.remotePassword;
+                }
+                else
+                {
+                    Program.mlogin = Program.mLoginDN;
+                    Program.password = Program.passwordDN;
+                }
+                if (!Program.ConnectDatabase())
+                {
+                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsDatabaseConnectErrorMsg, comboboxEdit.SelectedText));
+                }
+                else
+                {
+                    DataSet.EnforceConstraints = false;
+                    taSubject.Connection.ConnectionString = Program.connstr;
+                    taSubject.Fill(DataSet.MONHOC);
+                    taScore.Connection.ConnectionString = Program.connstr;
+                    taScore.Fill(DataSet.BANGDIEM);
+                    taTopic.Connection.ConnectionString = Program.connstr;
+                    taTopic.Fill(DataSet.BODE);
+                    taTeacher_Register.Connection.ConnectionString = Program.connstr;
+                    taTeacher_Register.Fill(DataSet.GIAOVIEN_DANGKY);
+                }
+            }
+        }
 
-        //public bool AbleDelete()
-        //{
-        //    if (bs_GVDK.Count != 0)
-        //    {
-        //        MessageBox.Show("Không thể xóa môn học. Vì môn học đã được đăng ký thi.", "Error",
-        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return false;
-        //    }
-        //    else if (bs_BangDiem.Count != 0)
-        //    {
-        //        MessageBox.Show("Không thể xóa môn học. Vì môn học đã được thi.", "Error",
-        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return false;
-        //    }
-        //    else if (bs_BoDe.Count != 0)
-        //    {
-        //        MessageBox.Show("Không thể xóa môn học. Vì môn học đã được lập bộ đề.", "Error",
-        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
-        //}
+        private void InitializeCallBackActions()
+        {
+            callBackActions = new BindingList<CallBackAction>();
+            callBackActions.RaiseListChangedEvents = true;
+            callBackActions.ListChanged += new ListChangedEventHandler(callBackActions_ListChanged);
+            bdsSubject.ListChanged += new ListChangedEventHandler(bdsSubject_ListChanged);
+            callBackActions_ListChanged(null, null);
+            bdsSubject_ListChanged(null, null);
+        }
+
+        private void bdsSubject_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (bdsSubject.Count == 0)
+            {
+                btnDelete.Enabled = btnEdit.Enabled = false;
+            }
+            else
+            {
+                btnDelete.Enabled = btnEdit.Enabled = true;
+            }
+        }
+
+        private void callBackActions_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            btnUndo.Enabled = callBackActions.Count != 0;
+        }
     }
 }

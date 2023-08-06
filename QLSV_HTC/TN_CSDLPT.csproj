@@ -79,7 +79,19 @@
     <Compile Include="constants\Translation.cs" />
     <Compile Include="constants\Database.cs" />
     <Compile Include="constants\FormUtils.cs" />
+    <Compile Include="FormExamResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExamResult.Designer.cs">
+      <DependentUpon>FormExamResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="models\CallBackAction.cs" />
+    <Compile Include="views\FormChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormChangePassword.Designer.cs">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\FormClass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,11 +140,11 @@
     <Compile Include="views\CauHoi.Designer.cs">
       <DependentUpon>CauHoi.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\FormExamResult.cs">
+    <Compile Include="views\FormReportExamResult.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\FormExamResult.Designer.cs">
-      <DependentUpon>FormExamResult.cs</DependentUpon>
+    <Compile Include="views\FormReportExamResult.Designer.cs">
+      <DependentUpon>FormReportExamResult.cs</DependentUpon>
     </Compile>
     <Compile Include="views\FormMain.cs">
       <SubType>Form</SubType>
@@ -172,6 +184,12 @@
     <Compile Include="views\FormTopic.Designer.cs">
       <DependentUpon>FormTopic.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormExamResult.resx">
+      <DependentUpon>FormExamResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\FormChangePassword.resx">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\FormClass.resx">
       <DependentUpon>FormClass.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,8 +205,8 @@
     <EmbeddedResource Include="views\CauHoi.resx">
       <DependentUpon>CauHoi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\FormExamResult.resx">
-      <DependentUpon>FormExamResult.cs</DependentUpon>
+    <EmbeddedResource Include="views\FormReportExamResult.resx">
+      <DependentUpon>FormReportExamResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

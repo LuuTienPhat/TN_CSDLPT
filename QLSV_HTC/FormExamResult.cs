@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TN_CSDLPT.views
+namespace TN_CSDLPT
 {
     public partial class FormExamResult : DevExpress.XtraEditors.XtraForm
     {

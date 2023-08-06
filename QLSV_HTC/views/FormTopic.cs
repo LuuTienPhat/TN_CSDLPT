@@ -23,7 +23,7 @@ namespace TN_CSDLPT.views
         //ArrayList undoCommands = new ArrayList();
         BindingList<CallBackAction> callBackActions = null;
         ///BindingList<CallBackAction> callAgainActions = null;
-        CallBackAction action;
+        //CallBackAction action;
         ActionMode mode;
         int position = -1;
 
@@ -139,13 +139,13 @@ namespace TN_CSDLPT.views
                 int nextQuestionNo = Program.myReader.GetInt32(0);
                 seQuestionNo.EditValue = nextQuestionNo;
                 Program.myReader.Close();
-                Program.conn.Close();
+                Program.databaseConnection.Close();
             }
             catch (Exception ex)
             {
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, $"Can't get next question number\n{ex.Message}");
                 Program.myReader.Close();
-                Program.conn.Close();
+                Program.databaseConnection.Close();
                 return;
             }
             //mã giáo viên tạo câu hỏi là mã giáo viên đang đăng nhập
@@ -281,7 +281,7 @@ namespace TN_CSDLPT.views
 
         private void btnUndo_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string undoQuery = callBackActions[callBackActions.Count - 1].query;
+            string undoQuery = callBackActions[callBackActions.Count - 1].Query;
             try
             {
                 Program.myReader = Program.ExecSqlDataReader(undoQuery);
@@ -301,7 +301,7 @@ namespace TN_CSDLPT.views
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, $"Couldn't undo {ex.Message}");
                 taTopic.Update(DataSet.BODE);
                 Program.myReader.Close();
-                Program.conn.Close();
+                Program.databaseConnection.Close();
                 return;
             }
         }
@@ -309,7 +309,7 @@ namespace TN_CSDLPT.views
         private void btnCancel_ItemClick(object sender, ItemClickEventArgs e)
         {
             // xóa cái dòng được tạo từ bindingSource.addNew khi ấn thêm trên gridview
-            if (action.Equals(ActionMode.Add))
+            if (mode.Equals(ActionMode.Add))
             {
                 gvTopic.DeleteRow(gvTopic.FocusedRowHandle);
             }
@@ -416,7 +416,7 @@ namespace TN_CSDLPT.views
             return isValidated;
         }
 
-        void callBackActions_ListChanged(object sender, ListChangedEventArgs e)
+        private void callBackActions_ListChanged(object sender, ListChangedEventArgs e)
         {
             //MessageBox.Show(e.ListChangedType.ToString());
             if (callBackActions.Count == 0)

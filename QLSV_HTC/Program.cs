@@ -1,8 +1,10 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
+using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +25,7 @@ namespace TN_CSDLPT
         //public static SqlCommand Sqlcmd = new SqlCommand();
 
         // tạo đối tượng kết nối Conn , kêt nối Database bằng mã lệnh
-        public static SqlConnection conn = new SqlConnection();
+        public static SqlConnection databaseConnection = new SqlConnection();
 
         public static String connstr = "";
         public static String connstr_publisher = "Data Source=MSI;Initial Catalog=TN_CSDLPT_PROD;Integrated Security=True";
@@ -73,9 +75,9 @@ namespace TN_CSDLPT
         {
             bool isConnected = false;
 
-            if (Program.conn != null && Program.conn.State == System.Data.ConnectionState.Open)
+            if (Program.databaseConnection != null && Program.databaseConnection.State == System.Data.ConnectionState.Open)
             {
-                Program.conn.Close();
+                Program.databaseConnection.Close();
             }
 
             try
@@ -83,9 +85,9 @@ namespace TN_CSDLPT
                 Program.connstr = "Data Source=" + Program.servername + ";Initial Catalog=" +
                       Program.database + ";User ID=" +
                       Program.mlogin + ";password=" + Program.password;
-                Program.conn.ConnectionString = Program.connstr;
+                Program.databaseConnection.ConnectionString = Program.connstr;
                 
-                Program.conn.Open();
+                Program.databaseConnection.Open();
                 isConnected = true;
             }
             catch (Exception ex)
@@ -101,11 +103,13 @@ namespace TN_CSDLPT
         {
             SqlDataReader sqlDataReader = null;
 
-            SqlCommand cmd = new SqlCommand(query, Program.conn);
+            SqlCommand cmd = new SqlCommand(query, Program.databaseConnection);
             cmd.CommandType = CommandType.Text;
-            if (Program.conn.State == ConnectionState.Closed)
+            //https://stackoverflow.com/questions/6943933/check-if-sql-connection-is-open-or-closed
+            if (Program.databaseConnection.State != ConnectionState.Open)
             {
-                Program.conn.Open();
+                Program.databaseConnection.Close();
+                Program.databaseConnection.Open();
             }
 
             try
@@ -114,7 +118,7 @@ namespace TN_CSDLPT
             }
             catch (Exception ex)
             {
-                Program.conn.Close();
+                Program.databaseConnection.Close();
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, ex.Message);
             }
 
@@ -124,21 +128,28 @@ namespace TN_CSDLPT
         public static DataTable ExecSqlDataTable(string cmd)
         {
             DataTable dt = new DataTable();
-            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
-            SqlDataAdapter da = new SqlDataAdapter(cmd, conn);
+            //https://stackoverflow.com/questions/6943933/check-if-sql-connection-is-open-or-closed
+            if (Program.databaseConnection.State != ConnectionState.Open)
+            {
+                Program.databaseConnection.Close();
+                Program.databaseConnection.Open();
+            }
+            SqlDataAdapter da = new SqlDataAdapter(cmd, databaseConnection);
             da.Fill(dt);
-            conn.Close();
+            databaseConnection.Close();
             return dt;
         }
 
         public static int ExecSqlNonQuery(string query)
         {
 
-            if (conn.State == ConnectionState.Closed)
+            //https://stackoverflow.com/questions/6943933/check-if-sql-connection-is-open-or-closed
+            if (Program.databaseConnection.State != ConnectionState.Open)
             {
-                conn.Open();
+                Program.databaseConnection.Close();
+                Program.databaseConnection.Open();
             }
-            SqlCommand Sqlcmd = new SqlCommand(query, conn);
+            SqlCommand Sqlcmd = new SqlCommand(query, databaseConnection);
             Sqlcmd.CommandType = CommandType.Text;
             Sqlcmd.CommandTimeout = 300;// 5 phut 
             try
@@ -150,11 +161,23 @@ namespace TN_CSDLPT
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
-                conn.Close();
+                databaseConnection.Close();
                 return ex.State; // lấy trạng thái lỗi gởi từ RAISERROR trong SQL Server qua
             }
         }
 
+        public static void FillLocationCombobox(BarEditItem barEditItem,RepositoryItemComboBox cbxLocation)
+        {
+            FormUtils.FillComboxBox(cbxLocation, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
+            if (Program.mGroup == Database.ROLE_SCHOOL)
+            {
+                barEditItem.Enabled = true;
+            }
+            else
+            {
+                barEditItem.Enabled = false;
+            }
+        }
         
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -10,45 +10,32 @@ namespace TN_CSDLPT.models
 {
     public class CallBackAction
     {
+        public Hashtable Reference { get; set; } = new Hashtable();
         public ActionMode BackAction { get; set; }
-        public string query { get; set; }
+        public string Query { get; set; }
         //public DataTable Table { get; set; } 
 
         public CallBackAction()
         {
             this.BackAction = ActionMode.None;
-            this.query = null;
+            this.Query = null;
+            this.Reference = new Hashtable();
             ///this.Table = null;
         }
 
         public CallBackAction(ActionMode action, string query)
         {
             this.BackAction = action;
-            this.query = query;
+            this.Query = query;
+            this.Reference = new Hashtable();
             ///this.Table = null;
         }
-
-        //public CallBackAction(ActionMode action, DataTable table)
-        //{
-        //    this.BackAction = action;
-        //    this.Table = table;
-        //}
-
-        //public void FillData(ActionMode action, DataTable table)
-        //{
-        //    this.BackAction = action;
-        //    this.Table = table;
-        //}
-
-        //public void Reset()
-        //{
-        //    this.BackAction = ActionMode.None;
-        //    this.Table = null;
-        //}
-
-        //public override String ToString()
-        //{
-        //    return "";
-        //}
+        public CallBackAction(ActionMode action, string query, Hashtable hashtable)
+        {
+            this.BackAction = action;
+            this.Query = query;
+            this.Reference = hashtable;
+            ///this.Table = null;
+        }
     }
 }

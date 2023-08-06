@@ -18,7 +18,7 @@ namespace TN_CSDLPT
     public partial class FormSignIn : DevExpress.XtraEditors.XtraForm
     {
 
-        private SqlConnection databaseConnection = new SqlConnection();
+        //private SqlConnection databaseConnection = new SqlConnection();
 
         public FormSignIn()
         {
@@ -48,21 +48,21 @@ namespace TN_CSDLPT
 
         private bool IsDatabaseOnline()
         {
-            if (databaseConnection != null && databaseConnection.State == ConnectionState.Open)
+            if (Program.databaseConnection != null && Program.databaseConnection.State == ConnectionState.Open)
             {
-                databaseConnection.Close();
+                Program.databaseConnection.Close();
             }
 
             try
             {
-                databaseConnection.ConnectionString = Program.connstr_publisher;
-                databaseConnection.Open();
+                Program.databaseConnection.ConnectionString = Program.connstr_publisher;
+                Program.databaseConnection.Open();
                 return true;
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(string.Format(Translation._argsDatabaseConnectErrorMsg, ex.Message.ToString()),
-                    Translation._errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, 
+                    string.Format(Translation._argsDatabaseConnectErrorMsg, ex.Message));
             }
 
             return false;
@@ -71,19 +71,8 @@ namespace TN_CSDLPT
         private void RetrieveAllSubcriber()
         {
             string queryRetrieveAllLocation = DatabaseUtils.BuildQuery(Database.STATEMENT_SELECT_ALL, Database.VIEW_ALL_LOCATIONS);
-
-            DataTable dt = new DataTable();
-            //https://stackoverflow.com/questions/6943933/check-if-sql-connection-is-open-or-closed
-            if (databaseConnection.State != ConnectionState.Open)
-            {
-                databaseConnection.Close();
-                databaseConnection.Open();
-            }
-
-            SqlDataAdapter sda = new SqlDataAdapter(queryRetrieveAllLocation, databaseConnection);
-            sda.Fill(dt);
-            databaseConnection.Close();
-            Program.bdsSubcriber.DataSource = dt;
+            DataTable sda = Program.ExecSqlDataTable(queryRetrieveAllLocation);
+            Program.bdsSubcriber.DataSource = sda;
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
@@ -122,11 +111,15 @@ namespace TN_CSDLPT
                             Program.mHoTen = Program.myReader.GetString(1);
                             Program.mGroup = Program.myReader.GetString(2);
                             Program.myReader.Close();
-                            Program.conn.Close();
+                            Program.databaseConnection.Close();
 
                             Program.formMain.lbUserId.Caption = Program.username;
                             Program.formMain.lbUserFullName.Caption = Program.mHoTen;
                             Program.formMain.lbUserRole.Caption = Program.mGroup;
+                        }
+                        else
+                        {
+                            return;
                         }
                     }
                 }
@@ -143,9 +136,11 @@ namespace TN_CSDLPT
                     {
                         Program.mLoginDN = Program.mlogin;
                         Program.passwordDN = Program.password;
-                        string strLenh = "EXEC SP_LAY_TT_SV '"
-                            + teUsername.Text.Trim() + "', '" + tePassword.Text.Trim() + "'";
-                        Program.myReader = Program.ExecSqlDataReader(strLenh);
+                        string query = DatabaseUtils.BuildQuery(Database.SP_GET_STUDENT_LOGIN_INFO, new string[]
+                        {
+                            teUsername.Text, tePassword.Text,
+                        });
+                        Program.myReader = Program.ExecSqlDataReader(query);
 
                         if (Program.myReader != null)
                         {
@@ -156,22 +151,22 @@ namespace TN_CSDLPT
                                 Program.mHoTen = Program.myReader.GetString(1);
                                 Program.maLop = Program.myReader.GetString(2);
                                 Program.tenLop = Program.myReader.GetString(3);
-                                Program.mGroup = "SINHVIEN";
+                                Program.mGroup = Database.ROLE_STUDENT;
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Đăng nhập không thành công, xem lại mã sinh viên và mật khẩu:", "Lỗi", MessageBoxButtons.OK);
+                                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._incorectSignInUsernamePasswordMsg);
                                 return;
                             }
 
                             if (Convert.IsDBNull(Program.username))
                             {
-                                MessageBox.Show("Tài khoản bạn dùng không có quyền truy cập dữ liệu\nXem lại tên đăng nhập và mật khẩu", "", MessageBoxButtons.OK);
+                                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._userPriviledgeNotValidMsg);
                                 return;
                             }
 
                             Program.myReader.Close();
-                            Program.conn.Close();
+                            Program.databaseConnection.Close();
 
                             Program.formMain.lbUserId.Caption = Program.maSinhVien;
                             Program.formMain.lbUserFullName.Caption = Program.mHoTen;
@@ -205,9 +200,9 @@ namespace TN_CSDLPT
         private void btnCancel_Click(object sender, EventArgs e)
         {
             //Check connection to database, in case of being actived then close
-            if (databaseConnection.State != ConnectionState.Closed)
+            if (Program.databaseConnection.State != ConnectionState.Closed)
             {
-                databaseConnection.Close();
+                Program.databaseConnection.Close();
             }
 
             //Close the application, Shutdown all running threads

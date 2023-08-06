@@ -66,6 +66,12 @@
             this.teID = new DevExpress.XtraEditors.TextEdit();
             this.bdsLocation = new System.Windows.Forms.BindingSource(this.components);
             this.taLocation = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter();
+            this.bdsScore = new System.Windows.Forms.BindingSource(this.components);
+            this.taScore = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.BANGDIEMTableAdapter();
+            this.bdsTopic = new System.Windows.Forms.BindingSource(this.components);
+            this.taTopic = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter();
+            this.bdsTeacher_Register = new System.Windows.Forms.BindingSource(this.components);
+            this.taTeacher_Register = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSubject)).BeginInit();
@@ -79,6 +85,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsScore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTopic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher_Register)).BeginInit();
             this.SuspendLayout();
             // 
             // bar1
@@ -196,6 +205,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnUndo),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnCancel),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh)});
+            this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.Text = "Tools";
             // 
             // btnNew
@@ -279,6 +289,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.cbxLocation, "", false, true, true, 250),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp)});
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.MultiLine = true;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Main menu";
@@ -291,7 +303,6 @@
             this.cbxLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cbxLocation.ImageOptions.SvgImage")));
             this.cbxLocation.Name = "cbxLocation";
             this.cbxLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
-            this.cbxLocation.EditValueChanged += new System.EventHandler(this.cbxLocation_EditValueChanged);
             // 
             // repositoryItemComboBox2
             // 
@@ -375,7 +386,6 @@
             this.gcInfo.Size = new System.Drawing.Size(1280, 222);
             this.gcInfo.TabIndex = 15;
             this.gcInfo.Text = "Info";
-            this.gcInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.gcInfo_Paint);
             // 
             // labelControl1
             // 
@@ -420,6 +430,33 @@
             // 
             this.taLocation.ClearBeforeFill = true;
             // 
+            // bdsScore
+            // 
+            this.bdsScore.DataMember = "FK_BANGDIEM_MONHOC";
+            this.bdsScore.DataSource = this.bdsSubject;
+            // 
+            // taScore
+            // 
+            this.taScore.ClearBeforeFill = true;
+            // 
+            // bdsTopic
+            // 
+            this.bdsTopic.DataMember = "FK_BODE_MONHOC";
+            this.bdsTopic.DataSource = this.bdsSubject;
+            // 
+            // taTopic
+            // 
+            this.taTopic.ClearBeforeFill = true;
+            // 
+            // bdsTeacher_Register
+            // 
+            this.bdsTeacher_Register.DataMember = "FK_GIAOVIEN_DANGKY_MONHOC1";
+            this.bdsTeacher_Register.DataSource = this.bdsSubject;
+            // 
+            // taTeacher_Register
+            // 
+            this.taTeacher_Register.ClearBeforeFill = true;
+            // 
             // FormSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -449,6 +486,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsScore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTopic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher_Register)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -491,5 +531,11 @@
         private DevExpress.XtraEditors.TextEdit teID;
         private DevExpress.XtraEditors.LabelControl lbId;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.BindingSource bdsScore;
+        private TN_CSDLPT_PRODDataSetTableAdapters.BANGDIEMTableAdapter taScore;
+        private System.Windows.Forms.BindingSource bdsTopic;
+        private TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter taTopic;
+        private System.Windows.Forms.BindingSource bdsTeacher_Register;
+        private TN_CSDLPT_PRODDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter taTeacher_Register;
     }
 }

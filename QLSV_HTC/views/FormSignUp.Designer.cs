@@ -148,7 +148,7 @@
             this.btnSignUp.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnSignUp.Appearance.Options.UseFont = true;
             this.btnSignUp.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.RightBottom;
-            this.btnSignUp.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSignIn.ImageOptions.SvgImage")));
+            this.btnSignUp.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSignUp.ImageOptions.SvgImage")));
             this.btnSignUp.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
             this.btnSignUp.Location = new System.Drawing.Point(58, 396);
             this.btnSignUp.Margin = new System.Windows.Forms.Padding(4);
