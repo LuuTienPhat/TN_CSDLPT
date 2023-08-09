@@ -52,7 +52,7 @@
             this.cbxLevel = new DevExpress.XtraEditors.ComboBoxEdit();
             this.sidePanel2 = new DevExpress.XtraEditors.SidePanel();
             this.btnFindExam = new DevExpress.XtraEditors.SimpleButton();
-            this.seNumberOfTimes = new DevExpress.XtraEditors.SpinEdit();
+            this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -79,6 +79,10 @@
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Dataset = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
+            this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
+            this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
+            this.bODEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bODETableAdapter = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter();
             this.sidePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcExaminee)).BeginInit();
             this.gcExaminee.SuspendLayout();
@@ -89,7 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.seTotalQuestions.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).BeginInit();
             this.sidePanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfTimes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).BeginInit();
@@ -99,6 +103,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dataset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel1
@@ -320,6 +326,7 @@
             // 
             // cbxLevel
             // 
+            this.cbxLevel.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bODEBindingSource, "TRINHDO", true));
             this.cbxLevel.Location = new System.Drawing.Point(131, 98);
             this.cbxLevel.Name = "cbxLevel";
             this.cbxLevel.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -330,7 +337,7 @@
             // sidePanel2
             // 
             this.sidePanel2.Controls.Add(this.btnFindExam);
-            this.sidePanel2.Controls.Add(this.seNumberOfTimes);
+            this.sidePanel2.Controls.Add(this.seNumberOfExamTimes);
             this.sidePanel2.Controls.Add(this.labelControl3);
             this.sidePanel2.Controls.Add(this.cbxSubject);
             this.sidePanel2.Controls.Add(this.labelControl4);
@@ -354,19 +361,19 @@
             this.btnFindExam.Text = "Find Exam";
             this.btnFindExam.Click += new System.EventHandler(this.btnFindExam_Click);
             // 
-            // seNumberOfTimes
+            // seNumberOfExamTimes
             // 
-            this.seNumberOfTimes.EditValue = new decimal(new int[] {
+            this.seNumberOfExamTimes.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.seNumberOfTimes.Location = new System.Drawing.Point(131, 79);
-            this.seNumberOfTimes.Name = "seNumberOfTimes";
-            this.seNumberOfTimes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.seNumberOfExamTimes.Location = new System.Drawing.Point(131, 79);
+            this.seNumberOfExamTimes.Name = "seNumberOfExamTimes";
+            this.seNumberOfExamTimes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.seNumberOfTimes.Size = new System.Drawing.Size(175, 22);
-            this.seNumberOfTimes.TabIndex = 30;
+            this.seNumberOfExamTimes.Size = new System.Drawing.Size(175, 22);
+            this.seNumberOfExamTimes.TabIndex = 30;
             // 
             // labelControl3
             // 
@@ -427,14 +434,14 @@
             this.sidePanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sidePanel4.Location = new System.Drawing.Point(327, 28);
             this.sidePanel4.Name = "sidePanel4";
-            this.sidePanel4.Size = new System.Drawing.Size(953, 662);
+            this.sidePanel4.Size = new System.Drawing.Size(1057, 662);
             this.sidePanel4.TabIndex = 2;
             this.sidePanel4.Text = "sidePanel4";
             // 
             // lcAnswerSheet
             // 
             this.lcAnswerSheet.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lcAnswerSheet.Location = new System.Drawing.Point(849, 44);
+            this.lcAnswerSheet.Location = new System.Drawing.Point(953, 44);
             this.lcAnswerSheet.Name = "lcAnswerSheet";
             this.lcAnswerSheet.Size = new System.Drawing.Size(104, 618);
             this.lcAnswerSheet.TabIndex = 3;
@@ -445,7 +452,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 44);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(953, 618);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1057, 618);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // standaloneBarDockControl1
@@ -459,7 +466,7 @@
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(0, 0);
             this.standaloneBarDockControl1.Manager = this.barManager1;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(953, 44);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(1057, 44);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barManager1
@@ -572,7 +579,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1280, 28);
+            this.barDockControlTop.Size = new System.Drawing.Size(1384, 28);
             // 
             // barDockControlBottom
             // 
@@ -580,7 +587,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 690);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1280, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1384, 0);
             // 
             // barDockControlLeft
             // 
@@ -594,7 +601,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1280, 28);
+            this.barDockControlRight.Location = new System.Drawing.Point(1384, 28);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 662);
             // 
@@ -624,11 +631,29 @@
             this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // bdsSubject
+            // 
+            this.bdsSubject.DataMember = "MONHOC";
+            this.bdsSubject.DataSource = this.Dataset;
+            // 
+            // taSubject
+            // 
+            this.taSubject.ClearBeforeFill = true;
+            // 
+            // bODEBindingSource
+            // 
+            this.bODEBindingSource.DataMember = "BODE";
+            this.bODEBindingSource.DataSource = this.Dataset;
+            // 
+            // bODETableAdapter
+            // 
+            this.bODETableAdapter.ClearBeforeFill = true;
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 690);
+            this.ClientSize = new System.Drawing.Size(1384, 690);
             this.Controls.Add(this.sidePanel4);
             this.Controls.Add(this.sidePanel1);
             this.Controls.Add(this.barDockControlLeft);
@@ -651,7 +676,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).EndInit();
             this.sidePanel2.ResumeLayout(false);
             this.sidePanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfTimes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).EndInit();
@@ -662,6 +687,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dataset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -682,7 +709,7 @@
         private DevExpress.XtraEditors.LabelControl lbTitleId;
         private DevExpress.XtraEditors.SidePanel sidePanel3;
         private DevExpress.XtraEditors.SidePanel sidePanel2;
-        private DevExpress.XtraEditors.SpinEdit seNumberOfTimes;
+        private DevExpress.XtraEditors.SpinEdit seNumberOfExamTimes;
         private DevExpress.XtraEditors.SpinEdit seTotalQuestions;
         private DevExpress.XtraEditors.SimpleButton btnStart;
         private DevExpress.XtraEditors.DateEdit deExamDate;
@@ -717,5 +744,9 @@
         private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraBars.BarButtonItem btnExit;
         private DevExpress.XtraBars.BarButtonItem btnHelp;
+        private System.Windows.Forms.BindingSource bdsSubject;
+        private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
+        private System.Windows.Forms.BindingSource bODEBindingSource;
+        private TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter bODETableAdapter;
     }
 }

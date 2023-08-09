@@ -39,11 +39,15 @@ namespace TN_CSDLPT.views
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.MONHOC' table. You can move, or remove it, as needed.
             taSubject.Fill(DataSet.MONHOC);
 
-            FormUtils.FillComboxBox(repositoryItemComboBox2, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
+            Program.FillLocationCombobox(btnLocation, cbxLocation);
 
             if (Program.mGroup == Database.ROLE_SCHOOL)
             {
-                cbxLocation.Enabled = true;
+                btnLocation.Enabled = true;
+            }
+            else
+            {
+                btnLocation.Enabled = false;
             }
 
             if (((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
@@ -70,7 +74,7 @@ namespace TN_CSDLPT.views
         private void btnNew_ItemClick(object sender, ItemClickEventArgs e)
         {
             mode = ActionMode.Add;
-            position = bdsSubject.Position;
+            //position = bdsSubject.Position;
             bdsSubject.AddNew();
 
             FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
@@ -90,7 +94,7 @@ namespace TN_CSDLPT.views
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e)
         {
             mode = ActionMode.Edit;
-            position = bdsSubject.Position;
+            //position = bdsSubject.Position;
 
             FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
                 btnNew, btnEdit, btnDelete, btnExit, btnRefresh, btnUndo
@@ -199,7 +203,7 @@ namespace TN_CSDLPT.views
                         }
                         else
                         {
-                            CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasTeacher);
+                            CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasTeacherMsg);
                         }
                     }
                     else
@@ -279,12 +283,18 @@ namespace TN_CSDLPT.views
         {
             try
             {
+                mode = ActionMode.Refresh;
+                tableAdapterManager.Connection.ConnectionString = Program.connstr;
                 taSubject.Fill(DataSet.MONHOC);
-                bdsSubject.Position = position;
+                bdsSubject.Position = this.position;
             }
             catch (Exception ex)
             {
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsRefreshErrorMsg, ex.Message));
+            }
+            finally
+            {
+                mode = ActionMode.None;
             }
         }
 
@@ -327,42 +337,6 @@ namespace TN_CSDLPT.views
             }
         }
 
-        private void repositoryItemComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBoxEdit comboboxEdit = (ComboBoxEdit)sender;
-            object editValue = comboboxEdit.EditValue;
-            if (comboboxEdit.SelectedItem.ToString() != "System.Data.DataRowView")
-            {
-                Program.servername = FormUtils.GetBindingSourceData(Program.bdsSubcriber, comboboxEdit.SelectedIndex, Database.VIEW_ALL_LOCATION_COL_LOCATION_SERVER);
-                if (comboboxEdit.SelectedIndex != Program.indexCoSo)
-                {
-                    Program.mlogin = Program.remoteLogin;
-                    Program.password = Program.remotePassword;
-                }
-                else
-                {
-                    Program.mlogin = Program.mLoginDN;
-                    Program.password = Program.passwordDN;
-                }
-                if (!Program.ConnectDatabase())
-                {
-                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsDatabaseConnectErrorMsg, comboboxEdit.SelectedText));
-                }
-                else
-                {
-                    DataSet.EnforceConstraints = false;
-                    taSubject.Connection.ConnectionString = Program.connstr;
-                    taSubject.Fill(DataSet.MONHOC);
-                    taScore.Connection.ConnectionString = Program.connstr;
-                    taScore.Fill(DataSet.BANGDIEM);
-                    taTopic.Connection.ConnectionString = Program.connstr;
-                    taTopic.Fill(DataSet.BODE);
-                    taTeacher_Register.Connection.ConnectionString = Program.connstr;
-                    taTeacher_Register.Fill(DataSet.GIAOVIEN_DANGKY);
-                }
-            }
-        }
-
         private void InitializeCallBackActions()
         {
             callBackActions = new BindingList<CallBackAction>();
@@ -388,6 +362,54 @@ namespace TN_CSDLPT.views
         private void callBackActions_ListChanged(object sender, ListChangedEventArgs e)
         {
             btnUndo.Enabled = callBackActions.Count != 0;
+        }
+
+        private void cbxLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxEdit comboboxEdit = (ComboBoxEdit)sender;
+            object editValue = comboboxEdit.EditValue;
+            if (comboboxEdit.SelectedItem.ToString() != "System.Data.DataRowView")
+            {
+                Program.servername = FormUtils.GetBindingSourceData(Program.bdsSubcriber, comboboxEdit.SelectedIndex, Database.VIEW_ALL_LOCATION_COL_LOCATION_SERVER);
+                if (comboboxEdit.SelectedIndex != Program.indexCoSo)
+                {
+                    Program.mlogin = Program.remoteLogin;
+                    Program.password = Program.remotePassword;
+                }
+                else
+                {
+                    Program.mlogin = Program.mLoginDN;
+                    Program.password = Program.passwordDN;
+                }
+                if (!Program.ConnectDatabase())
+                {
+                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsDatabaseConnectErrorMsg, comboboxEdit.SelectedText));
+                }
+                else
+                {
+                    this.DataSet.EnforceConstraints = false;
+
+                    this.taSubject.Connection.ConnectionString = Program.connstr;
+                    this.taSubject.Fill(this.DataSet.MONHOC);
+
+                    this.taScore.Connection.ConnectionString = Program.connstr;
+                    this.taScore.Fill(this.DataSet.BANGDIEM);
+
+                    this.taTopic.Connection.ConnectionString = Program.connstr;
+                    this.taTopic.Fill(this.DataSet.BODE);
+
+                    this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
+                    this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
+                }
+            }
+        }
+
+        private void gvSubject_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (!mode.Equals(ActionMode.Refresh))
+            {
+                this.position = bdsSubject.Position;
+            }
         }
     }
 }

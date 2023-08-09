@@ -20,7 +20,16 @@ namespace TN_CSDLPT.views
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            System.Environment.Exit(0);
+            if (System.Windows.Forms.Application.MessageLoop)
+            {
+                // WinForms app
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                // Console app
+                System.Environment.Exit(1);
+            }
         }
 
         public void FormMain_Load(object sender, EventArgs e)
@@ -73,6 +82,64 @@ namespace TN_CSDLPT.views
             return null;
         }
 
+        private void btnExamResultReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormExamResult));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormExamResult f = new FormExamResult();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
 
+        private void btnSubjectScoreSheet_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormReportSubjectScoreTable));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormReportSubjectScoreTable f = new FormReportSubjectScoreTable();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnExamRegistrationList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormRegisterList2Location));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormRegisterList2Location f = new FormRegisterList2Location();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnTeacherRegistration_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormRegisterList2Location));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormRegisterList2Location f = new FormRegisterList2Location();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnDoExam_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormTest));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormTest f = new FormTest();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

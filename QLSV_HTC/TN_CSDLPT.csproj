@@ -86,6 +86,7 @@
       <DependentUpon>FormExamResult.cs</DependentUpon>
     </Compile>
     <Compile Include="models\CallBackAction.cs" />
+    <Compile Include="utils\DateTimeHelper.cs" />
     <Compile Include="views\FormChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,11 +141,23 @@
     <Compile Include="views\CauHoi.Designer.cs">
       <DependentUpon>CauHoi.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\FormRegisterList2Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormRegisterList2Location.Designer.cs">
+      <DependentUpon>FormRegisterList2Location.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\FormReportExamResult.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="views\FormReportExamResult.Designer.cs">
       <DependentUpon>FormReportExamResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\FormReportSubjectScoreTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormReportSubjectScoreTable.Designer.cs">
+      <DependentUpon>FormReportSubjectScoreTable.cs</DependentUpon>
     </Compile>
     <Compile Include="views\FormMain.cs">
       <SubType>Form</SubType>
@@ -205,8 +218,14 @@
     <EmbeddedResource Include="views\CauHoi.resx">
       <DependentUpon>CauHoi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\FormRegisterList2Location.resx">
+      <DependentUpon>FormRegisterList2Location.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\FormReportExamResult.resx">
       <DependentUpon>FormReportExamResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\FormReportSubjectScoreTable.resx">
+      <DependentUpon>FormReportSubjectScoreTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

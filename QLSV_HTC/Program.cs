@@ -66,9 +66,10 @@ namespace TN_CSDLPT
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             formMain = new FormMain();
-            formSignIn = new FormSignIn(); 
-            //Application.Run(new FormSignIn());
-            Application.Run(formSignIn);
+            formSignIn = new FormSignIn();
+            FormReportSubjectScoreTable formReportSubjectScoreTable = new FormReportSubjectScoreTable();
+            Application.Run(new FormSignIn());
+            //Application.Run(formReportSubjectScoreTable);
         }
 
         public static bool ConnectDatabase()
@@ -166,17 +167,10 @@ namespace TN_CSDLPT
             }
         }
 
-        public static void FillLocationCombobox(BarEditItem barEditItem,RepositoryItemComboBox cbxLocation)
+        public static void FillLocationCombobox(BarEditItem button,RepositoryItemComboBox cbxLocation)
         {
-            FormUtils.FillComboxBox(cbxLocation, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
-            if (Program.mGroup == Database.ROLE_SCHOOL)
-            {
-                barEditItem.Enabled = true;
-            }
-            else
-            {
-                barEditItem.Enabled = false;
-            }
+            FormUtils.FillComboBox(cbxLocation, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
+            button.EditValue = cbxLocation.Items[Program.indexCoSo].ToString();
         }
         
     }

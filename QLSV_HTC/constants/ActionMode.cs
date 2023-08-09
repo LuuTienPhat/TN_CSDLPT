@@ -14,6 +14,7 @@ namespace TN_CSDLPT.constants
         Delete,
         Commit,
         Save,
-        Cancel
+        Cancel,
+        Refresh
     }
 }

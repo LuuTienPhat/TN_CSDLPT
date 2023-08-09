@@ -30,7 +30,7 @@ namespace TN_CSDLPT
             if (IsDatabaseOnline()) //Database online
             {
                 RetrieveAllSubcriber();
-                FormUtils.FillComboxBox(cbxLocation, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
+                FormUtils.FillComboBox(cbxLocation, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
                 Program.servername = FormUtils.GetBindingSourceData(Program.bdsSubcriber, cbxLocation.SelectedIndex, Database.VIEW_ALL_LOCATION_COL_LOCATION_SERVER);
 
                 ceTeacher.Select();

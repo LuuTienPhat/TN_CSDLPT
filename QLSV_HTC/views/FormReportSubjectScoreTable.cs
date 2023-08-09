@@ -12,20 +12,19 @@ using TN_CSDLPT.constants;
 
 namespace TN_CSDLPT.views
 {
-    public partial class FormReportExamResult : DevExpress.XtraEditors.XtraForm
+    public partial class FormReportSubjectScoreTable : DevExpress.XtraEditors.XtraForm
     {
-        public FormReportExamResult()
+        public FormReportSubjectScoreTable()
         {
             InitializeComponent();
         }
 
         private void FormReportExamResult_Load(object sender, EventArgs e)
         {
-
             FillTableAdapters();
-            FillFormComboBoxes();
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
+
             //chỉ trường mới có quyền xem trên cơ sở khác
             if (Program.mGroup == Database.ROLE_SCHOOL)
             {
@@ -34,23 +33,20 @@ namespace TN_CSDLPT.views
             else
             {
                 cbxLocation.Enabled = false;
-
             }
 
-            if (Program.mGroup == Database.ROLE_STUDENT)
-            {
-                cbxStudent.SelectedText = Program.maSinhVien.Trim();
-                cbxStudent.Enabled = false;
-            }
+            FillFormComboBoxes();
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
+            string className = "";
             
         }
 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
             try
             {
                 FillTableAdapters();
@@ -61,6 +57,7 @@ namespace TN_CSDLPT.views
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
                     string.Format(Translation._argsRefreshErrorMsg, ex.Message));
             }
+
         }
 
         private void cbxLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,20 +88,25 @@ namespace TN_CSDLPT.views
             }
         }
 
+        private void FillFormComboBoxes()
+        {
+            FormUtils.FillComboBox(cbxClass, this.bdsClass, new string[] { Database.TABLE_CLASS_COL_CLASS_ID, Database.TABLE_CLASS_COL_CLASS_NAME });
+            FormUtils.FillComboBox(cbxSubject, this.bdsSubject, new string[] { Database.TABLE_SUBJECT_COL_SUBJECT_ID, Database.TABLE_SUBJECT_COL_SUBJECT_NAME });
+        }
+
         private void FillTableAdapters()
         {
             DataSet.EnforceConstraints = false;
             this.tableAdapterManager.Connection.ConnectionString = Program.connstr;
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.SINHVIEN' table. You can move, or remove it, as needed.
-            this.taStudent.Fill(this.DataSet.SINHVIEN);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.MONHOC' table. You can move, or remove it, as needed.
             this.taSubject.Fill(this.DataSet.MONHOC);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
+            this.taClass.Fill(this.DataSet.LOP);
         }
 
-        private void FillFormComboBoxes()
+        private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FormUtils.FillComboBox(cbxStudent, this.bdsStudent, new string[] { Database.TABLE_STUDENT_COL_STUDENT_ID , Database.TABLE_STUDENT_COL_STUDENT_FIRSTNAME});
-            FormUtils.FillComboBox(cbxSubject, this.bdsSubject, new string[] { Database.TABLE_SUBJECT_COL_SUBJECT_ID, Database.TABLE_SUBJECT_COL_SUBJECT_NAME });
+            this.Dispose();
         }
     }
 }

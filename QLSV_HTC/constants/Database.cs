@@ -35,6 +35,30 @@ class Database
     public const string VIEW_ALL_LOCATIONS = "VIEW_ALL_LOCATIONS";
 
     //STORE PROCEDUES
+
+    /// <summary>
+    /// {0} : student ID
+    /// {1} : subject ID
+    /// {2} : number of exam times
+    /// </summary>
+    public const string SP_CHECK_STUDENT_ALREADY_FINISHED_EXAM = "SP_CHECK_STUDENT_ALREADY_FINISHED_EXAM";
+
+
+    /// <summary>
+    /// {0} : subject ID
+    /// {1} : level
+    /// {2} : number of exam times
+    /// </summary>
+    public const string SP_GET_QUESTIONS = "SP_GET_QUESTIONS";
+
+    /// <summary>
+    /// {0} : student ID
+    /// {1} : level
+    /// {2} : exam date
+    /// {3} : number of exam times
+    /// </summary>
+    public const string SP_FIND_EXAM_SUBECT = "SP_FIND_EXAM_SUBECT";
+
     /// <summary>
     /// {0} : id
     /// </summary>
@@ -48,7 +72,7 @@ class Database
     /// 2: username
     /// 3: role
     /// </summary>
-    public const string SP_INSERT_STUDENT = "EXEC SP_INSERT_STUDENT {0}, {1}, {2}, {3}, {4}";
+    public const string SP_INSERT_STUDENT = "EXEC SP_INSERT_STUDENT N'{0}', N'{1}', N'{2}', N'{3}', N'{4}'";
 
     /// <summary>
     /// 0: login name
@@ -56,7 +80,7 @@ class Database
     /// 2: username
     /// 3: role
     /// </summary>
-    public const string SP_UPDATE_STUDENT = "EXEC SP_UPDATE_STUDENT {0}, {1}";
+    public const string SP_UPDATE_STUDENT = "EXEC SP_UPDATE_STUDENT N'{0}', N'{1}'";
 
     /// <summary>
     /// 0: login name
@@ -64,9 +88,9 @@ class Database
     /// 2: username
     /// 3: role
     /// </summary>
-    public const string SP_DELETE_STUDENT = "EXEC SP_DELETE_STUDENT {0}";
-    public const string SP_CHECK_USERNAME_EXISTS = "EXEC CHECK_USERNAME_EXISTS {0}";
-    public const string SP_CHECK_LOGINNAME_EXISTS = "EXEC CHECK_LOGINNAME_EXISTS {0}";
+    public const string SP_DELETE_STUDENT = "EXEC SP_DELETE_STUDENT N'{0}'";
+    public const string SP_CHECK_USERNAME_EXISTS = "EXEC CHECK_USERNAME_EXISTS N'{0}'";
+    public const string SP_CHECK_LOGINNAME_EXISTS = "EXEC CHECK_LOGINNAME_EXISTS N'{0}'";
     
     /// <summary>
     /// 0: login name
@@ -88,7 +112,7 @@ class Database
     /// 8: answer
     /// 9: teacher ID
     /// </summary>
-    public const string SP_INSERT_TOPIC = "EXEC SP_INSERT_TOPIC '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
+    public const string SP_INSERT_TOPIC = "EXEC SP_INSERT_TOPIC N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', N'{9}'";
 
     /// <summary>
     /// 0: question NO
@@ -102,7 +126,32 @@ class Database
     /// 8: answer
     /// 9: teacher ID
     /// </summary>
-    public const string SP_UPDATE_TOPIC = "EXEC SP_UPDATE_TOPIC '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
+    public const string SP_UPDATE_TOPIC = "EXEC SP_UPDATE_TOPIC N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', N'{9}'";
+
+
+    /// <summary>
+    /// 0: question NO
+    /// 1: student ID
+    /// 2: subject ID
+    /// 3: number Of Exam Times
+    /// 4: question
+    /// 5: answer (A, B, C, D)
+    /// </summary>
+    ///public const string SP_INSERT_EXAM_DETAIL = "EXEC SP_INSERT_EXAM_DETAIL N'{0}', N'{1}', N'{2}', N'{3}', N'{4}'";
+
+    /// <summary>
+    /// 0: An string with format @CAUSO, @MASV, @MAMH, @LAN, @CAUHOI, @DACHON||....
+    /// </summary>
+    ///public const string SP_INSERT_EXAM_DETAIL = "EXEC SP_INSERT_EXAM_DETAIL N'{0}', N'{1}', N'{2}', N'{3}', N'{4}'";
+
+    /// <summary>
+    /// 0: student ID
+    /// 1: subject ID
+    /// 2: number Of Exam Times
+    /// 3: exam date
+    /// 4: grade
+    /// </summary>
+    public const string SP_INSERT_SCORE = "SP_INSERT_SCORE";
 
     /// <summary>
     /// 0: Login Name
@@ -135,5 +184,11 @@ class Database
     public static string TABLE_SUBJECT_COL_SUBJECT_ID = "MAMH";
     public static string TABLE_SUBJECT_COL_SUBJECT_NAME = "TENMH";
 
-    
+    public static string TABLE_CLASS_COL_CLASS_ID = "MALOP";
+    public static string TABLE_CLASS_COL_CLASS_NAME = "TENLOP";
+    public static string TABLE_CLASS_COL_CLASS_DEPARTMENT_ID = "MAKH";
+
+    public static string TABLE_STUDENT_COL_STUDENT_ID = "MASV";
+    public static string TABLE_STUDENT_COL_STUDENT_LASTNAME = "HO";
+    public static string TABLE_STUDENT_COL_STUDENT_FIRSTNAME = "TEN";
 }

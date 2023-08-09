@@ -109,21 +109,6 @@ namespace TN_CSDLPT.constants
 
         }
 
-        public static void FillCombobox(ComboBoxEdit comboBox, string connectionString, string command, string displayValue)
-        {
-            //DataTable dt = new DataTable();
-            //if(Program.conn.State == ConnectionState.Closed)
-            //{
-            //    Program.conn.Close();
-            //}
-
-            //SqlDataAdapter sda = new SqlDataAdapter(command, connectionString);
-            //sda.Fill(dt);
-            //Program.conn.Close();
-            //
-
-        }
-
         public static string getSelectedStringOfComboBox(BindingSource bds, ComboBoxEdit cbx, string value)
         {
             string returnValue = "";
@@ -163,7 +148,7 @@ namespace TN_CSDLPT.constants
             return updateSuccessfully;
         }
 
-        public static void FillComboxBox(ComboBoxEdit comboBox, DataTable dataTable, string rowName)
+        public static void FillComboBox(ComboBoxEdit comboBox, DataTable dataTable, string rowName)
         {
             ComboBoxItemCollection itemsCollection = comboBox.Properties.Items;
             itemsCollection.BeginUpdate();
@@ -181,7 +166,7 @@ namespace TN_CSDLPT.constants
             }
         }
 
-        public static void FillComboxBox(ComboBoxEdit comboBox, BindingSource dataSource, string rowName)
+        public static void FillComboBox(ComboBoxEdit comboBox, BindingSource dataSource, string rowName)
         {
             IList rows = dataSource.List;
             if (rows.Count > 0)
@@ -204,7 +189,7 @@ namespace TN_CSDLPT.constants
             }
         }
 
-        public static void FillComboxBox(RepositoryItemComboBox comboBox, BindingSource dataSource, string rowName)
+        public static void FillComboBox(RepositoryItemComboBox comboBox, BindingSource dataSource, string rowName)
         {
             IList rows = dataSource.List;
             if (rows.Count > 0)
@@ -222,6 +207,65 @@ namespace TN_CSDLPT.constants
                 finally
                 {
                     itemsCollection.EndUpdate();
+                }
+            }
+        }
+
+        public static void FillComboBox(ComboBoxEdit comboBox, BindingSource dataSource, string[] columns, string outputFormat)
+        {
+            IList rows = dataSource.List;
+            if (rows.Count > 0)
+            {
+                ComboBoxItemCollection itemsCollection = comboBox.Properties.Items;
+                itemsCollection.BeginUpdate();
+                try
+                {
+                    foreach (DataRowView item in rows)
+                    {
+                        List<string> values = new List<string>();
+                        foreach (string col in columns)
+                        {
+                            string value = item.Row[col].ToString().Trim();
+                            values.Add(value);
+                        }
+
+                        itemsCollection.Add(string.Format(outputFormat, values));
+                    }
+
+                }
+                finally
+                {
+                    itemsCollection.EndUpdate();
+                    comboBox.SelectedIndex = 0;
+                }
+            }
+        }
+
+        public static void FillComboBox(ComboBoxEdit comboBox, BindingSource dataSource, string[] columns)
+        {
+            IList rows = dataSource.List;
+            if (rows.Count > 0)
+            {
+                ComboBoxItemCollection itemsCollection = comboBox.Properties.Items;
+                itemsCollection.BeginUpdate();
+                try
+                {
+                    foreach (DataRowView item in rows)
+                    {
+                        List<string> values = new List<string>();
+                        foreach (string col in columns)
+                        {
+                            string value = item.Row[col].ToString().Trim();
+                            values.Add(value);                      
+                        }
+                        itemsCollection.Add(string.Join(" - ",values));
+                    }
+
+                }
+                finally
+                {
+                    itemsCollection.EndUpdate();
+                    comboBox.SelectedIndex = 0;
                 }
             }
         }

@@ -590,8 +590,6 @@ namespace TN_CSDLPT.views
     }
 
 
-
-
     class MenuColumnInfo
     {
         public MenuColumnInfo(GridColumn column)

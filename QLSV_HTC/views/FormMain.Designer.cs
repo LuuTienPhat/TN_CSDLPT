@@ -39,9 +39,9 @@
             this.btnSubjectManagement = new DevExpress.XtraBars.BarButtonItem();
             this.btnCreateLogin = new DevExpress.XtraBars.BarButtonItem();
             this.btnChangePassword = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExamResultReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSubjectScoreSheet = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExamRegistrationList = new DevExpress.XtraBars.BarButtonItem();
             this.lbUserId = new DevExpress.XtraBars.BarStaticItem();
             this.lbUserFullName = new DevExpress.XtraBars.BarStaticItem();
             this.lbUserRole = new DevExpress.XtraBars.BarStaticItem();
@@ -58,6 +58,11 @@
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnTeacherRegistration = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnDoExam = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -76,19 +81,22 @@
             this.btnSubjectManagement,
             this.btnCreateLogin,
             this.btnChangePassword,
-            this.barButtonItem5,
-            this.barButtonItem6,
-            this.barButtonItem7,
+            this.btnExamResultReport,
+            this.btnSubjectScoreSheet,
+            this.btnExamRegistrationList,
             this.lbUserId,
             this.lbUserFullName,
-            this.lbUserRole});
+            this.lbUserRole,
+            this.btnTeacherRegistration,
+            this.btnDoExam});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 15;
+            this.ribbon.MaxItemId = 17;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbSystem,
             this.ribbonPage1,
-            this.ribbonPage2});
+            this.ribbonPage2,
+            this.ribbonPage3});
             this.ribbon.Size = new System.Drawing.Size(1165, 175);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
@@ -149,23 +157,26 @@
             this.btnChangePassword.Id = 8;
             this.btnChangePassword.Name = "btnChangePassword";
             // 
-            // barButtonItem5
+            // btnExamResultReport
             // 
-            this.barButtonItem5.Caption = "Exam Results";
-            this.barButtonItem5.Id = 9;
-            this.barButtonItem5.Name = "barButtonItem5";
+            this.btnExamResultReport.Caption = "Exam Result";
+            this.btnExamResultReport.Id = 9;
+            this.btnExamResultReport.Name = "btnExamResultReport";
+            this.btnExamResultReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExamResultReport_ItemClick);
             // 
-            // barButtonItem6
+            // btnSubjectScoreSheet
             // 
-            this.barButtonItem6.Caption = "Subject Score Sheet";
-            this.barButtonItem6.Id = 10;
-            this.barButtonItem6.Name = "barButtonItem6";
+            this.btnSubjectScoreSheet.Caption = "Subject Score Sheet";
+            this.btnSubjectScoreSheet.Id = 10;
+            this.btnSubjectScoreSheet.Name = "btnSubjectScoreSheet";
+            this.btnSubjectScoreSheet.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubjectScoreSheet_ItemClick);
             // 
-            // barButtonItem7
+            // btnExamRegistrationList
             // 
-            this.barButtonItem7.Caption = "Exam Registration List";
-            this.barButtonItem7.Id = 11;
-            this.barButtonItem7.Name = "barButtonItem7";
+            this.btnExamRegistrationList.Caption = "Exam Registration List";
+            this.btnExamRegistrationList.Id = 11;
+            this.btnExamRegistrationList.Name = "btnExamRegistrationList";
+            this.btnExamRegistrationList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExamRegistrationList_ItemClick);
             // 
             // lbUserId
             // 
@@ -255,19 +266,19 @@
             // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem5);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnExamResultReport);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
             // ribbonPageGroup7
             // 
-            this.ribbonPageGroup7.ItemLinks.Add(this.barButtonItem6);
+            this.ribbonPageGroup7.ItemLinks.Add(this.btnSubjectScoreSheet);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             this.ribbonPageGroup7.Text = "ribbonPageGroup7";
             // 
             // ribbonPageGroup8
             // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.barButtonItem7);
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnExamRegistrationList);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             this.ribbonPageGroup8.Text = "ribbonPageGroup8";
             // 
@@ -285,6 +296,41 @@
             // 
             this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // ribbonPage3
+            // 
+            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup9,
+            this.ribbonPageGroup10});
+            this.ribbonPage3.ImageOptions.ImageToTextIndent = 10;
+            this.ribbonPage3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ribbonPage3.ImageOptions.SvgImage")));
+            this.ribbonPage3.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.ribbonPage3.Name = "ribbonPage3";
+            this.ribbonPage3.Text = "Examination";
+            // 
+            // ribbonPageGroup9
+            // 
+            this.ribbonPageGroup9.ItemLinks.Add(this.btnTeacherRegistration);
+            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
+            // 
+            // btnTeacherRegistration
+            // 
+            this.btnTeacherRegistration.Caption = "Teacher Registration";
+            this.btnTeacherRegistration.Id = 15;
+            this.btnTeacherRegistration.Name = "btnTeacherRegistration";
+            this.btnTeacherRegistration.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTeacherRegistration_ItemClick);
+            // 
+            // ribbonPageGroup10
+            // 
+            this.ribbonPageGroup10.ItemLinks.Add(this.btnDoExam);
+            this.ribbonPageGroup10.Name = "ribbonPageGroup10";
+            // 
+            // btnDoExam
+            // 
+            this.btnDoExam.Caption = "Do Exam";
+            this.btnDoExam.Id = 16;
+            this.btnDoExam.Name = "btnDoExam";
+            this.btnDoExam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDoExam_ItemClick);
             // 
             // FormMain
             // 
@@ -330,13 +376,18 @@
         private DevExpress.XtraBars.BarButtonItem btnCreateLogin;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.BarButtonItem btnChangePassword;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.BarButtonItem btnExamResultReport;
+        private DevExpress.XtraBars.BarButtonItem btnSubjectScoreSheet;
+        private DevExpress.XtraBars.BarButtonItem btnExamRegistrationList;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         public DevExpress.XtraBars.BarStaticItem lbUserId;
         public DevExpress.XtraBars.BarStaticItem lbUserFullName;
         public DevExpress.XtraBars.BarStaticItem lbUserRole;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
+        private DevExpress.XtraBars.BarButtonItem btnTeacherRegistration;
+        private DevExpress.XtraBars.BarButtonItem btnDoExam;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
     }
 }

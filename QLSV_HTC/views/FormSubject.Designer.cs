@@ -49,16 +49,14 @@
             this.btnCancel = new DevExpress.XtraBars.BarButtonItem();
             this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
-            this.cbxLocation = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.btnLocation = new DevExpress.XtraBars.BarEditItem();
+            this.cbxLocation = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.btnExit = new DevExpress.XtraBars.BarButtonItem();
             this.btnHelp = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.gcInfo = new DevExpress.XtraEditors.GroupControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lbId = new DevExpress.XtraEditors.LabelControl();
@@ -77,9 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcSubject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSubject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInfo)).BeginInit();
             this.gcInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).BeginInit();
@@ -145,6 +141,7 @@
             this.colTENMH});
             this.gvSubject.GridControl = this.gcSubject;
             this.gvSubject.Name = "gvSubject";
+            this.gvSubject.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvSubject_FocusedRowChanged);
             // 
             // colMAMH
             // 
@@ -183,13 +180,11 @@
             this.btnExit,
             this.btnRefresh,
             this.btnHelp,
-            this.cbxLocation});
+            this.btnLocation});
             this.barManager1.MainMenu = this.bar3;
             this.barManager1.MaxItemId = 15;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemSpinEdit1,
-            this.repositoryItemComboBox1,
-            this.repositoryItemComboBox2});
+            this.cbxLocation});
             // 
             // bar2
             // 
@@ -286,7 +281,7 @@
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.cbxLocation, "", false, true, true, 250),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btnLocation, "", false, true, true, 250),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
@@ -295,21 +290,22 @@
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Main menu";
             // 
+            // btnLocation
+            // 
+            this.btnLocation.Caption = "Location";
+            this.btnLocation.Edit = this.cbxLocation;
+            this.btnLocation.Id = 14;
+            this.btnLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLocation.ImageOptions.SvgImage")));
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
+            // 
             // cbxLocation
             // 
-            this.cbxLocation.Caption = "Location";
-            this.cbxLocation.Edit = this.repositoryItemComboBox2;
-            this.cbxLocation.Id = 14;
-            this.cbxLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cbxLocation.ImageOptions.SvgImage")));
-            this.cbxLocation.Name = "cbxLocation";
-            this.cbxLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
-            // 
-            // repositoryItemComboBox2
-            // 
-            this.repositoryItemComboBox2.AutoHeight = false;
-            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxLocation.AutoHeight = false;
+            this.cbxLocation.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            this.cbxLocation.Name = "cbxLocation";
+            this.cbxLocation.SelectedIndexChanged += new System.EventHandler(this.cbxLocation_SelectedIndexChanged);
             // 
             // btnExit
             // 
@@ -357,20 +353,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1280, 80);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 610);
-            // 
-            // repositoryItemSpinEdit1
-            // 
-            this.repositoryItemSpinEdit1.AutoHeight = false;
-            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
-            // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             // 
             // gcInfo
             // 
@@ -477,9 +459,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcSubject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSubject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInfo)).EndInit();
             this.gcInfo.ResumeLayout(false);
             this.gcInfo.PerformLayout();
@@ -511,7 +491,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraEditors.GroupControl gcInfo;
         private DevExpress.XtraBars.BarButtonItem btnNew;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
         private DevExpress.XtraBars.BarButtonItem btnEdit;
         private DevExpress.XtraBars.BarButtonItem btnCommit;
         private DevExpress.XtraBars.BarButtonItem btnDelete;
@@ -522,9 +501,7 @@
         private DevExpress.XtraBars.BarButtonItem btnHelp;
         private System.Windows.Forms.BindingSource bdsLocation;
         private TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter taLocation;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
-        private DevExpress.XtraBars.BarEditItem cbxLocation;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
+        private DevExpress.XtraBars.BarEditItem btnLocation;
         private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
         private DevExpress.XtraGrid.Columns.GridColumn colTENMH;
         private DevExpress.XtraEditors.TextEdit teName;
@@ -537,5 +514,6 @@
         private TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter taTopic;
         private System.Windows.Forms.BindingSource bdsTeacher_Register;
         private TN_CSDLPT_PRODDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter taTeacher_Register;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbxLocation;
     }
 }

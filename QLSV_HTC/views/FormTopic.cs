@@ -97,7 +97,7 @@ namespace TN_CSDLPT.views
                 //comboBoxMaMonHoc.DisplayMember = "TENMH";
                 //comboBoxMaMonHoc.ValueMember = "MAMH";
 
-                FormUtils.FillComboxBox(cbxSubject, dt, "MAMH");
+                FormUtils.FillComboBox(cbxSubject, dt, "MAMH");
 
                 cbxAnswer.Properties.Items.Add("A");
                 cbxAnswer.Properties.Items.Add("B");

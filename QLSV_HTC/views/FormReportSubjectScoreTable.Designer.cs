@@ -1,6 +1,6 @@
 ﻿namespace TN_CSDLPT.views
 {
-    partial class FormReportExamResult
+    partial class FormReportSubjectScoreTable
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportExamResult));
+            System.Windows.Forms.Label tENLOPLabel;
             System.Windows.Forms.Label tENMHLabel;
-            System.Windows.Forms.Label mASVLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportSubjectScoreTable));
             System.Windows.Forms.Label label1;
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -52,27 +52,45 @@
             this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
             this.btnCancel = new DevExpress.XtraBars.BarButtonItem();
             this.DataSet = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
-            this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
-            this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
+            this.bdsClass = new System.Windows.Forms.BindingSource(this.components);
+            this.taClass = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.LOPTableAdapter();
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
-            this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.bdsStudent = new System.Windows.Forms.BindingSource(this.components);
-            this.taStudent = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.SINHVIENTableAdapter();
-            this.cbxStudent = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
+            this.cbxClass = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
             this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
             this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
+            this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
+            tENLOPLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
-            mASVLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxClass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsStudent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxStudent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tENLOPLabel
+            // 
+            tENLOPLabel.AutoSize = true;
+            tENLOPLabel.Location = new System.Drawing.Point(130, 126);
+            tENLOPLabel.Name = "tENLOPLabel";
+            tENLOPLabel.Size = new System.Drawing.Size(37, 15);
+            tENLOPLabel.TabIndex = 4;
+            tENLOPLabel.Text = "Class:";
+            // 
+            // tENMHLabel
+            // 
+            tENMHLabel.AutoSize = true;
+            tENMHLabel.Location = new System.Drawing.Point(118, 154);
+            tENMHLabel.Name = "tENMHLabel";
+            tENMHLabel.Size = new System.Drawing.Size(49, 15);
+            tENMHLabel.TabIndex = 13;
+            tENMHLabel.Text = "Subject:";
             // 
             // barManager1
             // 
@@ -141,6 +159,7 @@
             this.btnExit.Id = 9;
             this.btnExit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnExit.ImageOptions.SvgImage")));
             this.btnExit.Name = "btnExit";
+            this.btnExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExit_ItemClick);
             // 
             // btnHelp
             // 
@@ -262,14 +281,14 @@
             this.DataSet.DataSetName = "TN_CSDLPT_PRODDataSet";
             this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // bdsSubject
+            // bdsClass
             // 
-            this.bdsSubject.DataMember = "MONHOC";
-            this.bdsSubject.DataSource = this.DataSet;
+            this.bdsClass.DataMember = "LOP";
+            this.bdsClass.DataSource = this.DataSet;
             // 
-            // taSubject
+            // taClass
             // 
-            this.taSubject.ClearBeforeFill = true;
+            this.taClass.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
@@ -281,66 +300,30 @@
             this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
             this.tableAdapterManager.GIAOVIENTableAdapter = null;
             this.tableAdapterManager.KHOATableAdapter = null;
-            this.tableAdapterManager.LOPTableAdapter = null;
+            this.tableAdapterManager.LOPTableAdapter = this.taClass;
             this.tableAdapterManager.MONHOCTableAdapter = this.taSubject;
-            this.tableAdapterManager.SINHVIENTableAdapter = this.taStudent;
+            this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // tENMHLabel
+            // taSubject
             // 
-            tENMHLabel.AutoSize = true;
-            tENMHLabel.Location = new System.Drawing.Point(114, 148);
-            tENMHLabel.Name = "tENMHLabel";
-            tENMHLabel.Size = new System.Drawing.Size(49, 15);
-            tENMHLabel.TabIndex = 5;
-            tENMHLabel.Text = "Subject:";
+            this.taSubject.ClearBeforeFill = true;
             // 
-            // cbxSubject
+            // cbxClass
             // 
-            this.cbxSubject.Location = new System.Drawing.Point(183, 145);
-            this.cbxSubject.MenuManager = this.barManager1;
-            this.cbxSubject.Name = "cbxSubject";
-            this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxClass.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "TENLOP", true));
+            this.cbxClass.Location = new System.Drawing.Point(187, 123);
+            this.cbxClass.MenuManager = this.barManager1;
+            this.cbxClass.Name = "cbxClass";
+            this.cbxClass.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSubject.Size = new System.Drawing.Size(400, 22);
-            this.cbxSubject.TabIndex = 6;
+            this.cbxClass.Size = new System.Drawing.Size(400, 22);
+            this.cbxClass.TabIndex = 5;
             // 
-            // bdsStudent
+            // bdsSubject
             // 
-            this.bdsStudent.DataMember = "SINHVIEN";
-            this.bdsStudent.DataSource = this.DataSet;
-            // 
-            // taStudent
-            // 
-            this.taStudent.ClearBeforeFill = true;
-            // 
-            // mASVLabel
-            // 
-            mASVLabel.AutoSize = true;
-            mASVLabel.Location = new System.Drawing.Point(112, 120);
-            mASVLabel.Name = "mASVLabel";
-            mASVLabel.Size = new System.Drawing.Size(51, 15);
-            mASVLabel.TabIndex = 6;
-            mASVLabel.Text = "Student:";
-            // 
-            // cbxStudent
-            // 
-            this.cbxStudent.Location = new System.Drawing.Point(183, 117);
-            this.cbxStudent.MenuManager = this.barManager1;
-            this.cbxStudent.Name = "cbxStudent";
-            this.cbxStudent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxStudent.Size = new System.Drawing.Size(400, 22);
-            this.cbxStudent.TabIndex = 7;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(29, 176);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(134, 15);
-            label1.TabIndex = 21;
-            label1.Text = "Number of Exam Times:";
+            this.bdsSubject.DataMember = "MONHOC";
+            this.bdsSubject.DataSource = this.DataSet;
             // 
             // seNumberOfExamTimes
             // 
@@ -349,52 +332,71 @@
             0,
             0,
             0});
-            this.seNumberOfExamTimes.Location = new System.Drawing.Point(183, 173);
+            this.seNumberOfExamTimes.Location = new System.Drawing.Point(187, 179);
             this.seNumberOfExamTimes.MenuManager = this.barManager1;
             this.seNumberOfExamTimes.Name = "seNumberOfExamTimes";
             this.seNumberOfExamTimes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.seNumberOfExamTimes.Size = new System.Drawing.Size(400, 22);
-            this.seNumberOfExamTimes.TabIndex = 20;
+            this.seNumberOfExamTimes.TabIndex = 8;
             // 
             // btnPreview
             // 
             this.btnPreview.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
             this.btnPreview.Appearance.Options.UseBackColor = true;
-            this.btnPreview.Location = new System.Drawing.Point(183, 201);
+            this.btnPreview.Location = new System.Drawing.Point(187, 207);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 23);
-            this.btnPreview.TabIndex = 22;
+            this.btnPreview.TabIndex = 9;
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
-            // FormReportExamResult
+            // cbxSubject
+            // 
+            this.cbxSubject.Location = new System.Drawing.Point(187, 151);
+            this.cbxSubject.MenuManager = this.barManager1;
+            this.cbxSubject.Name = "cbxSubject";
+            this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSubject.Size = new System.Drawing.Size(400, 22);
+            this.cbxSubject.TabIndex = 14;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(33, 182);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(134, 15);
+            label1.TabIndex = 19;
+            label1.Text = "Number of Exam Times:";
+            // 
+            // FormReportSubjectScoreTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 690);
-            this.Controls.Add(this.btnPreview);
             this.Controls.Add(label1);
-            this.Controls.Add(this.seNumberOfExamTimes);
-            this.Controls.Add(mASVLabel);
-            this.Controls.Add(this.cbxStudent);
             this.Controls.Add(tENMHLabel);
             this.Controls.Add(this.cbxSubject);
+            this.Controls.Add(this.btnPreview);
+            this.Controls.Add(this.seNumberOfExamTimes);
+            this.Controls.Add(tENLOPLabel);
+            this.Controls.Add(this.cbxClass);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "FormReportExamResult";
-            this.Text = "Exam Result Report";
+            this.Name = "FormReportSubjectScoreTable";
+            this.Text = "Report Subject Score Table";
             this.Load += new System.EventHandler(this.FormReportExamResult_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxClass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsStudent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxStudent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,32 +405,32 @@
         #endregion
 
         private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.Bar bar3;
-        private DevExpress.XtraBars.BarEditItem btnLocation;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbxLocation;
-        private DevExpress.XtraBars.BarButtonItem btnExit;
-        private DevExpress.XtraBars.BarButtonItem btnHelp;
-        private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.BarButtonItem btnRefresh;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btnNew;
         private DevExpress.XtraBars.BarButtonItem btnEdit;
         private DevExpress.XtraBars.BarButtonItem btnCommit;
         private DevExpress.XtraBars.BarButtonItem btnDelete;
         private DevExpress.XtraBars.BarButtonItem btnUndo;
         private DevExpress.XtraBars.BarButtonItem btnCancel;
-        private System.Windows.Forms.BindingSource bdsSubject;
+        private DevExpress.XtraBars.BarButtonItem btnRefresh;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.BarEditItem btnLocation;
+        private DevExpress.XtraBars.BarButtonItem btnExit;
+        private DevExpress.XtraBars.BarButtonItem btnHelp;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private System.Windows.Forms.BindingSource bdsClass;
         private TN_CSDLPT_PRODDataSet DataSet;
-        private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
+        private TN_CSDLPT_PRODDataSetTableAdapters.LOPTableAdapter taClass;
         private TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxSubject;
-        private TN_CSDLPT_PRODDataSetTableAdapters.SINHVIENTableAdapter taStudent;
-        private System.Windows.Forms.BindingSource bdsStudent;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxStudent;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxClass;
+        private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
+        private System.Windows.Forms.BindingSource bdsSubject;
         private DevExpress.XtraEditors.SpinEdit seNumberOfExamTimes;
         private DevExpress.XtraEditors.SimpleButton btnPreview;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxSubject;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbxLocation;
     }
 }
