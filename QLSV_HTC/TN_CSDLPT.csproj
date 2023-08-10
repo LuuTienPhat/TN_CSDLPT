@@ -79,10 +79,10 @@
     <Compile Include="constants\Translation.cs" />
     <Compile Include="constants\Database.cs" />
     <Compile Include="constants\FormUtils.cs" />
-    <Compile Include="FormExamResult.cs">
+    <Compile Include="views\FormExamResult.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormExamResult.Designer.cs">
+    <Compile Include="views\FormExamResult.Designer.cs">
       <DependentUpon>FormExamResult.cs</DependentUpon>
     </Compile>
     <Compile Include="models\CallBackAction.cs" />
@@ -197,7 +197,7 @@
     <Compile Include="views\FormTopic.Designer.cs">
       <DependentUpon>FormTopic.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormExamResult.resx">
+    <EmbeddedResource Include="views\FormExamResult.resx">
       <DependentUpon>FormExamResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormChangePassword.resx">
