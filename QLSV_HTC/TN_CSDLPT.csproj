@@ -192,6 +192,12 @@
     <Compile Include="views\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\FormTeacherRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\FormTeacherRegistration.Designer.cs">
+      <DependentUpon>FormTeacherRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\FormTopic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\FormTeacherRegistration.resx">
+      <DependentUpon>FormTeacherRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormTopic.resx">
       <DependentUpon>FormTopic.cs</DependentUpon>

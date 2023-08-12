@@ -28,16 +28,16 @@ namespace TN_CSDLPT.views
 
         private void FormSubject_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'DataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+            // TODO: This line of code loads data into the 'this.DataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
             this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
-            // TODO: This line of code loads data into the 'DataSet.BODE' table. You can move, or remove it, as needed.
+            // TODO: This line of code loads data into the 'this.DataSet.BODE' table. You can move, or remove it, as needed.
             this.taTopic.Fill(this.DataSet.BODE);
-            // TODO: This line of code loads data into the 'DataSet.BANGDIEM' table. You can move, or remove it, as needed.
+            // TODO: This line of code loads data into the 'this.DataSet.BANGDIEM' table. You can move, or remove it, as needed.
             this.taScore.Fill(this.DataSet.BANGDIEM);
-            // TODO: This line of code loads data into the 'DataSet.COSO' table. You can move, or remove it, as needed.
-            taLocation.Fill(DataSet.COSO);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.MONHOC' table. You can move, or remove it, as needed.
-            taSubject.Fill(DataSet.MONHOC);
+            // TODO: This line of code loads data into the 'this.DataSet.COSO' table. You can move, or remove it, as needed.
+            this.taLocation.Fill(this.DataSet.COSO);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODthis.DataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.taSubject.Fill(this.DataSet.MONHOC);
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
 
@@ -74,8 +74,8 @@ namespace TN_CSDLPT.views
         private void btnNew_ItemClick(object sender, ItemClickEventArgs e)
         {
             mode = ActionMode.Add;
-            //position = bdsSubject.Position;
-            bdsSubject.AddNew();
+            //position = this.bdsSubject.Position;
+            this.bdsSubject.AddNew();
 
             FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
                 btnNew, btnEdit, btnDelete, btnExit, btnRefresh, btnUndo
@@ -94,7 +94,7 @@ namespace TN_CSDLPT.views
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e)
         {
             mode = ActionMode.Edit;
-            //position = bdsSubject.Position;
+            //position = this.bdsSubject.Position;
 
             FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
                 btnNew, btnEdit, btnDelete, btnExit, btnRefresh, btnUndo
@@ -112,8 +112,8 @@ namespace TN_CSDLPT.views
 
         private void btnCommit_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string oldSujectId = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
-            string oldSubjectName = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_NAME);
+            string oldSujectId = FormUtils.GetBindingSourceData(this.bdsSubject, this.bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+            string oldSubjectName = FormUtils.GetBindingSourceData(this.bdsSubject, this.bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_NAME);
             if (mode.Equals(ActionMode.Edit))
             {
                 if (ValidateInput())
@@ -168,7 +168,7 @@ namespace TN_CSDLPT.views
         private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
         {
             mode = ActionMode.Delete;
-            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+            string subjectId = FormUtils.GetBindingSourceData(this.bdsSubject, this.bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
 
             if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
                 string.Format(Translation._argsDeleteWarningMsg, $"Subject {subjectId}")) == DialogResult.OK)
@@ -181,10 +181,10 @@ namespace TN_CSDLPT.views
                         {
                             try
                             {
-                                string subjectName = FormUtils.GetBindingSourceData(bdsSubject, bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_NAME);
-                                bdsSubject.RemoveCurrent();
-                                taSubject.Connection.ConnectionString = Program.connstr;
-                                taSubject.Update(DataSet.MONHOC);
+                                string subjectName = FormUtils.GetBindingSourceData(this.bdsSubject, this.bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_NAME);
+                                this.bdsSubject.RemoveCurrent();
+                                this.taSubject.Connection.ConnectionString = Program.connstr;
+                                this.taSubject.Update(this.DataSet.MONHOC);
                                 string[] args = new string[] { subjectId, subjectName };
                                 callBackActions.Add(
                                     new CallBackAction(
@@ -195,8 +195,8 @@ namespace TN_CSDLPT.views
                             catch (Exception ex)
                             {
                                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsDeleteErrorMsg, ex.Message));
-                                taSubject.Update(DataSet.MONHOC);
-                                bdsSubject.Position = bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_NAME, subjectId);
+                                this.taSubject.Update(this.DataSet.MONHOC);
+                                this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_NAME, subjectId);
                                 return;
                             }
                             mode = ActionMode.None;
@@ -237,14 +237,14 @@ namespace TN_CSDLPT.views
                         btnRefresh.PerformClick();
                         if (key.Length != 0)
                         {
-                            bdsSubject.Position = bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, key);
+                            this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, key);
                         }
                         callBackActions.RemoveAt(callBackActions.Count - 1);
                     }
                     catch (Exception ex)
                     {
                         CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
-                        taSubject.Update(DataSet.MONHOC);
+                        this.taSubject.Update(this.DataSet.MONHOC);
                         Program.myReader.Close();
                         Program.databaseConnection.Close();
                     }
@@ -254,7 +254,7 @@ namespace TN_CSDLPT.views
 
         private void btnExit_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Dispose();
+            this.Dispose();
         }
 
         private void btnCancel_ItemClick(object sender, ItemClickEventArgs e)
@@ -263,8 +263,8 @@ namespace TN_CSDLPT.views
             {
                 gvSubject.DeleteRow(gvSubject.FocusedRowHandle);
             }
-            bdsSubject.CancelEdit();
-            bdsSubject.Position = position;
+            this.bdsSubject.CancelEdit();
+            this.bdsSubject.Position = position;
             gcInfo.Enabled = false;
             gcSubject.Enabled = true;
 
@@ -285,8 +285,8 @@ namespace TN_CSDLPT.views
             {
                 mode = ActionMode.Refresh;
                 tableAdapterManager.Connection.ConnectionString = Program.connstr;
-                taSubject.Fill(DataSet.MONHOC);
-                bdsSubject.Position = this.position;
+                this.taSubject.Fill(this.DataSet.MONHOC);
+                this.bdsSubject.Position = this.position;
             }
             catch (Exception ex)
             {
@@ -316,24 +316,24 @@ namespace TN_CSDLPT.views
 
         private void FillTable()
         {
-            DataSet.EnforceConstraints = false;
-            taSubject.Connection.ConnectionString = Program.connstr;
-            taSubject.Fill(DataSet.MONHOC);
+            this.DataSet.EnforceConstraints = false;
+            this.taSubject.Connection.ConnectionString = Program.connstr;
+            this.taSubject.Fill(this.DataSet.MONHOC);
         }
 
         private void CommitDB()
         {
             try
             {
-                bdsSubject.EndEdit();
-                bdsSubject.ResetCurrentItem();
-                taSubject.Connection.ConnectionString = Program.connstr;
-                taSubject.Update(DataSet.MONHOC);
+                this.bdsSubject.EndEdit();
+                this.bdsSubject.ResetCurrentItem();
+                this.taSubject.Connection.ConnectionString = Program.connstr;
+                this.taSubject.Update(this.DataSet.MONHOC);
             }
             catch (Exception ex)
             {
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitErrorMsg, ex.Message));
-                taSubject.Update(DataSet);
+                this.taSubject.Update(this.DataSet);
             }
         }
 
@@ -342,14 +342,14 @@ namespace TN_CSDLPT.views
             callBackActions = new BindingList<CallBackAction>();
             callBackActions.RaiseListChangedEvents = true;
             callBackActions.ListChanged += new ListChangedEventHandler(callBackActions_ListChanged);
-            bdsSubject.ListChanged += new ListChangedEventHandler(bdsSubject_ListChanged);
+            this.bdsSubject.ListChanged += new ListChangedEventHandler(bdsSubject_ListChanged);
             callBackActions_ListChanged(null, null);
             bdsSubject_ListChanged(null, null);
         }
 
         private void bdsSubject_ListChanged(object sender, ListChangedEventArgs e)
         {
-            if (bdsSubject.Count == 0)
+            if (this.bdsSubject.Count == 0)
             {
                 btnDelete.Enabled = btnEdit.Enabled = false;
             }
@@ -408,7 +408,7 @@ namespace TN_CSDLPT.views
         {
             if (!mode.Equals(ActionMode.Refresh))
             {
-                this.position = bdsSubject.Position;
+                this.position = this.bdsSubject.Position;
             }
         }
     }

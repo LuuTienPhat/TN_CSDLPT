@@ -21,6 +21,52 @@ namespace TN_CSDLPT.views
         public void FormMain_Load(object sender, EventArgs e)
         {
             //nếu là quyền cơ sở thì tất cả đều enable
+            this.rpManagement.Visible = true;
+            this.rpgSignUp.Visible = true;
+            this.rpgTopic.Visible = true;
+            this.rpgTeacherRegistration.Visible = true;
+            this.rpgExam.Visible = true;
+
+            // vì xem danh sách đăng kí cả 2 cơ sở nên chỉ cho trường xem
+            this.rpgExamRegistrationList.Visible = false;
+            this.rpgSubjectScoreSheet.Visible = true;
+
+            if (Program.mGroup == Database.ROLE_STUDENT)
+            {
+                this.rpManagement.Visible = false;
+                this.rpgSignUp.Visible = false;
+                this.rpgTeacherRegistration.Visible = false;
+                this.rpgExam.Visible = true;
+                this.rpgSubjectScoreSheet.Visible = false;
+
+                return;
+            }
+
+            if (Program.mGroup == Database.ROLE_TEACHER)
+            {
+                //Managment
+                this.rpgSchool.Visible = false;
+                this.rpgHuman.Visible = false;
+                this.rpgSubject.Visible = false;
+
+                //Report
+                this.rpgTeacherRegistration.Visible = false;
+                this.rpgExamRegistrationList.Visible = false;
+
+                //System
+                this.rpgSignUp.Visible = false;
+
+                return;
+            }
+
+            if (Program.mGroup == Database.ROLE_SCHOOL)
+            {
+                // report danh sách đăng kí thi cả 2 cơ sở, nên chỉ cho trường xem
+                this.rpgExamRegistrationList.Visible = true;
+                this.rpgExam.Visible = false;
+
+                return;
+            }
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -120,11 +166,11 @@ namespace TN_CSDLPT.views
 
         private void btnTeacherRegistration_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Form frm = this.CheckExists(typeof(FormRegisterList2Location));
+            Form frm = this.CheckExists(typeof(FormTeacherRegistration));
             if (frm != null) frm.Activate();
             else
             {
-                FormRegisterList2Location f = new FormRegisterList2Location();
+                FormTeacherRegistration f = new FormTeacherRegistration();
                 f.MdiParent = this;
                 f.Show();
             }

@@ -50,6 +50,8 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.cbxLevel = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.bODEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Dataset = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
             this.sidePanel2 = new DevExpress.XtraEditors.SidePanel();
             this.btnFindExam = new DevExpress.XtraEditors.SimpleButton();
             this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
@@ -77,11 +79,9 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.Dataset = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
             this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
             this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
-            this.bODEBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bODETableAdapter = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter();
             this.sidePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcExaminee)).BeginInit();
@@ -92,6 +92,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.seTotalMinutes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seTotalQuestions.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dataset)).BeginInit();
             this.sidePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
@@ -102,9 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Dataset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel1
@@ -334,6 +334,16 @@
             this.cbxLevel.Size = new System.Drawing.Size(175, 22);
             this.cbxLevel.TabIndex = 39;
             // 
+            // bODEBindingSource
+            // 
+            this.bODEBindingSource.DataMember = "BODE";
+            this.bODEBindingSource.DataSource = this.Dataset;
+            // 
+            // Dataset
+            // 
+            this.Dataset.DataSetName = "TN_CSDLPT_PRODDataSet";
+            this.Dataset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // sidePanel2
             // 
             this.sidePanel2.Controls.Add(this.btnFindExam);
@@ -506,6 +516,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.lbTimeLeft),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.progressBar, "", false, true, true, 126),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSubmit)});
+            this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.DisableCustomization = true;
+            this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.StandaloneBarDockControl = this.standaloneBarDockControl1;
             this.bar1.Text = "Custom 2";
             // 
@@ -554,6 +567,9 @@
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp)});
+            this.bar2.OptionsBar.AllowQuickCustomization = false;
+            this.bar2.OptionsBar.DisableCustomization = true;
+            this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Custom 3";
@@ -610,11 +626,6 @@
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
-            // Dataset
-            // 
-            this.Dataset.DataSetName = "TN_CSDLPT_PRODDataSet";
-            this.Dataset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
@@ -639,11 +650,6 @@
             // taSubject
             // 
             this.taSubject.ClearBeforeFill = true;
-            // 
-            // bODEBindingSource
-            // 
-            this.bODEBindingSource.DataMember = "BODE";
-            this.bODEBindingSource.DataSource = this.Dataset;
             // 
             // bODETableAdapter
             // 
@@ -674,6 +680,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.seTotalMinutes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seTotalQuestions.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dataset)).EndInit();
             this.sidePanel2.ResumeLayout(false);
             this.sidePanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).EndInit();
@@ -686,9 +694,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Dataset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

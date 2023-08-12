@@ -47,20 +47,22 @@
             this.lbUserRole = new DevExpress.XtraBars.BarStaticItem();
             this.btnTeacherRegistration = new DevExpress.XtraBars.BarButtonItem();
             this.btnDoExam = new DevExpress.XtraBars.BarButtonItem();
-            this.rbSystem = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.btnTopic = new DevExpress.XtraBars.BarButtonItem();
+            this.rpSystem = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgSignUp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpManagement = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgSchool = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgHuman = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgSubject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgTopic = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpReport = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgSubjectScoreSheet = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgExamRegistrationList = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpExamination = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgTeacherRegistration = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgExam = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
@@ -88,17 +90,22 @@
             this.lbUserFullName,
             this.lbUserRole,
             this.btnTeacherRegistration,
-            this.btnDoExam});
+            this.btnDoExam,
+            this.btnTopic});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 17;
+            this.ribbon.MaxItemId = 18;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.rbSystem,
-            this.ribbonPage1,
-            this.ribbonPage2,
-            this.ribbonPage3});
+            this.rpSystem,
+            this.rpManagement,
+            this.rpExamination,
+            this.rpReport});
+            this.ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+            this.ribbon.ShowToolbarCustomizeItem = false;
             this.ribbon.Size = new System.Drawing.Size(1165, 175);
             this.ribbon.StatusBar = this.ribbonStatusBar;
+            this.ribbon.Toolbar.ShowCustomizeItem = false;
+            this.ribbon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // btnSignOut
             // 
@@ -187,6 +194,8 @@
             // 
             this.lbUserId.Caption = "USER ID";
             this.lbUserId.Id = 12;
+            this.lbUserId.ItemAppearance.Normal.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.lbUserId.ItemAppearance.Normal.Options.UseFont = true;
             this.lbUserId.Name = "lbUserId";
             // 
             // lbUserFullName
@@ -199,6 +208,8 @@
             // 
             this.lbUserRole.Caption = "ROLE";
             this.lbUserRole.Id = 14;
+            this.lbUserRole.ItemAppearance.Normal.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.lbUserRole.ItemAppearance.Normal.Options.UseFont = true;
             this.lbUserRole.Name = "lbUserRole";
             // 
             // btnTeacherRegistration
@@ -217,16 +228,23 @@
             this.btnDoExam.Name = "btnDoExam";
             this.btnDoExam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDoExam_ItemClick);
             // 
-            // rbSystem
+            // btnTopic
             // 
-            this.rbSystem.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.btnTopic.Caption = "Topic";
+            this.btnTopic.Id = 17;
+            this.btnTopic.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTopic.ImageOptions.SvgImage")));
+            this.btnTopic.Name = "btnTopic";
+            // 
+            // rpSystem
+            // 
+            this.rpSystem.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
-            this.ribbonPageGroup6});
-            this.rbSystem.ImageOptions.ImageToTextIndent = 10;
-            this.rbSystem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("rbSystem.ImageOptions.SvgImage")));
-            this.rbSystem.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.rbSystem.Name = "rbSystem";
-            this.rbSystem.Text = "System";
+            this.rpgSignUp});
+            this.rpSystem.ImageOptions.ImageToTextIndent = 10;
+            this.rpSystem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("rpSystem.ImageOptions.SvgImage")));
+            this.rpSystem.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.rpSystem.Name = "rpSystem";
+            this.rpSystem.Text = "System";
             // 
             // ribbonPageGroup2
             // 
@@ -235,55 +253,62 @@
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Account";
             // 
-            // ribbonPageGroup6
+            // rpgSignUp
             // 
-            this.ribbonPageGroup6.ItemLinks.Add(this.btnCreateLogin);
-            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
-            this.ribbonPageGroup6.Text = "Sign Up";
+            this.rpgSignUp.ItemLinks.Add(this.btnCreateLogin);
+            this.rpgSignUp.Name = "rpgSignUp";
+            this.rpgSignUp.Text = "Sign Up";
             // 
-            // ribbonPage1
+            // rpManagement
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1,
-            this.ribbonPageGroup4,
-            this.ribbonPageGroup5});
-            this.ribbonPage1.ImageOptions.ImageToTextIndent = 10;
-            this.ribbonPage1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ribbonPage1.ImageOptions.SvgImage")));
-            this.ribbonPage1.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Management";
+            this.rpManagement.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgSchool,
+            this.rpgHuman,
+            this.rpgSubject,
+            this.rpgTopic});
+            this.rpManagement.ImageOptions.ImageToTextIndent = 10;
+            this.rpManagement.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("rpManagement.ImageOptions.SvgImage")));
+            this.rpManagement.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.rpManagement.Name = "rpManagement";
+            this.rpManagement.Text = "Management";
             // 
-            // ribbonPageGroup1
+            // rpgSchool
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnLocation);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnClass);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "School";
+            this.rpgSchool.ItemLinks.Add(this.btnLocation);
+            this.rpgSchool.ItemLinks.Add(this.btnClass);
+            this.rpgSchool.Name = "rpgSchool";
+            this.rpgSchool.Text = "School";
             // 
-            // ribbonPageGroup4
+            // rpgHuman
             // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnTeacher);
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnStudent);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "Human";
+            this.rpgHuman.ItemLinks.Add(this.btnTeacher);
+            this.rpgHuman.ItemLinks.Add(this.btnStudent);
+            this.rpgHuman.Name = "rpgHuman";
+            this.rpgHuman.Text = "Human";
             // 
-            // ribbonPageGroup5
+            // rpgSubject
             // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.btnSubjectManagement);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "Subject";
+            this.rpgSubject.ItemLinks.Add(this.btnSubjectManagement);
+            this.rpgSubject.Name = "rpgSubject";
+            this.rpgSubject.Text = "Subject";
             // 
-            // ribbonPage2
+            // rpgTopic
             // 
-            this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgTopic.ItemLinks.Add(this.btnTopic);
+            this.rpgTopic.Name = "rpgTopic";
+            this.rpgTopic.Text = "Topic";
+            // 
+            // rpReport
+            // 
+            this.rpReport.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup3,
-            this.ribbonPageGroup7,
-            this.ribbonPageGroup8});
-            this.ribbonPage2.ImageOptions.ImageToTextIndent = 10;
-            this.ribbonPage2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ribbonPage2.ImageOptions.SvgImage")));
-            this.ribbonPage2.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.ribbonPage2.Name = "ribbonPage2";
-            this.ribbonPage2.Text = "Report";
+            this.rpgSubjectScoreSheet,
+            this.rpgExamRegistrationList});
+            this.rpReport.ImageOptions.ImageToTextIndent = 10;
+            this.rpReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("rpReport.ImageOptions.SvgImage")));
+            this.rpReport.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.rpReport.Name = "rpReport";
+            this.rpReport.Text = "Report";
             // 
             // ribbonPageGroup3
             // 
@@ -291,40 +316,40 @@
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "__________";
             // 
-            // ribbonPageGroup7
+            // rpgSubjectScoreSheet
             // 
-            this.ribbonPageGroup7.ItemLinks.Add(this.btnSubjectScoreSheet);
-            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
-            this.ribbonPageGroup7.Text = "__________";
+            this.rpgSubjectScoreSheet.ItemLinks.Add(this.btnSubjectScoreSheet);
+            this.rpgSubjectScoreSheet.Name = "rpgSubjectScoreSheet";
+            this.rpgSubjectScoreSheet.Text = "__________";
             // 
-            // ribbonPageGroup8
+            // rpgExamRegistrationList
             // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnExamRegistrationList);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "__________";
+            this.rpgExamRegistrationList.ItemLinks.Add(this.btnExamRegistrationList);
+            this.rpgExamRegistrationList.Name = "rpgExamRegistrationList";
+            this.rpgExamRegistrationList.Text = "__________";
             // 
-            // ribbonPage3
+            // rpExamination
             // 
-            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup9,
-            this.ribbonPageGroup10});
-            this.ribbonPage3.ImageOptions.ImageToTextIndent = 10;
-            this.ribbonPage3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ribbonPage3.ImageOptions.SvgImage")));
-            this.ribbonPage3.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "Examination";
+            this.rpExamination.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgTeacherRegistration,
+            this.rpgExam});
+            this.rpExamination.ImageOptions.ImageToTextIndent = 10;
+            this.rpExamination.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("rpExamination.ImageOptions.SvgImage")));
+            this.rpExamination.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.rpExamination.Name = "rpExamination";
+            this.rpExamination.Text = "Examination";
             // 
-            // ribbonPageGroup9
+            // rpgTeacherRegistration
             // 
-            this.ribbonPageGroup9.ItemLinks.Add(this.btnTeacherRegistration);
-            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
-            this.ribbonPageGroup9.Text = "__________";
+            this.rpgTeacherRegistration.ItemLinks.Add(this.btnTeacherRegistration);
+            this.rpgTeacherRegistration.Name = "rpgTeacherRegistration";
+            this.rpgTeacherRegistration.Text = "__________";
             // 
-            // ribbonPageGroup10
+            // rpgExam
             // 
-            this.ribbonPageGroup10.ItemLinks.Add(this.btnDoExam);
-            this.ribbonPageGroup10.Name = "ribbonPageGroup10";
-            this.ribbonPageGroup10.Text = "__________";
+            this.rpgExam.ItemLinks.Add(this.btnDoExam);
+            this.rpgExam.Name = "rpgExam";
+            this.rpgExam.Text = "__________";
             // 
             // ribbonStatusBar
             // 
@@ -366,37 +391,39 @@
         #endregion
 
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSchool;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbSystem;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpSystem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btnSignOut;
         private DevExpress.XtraBars.BarButtonItem btnLocation;
         private DevExpress.XtraBars.BarButtonItem btnClass;
         private DevExpress.XtraBars.BarButtonItem btnTeacher;
         private DevExpress.XtraBars.BarButtonItem btnStudent;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgHuman;
         private DevExpress.XtraBars.BarButtonItem btnSubjectManagement;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSubject;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraBars.BarButtonItem btnCreateLogin;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSignUp;
         private DevExpress.XtraBars.BarButtonItem btnChangePassword;
         private DevExpress.XtraBars.BarButtonItem btnExamResultReport;
         private DevExpress.XtraBars.BarButtonItem btnSubjectScoreSheet;
         private DevExpress.XtraBars.BarButtonItem btnExamRegistrationList;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSubjectScoreSheet;
         public DevExpress.XtraBars.BarStaticItem lbUserId;
         public DevExpress.XtraBars.BarStaticItem lbUserFullName;
         public DevExpress.XtraBars.BarStaticItem lbUserRole;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpExamination;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgTeacherRegistration;
         private DevExpress.XtraBars.BarButtonItem btnTeacherRegistration;
         private DevExpress.XtraBars.BarButtonItem btnDoExam;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgExam;
+        private DevExpress.XtraBars.BarButtonItem btnTopic;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpManagement;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgTopic;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgExamRegistrationList;
     }
 }

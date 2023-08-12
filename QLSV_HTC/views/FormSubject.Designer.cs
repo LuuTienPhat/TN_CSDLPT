@@ -129,7 +129,7 @@
             this.gcSubject.Location = new System.Drawing.Point(0, 80);
             this.gcSubject.MainView = this.gvSubject;
             this.gcSubject.Name = "gcSubject";
-            this.gcSubject.Size = new System.Drawing.Size(1280, 388);
+            this.gcSubject.Size = new System.Drawing.Size(1280, 400);
             this.gcSubject.TabIndex = 10;
             this.gcSubject.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSubject});
@@ -363,9 +363,9 @@
             this.gcInfo.Controls.Add(this.teName);
             this.gcInfo.Controls.Add(this.teID);
             this.gcInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInfo.Location = new System.Drawing.Point(0, 468);
+            this.gcInfo.Location = new System.Drawing.Point(0, 480);
             this.gcInfo.Name = "gcInfo";
-            this.gcInfo.Size = new System.Drawing.Size(1280, 222);
+            this.gcInfo.Size = new System.Drawing.Size(1280, 210);
             this.gcInfo.TabIndex = 15;
             this.gcInfo.Text = "Info";
             // 

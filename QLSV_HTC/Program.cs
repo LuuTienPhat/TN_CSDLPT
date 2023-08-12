@@ -87,13 +87,13 @@ namespace TN_CSDLPT
                       Program.database + ";User ID=" +
                       Program.mlogin + ";password=" + Program.password;
                 Program.databaseConnection.ConnectionString = Program.connstr;
-                
+
                 Program.databaseConnection.Open();
                 isConnected = true;
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, 
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
                     string.Format(Translation._argsDatabaseConnectErrorMsg, ex.Message));
             }
 
@@ -129,7 +129,7 @@ namespace TN_CSDLPT
         public static bool CloseSqlDataReader()
         {
             bool isClosed = false;
-            if(Program.myReader != null)
+            if (Program.myReader != null)
             {
                 Program.myReader.Close();
                 isClosed = true;
@@ -178,11 +178,19 @@ namespace TN_CSDLPT
             }
         }
 
-        public static void FillLocationCombobox(BarEditItem button,RepositoryItemComboBox cbxLocation)
+        public static void FillLocationCombobox(BarEditItem button, RepositoryItemComboBox cbxLocation)
         {
             FormUtils.FillComboBox(cbxLocation, Program.bdsSubcriber, Database.VIEW_ALL_LOCATION_COL_LOCATION_NAME);
             button.EditValue = cbxLocation.Items[Program.indexCoSo].ToString();
+
+            if (Program.mGroup == Database.ROLE_SCHOOL)
+            {
+                button.Enabled = true;
+            }
+            else
+            {
+                button.Enabled = false;
+            }
         }
-        
     }
 }
