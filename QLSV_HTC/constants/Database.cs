@@ -89,8 +89,16 @@ class Database
     /// 3: role
     /// </summary>
     public const string SP_DELETE_STUDENT = "EXEC SP_DELETE_STUDENT N'{0}'";
-    public const string SP_CHECK_USERNAME_EXISTS = "EXEC CHECK_USERNAME_EXISTS N'{0}'";
-    public const string SP_CHECK_LOGINNAME_EXISTS = "EXEC CHECK_LOGINNAME_EXISTS N'{0}'";
+
+    /// <summary>
+    /// {0} : user name
+    /// </summary>
+    public const string SP_CHECK_USERNAME_EXISTS = "EXEC SP_CHECK_USERNAME_EXISTS N'{0}'";
+
+    /// <summary>
+    /// {0} : login name
+    /// </summary>
+    public const string SP_CHECK_LOGINNAME_EXISTS = "EXEC SP_CHECK_LOGINNAME_EXISTS N'{0}'";
     
     /// <summary>
     /// 0: login name
@@ -99,6 +107,12 @@ class Database
     /// 3: role
     /// </summary>
     public const string SP_CREATE_LOGIN = "EXEC SP_CREATE_LOGIN '{0}', '{1}', '{2}', '{3}'";
+
+    /// <summary>
+    /// 0: login name
+    /// 1: user name
+    /// </summary>
+    public const string SP_DELETE_LOGIN = "SP_DELETE_LOGIN";
 
     /// <summary>
     /// 0: question NO

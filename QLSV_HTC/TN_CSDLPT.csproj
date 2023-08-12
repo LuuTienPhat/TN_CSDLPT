@@ -79,6 +79,7 @@
     <Compile Include="constants\Translation.cs" />
     <Compile Include="constants\Database.cs" />
     <Compile Include="constants\FormUtils.cs" />
+    <Compile Include="models\UserRole.cs" />
     <Compile Include="views\FormExamResult.cs">
       <SubType>Form</SubType>
     </Compile>

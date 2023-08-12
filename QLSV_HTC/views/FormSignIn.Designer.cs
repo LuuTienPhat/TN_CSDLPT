@@ -39,14 +39,14 @@
             this.lbUsername = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.ceTeacher = new DevExpress.XtraEditors.CheckEdit();
             this.ceStudent = new DevExpress.XtraEditors.CheckEdit();
+            this.ceTeacher = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.teUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ceTeacher.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceStudent.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceTeacher.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.SuspendLayout();
@@ -151,7 +151,7 @@
             this.labelControl1.Location = new System.Drawing.Point(0, 0);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(364, 80);
+            this.labelControl1.Size = new System.Drawing.Size(364, 90);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Sign In";
             // 
@@ -163,6 +163,18 @@
             this.labelControl5.Size = new System.Drawing.Size(23, 15);
             this.labelControl5.TabIndex = 9;
             this.labelControl5.Text = "Role";
+            // 
+            // ceStudent
+            // 
+            this.ceStudent.AutoSizeInLayoutControl = true;
+            this.ceStudent.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ceStudent.Location = new System.Drawing.Point(144, 2);
+            this.ceStudent.Name = "ceStudent";
+            this.ceStudent.Properties.Caption = "Student";
+            this.ceStudent.Properties.CheckBoxOptions.Style = DevExpress.XtraEditors.Controls.CheckBoxStyle.Radio;
+            this.ceStudent.Size = new System.Drawing.Size(63, 27);
+            this.ceStudent.TabIndex = 11;
+            this.ceStudent.CheckedChanged += new System.EventHandler(this.ceStudent_CheckedChanged);
             // 
             // ceTeacher
             // 
@@ -176,18 +188,6 @@
             this.ceTeacher.Size = new System.Drawing.Size(75, 27);
             this.ceTeacher.TabIndex = 10;
             this.ceTeacher.CheckedChanged += new System.EventHandler(this.ceTeacher_CheckedChanged);
-            // 
-            // ceStudent
-            // 
-            this.ceStudent.AutoSizeInLayoutControl = true;
-            this.ceStudent.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ceStudent.Location = new System.Drawing.Point(144, 2);
-            this.ceStudent.Name = "ceStudent";
-            this.ceStudent.Properties.Caption = "Student";
-            this.ceStudent.Properties.CheckBoxOptions.Style = DevExpress.XtraEditors.Controls.CheckBoxStyle.Radio;
-            this.ceStudent.Size = new System.Drawing.Size(63, 27);
-            this.ceStudent.TabIndex = 11;
-            this.ceStudent.CheckedChanged += new System.EventHandler(this.ceStudent_CheckedChanged);
             // 
             // groupControl1
             // 
@@ -229,8 +229,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.teUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ceTeacher.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceStudent.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceTeacher.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -240,7 +240,7 @@
 
         #endregion
         private DevExpress.XtraEditors.TextEdit teUsername;
-        private DevExpress.XtraEditors.TextEdit tePassword;
+        public DevExpress.XtraEditors.TextEdit tePassword;
         private DevExpress.XtraEditors.SimpleButton btnSignIn;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.ComboBoxEdit cbxLocation;
@@ -249,8 +249,8 @@
         private DevExpress.XtraEditors.LabelControl lbUsername;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.CheckEdit ceTeacher;
         private DevExpress.XtraEditors.CheckEdit ceStudent;
+        private DevExpress.XtraEditors.CheckEdit ceTeacher;
         private DevExpress.XtraEditors.GroupControl groupControl1;
     }
 }

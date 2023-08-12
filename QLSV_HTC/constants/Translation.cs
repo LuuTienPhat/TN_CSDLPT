@@ -45,4 +45,5 @@ class Translation
     public static string _loginNameExistsMsg = "Login Name is already exists. Please choose another!";
     public static string _userNameExistsMsg = "User Name is already exists. Please choose another!";
     public static string _signUpSuccessfullyMsg = "Sign up successfully";
+    public static string _signUpFailedMsg = "Failed to Sign up";
 }

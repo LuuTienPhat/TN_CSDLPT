@@ -68,7 +68,7 @@ namespace TN_CSDLPT
             formMain = new FormMain();
             formSignIn = new FormSignIn();
             FormReportSubjectScoreTable formReportSubjectScoreTable = new FormReportSubjectScoreTable();
-            Application.Run(new FormSignIn());
+            Application.Run(formSignIn);
             //Application.Run(formReportSubjectScoreTable);
         }
 
@@ -126,6 +126,17 @@ namespace TN_CSDLPT
             return sqlDataReader;
         }
 
+        public static bool CloseSqlDataReader()
+        {
+            bool isClosed = false;
+            if(Program.myReader != null)
+            {
+                Program.myReader.Close();
+                isClosed = true;
+            }
+            return isClosed;
+        }
+
         public static DataTable ExecSqlDataTable(string cmd)
         {
             DataTable dt = new DataTable();
@@ -143,7 +154,6 @@ namespace TN_CSDLPT
 
         public static int ExecSqlNonQuery(string query)
         {
-
             //https://stackoverflow.com/questions/6943933/check-if-sql-connection-is-open-or-closed
             if (Program.databaseConnection.State != ConnectionState.Open)
             {
@@ -156,7 +166,8 @@ namespace TN_CSDLPT
             try
             {
                 Sqlcmd.ExecuteNonQuery();
-                return 0;
+                int result = (int)Sqlcmd.Parameters["@RETURN_VALUE"].Value;
+                return result;
 
             }
             catch (SqlException ex)

@@ -181,22 +181,6 @@ namespace TN_CSDLPT
             }
         }
 
-        private bool ValidateInput()
-        {
-            bool validated = true;
-            if (teUsername.Text.Trim().Length == 0)
-            {
-                teUsername.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._usernameLabel);
-                validated = false;
-            }
-            if (tePassword.Text.Trim().Length == 0)
-            {
-                tePassword.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._passwordLabel);
-                validated = false;
-            }
-            return validated;
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             //Check connection to database, in case of being actived then close
@@ -206,8 +190,16 @@ namespace TN_CSDLPT
             }
 
             //Close the application, Shutdown all running threads
-            Application.Exit();
-            System.Environment.Exit(1);
+            if(System.Windows.Forms.Application.MessageLoop)
+            {
+                // WinForms app
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                // Console app
+                System.Environment.Exit(1);
+            }
         }
 
         private void ceTeacher_CheckedChanged(object sender, EventArgs e)
@@ -236,6 +228,22 @@ namespace TN_CSDLPT
                 this.teUsername.ToolTip = string.Format(Translation._argsInputFieldTooltipMsg, Translation._usernameStudentLabel);
                 this.teUsername.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             }
+        }
+
+        private bool ValidateInput()
+        {
+            bool validated = true;
+            if (teUsername.Text.Trim().Length == 0)
+            {
+                teUsername.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._usernameLabel);
+                validated = false;
+            }
+            if (tePassword.Text.Trim().Length == 0)
+            {
+                tePassword.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._passwordLabel);
+                validated = false;
+            }
+            return validated;
         }
     }
 }

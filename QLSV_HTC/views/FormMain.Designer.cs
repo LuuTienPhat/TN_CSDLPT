@@ -32,10 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnSignOut = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLocation = new DevExpress.XtraBars.BarButtonItem();
+            this.btnClass = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTeacher = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStudent = new DevExpress.XtraBars.BarButtonItem();
             this.btnSubjectManagement = new DevExpress.XtraBars.BarButtonItem();
             this.btnCreateLogin = new DevExpress.XtraBars.BarButtonItem();
             this.btnChangePassword = new DevExpress.XtraBars.BarButtonItem();
@@ -45,6 +45,8 @@
             this.lbUserId = new DevExpress.XtraBars.BarStaticItem();
             this.lbUserFullName = new DevExpress.XtraBars.BarStaticItem();
             this.lbUserRole = new DevExpress.XtraBars.BarStaticItem();
+            this.btnTeacherRegistration = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDoExam = new DevExpress.XtraBars.BarButtonItem();
             this.rbSystem = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -56,13 +58,11 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnTeacherRegistration = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnDoExam = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -74,10 +74,10 @@
             this.ribbon.ExpandCollapseItem,
             this.ribbon.SearchEditItem,
             this.btnSignOut,
-            this.barButtonItem1,
-            this.barButtonItem2,
-            this.barButtonItem3,
-            this.barButtonItem4,
+            this.btnLocation,
+            this.btnClass,
+            this.btnTeacher,
+            this.btnStudent,
             this.btnSubjectManagement,
             this.btnCreateLogin,
             this.btnChangePassword,
@@ -108,34 +108,35 @@
             this.btnSignOut.Name = "btnSignOut";
             this.btnSignOut.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSignOut_ItemClick);
             // 
-            // barButtonItem1
+            // btnLocation
             // 
-            this.barButtonItem1.Caption = "Location";
-            this.barButtonItem1.Id = 2;
-            this.barButtonItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnLocation.Caption = "Location";
+            this.btnLocation.Id = 2;
+            this.btnLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLocation.ImageOptions.SvgImage")));
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnLocation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLocation_ItemClick);
             // 
-            // barButtonItem2
+            // btnClass
             // 
-            this.barButtonItem2.Caption = "Class";
-            this.barButtonItem2.Id = 3;
-            this.barButtonItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.btnClass.Caption = "Class";
+            this.btnClass.Id = 3;
+            this.btnClass.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClass.ImageOptions.SvgImage")));
+            this.btnClass.Name = "btnClass";
             // 
-            // barButtonItem3
+            // btnTeacher
             // 
-            this.barButtonItem3.Caption = "Teacher";
-            this.barButtonItem3.Id = 4;
-            this.barButtonItem3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem3.ImageOptions.SvgImage")));
-            this.barButtonItem3.Name = "barButtonItem3";
+            this.btnTeacher.Caption = "Teacher";
+            this.btnTeacher.Id = 4;
+            this.btnTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTeacher.ImageOptions.SvgImage")));
+            this.btnTeacher.Name = "btnTeacher";
             // 
-            // barButtonItem4
+            // btnStudent
             // 
-            this.barButtonItem4.Caption = "Student";
-            this.barButtonItem4.Id = 5;
-            this.barButtonItem4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem4.ImageOptions.SvgImage")));
-            this.barButtonItem4.Name = "barButtonItem4";
+            this.btnStudent.Caption = "Student";
+            this.btnStudent.Id = 5;
+            this.btnStudent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStudent.ImageOptions.SvgImage")));
+            this.btnStudent.Name = "btnStudent";
             // 
             // btnSubjectManagement
             // 
@@ -149,13 +150,17 @@
             // 
             this.btnCreateLogin.Caption = "New Account";
             this.btnCreateLogin.Id = 7;
+            this.btnCreateLogin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreateLogin.ImageOptions.SvgImage")));
             this.btnCreateLogin.Name = "btnCreateLogin";
+            this.btnCreateLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCreateLogin_ItemClick);
             // 
             // btnChangePassword
             // 
             this.btnChangePassword.Caption = "Change Password";
             this.btnChangePassword.Id = 8;
+            this.btnChangePassword.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChangePassword.ImageOptions.SvgImage")));
             this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangePassword_ItemClick);
             // 
             // btnExamResultReport
             // 
@@ -196,6 +201,22 @@
             this.lbUserRole.Id = 14;
             this.lbUserRole.Name = "lbUserRole";
             // 
+            // btnTeacherRegistration
+            // 
+            this.btnTeacherRegistration.Caption = "Teacher Registration";
+            this.btnTeacherRegistration.Id = 15;
+            this.btnTeacherRegistration.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTeacherRegistration.ImageOptions.SvgImage")));
+            this.btnTeacherRegistration.Name = "btnTeacherRegistration";
+            this.btnTeacherRegistration.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTeacherRegistration_ItemClick);
+            // 
+            // btnDoExam
+            // 
+            this.btnDoExam.Caption = "Do Exam";
+            this.btnDoExam.Id = 16;
+            this.btnDoExam.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDoExam.ImageOptions.SvgImage")));
+            this.btnDoExam.Name = "btnDoExam";
+            this.btnDoExam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDoExam_ItemClick);
+            // 
             // rbSystem
             // 
             this.rbSystem.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -212,13 +233,13 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.btnSignOut);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnChangePassword);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Account";
             // 
             // ribbonPageGroup6
             // 
             this.ribbonPageGroup6.ItemLinks.Add(this.btnCreateLogin);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
-            this.ribbonPageGroup6.Text = "ribbonPageGroup6";
+            this.ribbonPageGroup6.Text = "Sign Up";
             // 
             // ribbonPage1
             // 
@@ -234,23 +255,23 @@
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem1);
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem2);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnLocation);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnClass);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "School";
             // 
             // ribbonPageGroup4
             // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem3);
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem4);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnTeacher);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnStudent);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "Human";
             // 
             // ribbonPageGroup5
             // 
             this.ribbonPageGroup5.ItemLinks.Add(this.btnSubjectManagement);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "Subject";
             // 
             // ribbonPage2
             // 
@@ -268,34 +289,19 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnExamResultReport);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "__________";
             // 
             // ribbonPageGroup7
             // 
             this.ribbonPageGroup7.ItemLinks.Add(this.btnSubjectScoreSheet);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
-            this.ribbonPageGroup7.Text = "ribbonPageGroup7";
+            this.ribbonPageGroup7.Text = "__________";
             // 
             // ribbonPageGroup8
             // 
             this.ribbonPageGroup8.ItemLinks.Add(this.btnExamRegistrationList);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "ribbonPageGroup8";
-            // 
-            // ribbonStatusBar
-            // 
-            this.ribbonStatusBar.ItemLinks.Add(this.lbUserId);
-            this.ribbonStatusBar.ItemLinks.Add(this.lbUserFullName);
-            this.ribbonStatusBar.ItemLinks.Add(this.lbUserRole);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 423);
-            this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1165, 26);
-            // 
-            // xtraTabbedMdiManager1
-            // 
-            this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
-            this.xtraTabbedMdiManager1.MdiParent = this;
+            this.ribbonPageGroup8.Text = "__________";
             // 
             // ribbonPage3
             // 
@@ -312,25 +318,28 @@
             // 
             this.ribbonPageGroup9.ItemLinks.Add(this.btnTeacherRegistration);
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
-            // 
-            // btnTeacherRegistration
-            // 
-            this.btnTeacherRegistration.Caption = "Teacher Registration";
-            this.btnTeacherRegistration.Id = 15;
-            this.btnTeacherRegistration.Name = "btnTeacherRegistration";
-            this.btnTeacherRegistration.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTeacherRegistration_ItemClick);
+            this.ribbonPageGroup9.Text = "__________";
             // 
             // ribbonPageGroup10
             // 
             this.ribbonPageGroup10.ItemLinks.Add(this.btnDoExam);
             this.ribbonPageGroup10.Name = "ribbonPageGroup10";
+            this.ribbonPageGroup10.Text = "__________";
             // 
-            // btnDoExam
+            // ribbonStatusBar
             // 
-            this.btnDoExam.Caption = "Do Exam";
-            this.btnDoExam.Id = 16;
-            this.btnDoExam.Name = "btnDoExam";
-            this.btnDoExam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDoExam_ItemClick);
+            this.ribbonStatusBar.ItemLinks.Add(this.lbUserId);
+            this.ribbonStatusBar.ItemLinks.Add(this.lbUserFullName);
+            this.ribbonStatusBar.ItemLinks.Add(this.lbUserRole);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 423);
+            this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbon;
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1165, 26);
+            // 
+            // xtraTabbedMdiManager1
+            // 
+            this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
+            this.xtraTabbedMdiManager1.MdiParent = this;
             // 
             // FormMain
             // 
@@ -365,10 +374,10 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btnSignOut;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem btnLocation;
+        private DevExpress.XtraBars.BarButtonItem btnClass;
+        private DevExpress.XtraBars.BarButtonItem btnTeacher;
+        private DevExpress.XtraBars.BarButtonItem btnStudent;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem btnSubjectManagement;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
