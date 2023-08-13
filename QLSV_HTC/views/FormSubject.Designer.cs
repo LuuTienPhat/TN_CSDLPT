@@ -141,6 +141,7 @@
             this.colTENMH});
             this.gvSubject.GridControl = this.gcSubject;
             this.gvSubject.Name = "gvSubject";
+            this.gvSubject.OptionsBehavior.Editable = false;
             this.gvSubject.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvSubject_FocusedRowChanged);
             // 
             // colMAMH

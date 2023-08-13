@@ -120,7 +120,9 @@ namespace TN_CSDLPT.views
                 {
                     CommitDB();
                     callBackActions.Add(
-                        new CallBackAction(mode, DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, new string[] { oldSujectId, oldSubjectName )));
+                        new CallBackAction(mode, 
+                        DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, new string[] { oldSujectId, oldSubjectName })
+                        ));
                 }
                 else
                 {
