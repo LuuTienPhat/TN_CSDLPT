@@ -87,7 +87,7 @@ namespace TN_CSDLPT.views
             });
 
             gcInfo.Enabled = true;
-            gcSubject.Enabled = true;
+            gcSubject.Enabled = false;
             teID.Enabled = true;
         }
 
@@ -119,9 +119,8 @@ namespace TN_CSDLPT.views
                 if (ValidateInput())
                 {
                     CommitDB();
-                    string[] args = new string[] { oldSujectId, oldSubjectName };
                     callBackActions.Add(
-                        new CallBackAction(mode, DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, args)));
+                        new CallBackAction(mode, DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, new string[] { oldSujectId, oldSubjectName )));
                 }
                 else
                 {
@@ -135,11 +134,10 @@ namespace TN_CSDLPT.views
                     CommitDB();
                     Hashtable refs = new Hashtable();
                     refs.Add(Database.TABLE_SUBJECT_COL_SUBJECT_ID, oldSujectId);
-                    string[] args = new string[] { oldSujectId };
                     callBackActions.Add(
                         new CallBackAction(
                             mode,
-                            DatabaseUtils.BuildQuery(Database.SP_DELETE_STUDENT, args),
+                            DatabaseUtils.BuildQuery(Database.SP_DELETE_SUBJECT, new string[] { oldSujectId }),
                             refs
                         ));
                 }
@@ -163,6 +161,8 @@ namespace TN_CSDLPT.views
 
             gcInfo.Enabled = false;
             gcSubject.Enabled = true;
+
+            btnRefresh.PerformClick();
         }
 
         private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
@@ -208,12 +208,12 @@ namespace TN_CSDLPT.views
                     }
                     else
                     {
-                        CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasTopic);
+                        CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasTopicMsg);
                     }
                 }
                 else
                 {
-                    CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasScoreList);
+                    CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._subjectAlreadyHasScoreListMsg);
                 }
             }
         }
@@ -230,23 +230,25 @@ namespace TN_CSDLPT.views
                     {
                         Program.myReader = Program.ExecSqlDataReader(action.Query);
                         Program.myReader.Read();
-                        string key = "";
-                        key = Program.myReader.GetString(0).Trim();
-                        Program.myReader.Close();
-                        Program.databaseConnection.Close();
                         btnRefresh.PerformClick();
-                        if (key.Length != 0)
+
+                        string affectedId = Program.myReader.GetString(0).Trim();   
+                        if (affectedId.Length != 0)
                         {
-                            this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, key);
+                            this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, affectedId);
                         }
+
                         callBackActions.RemoveAt(callBackActions.Count - 1);
                     }
                     catch (Exception ex)
                     {
                         CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
                         this.taSubject.Update(this.DataSet.MONHOC);
-                        Program.myReader.Close();
-                        Program.databaseConnection.Close();
+                    }
+
+                    finally
+                    {
+                        Program.CloseSqlDataReader();
                     }
                 }
             }

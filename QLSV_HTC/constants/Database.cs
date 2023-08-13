@@ -168,6 +168,53 @@ class Database
     public const string SP_INSERT_SCORE = "SP_INSERT_SCORE";
 
     /// <summary>
+    /// 0: class ID
+    /// 1: subject ID
+    /// 2: number Of Exam Times
+    /// 3: exam date
+    /// </summary>
+    public const string SP_CHECK_TEACHER_REGISTRATION_EXISTS = "SP_CHECK_TEACHER_REGISTRATION_EXISTS";
+
+    /// <summary>
+    /// 0: class ID
+    /// 1: subject ID
+    /// 2: number Of Exam Times
+    /// 3: exam date
+    /// </summary>
+    public const string SP_CHECK_DELETE_TEACHER_REGISTRATION = "SP_CHECK_DELETE_TEACHER_REGISTRATION";
+
+    /// <summary>
+    /// 0: teacher ID
+    /// 1: subject ID
+    /// 2: class ID
+    /// 3: level
+    /// 4: exam date
+    /// 5: number Of Exam Times
+    /// 6: number Of Question
+    /// 7: exam times
+    /// </summary>
+    public const string SP_UPDATE_TEACHER_REGISTRATION = "SP_UPDATE_TEACHER_REGISTRATION";
+
+    /// <summary>
+    /// 0: teacher ID
+    /// 1: subject ID
+    /// 2: class ID
+    /// 3: level
+    /// 4: exam date
+    /// 5: number Of Exam Times
+    /// 6: number Of Question
+    /// 7: exam times
+    /// </summary>
+    public const string SP_INSERT_TEACHER_REGISTRATION = "SP_INSERT_TEACHER_REGISTRATION";
+
+    /// <summary>
+    /// 1: subject ID
+    /// 2: class ID
+    /// 5: number Of Exam Times
+    /// </summary>
+    public const string SP_DELETE_TEACHER_REGISTRATION = "SP_DELETE_TEACHER_REGISTRATION";
+
+    /// <summary>
     /// 0: Login Name
     /// </summary>
     public const string SP_GET_TEACHER_LOGIN_INFO = "EXEC SP_GET_TEACHER_LOGIN_INFO N'{0}'";
@@ -195,14 +242,24 @@ class Database
     public const string VIEW_ALL_LOCATION_COL_LOCATION_NAME = "TENCS";
     public const string VIEW_ALL_LOCATION_COL_LOCATION_SERVER = "TENSERVER";
 
-    public static string TABLE_SUBJECT_COL_SUBJECT_ID = "MAMH";
-    public static string TABLE_SUBJECT_COL_SUBJECT_NAME = "TENMH";
+    public const string TABLE_SUBJECT_COL_SUBJECT_ID = "MAMH";
+    public const string TABLE_SUBJECT_COL_SUBJECT_NAME = "TENMH";
 
-    public static string TABLE_CLASS_COL_CLASS_ID = "MALOP";
-    public static string TABLE_CLASS_COL_CLASS_NAME = "TENLOP";
-    public static string TABLE_CLASS_COL_CLASS_DEPARTMENT_ID = "MAKH";
+    public const string TABLE_CLASS_COL_CLASS_ID = "MALOP";
+    public const string TABLE_CLASS_COL_CLASS_NAME = "TENLOP";
+    public const string TABLE_CLASS_COL_CLASS_DEPARTMENT_ID = "MAKH";
 
-    public static string TABLE_STUDENT_COL_STUDENT_ID = "MASV";
-    public static string TABLE_STUDENT_COL_STUDENT_LASTNAME = "HO";
-    public static string TABLE_STUDENT_COL_STUDENT_FIRSTNAME = "TEN";
+    public const string TABLE_STUDENT_COL_STUDENT_ID = "MASV";
+    public const string TABLE_STUDENT_COL_STUDENT_LASTNAME = "HO";
+    public const string TABLE_STUDENT_COL_STUDENT_FIRSTNAME = "TEN";
+
+    public const string TABLE_TEACHER_REGISTRATION_CLASS_ID = "MALOP";
+    public const string TABLE_TEACHER_REGISTRATION_SUBJECT_ID = "MAMH";
+    public const string TABLE_TEACHER_REGISTRATION_TEACHER_ID = "MAGV";
+    public const string TABLE_TEACHER_REGISTRATION_LEVEL = "TRINHDO";
+    public const string TABLE_TEACHER_REGISTRATION_EXAM_DATE = "NGAYTHI";
+    public const string TABLE_TEACHER_REGISTRATION_NUMBER_OF_EXAM_TIMES = "LAN";
+    public const string TABLE_TEACHER_REGISTRATION_NUMBER_OF_QUESTIONS = "SOCAUHOI";
+    public const string TABLE_TEACHER_REGISTRATION_EXAM_TIME = "THOIGIAN";
+
 }

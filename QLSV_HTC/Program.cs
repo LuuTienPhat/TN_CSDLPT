@@ -134,6 +134,10 @@ namespace TN_CSDLPT
                 Program.myReader.Close();
                 isClosed = true;
             }
+            if (Program.databaseConnection != null)
+            {
+                Program.databaseConnection.Close();
+            }
             return isClosed;
         }
 

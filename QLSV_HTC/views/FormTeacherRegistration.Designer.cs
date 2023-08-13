@@ -70,7 +70,21 @@
             this.deExamDate = new DevExpress.XtraEditors.DateEdit();
             this.cbxClass = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.teTeacherId = new DevExpress.XtraEditors.TextEdit();
+            this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMAMH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTRINHDO = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNGAYTHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSOCAUTHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTHOIGIAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cbxTeacher = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.bdsTeacher = new System.Windows.Forms.BindingSource(this.components);
+            this.taTeacher = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.GIAOVIENTableAdapter();
+            this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
+            this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
+            this.bdsClass = new System.Windows.Forms.BindingSource(this.components);
+            this.taClass = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.LOPTableAdapter();
             mAGVLabel = new System.Windows.Forms.Label();
             mAMHLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
@@ -95,17 +109,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxClass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teTeacherId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTeacher.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).BeginInit();
             this.SuspendLayout();
             // 
             // mAGVLabel
             // 
             mAGVLabel.AutoSize = true;
-            mAGVLabel.Location = new System.Drawing.Point(83, 60);
+            mAGVLabel.Location = new System.Drawing.Point(97, 60);
             mAGVLabel.Name = "mAGVLabel";
-            mAGVLabel.Size = new System.Drawing.Size(64, 15);
+            mAGVLabel.Size = new System.Drawing.Size(50, 15);
             mAGVLabel.TabIndex = 0;
-            mAGVLabel.Text = "Teacher ID:";
+            mAGVLabel.Text = "Teacher:";
             // 
             // mAMHLabel
             // 
@@ -408,6 +425,15 @@
             // 
             // gvTeacher_Registration
             // 
+            this.gvTeacher_Registration.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMAGV,
+            this.colMAMH,
+            this.colMALOP,
+            this.colTRINHDO,
+            this.colNGAYTHI,
+            this.colLAN,
+            this.colSOCAUTHI,
+            this.colTHOIGIAN});
             this.gvTeacher_Registration.GridControl = this.gcTeacher_Registration;
             this.gvTeacher_Registration.Name = "gvTeacher_Registration";
             this.gvTeacher_Registration.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvTeacher_Registration_FocusedRowChanged);
@@ -416,6 +442,7 @@
             // 
             this.gcInfo.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("gcInfo.CaptionImageOptions.SvgImage")));
             this.gcInfo.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.gcInfo.Controls.Add(this.cbxTeacher);
             this.gcInfo.Controls.Add(this.cbxLevel);
             this.gcInfo.Controls.Add(tHOIGIANLabel);
             this.gcInfo.Controls.Add(this.seTotalMinutes);
@@ -431,7 +458,6 @@
             this.gcInfo.Controls.Add(mAMHLabel);
             this.gcInfo.Controls.Add(this.cbxSubject);
             this.gcInfo.Controls.Add(mAGVLabel);
-            this.gcInfo.Controls.Add(this.teTeacherId);
             this.gcInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcInfo.Location = new System.Drawing.Point(0, 480);
             this.gcInfo.Name = "gcInfo";
@@ -447,6 +473,7 @@
             this.cbxLevel.Name = "cbxLevel";
             this.cbxLevel.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxLevel.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxLevel.Size = new System.Drawing.Size(400, 22);
             this.cbxLevel.TabIndex = 16;
             // 
@@ -463,6 +490,10 @@
             this.seTotalMinutes.Name = "seTotalMinutes";
             this.seTotalMinutes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.seTotalMinutes.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.seTotalMinutes.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.seTotalMinutes.Properties.IsFloatValue = false;
+            this.seTotalMinutes.Properties.MaskSettings.Set("mask", "N00");
             this.seTotalMinutes.Size = new System.Drawing.Size(400, 22);
             this.seTotalMinutes.TabIndex = 15;
             // 
@@ -479,6 +510,10 @@
             this.seTotalQuestions.Name = "seTotalQuestions";
             this.seTotalQuestions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.seTotalQuestions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.seTotalQuestions.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.seTotalQuestions.Properties.IsFloatValue = false;
+            this.seTotalQuestions.Properties.MaskSettings.Set("mask", "N00");
             this.seTotalQuestions.Size = new System.Drawing.Size(400, 22);
             this.seTotalQuestions.TabIndex = 13;
             // 
@@ -495,6 +530,10 @@
             this.seNumberOfExamTimes.Name = "seNumberOfExamTimes";
             this.seNumberOfExamTimes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.seNumberOfExamTimes.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.seNumberOfExamTimes.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.seNumberOfExamTimes.Properties.IsFloatValue = false;
+            this.seNumberOfExamTimes.Properties.MaskSettings.Set("mask", "N00");
             this.seNumberOfExamTimes.Size = new System.Drawing.Size(400, 22);
             this.seNumberOfExamTimes.TabIndex = 11;
             // 
@@ -520,6 +559,7 @@
             this.cbxClass.Name = "cbxClass";
             this.cbxClass.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxClass.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxClass.Size = new System.Drawing.Size(400, 22);
             this.cbxClass.TabIndex = 5;
             // 
@@ -531,19 +571,109 @@
             this.cbxSubject.Name = "cbxSubject";
             this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSubject.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSubject.Size = new System.Drawing.Size(400, 22);
             this.cbxSubject.TabIndex = 3;
             // 
-            // teTeacherId
+            // colMAGV
             // 
-            this.teTeacherId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher_Registration, "MAGV", true));
-            this.teTeacherId.Location = new System.Drawing.Point(153, 57);
-            this.teTeacherId.MenuManager = this.barManager1;
-            this.teTeacherId.Name = "teTeacherId";
-            this.teTeacherId.Size = new System.Drawing.Size(400, 22);
-            this.teTeacherId.TabIndex = 1;
+            this.colMAGV.FieldName = "MAGV";
+            this.colMAGV.Name = "colMAGV";
+            this.colMAGV.Visible = true;
+            this.colMAGV.VisibleIndex = 0;
             // 
-            // FormTestPreparation
+            // colMAMH
+            // 
+            this.colMAMH.FieldName = "MAMH";
+            this.colMAMH.Name = "colMAMH";
+            this.colMAMH.Visible = true;
+            this.colMAMH.VisibleIndex = 1;
+            // 
+            // colMALOP
+            // 
+            this.colMALOP.FieldName = "MALOP";
+            this.colMALOP.Name = "colMALOP";
+            this.colMALOP.Visible = true;
+            this.colMALOP.VisibleIndex = 2;
+            // 
+            // colTRINHDO
+            // 
+            this.colTRINHDO.FieldName = "TRINHDO";
+            this.colTRINHDO.Name = "colTRINHDO";
+            this.colTRINHDO.Visible = true;
+            this.colTRINHDO.VisibleIndex = 3;
+            // 
+            // colNGAYTHI
+            // 
+            this.colNGAYTHI.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.colNGAYTHI.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colNGAYTHI.FieldName = "NGAYTHI";
+            this.colNGAYTHI.Name = "colNGAYTHI";
+            this.colNGAYTHI.Visible = true;
+            this.colNGAYTHI.VisibleIndex = 4;
+            // 
+            // colLAN
+            // 
+            this.colLAN.FieldName = "LAN";
+            this.colLAN.Name = "colLAN";
+            this.colLAN.Visible = true;
+            this.colLAN.VisibleIndex = 5;
+            // 
+            // colSOCAUTHI
+            // 
+            this.colSOCAUTHI.FieldName = "SOCAUTHI";
+            this.colSOCAUTHI.Name = "colSOCAUTHI";
+            this.colSOCAUTHI.Visible = true;
+            this.colSOCAUTHI.VisibleIndex = 6;
+            // 
+            // colTHOIGIAN
+            // 
+            this.colTHOIGIAN.FieldName = "THOIGIAN";
+            this.colTHOIGIAN.Name = "colTHOIGIAN";
+            this.colTHOIGIAN.Visible = true;
+            this.colTHOIGIAN.VisibleIndex = 7;
+            // 
+            // cbxTeacher
+            // 
+            this.cbxTeacher.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher_Registration, "MAGV", true));
+            this.cbxTeacher.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsTeacher, "HO", true));
+            this.cbxTeacher.Location = new System.Drawing.Point(153, 57);
+            this.cbxTeacher.MenuManager = this.barManager1;
+            this.cbxTeacher.Name = "cbxTeacher";
+            this.cbxTeacher.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxTeacher.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbxTeacher.Size = new System.Drawing.Size(400, 22);
+            this.cbxTeacher.TabIndex = 17;
+            // 
+            // bdsTeacher
+            // 
+            this.bdsTeacher.DataMember = "GIAOVIEN";
+            this.bdsTeacher.DataSource = this.DataSet;
+            // 
+            // taTeacher
+            // 
+            this.taTeacher.ClearBeforeFill = true;
+            // 
+            // bdsSubject
+            // 
+            this.bdsSubject.DataMember = "MONHOC";
+            this.bdsSubject.DataSource = this.DataSet;
+            // 
+            // taSubject
+            // 
+            this.taSubject.ClearBeforeFill = true;
+            // 
+            // bdsClass
+            // 
+            this.bdsClass.DataMember = "LOP";
+            this.bdsClass.DataSource = this.DataSet;
+            // 
+            // taClass
+            // 
+            this.taClass.ClearBeforeFill = true;
+            // 
+            // FormTeacherRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -554,7 +684,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "FormTestPreparation";
+            this.Name = "FormTeacherRegistration";
             this.Text = "Teacher Registration";
             this.Load += new System.EventHandler(this.FormTestPreparation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
@@ -574,7 +704,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxClass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teTeacherId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTeacher.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -607,7 +740,6 @@
         private DevExpress.XtraGrid.GridControl gcTeacher_Registration;
         private DevExpress.XtraGrid.Views.Grid.GridView gvTeacher_Registration;
         private DevExpress.XtraEditors.GroupControl gcInfo;
-        private DevExpress.XtraEditors.TextEdit teTeacherId;
         private DevExpress.XtraEditors.ComboBoxEdit cbxSubject;
         private DevExpress.XtraEditors.ComboBoxEdit cbxClass;
         private DevExpress.XtraEditors.DateEdit deExamDate;
@@ -615,5 +747,20 @@
         private DevExpress.XtraEditors.SpinEdit seTotalQuestions;
         private DevExpress.XtraEditors.SpinEdit seTotalMinutes;
         private DevExpress.XtraEditors.ComboBoxEdit cbxLevel;
+        private DevExpress.XtraGrid.Columns.GridColumn colMAGV;
+        private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
+        private DevExpress.XtraGrid.Columns.GridColumn colMALOP;
+        private DevExpress.XtraGrid.Columns.GridColumn colTRINHDO;
+        private DevExpress.XtraGrid.Columns.GridColumn colNGAYTHI;
+        private DevExpress.XtraGrid.Columns.GridColumn colLAN;
+        private DevExpress.XtraGrid.Columns.GridColumn colSOCAUTHI;
+        private DevExpress.XtraGrid.Columns.GridColumn colTHOIGIAN;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxTeacher;
+        private System.Windows.Forms.BindingSource bdsTeacher;
+        private TN_CSDLPT_PRODDataSetTableAdapters.GIAOVIENTableAdapter taTeacher;
+        private System.Windows.Forms.BindingSource bdsSubject;
+        private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
+        private System.Windows.Forms.BindingSource bdsClass;
+        private TN_CSDLPT_PRODDataSetTableAdapters.LOPTableAdapter taClass;
     }
 }

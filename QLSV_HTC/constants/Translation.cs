@@ -21,13 +21,19 @@ class Translation
 
     public const string _incorectSignInUsernamePasswordMsg = "Username or Password are incorrect!";
     public const string _userPriviledgeNotValidMsg = "Your account does not have priviledge.Please check again!";
-    public const string _subjectAlreadyHasScoreList = "Subject already has Score list";
-    public const string _subjectAlreadyHasTopic = "Subject already has Topic";
+    public const string _subjectAlreadyHasScoreListMsg = "Subject already has Score list";
+    public const string _subjectAlreadyHasTopicMsg = "Subject already has Topic";
     public const string _subjectAlreadyHasTeacherMsg = "Subject already has Teacher Register";
     public const string _examSubjectNotFoundMsg = "Couldn't find the exam subjects. Please make sure this subject was assigned to your class.";
 
     public const string _teacherExamResultMsg = "Your Exam eesult is {0}";
     public const string _studentExamResultMsg = "Your Exam result is {0}.\nOK view details.";
+
+    public const string _incorrectNumberOfExamTimesErrorMsg = "Number Of Exam Times must be twice at least.";
+    public const string _incorrectTotalQuestionErrorMsg = "The exam must have a minimum of 10 questions and a maximum of 100 questions.";
+    public const string _incorrectTotalMinutesErrorMsg = "Exam time must be more than 15 minutes.";
+    public const string _noTestHeldOnSundayErrorMsg = "There are no exams on Sundays.";
+    public const string _invalidExamDateErrorMsg = "Invalid Exam date";
 
     public static string _errorTitle = "Error";
     public static string _warningTitle = "Warning";

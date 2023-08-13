@@ -80,6 +80,9 @@
     <Compile Include="constants\Database.cs" />
     <Compile Include="constants\FormUtils.cs" />
     <Compile Include="models\UserRole.cs" />
+    <Compile Include="TN_CSDLPT_PRODDataSet.cs">
+      <DependentUpon>TN_CSDLPT_PRODDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="views\FormExamResult.cs">
       <SubType>Form</SubType>
     </Compile>
