@@ -99,7 +99,7 @@ class Database
     /// {0} : login name
     /// </summary>
     public const string SP_CHECK_LOGINNAME_EXISTS = "EXEC SP_CHECK_LOGINNAME_EXISTS N'{0}'";
-    
+
     /// <summary>
     /// 0: login name
     /// 1: password
@@ -142,6 +142,10 @@ class Database
     /// </summary>
     public const string SP_UPDATE_TOPIC = "EXEC SP_UPDATE_TOPIC N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', N'{9}'";
 
+    /// <summary>
+    /// 0: question NO
+    /// </summary>
+    public const string SP_DELETE_TOPIC = "EXEC SP_DELETE_TOPIC";
 
     /// <summary>
     /// 0: question NO
@@ -262,4 +266,14 @@ class Database
     public const string TABLE_TEACHER_REGISTRATION_NUMBER_OF_QUESTIONS = "SOCAUHOI";
     public const string TABLE_TEACHER_REGISTRATION_EXAM_TIME = "THOIGIAN";
 
+    public const string TABLE_TOPIC_QUESTION_NO = "CAUHOI";
+    public const string TABLE_TOPIC_SUBJECT_ID = "MAMH";
+    public const string TABLE_TOPIC_LEVEL = "TRINHDO";
+    public const string TABLE_TOPIC_CONTENT = "NOIDUNG";
+    public const string TABLE_TOPIC_ANSWER_A = "A";
+    public const string TABLE_TOPIC_ANSWER_B = "B";
+    public const string TABLE_TOPIC_ANSWER_C = "C";
+    public const string TABLE_TOPIC_ANSWER_D = "D";
+    public const string TABLE_TOPIC_ANSWER = "DAP_AN";
+    public const string TABLE_TOPIC_TEACHER_ID = "MAGV";
 }

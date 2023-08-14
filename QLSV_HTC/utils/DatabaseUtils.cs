@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TN_CSDLPT.constants;
 
 namespace TN_CSDLPT.utils
 {
@@ -64,6 +66,25 @@ namespace TN_CSDLPT.utils
                 sp = string.Format("EXEC {0} {1}", storeProcedureName, param);
             }
             return sp;
+        }
+
+        public static void FillCbxLevel(ComboBoxEdit cbxLevel)
+        {
+            string[] items = new string[]
+            {
+                "A", "B", "C"
+            };
+
+            FormUtils.FillComboBox(cbxLevel, items);
+        }
+
+        public static void FillCbxAnswer(ComboBoxEdit cbxAnswer)
+        {
+            string[] items = new string[]
+            {
+                "A", "B", "C", "D"
+            };
+            FormUtils.FillComboBox(cbxAnswer, items);
         }
     }
 }

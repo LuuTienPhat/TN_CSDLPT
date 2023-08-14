@@ -13,7 +13,7 @@ class Translation
     public const string _argsCommitErrorMsg = "Couldn't commit. Please try again!\n{0}." ;
     public const string _argsUndoErrorMsg = "Couldn't undo. Please try again!\n{0}.";
     public const string _argsLocationConnectErrorMsg = "Couldn't connect to {0}";
-    public const string _argsDeleteErrorMsg = "Couldn't delete {0}.Try again!";
+    public const string _argsDeleteErrorMsg = "Couldn't delete {0}.Try again!\n{1}";
     public const string _argFieldNotValidErrorMsg = "{0} is not valid!";
     public const string _argsExamSubjectNotFoundMsg = "Couldn't find exam subjects\n{0}";
 
@@ -25,7 +25,7 @@ class Translation
     public const string _subjectAlreadyHasTopicMsg = "Subject already has Topic";
     public const string _subjectAlreadyHasTeacherMsg = "Subject already has Teacher Register";
     public const string _examSubjectNotFoundMsg = "Couldn't find the exam subjects. Please make sure this subject was assigned to your class.";
-
+    
     public const string _teacherExamResultMsg = "Your Exam eesult is {0}";
     public const string _studentExamResultMsg = "Your Exam result is {0}.\nOK view details.";
 
@@ -34,6 +34,8 @@ class Translation
     public const string _incorrectTotalMinutesErrorMsg = "Exam time must be more than 15 minutes.";
     public const string _noTestHeldOnSundayErrorMsg = "There are no exams on Sundays.";
     public const string _invalidExamDateErrorMsg = "Invalid Exam date";
+
+    public const string _teacherCannotEditQuestionOfOtherTeacherMsg = "You can't modify question of other teacher!";
 
     public static string _errorTitle = "Error";
     public static string _warningTitle = "Warning";

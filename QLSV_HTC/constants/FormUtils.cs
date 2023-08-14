@@ -256,9 +256,9 @@ namespace TN_CSDLPT.constants
                         foreach (string col in columns)
                         {
                             string value = item.Row[col].ToString().Trim();
-                            values.Add(value);                      
+                            values.Add(value);
                         }
-                        itemsCollection.Add(string.Join(" - ",values));
+                        itemsCollection.Add(string.Join(" - ", values));
                     }
 
                 }
@@ -269,5 +269,26 @@ namespace TN_CSDLPT.constants
                 }
             }
         }
+
+        public static void FillComboBox(ComboBoxEdit comboBox, string[] data)
+        {
+
+            ComboBoxItemCollection itemsCollection = comboBox.Properties.Items;
+            itemsCollection.BeginUpdate();
+            try
+            {
+
+                foreach (string datum in data)
+                {
+                    itemsCollection.Add(datum);
+                }
+            }
+            finally
+            {
+                itemsCollection.EndUpdate();
+                comboBox.SelectedIndex = 0;
+            }
+        }
     }
 }
+

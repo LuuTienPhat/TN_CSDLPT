@@ -210,5 +210,18 @@ namespace TN_CSDLPT.views
         {
 
         }
+
+        private void btnTopic_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormTopic));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormTopic f = new FormTopic();
+                f.MdiParent = this;
+                f.StartPosition = FormStartPosition.CenterScreen;
+                f.Show();
+            }
+        }
     }
 }

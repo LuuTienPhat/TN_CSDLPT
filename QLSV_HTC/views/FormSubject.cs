@@ -60,11 +60,11 @@ namespace TN_CSDLPT.views
             {
 
                 FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem> {
-                    btnNew, btnEdit, btnDelete, btnCommit
+                    btnNew, btnEdit, btnDelete
                 });
 
                 FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
-                   btnCancel
+                   btnCancel, btnCommit
                 });
             }
             gcInfo.Enabled = false;
@@ -120,7 +120,7 @@ namespace TN_CSDLPT.views
                 {
                     CommitDB();
                     callBackActions.Add(
-                        new CallBackAction(mode, 
+                        new CallBackAction(mode,
                         DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, new string[] { oldSujectId, oldSubjectName })
                         ));
                 }
@@ -187,16 +187,17 @@ namespace TN_CSDLPT.views
                                 this.bdsSubject.RemoveCurrent();
                                 this.taSubject.Connection.ConnectionString = Program.connstr;
                                 this.taSubject.Update(this.DataSet.MONHOC);
-                                string[] args = new string[] { subjectId, subjectName };
+
                                 callBackActions.Add(
                                     new CallBackAction(
                                         mode,
-                                        DatabaseUtils.BuildQuery(Database.SP_INSERT_SUBJECT, args)
+                                        DatabaseUtils.BuildQuery(Database.SP_INSERT_SUBJECT, new string[] { subjectId, subjectName })
                                     ));
                             }
                             catch (Exception ex)
                             {
-                                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsDeleteErrorMsg, ex.Message));
+                                CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
+                                    string.Format(Translation._argsDeleteErrorMsg, new string[] { $"Subject {subjectId}", ex.Message }));
                                 this.taSubject.Update(this.DataSet.MONHOC);
                                 this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_NAME, subjectId);
                                 return;
@@ -226,33 +227,36 @@ namespace TN_CSDLPT.views
             if (action.BackAction.Equals(ActionMode.Add))
             {
                 string subjectId = action.Reference[Database.TABLE_SUBJECT_COL_SUBJECT_ID].ToString();
-                if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, string.Format(Translation._argsDeleteWarningMsg, $"Subject {subjectId}")) == DialogResult.OK)
+                DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, string.Format(Translation._argsDeleteWarningMsg, $"Subject {subjectId}"));
+                if (dialogResult == DialogResult.Cancel)
                 {
-                    try
-                    {
-                        Program.myReader = Program.ExecSqlDataReader(action.Query);
-                        Program.myReader.Read();
-                        btnRefresh.PerformClick();
-
-                        string affectedId = Program.myReader.GetString(0).Trim();   
-                        if (affectedId.Length != 0)
-                        {
-                            this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, affectedId);
-                        }
-
-                        callBackActions.RemoveAt(callBackActions.Count - 1);
-                    }
-                    catch (Exception ex)
-                    {
-                        CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
-                        this.taSubject.Update(this.DataSet.MONHOC);
-                    }
-
-                    finally
-                    {
-                        Program.CloseSqlDataReader();
-                    }
+                    return;
                 }
+            }
+
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(action.Query);
+                Program.myReader.Read();
+                btnRefresh.PerformClick();
+
+                int affectedId = Program.myReader.GetInt32(0);
+                if (affectedId != -1)
+                {
+                    this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, affectedId);
+                }
+
+                callBackActions.RemoveAt(callBackActions.Count - 1);
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
+                this.taSubject.Update(this.DataSet.MONHOC);
+            }
+
+            finally
+            {
+                Program.CloseSqlDataReader();
             }
         }
 

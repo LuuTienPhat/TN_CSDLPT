@@ -56,13 +56,13 @@
             this.rpgHuman = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgSubject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgTopic = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpExamination = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgTeacherRegistration = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgExam = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpReport = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgSubjectScoreSheet = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgExamRegistrationList = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rpExamination = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.rpgTeacherRegistration = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rpgExam = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
@@ -234,6 +234,7 @@
             this.btnTopic.Id = 17;
             this.btnTopic.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTopic.ImageOptions.SvgImage")));
             this.btnTopic.Name = "btnTopic";
+            this.btnTopic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTopic_ItemClick);
             // 
             // rpSystem
             // 
@@ -298,6 +299,29 @@
             this.rpgTopic.Name = "rpgTopic";
             this.rpgTopic.Text = "Topic";
             // 
+            // rpExamination
+            // 
+            this.rpExamination.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgTeacherRegistration,
+            this.rpgExam});
+            this.rpExamination.ImageOptions.ImageToTextIndent = 10;
+            this.rpExamination.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("rpExamination.ImageOptions.SvgImage")));
+            this.rpExamination.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.rpExamination.Name = "rpExamination";
+            this.rpExamination.Text = "Examination";
+            // 
+            // rpgTeacherRegistration
+            // 
+            this.rpgTeacherRegistration.ItemLinks.Add(this.btnTeacherRegistration);
+            this.rpgTeacherRegistration.Name = "rpgTeacherRegistration";
+            this.rpgTeacherRegistration.Text = "__________";
+            // 
+            // rpgExam
+            // 
+            this.rpgExam.ItemLinks.Add(this.btnDoExam);
+            this.rpgExam.Name = "rpgExam";
+            this.rpgExam.Text = "__________";
+            // 
             // rpReport
             // 
             this.rpReport.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -327,29 +351,6 @@
             this.rpgExamRegistrationList.ItemLinks.Add(this.btnExamRegistrationList);
             this.rpgExamRegistrationList.Name = "rpgExamRegistrationList";
             this.rpgExamRegistrationList.Text = "__________";
-            // 
-            // rpExamination
-            // 
-            this.rpExamination.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rpgTeacherRegistration,
-            this.rpgExam});
-            this.rpExamination.ImageOptions.ImageToTextIndent = 10;
-            this.rpExamination.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("rpExamination.ImageOptions.SvgImage")));
-            this.rpExamination.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.rpExamination.Name = "rpExamination";
-            this.rpExamination.Text = "Examination";
-            // 
-            // rpgTeacherRegistration
-            // 
-            this.rpgTeacherRegistration.ItemLinks.Add(this.btnTeacherRegistration);
-            this.rpgTeacherRegistration.Name = "rpgTeacherRegistration";
-            this.rpgTeacherRegistration.Text = "__________";
-            // 
-            // rpgExam
-            // 
-            this.rpgExam.ItemLinks.Add(this.btnDoExam);
-            this.rpgExam.Name = "rpgExam";
-            this.rpgExam.Text = "__________";
             // 
             // ribbonStatusBar
             // 
