@@ -114,6 +114,9 @@ class Database
     /// </summary>
     public const string SP_DELETE_LOGIN = "SP_DELETE_LOGIN";
 
+
+    public const string SP_GET_NEXT_QUESTION_NO = "SP_GET_NEXT_QUESTION_NO";
+
     /// <summary>
     /// 0: question NO
     /// 1: subject ID
@@ -229,6 +232,14 @@ class Database
     /// </summary>
     public const string SP_GET_STUDENT_LOGIN_INFO = "EXEC SP_GET_STUDENT_LOGIN_INFO N'{0}', N'{1}'";
 
+
+    /// <summary>
+    /// 0: student ID
+    /// 1: subject ID
+    /// 2: number of exam times:
+    /// </summary>
+    public const string SP_REPORT_KETQUATHI_THONGTIN_SINHVIEN = "SP_REPORT_KETQUATHI_THONGTIN_SINHVIEN";
+
     //TABLES
     public const string TABLE_STUDENT = "SINHVIEN";
     public const string TABLE_LOCATION = "COSO";
@@ -266,14 +277,14 @@ class Database
     public const string TABLE_TEACHER_REGISTRATION_NUMBER_OF_QUESTIONS = "SOCAUHOI";
     public const string TABLE_TEACHER_REGISTRATION_EXAM_TIME = "THOIGIAN";
 
-    public const string TABLE_TOPIC_QUESTION_NO = "CAUHOI";
-    public const string TABLE_TOPIC_SUBJECT_ID = "MAMH";
-    public const string TABLE_TOPIC_LEVEL = "TRINHDO";
-    public const string TABLE_TOPIC_CONTENT = "NOIDUNG";
-    public const string TABLE_TOPIC_ANSWER_A = "A";
-    public const string TABLE_TOPIC_ANSWER_B = "B";
-    public const string TABLE_TOPIC_ANSWER_C = "C";
-    public const string TABLE_TOPIC_ANSWER_D = "D";
-    public const string TABLE_TOPIC_ANSWER = "DAP_AN";
-    public const string TABLE_TOPIC_TEACHER_ID = "MAGV";
+    public const string TABLE_TOPIC_COL_QUESTION_NO = "CAUHOI";
+    public const string TABLE_TOPIC_COL_SUBJECT_ID = "MAMH";
+    public const string TABLE_TOPIC_COL_LEVEL = "TRINHDO";
+    public const string TABLE_TOPIC_COL_CONTENT = "NOIDUNG";
+    public const string TABLE_TOPIC_COL_ANSWER_A = "A";
+    public const string TABLE_TOPIC_COL_ANSWER_B = "B";
+    public const string TABLE_TOPIC_COL_ANSWER_C = "C";
+    public const string TABLE_TOPIC_COL_ANSWER_D = "D";
+    public const string TABLE_TOPIC_COL_ANSWER = "DAP_AN";
+    public const string TABLE_TOPIC_COL_TEACHER_ID = "MAGV";
 }

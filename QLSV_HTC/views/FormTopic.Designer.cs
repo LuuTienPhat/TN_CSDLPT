@@ -87,6 +87,8 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
+            this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
             cAUHOILabel = new System.Windows.Forms.Label();
             mAMHLabel = new System.Windows.Forms.Label();
             tRINHDOLabel = new System.Windows.Forms.Label();
@@ -116,16 +118,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.seQuestionNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
             this.SuspendLayout();
             // 
             // cAUHOILabel
             // 
             cAUHOILabel.AutoSize = true;
-            cAUHOILabel.Location = new System.Drawing.Point(37, 57);
+            cAUHOILabel.Location = new System.Drawing.Point(15, 57);
             cAUHOILabel.Name = "cAUHOILabel";
-            cAUHOILabel.Size = new System.Drawing.Size(55, 15);
+            cAUHOILabel.Size = new System.Drawing.Size(77, 15);
             cAUHOILabel.TabIndex = 0;
-            cAUHOILabel.Text = "CAUHOI:";
+            cAUHOILabel.Text = "Question No:";
             // 
             // mAMHLabel
             // 
@@ -134,25 +137,25 @@
             mAMHLabel.Name = "mAMHLabel";
             mAMHLabel.Size = new System.Drawing.Size(49, 15);
             mAMHLabel.TabIndex = 2;
-            mAMHLabel.Text = "MAMH:";
+            mAMHLabel.Text = "Subject:";
             // 
             // tRINHDOLabel
             // 
             tRINHDOLabel.AutoSize = true;
-            tRINHDOLabel.Location = new System.Drawing.Point(31, 113);
+            tRINHDOLabel.Location = new System.Drawing.Point(55, 113);
             tRINHDOLabel.Name = "tRINHDOLabel";
-            tRINHDOLabel.Size = new System.Drawing.Size(61, 15);
+            tRINHDOLabel.Size = new System.Drawing.Size(37, 15);
             tRINHDOLabel.TabIndex = 4;
-            tRINHDOLabel.Text = "TRINHDO:";
+            tRINHDOLabel.Text = "Level:";
             // 
             // nOIDUNGLabel
             // 
             nOIDUNGLabel.AutoSize = true;
-            nOIDUNGLabel.Location = new System.Drawing.Point(402, 57);
+            nOIDUNGLabel.Location = new System.Drawing.Point(413, 57);
             nOIDUNGLabel.Name = "nOIDUNGLabel";
-            nOIDUNGLabel.Size = new System.Drawing.Size(64, 15);
+            nOIDUNGLabel.Size = new System.Drawing.Size(53, 15);
             nOIDUNGLabel.TabIndex = 6;
-            nOIDUNGLabel.Text = "NOIDUNG:";
+            nOIDUNGLabel.Text = "Content:";
             // 
             // aLabel
             // 
@@ -193,20 +196,20 @@
             // dAP_ANLabel
             // 
             dAP_ANLabel.AutoSize = true;
-            dAP_ANLabel.Location = new System.Drawing.Point(1053, 61);
+            dAP_ANLabel.Location = new System.Drawing.Point(948, 57);
             dAP_ANLabel.Name = "dAP_ANLabel";
-            dAP_ANLabel.Size = new System.Drawing.Size(53, 15);
+            dAP_ANLabel.Size = new System.Drawing.Size(49, 15);
             dAP_ANLabel.TabIndex = 16;
-            dAP_ANLabel.Text = "DAP AN:";
+            dAP_ANLabel.Text = "Answer:";
             // 
             // mAGVLabel
             // 
             mAGVLabel.AutoSize = true;
-            mAGVLabel.Location = new System.Drawing.Point(48, 141);
+            mAGVLabel.Location = new System.Drawing.Point(28, 141);
             mAGVLabel.Name = "mAGVLabel";
-            mAGVLabel.Size = new System.Drawing.Size(44, 15);
+            mAGVLabel.Size = new System.Drawing.Size(64, 15);
             mAGVLabel.TabIndex = 18;
-            mAGVLabel.Text = "MAGV:";
+            mAGVLabel.Text = "Teacher ID:";
             // 
             // repositoryItemComboBox1
             // 
@@ -269,6 +272,7 @@
             this.gvTopic.GridControl = this.gcTopic;
             this.gvTopic.Name = "gvTopic";
             this.gvTopic.OptionsBehavior.Editable = false;
+            this.gvTopic.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvTopic_RowCellStyle);
             this.gvTopic.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvTopic_FocusedRowChanged);
             // 
             // colCAUHOI
@@ -377,17 +381,17 @@
             this.teTeacherId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTopic, "MAGV", true));
             this.teTeacherId.Location = new System.Drawing.Point(98, 138);
             this.teTeacherId.Name = "teTeacherId";
-            this.teTeacherId.Size = new System.Drawing.Size(100, 22);
+            this.teTeacherId.Size = new System.Drawing.Size(250, 22);
             this.teTeacherId.TabIndex = 19;
             // 
             // cbxAnswer
             // 
             this.cbxAnswer.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTopic, "DAP_AN", true));
-            this.cbxAnswer.Location = new System.Drawing.Point(1112, 58);
+            this.cbxAnswer.Location = new System.Drawing.Point(1007, 54);
             this.cbxAnswer.Name = "cbxAnswer";
             this.cbxAnswer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxAnswer.Size = new System.Drawing.Size(100, 22);
+            this.cbxAnswer.Size = new System.Drawing.Size(250, 22);
             this.cbxAnswer.TabIndex = 17;
             // 
             // teAnswerD
@@ -437,17 +441,16 @@
             this.cbxLevel.Name = "cbxLevel";
             this.cbxLevel.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxLevel.Size = new System.Drawing.Size(100, 22);
+            this.cbxLevel.Size = new System.Drawing.Size(250, 22);
             this.cbxLevel.TabIndex = 5;
             // 
             // cbxSubject
             // 
-            this.cbxSubject.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTopic, "MAMH", true));
             this.cbxSubject.Location = new System.Drawing.Point(98, 82);
             this.cbxSubject.Name = "cbxSubject";
             this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSubject.Size = new System.Drawing.Size(100, 22);
+            this.cbxSubject.Size = new System.Drawing.Size(250, 22);
             this.cbxSubject.TabIndex = 3;
             // 
             // seQuestionNo
@@ -462,7 +465,7 @@
             this.seQuestionNo.Name = "seQuestionNo";
             this.seQuestionNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.seQuestionNo.Size = new System.Drawing.Size(100, 22);
+            this.seQuestionNo.Size = new System.Drawing.Size(250, 22);
             this.seQuestionNo.TabIndex = 1;
             // 
             // barDockControlRight
@@ -514,6 +517,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnUndo),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnCancel),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh)});
+            this.bar2.OptionsBar.AllowQuickCustomization = false;
+            this.bar2.OptionsBar.DisableCustomization = true;
             this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.Text = "Tools";
             // 
@@ -599,6 +604,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DisableCustomization = true;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.MultiLine = true;
             this.bar3.OptionsBar.UseWholeRow = true;
@@ -619,6 +625,7 @@
             this.cbxLocation.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxLocation.Name = "cbxLocation";
+            this.cbxLocation.SelectedIndexChanged += new System.EventHandler(this.cbxLocation_SelectedIndexChanged);
             // 
             // btnExit
             // 
@@ -630,7 +637,7 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Caption = "info";
+            this.btnHelp.Caption = "Help";
             this.btnHelp.Id = 11;
             this.btnHelp.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHelp.ImageOptions.SvgImage")));
             this.btnHelp.Name = "btnHelp";
@@ -667,6 +674,15 @@
             this.barDockControl1.Manager = this.barManager1;
             this.barDockControl1.Size = new System.Drawing.Size(0, 610);
             // 
+            // bdsSubject
+            // 
+            this.bdsSubject.DataMember = "MONHOC";
+            this.bdsSubject.DataSource = this.DataSet;
+            // 
+            // taSubject
+            // 
+            this.taSubject.ClearBeforeFill = true;
+            // 
             // FormTopic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -680,7 +696,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "FormTopic";
-            this.Text = "Topic";
+            this.Text = "Topic Management";
             this.Load += new System.EventHandler(this.FormTopic_Load);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
@@ -702,6 +718,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.seQuestionNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -755,5 +772,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
+        private System.Windows.Forms.BindingSource bdsSubject;
+        private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
     }
 }

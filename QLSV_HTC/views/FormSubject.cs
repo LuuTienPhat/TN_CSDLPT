@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -112,41 +113,38 @@ namespace TN_CSDLPT.views
 
         private void btnCommit_ItemClick(object sender, ItemClickEventArgs e)
         {
+            if (!ValidateInput())
+            {
+                return;
+            }
+
             string oldSujectId = FormUtils.GetBindingSourceData(this.bdsSubject, this.bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
             string oldSubjectName = FormUtils.GetBindingSourceData(this.bdsSubject, this.bdsSubject.Position, Database.TABLE_SUBJECT_COL_SUBJECT_NAME);
+            string subjectId = teID.Text;
+
+            if (!CommitDB()) //Write database failed
+            {
+                return;
+            }
+
             if (mode.Equals(ActionMode.Edit))
             {
-                if (ValidateInput())
-                {
-                    CommitDB();
-                    callBackActions.Add(
-                        new CallBackAction(mode,
-                        DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, new string[] { oldSujectId, oldSubjectName })
-                        ));
-                }
-                else
-                {
-                    return;
-                }
+                callBackActions.Add(
+                    new CallBackAction(mode,
+                    DatabaseUtils.BuildQuery(Database.SP_UPDATE_SUBJECT, new string[] { oldSujectId, oldSubjectName })
+                    ));
             }
+
             if (mode.Equals(ActionMode.Add))
             {
-                if (ValidateInput())
-                {
-                    CommitDB();
-                    Hashtable refs = new Hashtable();
-                    refs.Add(Database.TABLE_SUBJECT_COL_SUBJECT_ID, oldSujectId);
-                    callBackActions.Add(
-                        new CallBackAction(
-                            mode,
-                            DatabaseUtils.BuildQuery(Database.SP_DELETE_SUBJECT, new string[] { oldSujectId }),
-                            refs
-                        ));
-                }
-                else
-                {
-                    return;
-                }
+                Hashtable refs = new Hashtable();
+                refs.Add(Database.TABLE_SUBJECT_COL_SUBJECT_ID, subjectId);
+                callBackActions.Add(
+                    new CallBackAction(
+                        mode,
+                        DatabaseUtils.BuildQuery(Database.SP_DELETE_SUBJECT, new string[] { oldSujectId }),
+                        refs
+                    ));
             }
 
             mode = ActionMode.None;
@@ -165,6 +163,8 @@ namespace TN_CSDLPT.views
             gcSubject.Enabled = true;
 
             btnRefresh.PerformClick();
+
+            this.bdsSubject.Position = bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, subjectId);
         }
 
         private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
@@ -198,11 +198,15 @@ namespace TN_CSDLPT.views
                             {
                                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
                                     string.Format(Translation._argsDeleteErrorMsg, new string[] { $"Subject {subjectId}", ex.Message }));
-                                this.taSubject.Update(this.DataSet.MONHOC);
-                                this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_NAME, subjectId);
+                                //this.taSubject.Update(this.DataSet.MONHOC);
                                 return;
                             }
-                            mode = ActionMode.None;
+                            finally
+                            {
+                                mode = ActionMode.None;
+                                btnRefresh.PerformClick();
+                                this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_NAME, subjectId);
+                            }
                         }
                         else
                         {
@@ -238,10 +242,9 @@ namespace TN_CSDLPT.views
             {
                 Program.myReader = Program.ExecSqlDataReader(action.Query);
                 Program.myReader.Read();
-                btnRefresh.PerformClick();
 
-                int affectedId = Program.myReader.GetInt32(0);
-                if (affectedId != -1)
+                string affectedId = Program.myReader.GetString(0);
+                if (affectedId != "-1")
                 {
                     this.bdsSubject.Position = this.bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, affectedId);
                 }
@@ -251,11 +254,11 @@ namespace TN_CSDLPT.views
             catch (Exception ex)
             {
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
-                this.taSubject.Update(this.DataSet.MONHOC);
             }
 
             finally
             {
+                btnRefresh.PerformClick();
                 Program.CloseSqlDataReader();
             }
         }
@@ -273,6 +276,7 @@ namespace TN_CSDLPT.views
             }
             this.bdsSubject.CancelEdit();
             this.bdsSubject.Position = position;
+
             gcInfo.Enabled = false;
             gcSubject.Enabled = true;
 
@@ -285,6 +289,8 @@ namespace TN_CSDLPT.views
             {
                 btnCommit, btnCancel
             });
+
+            mode = ActionMode.None;
         }
 
         private void btnRefresh_ItemClick(object sender, ItemClickEventArgs e)
@@ -292,9 +298,18 @@ namespace TN_CSDLPT.views
             try
             {
                 mode = ActionMode.Refresh;
-                tableAdapterManager.Connection.ConnectionString = Program.connstr;
+
+                gcSubject.Enabled = false;
+                SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
+                System.Threading.Thread.Sleep(1000);
+
+                this.bdsTopic.EndEdit();
+                this.taTopic.Connection.ConnectionString = Program.connstr;
                 this.taSubject.Fill(this.DataSet.MONHOC);
                 this.bdsSubject.Position = this.position;
+
+                SplashScreenManager.CloseForm();
+                gcSubject.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -329,20 +344,23 @@ namespace TN_CSDLPT.views
             this.taSubject.Fill(this.DataSet.MONHOC);
         }
 
-        private void CommitDB()
+        private bool CommitDB()
         {
+            bool isCommitted = false;
             try
             {
                 this.bdsSubject.EndEdit();
                 this.bdsSubject.ResetCurrentItem();
                 this.taSubject.Connection.ConnectionString = Program.connstr;
                 this.taSubject.Update(this.DataSet.MONHOC);
+
+                isCommitted = true;
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitErrorMsg, ex.Message));
-                this.taSubject.Update(this.DataSet);
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitDatabaseErrorMsg, ex.Message));
             }
+            return isCommitted;
         }
 
         private void InitializeCallBackActions()

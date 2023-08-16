@@ -289,6 +289,7 @@
             // 
             // rpgSubject
             // 
+            this.rpgSubject.AllowTextClipping = false;
             this.rpgSubject.ItemLinks.Add(this.btnSubjectManagement);
             this.rpgSubject.Name = "rpgSubject";
             this.rpgSubject.Text = "Subject";
@@ -378,7 +379,7 @@
             this.Name = "FormMain";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "Management";
+            this.Text = "Application";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);

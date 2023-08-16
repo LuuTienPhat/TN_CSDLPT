@@ -10,7 +10,7 @@ class Translation
     public static string _argsNotEmptyMsg = "{0} should not be empty!";
     public static string _argsInputFieldTooltipMsg = "Please enter {0}.";
     public const string _argsRefreshErrorMsg = "Reload error\n{0}.";
-    public const string _argsCommitErrorMsg = "Couldn't commit. Please try again!\n{0}." ;
+    public const string _argsCommitDatabaseErrorMsg = "Couldn't Commit Database. Please try again!\n{0}." ;
     public const string _argsUndoErrorMsg = "Couldn't undo. Please try again!\n{0}.";
     public const string _argsLocationConnectErrorMsg = "Couldn't connect to {0}";
     public const string _argsDeleteErrorMsg = "Couldn't delete {0}.Try again!\n{1}";
@@ -26,7 +26,7 @@ class Translation
     public const string _subjectAlreadyHasTeacherMsg = "Subject already has Teacher Register";
     public const string _examSubjectNotFoundMsg = "Couldn't find the exam subjects. Please make sure this subject was assigned to your class.";
     
-    public const string _teacherExamResultMsg = "Your Exam eesult is {0}";
+    public const string _teacherExamResultMsg = "Your Exam result is {0}";
     public const string _studentExamResultMsg = "Your Exam result is {0}.\nOK view details.";
 
     public const string _incorrectNumberOfExamTimesErrorMsg = "Number Of Exam Times must be twice at least.";
@@ -36,6 +36,10 @@ class Translation
     public const string _invalidExamDateErrorMsg = "Invalid Exam date";
 
     public const string _teacherCannotEditQuestionOfOtherTeacherMsg = "You can't modify question of other teacher!";
+    public const string _argsFailedToGetNextQuestionNoErrorMsg = "Couldn't get next question no\n{0}";
+
+    public const string _argsStudentHasNeverDoneAnyExamErrorMsg = "Student has never done any exam of this subject";
+    public const string _examResultNotFoundErrorMsg = "Couldn't find any exam result";
 
     public static string _errorTitle = "Error";
     public static string _warningTitle = "Warning";

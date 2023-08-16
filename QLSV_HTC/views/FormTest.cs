@@ -156,7 +156,7 @@ namespace TN_CSDLPT.views
                 catch (Exception ex)
                 {
                     trans.Rollback();
-                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitErrorMsg, ex.Message));
+                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitDatabaseErrorMsg, ex.Message));
                 }
                 finally
                 {

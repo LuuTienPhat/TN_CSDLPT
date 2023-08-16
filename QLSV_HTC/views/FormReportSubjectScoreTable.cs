@@ -22,8 +22,8 @@ namespace TN_CSDLPT.views
         private void FormReportExamResult_Load(object sender, EventArgs e)
         {
             FillTableAdapters();
-
             Program.FillLocationCombobox(btnLocation, cbxLocation);
+            Program.SetDefaultForSeNumberOfExamTimes(seNumberOfExamTimes);
 
             //chỉ trường mới có quyền xem trên cơ sở khác
             if (Program.mGroup == Database.ROLE_SCHOOL)
@@ -40,8 +40,25 @@ namespace TN_CSDLPT.views
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            string className = "";
-            
+            string classId = FormUtils.GetBindingSourceData(bdsClass, cbxClass.SelectedIndex, Database.TABLE_CLASS_COL_CLASS_ID);
+            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+            string numberOfExamTimes = seNumberOfExamTimes.Value.ToString();
+
+            string query = "";
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                Program.CloseSqlDataReader();
+            }
+
         }
 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -54,8 +71,7 @@ namespace TN_CSDLPT.views
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
-                    string.Format(Translation._argsRefreshErrorMsg, ex.Message));
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsRefreshErrorMsg, ex.Message));
             }
 
         }

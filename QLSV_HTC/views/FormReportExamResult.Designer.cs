@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportExamResult));
             System.Windows.Forms.Label tENMHLabel;
             System.Windows.Forms.Label mASVLabel;
             System.Windows.Forms.Label label1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportExamResult));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.btnLocation = new DevExpress.XtraBars.BarEditItem();
@@ -55,12 +55,12 @@
             this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
             this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
+            this.taStudent = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.SINHVIENTableAdapter();
             this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bdsStudent = new System.Windows.Forms.BindingSource(this.components);
-            this.taStudent = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.SINHVIENTableAdapter();
-            this.cbxStudent = new DevExpress.XtraEditors.ComboBoxEdit();
             this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
             this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
+            this.teStudentID = new DevExpress.XtraEditors.TextEdit();
             tENMHLabel = new System.Windows.Forms.Label();
             mASVLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
@@ -70,9 +70,36 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsStudent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxStudent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teStudentID.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tENMHLabel
+            // 
+            tENMHLabel.AutoSize = true;
+            tENMHLabel.Location = new System.Drawing.Point(114, 148);
+            tENMHLabel.Name = "tENMHLabel";
+            tENMHLabel.Size = new System.Drawing.Size(49, 15);
+            tENMHLabel.TabIndex = 5;
+            tENMHLabel.Text = "Subject:";
+            // 
+            // mASVLabel
+            // 
+            mASVLabel.AutoSize = true;
+            mASVLabel.Location = new System.Drawing.Point(98, 120);
+            mASVLabel.Name = "mASVLabel";
+            mASVLabel.Size = new System.Drawing.Size(65, 15);
+            mASVLabel.TabIndex = 6;
+            mASVLabel.Text = "Student ID:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(29, 176);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(134, 15);
+            label1.TabIndex = 21;
+            label1.Text = "Number of Exam Times:";
             // 
             // barManager1
             // 
@@ -286,14 +313,9 @@
             this.tableAdapterManager.SINHVIENTableAdapter = this.taStudent;
             this.tableAdapterManager.UpdateOrder = TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // tENMHLabel
+            // taStudent
             // 
-            tENMHLabel.AutoSize = true;
-            tENMHLabel.Location = new System.Drawing.Point(114, 148);
-            tENMHLabel.Name = "tENMHLabel";
-            tENMHLabel.Size = new System.Drawing.Size(49, 15);
-            tENMHLabel.TabIndex = 5;
-            tENMHLabel.Text = "Subject:";
+            this.taStudent.ClearBeforeFill = true;
             // 
             // cbxSubject
             // 
@@ -309,38 +331,6 @@
             // 
             this.bdsStudent.DataMember = "SINHVIEN";
             this.bdsStudent.DataSource = this.DataSet;
-            // 
-            // taStudent
-            // 
-            this.taStudent.ClearBeforeFill = true;
-            // 
-            // mASVLabel
-            // 
-            mASVLabel.AutoSize = true;
-            mASVLabel.Location = new System.Drawing.Point(112, 120);
-            mASVLabel.Name = "mASVLabel";
-            mASVLabel.Size = new System.Drawing.Size(51, 15);
-            mASVLabel.TabIndex = 6;
-            mASVLabel.Text = "Student:";
-            // 
-            // cbxStudent
-            // 
-            this.cbxStudent.Location = new System.Drawing.Point(183, 117);
-            this.cbxStudent.MenuManager = this.barManager1;
-            this.cbxStudent.Name = "cbxStudent";
-            this.cbxStudent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxStudent.Size = new System.Drawing.Size(400, 22);
-            this.cbxStudent.TabIndex = 7;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(29, 176);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(134, 15);
-            label1.TabIndex = 21;
-            label1.Text = "Number of Exam Times:";
             // 
             // seNumberOfExamTimes
             // 
@@ -368,16 +358,24 @@
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
+            // teStudentID
+            // 
+            this.teStudentID.Location = new System.Drawing.Point(183, 117);
+            this.teStudentID.MenuManager = this.barManager1;
+            this.teStudentID.Name = "teStudentID";
+            this.teStudentID.Size = new System.Drawing.Size(400, 22);
+            this.teStudentID.TabIndex = 27;
+            // 
             // FormReportExamResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 690);
+            this.Controls.Add(this.teStudentID);
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(label1);
             this.Controls.Add(this.seNumberOfExamTimes);
             this.Controls.Add(mASVLabel);
-            this.Controls.Add(this.cbxStudent);
             this.Controls.Add(tENMHLabel);
             this.Controls.Add(this.cbxSubject);
             this.Controls.Add(this.barDockControlLeft);
@@ -393,8 +391,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsStudent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxStudent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teStudentID.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,8 +425,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbxSubject;
         private TN_CSDLPT_PRODDataSetTableAdapters.SINHVIENTableAdapter taStudent;
         private System.Windows.Forms.BindingSource bdsStudent;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxStudent;
         private DevExpress.XtraEditors.SpinEdit seNumberOfExamTimes;
         private DevExpress.XtraEditors.SimpleButton btnPreview;
+        private DevExpress.XtraEditors.TextEdit teStudentID;
     }
 }

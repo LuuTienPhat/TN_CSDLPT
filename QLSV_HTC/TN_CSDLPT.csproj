@@ -83,6 +83,7 @@
     <Compile Include="TN_CSDLPT_PRODDataSet.cs">
       <DependentUpon>TN_CSDLPT_PRODDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="utils\SplashScreenHelper.cs" />
     <Compile Include="views\FormExamResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +208,12 @@
     <Compile Include="views\FormTopic.Designer.cs">
       <DependentUpon>FormTopic.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\WaitRefreshForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\WaitRefreshForm.Designer.cs">
+      <DependentUpon>WaitRefreshForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="views\FormExamResult.resx">
       <DependentUpon>FormExamResult.cs</DependentUpon>
     </EmbeddedResource>
@@ -268,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormTopic.resx">
       <DependentUpon>FormTopic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\WaitRefreshForm.resx">
+      <DependentUpon>WaitRefreshForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

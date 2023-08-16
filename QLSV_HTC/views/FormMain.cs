@@ -130,11 +130,11 @@ namespace TN_CSDLPT.views
 
         private void btnExamResultReport_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Form frm = this.CheckExists(typeof(FormExamResult));
+            Form frm = this.CheckExists(typeof(FormReportExamResult));
             if (frm != null) frm.Activate();
             else
             {
-                FormExamResult f = new FormExamResult();
+                FormReportExamResult f = new FormReportExamResult();
                 f.MdiParent = this;
                 f.Show();
             }

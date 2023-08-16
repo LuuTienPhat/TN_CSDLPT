@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 using TN_CSDLPT.constants;
 using TN_CSDLPT.utils;
+using DevExpress.XtraSplashScreen;
 
 namespace TN_CSDLPT
 {
@@ -27,6 +28,8 @@ namespace TN_CSDLPT
 
         private void FormSignIn_Load(object sender, EventArgs e)
         {
+            //SplashScreenHelper.OpenSlashScreenWhenStart(this);
+
             if (IsDatabaseOnline()) //Database online
             {
                 RetrieveAllSubcriber();
@@ -61,7 +64,7 @@ namespace TN_CSDLPT
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, 
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
                     string.Format(Translation._argsDatabaseConnectErrorMsg, ex.Message));
             }
 
@@ -190,7 +193,7 @@ namespace TN_CSDLPT
             }
 
             //Close the application, Shutdown all running threads
-            if(System.Windows.Forms.Application.MessageLoop)
+            if (System.Windows.Forms.Application.MessageLoop)
             {
                 // WinForms app
                 System.Windows.Forms.Application.Exit();

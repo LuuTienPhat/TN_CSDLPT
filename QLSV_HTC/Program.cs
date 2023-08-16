@@ -196,5 +196,11 @@ namespace TN_CSDLPT
                 button.Enabled = false;
             }
         }
+
+        public static void SetDefaultForSeNumberOfExamTimes(SpinEdit seNumberOfExamTimes)
+        {
+            FormUtils.SetDefaultPropertiesForSpinEdit(seNumberOfExamTimes);
+            seNumberOfExamTimes.Properties.MaxValue = 2;
+        }
     }
 }

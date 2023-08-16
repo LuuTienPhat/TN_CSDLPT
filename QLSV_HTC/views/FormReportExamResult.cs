@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TN_CSDLPT.constants;
+using TN_CSDLPT.utils;
 
 namespace TN_CSDLPT.views
 {
@@ -26,6 +27,8 @@ namespace TN_CSDLPT.views
             FillFormComboBoxes();
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
+            Program.SetDefaultForSeNumberOfExamTimes(seNumberOfExamTimes);
+
             //chỉ trường mới có quyền xem trên cơ sở khác
             if (Program.mGroup == Database.ROLE_SCHOOL)
             {
@@ -39,14 +42,52 @@ namespace TN_CSDLPT.views
 
             if (Program.mGroup == Database.ROLE_STUDENT)
             {
-                cbxStudent.SelectedText = Program.maSinhVien.Trim();
-                cbxStudent.Enabled = false;
+                teStudentID.SelectedText = Program.maSinhVien.Trim();
+                teStudentID.Enabled = false;
             }
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            
+            string studentId = teStudentID.Text;
+            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+            string numberOfExamTimes = seNumberOfExamTimes.Value.ToString();
+
+            string examResultReportQuery = DatabaseUtils.BuildQuery2(Database.SP_REPORT_KETQUATHI_THONGTIN_SINHVIEN, new string[]
+            {
+                studentId, subjectId, numberOfExamTimes
+            });
+
+            string studenFullName = "";
+            string className = "";
+            string studentNumberOfExamTimes = "";
+            bool hasFinisedExam = false;
+
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(examResultReportQuery);
+                Program.myReader.Read();
+
+                className = Program.myReader.GetString(0).Trim();
+                studenFullName = Program.myReader.GetString(1).Trim();
+                hasFinisedExam = Program.myReader.GetBoolean(2);
+                
+
+                if (hasFinisedExam)
+                {
+                    CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, string.Format(Translation._argsStudentHasNeverDoneAnyExamErrorMsg, numberOfExamTimes));
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._examResultNotFoundErrorMsg);
+                return;
+            }
+            finally
+            {
+                Program.CloseSqlDataReader();
+            }
         }
 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -58,8 +99,7 @@ namespace TN_CSDLPT.views
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
-                    string.Format(Translation._argsRefreshErrorMsg, ex.Message));
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsRefreshErrorMsg, ex.Message));
             }
         }
 
@@ -91,6 +131,23 @@ namespace TN_CSDLPT.views
             }
         }
 
+        private bool CheckStudentExists(string studentId)
+        {
+            bool exists = false;
+            try
+            {
+                taStudent.Connection.ConnectionString = Program.connstr;
+                taStudent.Fill(this.DataSet.SINHVIEN);
+            }
+            finally
+            {
+
+            }
+
+            return exists;
+
+        }
+
         private void FillTableAdapters()
         {
             DataSet.EnforceConstraints = false;
@@ -103,7 +160,6 @@ namespace TN_CSDLPT.views
 
         private void FillFormComboBoxes()
         {
-            FormUtils.FillComboBox(cbxStudent, this.bdsStudent, new string[] { Database.TABLE_STUDENT_COL_STUDENT_ID , Database.TABLE_STUDENT_COL_STUDENT_FIRSTNAME});
             FormUtils.FillComboBox(cbxSubject, this.bdsSubject, new string[] { Database.TABLE_SUBJECT_COL_SUBJECT_ID, Database.TABLE_SUBJECT_COL_SUBJECT_NAME });
         }
     }

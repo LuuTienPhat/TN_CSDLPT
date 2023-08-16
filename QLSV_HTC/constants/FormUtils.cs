@@ -16,6 +16,15 @@ namespace TN_CSDLPT.constants
 {
     public class FormUtils
     {
+        public static void SetDefaultPropertiesForSpinEdit(SpinEdit spinEdit)
+        {
+            spinEdit.Properties.IsFloatValue = false;
+            spinEdit.Properties.MinValue = 0;
+            spinEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            spinEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            
+        }
+
         public static void DisableMatrixButtons(BarManager barManager, List<BarButtonItem> disabledBarButtonItems)
         {
             foreach (object item in barManager.Items)
@@ -129,8 +138,28 @@ namespace TN_CSDLPT.constants
         public static string GetBindingSourceData(BindingSource source, int position, string key)
         {
             string result = null;
-            result = (string)((DataRowView)source[position])[key].ToString();
+            try
+            {
+                result = (string)((DataRowView)source[position])[key].ToString();
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, ex.Message);
+            }
+
             return result;
+        }
+
+        public static void SetBindingSourceData(BindingSource source, int position, string key, string data)
+        {
+            try
+            {
+                ((DataRowView)source[position])[key] = data;
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, ex.Message);
+            }
         }
 
         public static bool UpdateTableAdapter()
@@ -229,7 +258,7 @@ namespace TN_CSDLPT.constants
                             values.Add(value);
                         }
 
-                        itemsCollection.Add(string.Format(outputFormat, values));
+                        itemsCollection.Add(string.Format(outputFormat, values.ToArray()));
                     }
 
                 }

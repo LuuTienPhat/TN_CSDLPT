@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSubject));
-            this.bar1 = new DevExpress.XtraBars.Bar();
             this.DataSet = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
             this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
             this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
@@ -85,13 +84,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsTopic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher_Register)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bar1
-            // 
-            this.bar1.BarName = "Tools";
-            this.bar1.DockCol = 0;
-            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar1.Text = "Tools";
             // 
             // DataSet
             // 
@@ -201,6 +193,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnUndo),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnCancel),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh)});
+            this.bar2.OptionsBar.AllowQuickCustomization = false;
+            this.bar2.OptionsBar.DisableCustomization = true;
             this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.Text = "Tools";
             // 
@@ -286,6 +280,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DisableCustomization = true;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.MultiLine = true;
             this.bar3.OptionsBar.UseWholeRow = true;
@@ -476,7 +471,6 @@
         }
 
         #endregion
-        private DevExpress.XtraBars.Bar bar1;
         private TN_CSDLPT_PRODDataSet DataSet;
         private System.Windows.Forms.BindingSource bdsSubject;
         private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
