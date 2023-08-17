@@ -67,7 +67,7 @@ namespace TN_CSDLPT
             Application.SetCompatibleTextRenderingDefault(false);
             formMain = new FormMain();
             formSignIn = new FormSignIn();
-            FormReportSubjectScoreTable formReportSubjectScoreTable = new FormReportSubjectScoreTable();
+            FormReportSubjectGradeSheet formReportSubjectScoreTable = new FormReportSubjectGradeSheet();
             Application.Run(formSignIn);
             //Application.Run(formReportSubjectScoreTable);
         }

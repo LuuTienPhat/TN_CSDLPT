@@ -142,11 +142,11 @@ namespace TN_CSDLPT.views
 
         private void btnSubjectScoreSheet_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Form frm = this.CheckExists(typeof(FormReportSubjectScoreTable));
+            Form frm = this.CheckExists(typeof(FormReportSubjectGradeSheet));
             if (frm != null) frm.Activate();
             else
             {
-                FormReportSubjectScoreTable f = new FormReportSubjectScoreTable();
+                FormReportSubjectGradeSheet f = new FormReportSubjectGradeSheet();
                 f.MdiParent = this;
                 f.Show();
             }
@@ -206,11 +206,6 @@ namespace TN_CSDLPT.views
 
         }
 
-        private void btnLocation_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
         private void btnTopic_ItemClick(object sender, ItemClickEventArgs e)
         {
             Form frm = this.CheckExists(typeof(FormTopic));
@@ -222,6 +217,34 @@ namespace TN_CSDLPT.views
                 f.StartPosition = FormStartPosition.CenterScreen;
                 f.Show();
             }
+        }
+
+        private void btnLocation_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnClass_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormClass));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormClass f = new FormClass();
+                f.MdiParent = this;
+                f.StartPosition = FormStartPosition.CenterScreen;
+                f.Show();
+            }
+        }
+
+        private void btnTeacher_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }

@@ -158,11 +158,11 @@
     <Compile Include="views\FormReportExamResult.Designer.cs">
       <DependentUpon>FormReportExamResult.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\FormReportSubjectScoreTable.cs">
+    <Compile Include="views\FormReportSubjectGradeSheet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\FormReportSubjectScoreTable.Designer.cs">
-      <DependentUpon>FormReportSubjectScoreTable.cs</DependentUpon>
+    <Compile Include="views\FormReportSubjectGradeSheet.Designer.cs">
+      <DependentUpon>FormReportSubjectGradeSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="views\FormMain.cs">
       <SubType>Form</SubType>
@@ -241,8 +241,8 @@
     <EmbeddedResource Include="views\FormReportExamResult.resx">
       <DependentUpon>FormReportExamResult.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\FormReportSubjectScoreTable.resx">
-      <DependentUpon>FormReportSubjectScoreTable.cs</DependentUpon>
+    <EmbeddedResource Include="views\FormReportSubjectGradeSheet.resx">
+      <DependentUpon>FormReportSubjectGradeSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

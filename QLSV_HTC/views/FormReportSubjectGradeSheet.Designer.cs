@@ -1,6 +1,6 @@
 ﻿namespace TN_CSDLPT.views
 {
-    partial class FormReportSubjectScoreTable
+    partial class FormReportSubjectGradeSheet
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.Label tENLOPLabel;
             System.Windows.Forms.Label tENMHLabel;
             System.Windows.Forms.Label label1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportSubjectScoreTable));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportSubjectGradeSheet));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.btnLocation = new DevExpress.XtraBars.BarEditItem();
@@ -370,7 +370,7 @@
             this.cbxClass.Size = new System.Drawing.Size(400, 22);
             this.cbxClass.TabIndex = 5;
             // 
-            // FormReportSubjectScoreTable
+            // FormReportSubjectGradeSheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -386,8 +386,8 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "FormReportSubjectScoreTable";
-            this.Text = "Report Subject Score Table";
+            this.Name = "FormReportSubjectGradeSheet";
+            this.Text = "Report Subject Grade Sheet";
             this.Load += new System.EventHandler(this.FormReportExamResult_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).EndInit();

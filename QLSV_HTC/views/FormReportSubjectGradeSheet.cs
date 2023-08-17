@@ -12,9 +12,9 @@ using TN_CSDLPT.constants;
 
 namespace TN_CSDLPT.views
 {
-    public partial class FormReportSubjectScoreTable : DevExpress.XtraEditors.XtraForm
+    public partial class FormReportSubjectGradeSheet : DevExpress.XtraEditors.XtraForm
     {
-        public FormReportSubjectScoreTable()
+        public FormReportSubjectGradeSheet()
         {
             InitializeComponent();
         }
@@ -46,13 +46,21 @@ namespace TN_CSDLPT.views
 
             string query = "";
 
+            string className;
+
             try
             {
+                Program.myReader = Program.ExecSqlDataReader(query);
+                Program.myReader.Read();
+
+                classId = Program.myReader.GetString(0).Trim();
+                className = Program.myReader.GetString(1).Trim();
 
             }
             catch (Exception ex)
             {
-
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._scoreSheetNotFoundErrorMsg);
+                return;
             }
             finally
             {

@@ -41,6 +41,8 @@ class Translation
     public const string _argsStudentHasNeverDoneAnyExamErrorMsg = "Student has never done any exam of this subject";
     public const string _examResultNotFoundErrorMsg = "Couldn't find any exam result";
 
+    public const string _scoreSheetNotFoundErrorMsg = "Couldn't find any score sheet";
+
     public static string _errorTitle = "Error";
     public static string _warningTitle = "Warning";
     public static string _infomationTitle = "Information";

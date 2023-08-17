@@ -21,8 +21,24 @@ namespace TN_CSDLPT.constants
             spinEdit.Properties.IsFloatValue = false;
             spinEdit.Properties.MinValue = 0;
             spinEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            spinEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            
+            spinEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;   
+        }
+
+        public static void SetDefaultForBarManagerBars(BarManager barManager)
+        {
+            foreach (var obj in barManager.Bars)
+            {
+                if (obj is Bar)
+                {
+                    Bar bar = obj as Bar;
+                    if (bar != null)
+                    {
+                        bar.OptionsBar.AllowQuickCustomization = false;
+                        bar.OptionsBar.DisableCustomization = true;
+                        bar.OptionsBar.DrawDragBorder = false;
+                    }
+                }
+            }
         }
 
         public static void DisableMatrixButtons(BarManager barManager, List<BarButtonItem> disabledBarButtonItems)

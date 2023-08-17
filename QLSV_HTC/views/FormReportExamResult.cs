@@ -53,14 +53,13 @@ namespace TN_CSDLPT.views
             string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
             string numberOfExamTimes = seNumberOfExamTimes.Value.ToString();
 
-            string examResultReportQuery = DatabaseUtils.BuildQuery2(Database.SP_REPORT_KETQUATHI_THONGTIN_SINHVIEN, new string[]
+            string examResultReportQuery = DatabaseUtils.BuildQuery2(Database.SP_REPORT_EXAM_REPORT_CHECK_BEFORE_HAND, new string[]
             {
                 studentId, subjectId, numberOfExamTimes
             });
 
             string studenFullName = "";
             string className = "";
-            string studentNumberOfExamTimes = "";
             bool hasFinisedExam = false;
 
             try
@@ -72,7 +71,6 @@ namespace TN_CSDLPT.views
                 studenFullName = Program.myReader.GetString(1).Trim();
                 hasFinisedExam = Program.myReader.GetBoolean(2);
                 
-
                 if (hasFinisedExam)
                 {
                     CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, string.Format(Translation._argsStudentHasNeverDoneAnyExamErrorMsg, numberOfExamTimes));

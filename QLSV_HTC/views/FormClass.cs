@@ -37,14 +37,6 @@ namespace TN_CSDLPT.views
             InitializeComponent();
         }
 
-        private void lOPBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsClass.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DataSet);
-
-        }
-
         private void FormClass_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'DataSet.KHOA' table. You can move, or remove it, as needed.
@@ -54,6 +46,8 @@ namespace TN_CSDLPT.views
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
             this.taClass.Fill(this.DataSet.LOP);
 
+            FormUtils.SetDefaultForBarManagerBars(barManager1);
+            
         }
 
         private void btnAddStudent_Click(object sender, EventArgs e)
@@ -66,7 +60,7 @@ namespace TN_CSDLPT.views
                 pcClass.Enabled = false;
                 pcStudent.Enabled = true;
 
-                gcClass.Enabled = gcStudent.Enabled = false;
+                gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
                 FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem> {
                     btnAddStudent, btnEditStudent, btnMoveStudent, btnDeleteStudent, btnSaveStudent, btnUndoStudent, btnRefreshStudent
                 });
@@ -128,7 +122,7 @@ namespace TN_CSDLPT.views
         {
             try
             {
-                lOPGridControl.Enabled = sINHVIENGridControl.Enabled = false;
+                gcClass.Enabled = gcStudent.Enabled = false;
                 bdsClass.AddNew();
 
                 FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
@@ -165,7 +159,7 @@ namespace TN_CSDLPT.views
                 FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
                 ctxMenu.Enabled = false;
                 pcClass.Enabled = true;
-                gcClass.Enabled = gcStudent.Enabled = false;
+                gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
 
                 //Fill data cho bdsKhoa
                 taDepartment.Connection.ConnectionString = Program.connstr;
@@ -313,7 +307,7 @@ namespace TN_CSDLPT.views
             });
 
                 pcClass.Enabled = pcStudent.Enabled = false;
-                gcClass.Enabled = gcStudent.Enabled = true;
+                gcClassInfo.Enabled = gcStudentInfo.Enabled = true;
                 checkThem = checkSua = checkXoa = false;
 
                 ctxMenu.Enabled = true;
@@ -361,7 +355,7 @@ namespace TN_CSDLPT.views
                 });
 
                 pcClass.Enabled = pcStudent.Enabled = false;
-                gcClass.Enabled = gcStudent.Enabled = true;
+                gcClassInfo.Enabled = gcStudentInfo.Enabled = true;
                 checkThemSV = checkSuaSV = checkXoaSV = false;
 
                 FormUtils.EnableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
@@ -422,7 +416,7 @@ namespace TN_CSDLPT.views
 
                 pcClass.Enabled = false;
                 pcStudent.Enabled = true;
-                gcClass.Enabled = gcStudent.Enabled = false;
+                gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
 
                 FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
                 {
@@ -510,7 +504,7 @@ namespace TN_CSDLPT.views
                     });
 
                     pcClass.Enabled = pcStudent.Enabled = false;
-                    gcClass.Enabled = gcStudent.Enabled = true;
+                    gcClassInfo.Enabled = gcStudentInfo.Enabled = true;
                     checkThemSV = checkSuaSV = checkXoaSV = false;
 
                     FormUtils.EnableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
@@ -553,7 +547,7 @@ namespace TN_CSDLPT.views
 
                     pcClass.Enabled = false;
                     pcStudent.Enabled = true;
-                    gcClass.Enabled = gcStudent.Enabled = false;
+                    gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
 
                     FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
                     {

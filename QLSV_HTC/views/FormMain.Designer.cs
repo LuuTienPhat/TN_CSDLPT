@@ -130,6 +130,7 @@
             this.btnClass.Id = 3;
             this.btnClass.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClass.ImageOptions.SvgImage")));
             this.btnClass.Name = "btnClass";
+            this.btnClass.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnClass_ItemClick);
             // 
             // btnTeacher
             // 
@@ -137,6 +138,7 @@
             this.btnTeacher.Id = 4;
             this.btnTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTeacher.ImageOptions.SvgImage")));
             this.btnTeacher.Name = "btnTeacher";
+            this.btnTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTeacher_ItemClick);
             // 
             // btnStudent
             // 
@@ -144,6 +146,7 @@
             this.btnStudent.Id = 5;
             this.btnStudent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnStudent.ImageOptions.SvgImage")));
             this.btnStudent.Name = "btnStudent";
+            this.btnStudent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStudent_ItemClick);
             // 
             // btnSubjectManagement
             // 

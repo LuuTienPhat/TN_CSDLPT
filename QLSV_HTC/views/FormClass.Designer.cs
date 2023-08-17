@@ -29,28 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label mALOPLabel;
-            System.Windows.Forms.Label tENLOPLabel;
-            System.Windows.Forms.Label mAKHLabel;
-            System.Windows.Forms.Label mASVLabel;
-            System.Windows.Forms.Label hOLabel;
-            System.Windows.Forms.Label tENLabel;
-            System.Windows.Forms.Label nGAYSINHLabel;
-            System.Windows.Forms.Label dIACHILabel;
-            System.Windows.Forms.Label tENLOPLabel1;
             System.Windows.Forms.Label mALOPLabel1;
+            System.Windows.Forms.Label tENLOPLabel1;
+            System.Windows.Forms.Label dIACHILabel;
+            System.Windows.Forms.Label nGAYSINHLabel;
+            System.Windows.Forms.Label tENLabel;
+            System.Windows.Forms.Label hOLabel;
+            System.Windows.Forms.Label mASVLabel;
+            System.Windows.Forms.Label mAKHLabel;
+            System.Windows.Forms.Label tENLOPLabel;
+            System.Windows.Forms.Label mALOPLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormClass));
-            this.bar2 = new DevExpress.XtraBars.Bar();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.DataSet = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
             this.bdsClass = new System.Windows.Forms.BindingSource(this.components);
             this.taClass = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.LOPTableAdapter();
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
             this.taStudent = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.SINHVIENTableAdapter();
-            this.gcClass = new DevExpress.XtraEditors.GroupControl();
-            this.cbxDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.teClassName = new DevExpress.XtraEditors.TextEdit();
-            this.teClassId = new DevExpress.XtraEditors.TextEdit();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnAddStudent = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDeleteStudent = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,80 +64,82 @@
             this.btnCancel = new DevExpress.XtraBars.BarButtonItem();
             this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.bar4 = new DevExpress.XtraBars.Bar();
-            this.cbxLocation = new DevExpress.XtraBars.BarEditItem();
+            this.btnLocation = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.btnExit = new DevExpress.XtraBars.BarButtonItem();
             this.btnHelp = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMode = new DevExpress.XtraBars.BarEditItem();
+            this.swMode = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMASV = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNGAYSINH = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMATKHAU = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.sINHVIENGridControl = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.gvClass = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMALOP1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENLOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKH = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.lOPGridControl = new DevExpress.XtraGrid.GridControl();
-            this.pcStudent = new DevExpress.XtraEditors.PanelControl();
-            this.gcStudent = new DevExpress.XtraEditors.GroupControl();
-            this.teStudentClassId = new DevExpress.XtraEditors.TextEdit();
-            this.lOPBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gcClass = new DevExpress.XtraGrid.GridControl();
             this.bdsDepartment = new System.Windows.Forms.BindingSource(this.components);
+            this.pcClass = new DevExpress.XtraEditors.PanelControl();
+            this.gcClassInfo = new DevExpress.XtraEditors.GroupControl();
+            this.cbxDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.teClassName = new DevExpress.XtraEditors.TextEdit();
+            this.teClassId = new DevExpress.XtraEditors.TextEdit();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.taDepartment = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.KHOATableAdapter();
+            this.pcStudent = new DevExpress.XtraEditors.PanelControl();
+            this.gcStudentInfo = new DevExpress.XtraEditors.GroupControl();
+            this.teStudentClassId = new DevExpress.XtraEditors.TextEdit();
             this.cbxStudentClass = new DevExpress.XtraEditors.ComboBoxEdit();
             this.teAddress = new DevExpress.XtraEditors.TextEdit();
             this.deBirthDate = new DevExpress.XtraEditors.DateEdit();
             this.teFirstName = new DevExpress.XtraEditors.TextEdit();
             this.teLastName = new DevExpress.XtraEditors.TextEdit();
             this.teStudentId = new DevExpress.XtraEditors.TextEdit();
-            this.pcClass = new DevExpress.XtraEditors.PanelControl();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.taDepartment = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.KHOATableAdapter();
-            this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            mALOPLabel = new System.Windows.Forms.Label();
-            tENLOPLabel = new System.Windows.Forms.Label();
-            mAKHLabel = new System.Windows.Forms.Label();
-            mASVLabel = new System.Windows.Forms.Label();
-            hOLabel = new System.Windows.Forms.Label();
-            tENLabel = new System.Windows.Forms.Label();
-            nGAYSINHLabel = new System.Windows.Forms.Label();
-            dIACHILabel = new System.Windows.Forms.Label();
-            tENLOPLabel1 = new System.Windows.Forms.Label();
+            this.gcStudent = new DevExpress.XtraGrid.GridControl();
+            this.gvStudent = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMASV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNGAYSINH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
             mALOPLabel1 = new System.Windows.Forms.Label();
+            tENLOPLabel1 = new System.Windows.Forms.Label();
+            dIACHILabel = new System.Windows.Forms.Label();
+            nGAYSINHLabel = new System.Windows.Forms.Label();
+            tENLabel = new System.Windows.Forms.Label();
+            hOLabel = new System.Windows.Forms.Label();
+            mASVLabel = new System.Windows.Forms.Label();
+            mAKHLabel = new System.Windows.Forms.Label();
+            tENLOPLabel = new System.Windows.Forms.Label();
+            mALOPLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcClass)).BeginInit();
-            this.gcClass.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teClassName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teClassId.Properties)).BeginInit();
             this.ctxMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sINHVIENGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swMode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvClass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcClass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDepartment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcClass)).BeginInit();
+            this.pcClass.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcClassInfo)).BeginInit();
+            this.gcClassInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teClassName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teClassId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcStudent)).BeginInit();
             this.pcStudent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcStudent)).BeginInit();
-            this.gcStudent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcStudentInfo)).BeginInit();
+            this.gcStudentInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teStudentClassId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxStudentClass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deBirthDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -151,92 +147,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.teFirstName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teLastName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStudentId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcClass)).BeginInit();
-            this.pcClass.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcStudent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStudent)).BeginInit();
             this.SuspendLayout();
-            // 
-            // mALOPLabel
-            // 
-            mALOPLabel.AutoSize = true;
-            mALOPLabel.Location = new System.Drawing.Point(66, 76);
-            mALOPLabel.Name = "mALOPLabel";
-            mALOPLabel.Size = new System.Drawing.Size(51, 15);
-            mALOPLabel.TabIndex = 1;
-            mALOPLabel.Text = "MALOP:";
-            // 
-            // tENLOPLabel
-            // 
-            tENLOPLabel.AutoSize = true;
-            tENLOPLabel.Location = new System.Drawing.Point(64, 104);
-            tENLOPLabel.Name = "tENLOPLabel";
-            tENLOPLabel.Size = new System.Drawing.Size(53, 15);
-            tENLOPLabel.TabIndex = 3;
-            tENLOPLabel.Text = "TENLOP:";
-            // 
-            // mAKHLabel
-            // 
-            mAKHLabel.AutoSize = true;
-            mAKHLabel.Location = new System.Drawing.Point(72, 132);
-            mAKHLabel.Name = "mAKHLabel";
-            mAKHLabel.Size = new System.Drawing.Size(45, 15);
-            mAKHLabel.TabIndex = 5;
-            mAKHLabel.Text = "MAKH:";
-            // 
-            // mASVLabel
-            // 
-            mASVLabel.AutoSize = true;
-            mASVLabel.Location = new System.Drawing.Point(42, 60);
-            mASVLabel.Name = "mASVLabel";
-            mASVLabel.Size = new System.Drawing.Size(42, 15);
-            mASVLabel.TabIndex = 0;
-            mASVLabel.Text = "MASV:";
-            // 
-            // hOLabel
-            // 
-            hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(56, 88);
-            hOLabel.Name = "hOLabel";
-            hOLabel.Size = new System.Drawing.Size(28, 15);
-            hOLabel.TabIndex = 2;
-            hOLabel.Text = "HO:";
-            // 
-            // tENLabel
-            // 
-            tENLabel.AutoSize = true;
-            tENLabel.Location = new System.Drawing.Point(53, 116);
-            tENLabel.Name = "tENLabel";
-            tENLabel.Size = new System.Drawing.Size(31, 15);
-            tENLabel.TabIndex = 4;
-            tENLabel.Text = "TEN:";
-            // 
-            // nGAYSINHLabel
-            // 
-            nGAYSINHLabel.AutoSize = true;
-            nGAYSINHLabel.Location = new System.Drawing.Point(16, 144);
-            nGAYSINHLabel.Name = "nGAYSINHLabel";
-            nGAYSINHLabel.Size = new System.Drawing.Size(68, 15);
-            nGAYSINHLabel.TabIndex = 6;
-            nGAYSINHLabel.Text = "NGAYSINH:";
-            // 
-            // dIACHILabel
-            // 
-            dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(35, 172);
-            dIACHILabel.Name = "dIACHILabel";
-            dIACHILabel.Size = new System.Drawing.Size(49, 15);
-            dIACHILabel.TabIndex = 8;
-            dIACHILabel.Text = "DIACHI:";
-            // 
-            // tENLOPLabel1
-            // 
-            tENLOPLabel1.AutoSize = true;
-            tENLOPLabel1.Location = new System.Drawing.Point(336, 60);
-            tENLOPLabel1.Name = "tENLOPLabel1";
-            tENLOPLabel1.Size = new System.Drawing.Size(53, 15);
-            tENLOPLabel1.TabIndex = 10;
-            tENLOPLabel1.Text = "TENLOP:";
             // 
             // mALOPLabel1
             // 
@@ -247,24 +160,86 @@
             mALOPLabel1.TabIndex = 12;
             mALOPLabel1.Text = "MALOP:";
             // 
-            // bar2
+            // tENLOPLabel1
             // 
-            this.bar2.BarName = "Tools";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 1;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.Text = "Tools";
+            tENLOPLabel1.AutoSize = true;
+            tENLOPLabel1.Location = new System.Drawing.Point(336, 60);
+            tENLOPLabel1.Name = "tENLOPLabel1";
+            tENLOPLabel1.Size = new System.Drawing.Size(53, 15);
+            tENLOPLabel1.TabIndex = 10;
+            tENLOPLabel1.Text = "TENLOP:";
             // 
-            // bar3
+            // dIACHILabel
             // 
-            this.bar3.BarItemVertIndent = 10;
-            this.bar3.BarName = "Main menu";
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar3.OptionsBar.MultiLine = true;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Main menu";
+            dIACHILabel.AutoSize = true;
+            dIACHILabel.Location = new System.Drawing.Point(35, 172);
+            dIACHILabel.Name = "dIACHILabel";
+            dIACHILabel.Size = new System.Drawing.Size(49, 15);
+            dIACHILabel.TabIndex = 8;
+            dIACHILabel.Text = "DIACHI:";
+            // 
+            // nGAYSINHLabel
+            // 
+            nGAYSINHLabel.AutoSize = true;
+            nGAYSINHLabel.Location = new System.Drawing.Point(16, 144);
+            nGAYSINHLabel.Name = "nGAYSINHLabel";
+            nGAYSINHLabel.Size = new System.Drawing.Size(68, 15);
+            nGAYSINHLabel.TabIndex = 6;
+            nGAYSINHLabel.Text = "NGAYSINH:";
+            // 
+            // tENLabel
+            // 
+            tENLabel.AutoSize = true;
+            tENLabel.Location = new System.Drawing.Point(53, 116);
+            tENLabel.Name = "tENLabel";
+            tENLabel.Size = new System.Drawing.Size(31, 15);
+            tENLabel.TabIndex = 4;
+            tENLabel.Text = "TEN:";
+            // 
+            // hOLabel
+            // 
+            hOLabel.AutoSize = true;
+            hOLabel.Location = new System.Drawing.Point(56, 88);
+            hOLabel.Name = "hOLabel";
+            hOLabel.Size = new System.Drawing.Size(28, 15);
+            hOLabel.TabIndex = 2;
+            hOLabel.Text = "HO:";
+            // 
+            // mASVLabel
+            // 
+            mASVLabel.AutoSize = true;
+            mASVLabel.Location = new System.Drawing.Point(42, 60);
+            mASVLabel.Name = "mASVLabel";
+            mASVLabel.Size = new System.Drawing.Size(42, 15);
+            mASVLabel.TabIndex = 0;
+            mASVLabel.Text = "MASV:";
+            // 
+            // mAKHLabel
+            // 
+            mAKHLabel.AutoSize = true;
+            mAKHLabel.Location = new System.Drawing.Point(38, 116);
+            mAKHLabel.Name = "mAKHLabel";
+            mAKHLabel.Size = new System.Drawing.Size(45, 15);
+            mAKHLabel.TabIndex = 5;
+            mAKHLabel.Text = "MAKH:";
+            // 
+            // tENLOPLabel
+            // 
+            tENLOPLabel.AutoSize = true;
+            tENLOPLabel.Location = new System.Drawing.Point(30, 88);
+            tENLOPLabel.Name = "tENLOPLabel";
+            tENLOPLabel.Size = new System.Drawing.Size(53, 15);
+            tENLOPLabel.TabIndex = 3;
+            tENLOPLabel.Text = "TENLOP:";
+            // 
+            // mALOPLabel
+            // 
+            mALOPLabel.AutoSize = true;
+            mALOPLabel.Location = new System.Drawing.Point(32, 60);
+            mALOPLabel.Name = "mALOPLabel";
+            mALOPLabel.Size = new System.Drawing.Size(51, 15);
+            mALOPLabel.TabIndex = 1;
+            mALOPLabel.Text = "MALOP:";
             // 
             // DataSet
             // 
@@ -298,47 +273,6 @@
             // taStudent
             // 
             this.taStudent.ClearBeforeFill = true;
-            // 
-            // gcClass
-            // 
-            this.gcClass.Controls.Add(mAKHLabel);
-            this.gcClass.Controls.Add(this.cbxDepartment);
-            this.gcClass.Controls.Add(tENLOPLabel);
-            this.gcClass.Controls.Add(this.teClassName);
-            this.gcClass.Controls.Add(mALOPLabel);
-            this.gcClass.Controls.Add(this.teClassId);
-            this.gcClass.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gcClass.Location = new System.Drawing.Point(2, 395);
-            this.gcClass.Name = "gcClass";
-            this.gcClass.Size = new System.Drawing.Size(544, 213);
-            this.gcClass.TabIndex = 6;
-            this.gcClass.Text = "Class Info";
-            // 
-            // cbxDepartment
-            // 
-            this.cbxDepartment.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "MAKH", true));
-            this.cbxDepartment.Location = new System.Drawing.Point(122, 129);
-            this.cbxDepartment.Name = "cbxDepartment";
-            this.cbxDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxDepartment.Size = new System.Drawing.Size(100, 22);
-            this.cbxDepartment.TabIndex = 6;
-            // 
-            // teClassName
-            // 
-            this.teClassName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "TENLOP", true));
-            this.teClassName.Location = new System.Drawing.Point(122, 101);
-            this.teClassName.Name = "teClassName";
-            this.teClassName.Size = new System.Drawing.Size(100, 22);
-            this.teClassName.TabIndex = 4;
-            // 
-            // teClassId
-            // 
-            this.teClassId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "MALOP", true));
-            this.teClassId.Location = new System.Drawing.Point(122, 73);
-            this.teClassId.Name = "teClassId";
-            this.teClassId.Size = new System.Drawing.Size(100, 22);
-            this.teClassId.TabIndex = 2;
             // 
             // ctxMenu
             // 
@@ -426,15 +360,15 @@
             this.btnExit,
             this.btnRefresh,
             this.btnHelp,
-            this.cbxLocation,
-            this.barButtonItem1});
+            this.btnLocation,
+            this.barButtonItem1,
+            this.btnMode});
             this.barManager1.MainMenu = this.bar4;
-            this.barManager1.MaxItemId = 17;
+            this.barManager1.MaxItemId = 20;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemSpinEdit1,
-            this.repositoryItemComboBox1,
             this.repositoryItemComboBox2,
-            this.repositoryItemComboBox3});
+            this.repositoryItemTextEdit1,
+            this.swMode});
             // 
             // bar1
             // 
@@ -450,6 +384,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnUndo),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnCancel),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh)});
+            this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.DisableCustomization = true;
+            this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.Text = "Tools";
             // 
             // btnNew
@@ -530,21 +467,25 @@
             this.bar4.DockRow = 0;
             this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.cbxLocation, "", false, true, true, 250),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btnLocation, "", false, true, true, 250),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExit),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnMode)});
+            this.bar4.OptionsBar.AllowQuickCustomization = false;
+            this.bar4.OptionsBar.DisableCustomization = true;
+            this.bar4.OptionsBar.DrawDragBorder = false;
             this.bar4.OptionsBar.MultiLine = true;
             this.bar4.OptionsBar.UseWholeRow = true;
             this.bar4.Text = "Main menu";
             // 
-            // cbxLocation
+            // btnLocation
             // 
-            this.cbxLocation.Caption = "Location";
-            this.cbxLocation.Edit = this.repositoryItemComboBox2;
-            this.cbxLocation.Id = 14;
-            this.cbxLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cbxLocation.ImageOptions.SvgImage")));
-            this.cbxLocation.Name = "cbxLocation";
-            this.cbxLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
+            this.btnLocation.Caption = "Location";
+            this.btnLocation.Edit = this.repositoryItemComboBox2;
+            this.btnLocation.Id = 14;
+            this.btnLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLocation.ImageOptions.SvgImage")));
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
             // 
             // repositoryItemComboBox2
             // 
@@ -566,6 +507,23 @@
             this.btnHelp.Id = 11;
             this.btnHelp.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHelp.ImageOptions.SvgImage")));
             this.btnHelp.Name = "btnHelp";
+            // 
+            // btnMode
+            // 
+            this.btnMode.Caption = "Mode";
+            this.btnMode.Edit = this.swMode;
+            this.btnMode.Id = 19;
+            this.btnMode.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnMode.ImageOptions.SvgImage")));
+            this.btnMode.Name = "btnMode";
+            this.btnMode.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // swMode
+            // 
+            this.swMode.AutoWidth = true;
+            this.swMode.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.swMode.Name = "swMode";
+            this.swMode.OffText = "Class";
+            this.swMode.OnText = "Student";
             // 
             // barDockControlTop
             // 
@@ -606,32 +564,248 @@
             this.barButtonItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
             this.barButtonItem1.Name = "barButtonItem1";
             // 
-            // repositoryItemSpinEdit1
+            // repositoryItemTextEdit1
             // 
-            this.repositoryItemSpinEdit1.AutoHeight = false;
-            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // gvClass
+            // 
+            this.gvClass.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMALOP1,
+            this.colTENLOP,
+            this.colMAKH});
+            this.gvClass.GridControl = this.gcClass;
+            this.gvClass.Name = "gvClass";
+            this.gvClass.OptionsBehavior.Editable = false;
+            this.gvClass.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridView1_PopupMenuShowing);
+            // 
+            // colMALOP1
+            // 
+            this.colMALOP1.FieldName = "MALOP";
+            this.colMALOP1.Name = "colMALOP1";
+            this.colMALOP1.Visible = true;
+            this.colMALOP1.VisibleIndex = 0;
+            // 
+            // colTENLOP
+            // 
+            this.colTENLOP.FieldName = "TENLOP";
+            this.colTENLOP.Name = "colTENLOP";
+            this.colTENLOP.Visible = true;
+            this.colTENLOP.VisibleIndex = 1;
+            // 
+            // colMAKH
+            // 
+            this.colMAKH.FieldName = "MAKH";
+            this.colMAKH.Name = "colMAKH";
+            this.colMAKH.Visible = true;
+            this.colMAKH.VisibleIndex = 2;
+            // 
+            // gcClass
+            // 
+            this.gcClass.DataSource = this.bdsClass;
+            this.gcClass.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcClass.Location = new System.Drawing.Point(2, 2);
+            this.gcClass.MainView = this.gvClass;
+            this.gcClass.Name = "gcClass";
+            this.gcClass.Size = new System.Drawing.Size(476, 400);
+            this.gcClass.TabIndex = 5;
+            this.gcClass.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvClass});
+            // 
+            // bdsDepartment
+            // 
+            this.bdsDepartment.DataMember = "KHOA";
+            this.bdsDepartment.DataSource = this.DataSet;
+            // 
+            // pcClass
+            // 
+            this.pcClass.Controls.Add(this.gcClassInfo);
+            this.pcClass.Controls.Add(this.gcClass);
+            this.pcClass.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pcClass.Location = new System.Drawing.Point(0, 80);
+            this.pcClass.Name = "pcClass";
+            this.pcClass.Size = new System.Drawing.Size(480, 610);
+            this.pcClass.TabIndex = 12;
+            // 
+            // gcClassInfo
+            // 
+            this.gcClassInfo.Controls.Add(mAKHLabel);
+            this.gcClassInfo.Controls.Add(this.cbxDepartment);
+            this.gcClassInfo.Controls.Add(tENLOPLabel);
+            this.gcClassInfo.Controls.Add(this.teClassName);
+            this.gcClassInfo.Controls.Add(mALOPLabel);
+            this.gcClassInfo.Controls.Add(this.teClassId);
+            this.gcClassInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcClassInfo.Location = new System.Drawing.Point(2, 402);
+            this.gcClassInfo.Name = "gcClassInfo";
+            this.gcClassInfo.Size = new System.Drawing.Size(476, 206);
+            this.gcClassInfo.TabIndex = 8;
+            this.gcClassInfo.Text = "Class Info";
+            // 
+            // cbxDepartment
+            // 
+            this.cbxDepartment.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "MAKH", true));
+            this.cbxDepartment.Location = new System.Drawing.Point(88, 113);
+            this.cbxDepartment.Name = "cbxDepartment";
+            this.cbxDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
+            this.cbxDepartment.Size = new System.Drawing.Size(200, 22);
+            this.cbxDepartment.TabIndex = 6;
             // 
-            // repositoryItemComboBox1
+            // teClassName
             // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.teClassName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "TENLOP", true));
+            this.teClassName.Location = new System.Drawing.Point(88, 85);
+            this.teClassName.Name = "teClassName";
+            this.teClassName.Size = new System.Drawing.Size(200, 22);
+            this.teClassName.TabIndex = 4;
+            // 
+            // teClassId
+            // 
+            this.teClassId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "MALOP", true));
+            this.teClassId.Location = new System.Drawing.Point(88, 57);
+            this.teClassId.Name = "teClassId";
+            this.teClassId.Size = new System.Drawing.Size(200, 22);
+            this.teClassId.TabIndex = 2;
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
+            // taDepartment
+            // 
+            this.taDepartment.ClearBeforeFill = true;
+            // 
+            // pcStudent
+            // 
+            this.pcStudent.Controls.Add(this.gcStudentInfo);
+            this.pcStudent.Controls.Add(this.gcStudent);
+            this.pcStudent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcStudent.Location = new System.Drawing.Point(480, 80);
+            this.pcStudent.Name = "pcStudent";
+            this.pcStudent.Size = new System.Drawing.Size(800, 610);
+            this.pcStudent.TabIndex = 17;
+            // 
+            // gcStudentInfo
+            // 
+            this.gcStudentInfo.Controls.Add(mALOPLabel1);
+            this.gcStudentInfo.Controls.Add(this.teStudentClassId);
+            this.gcStudentInfo.Controls.Add(tENLOPLabel1);
+            this.gcStudentInfo.Controls.Add(this.cbxStudentClass);
+            this.gcStudentInfo.Controls.Add(dIACHILabel);
+            this.gcStudentInfo.Controls.Add(this.teAddress);
+            this.gcStudentInfo.Controls.Add(nGAYSINHLabel);
+            this.gcStudentInfo.Controls.Add(this.deBirthDate);
+            this.gcStudentInfo.Controls.Add(tENLabel);
+            this.gcStudentInfo.Controls.Add(this.teFirstName);
+            this.gcStudentInfo.Controls.Add(hOLabel);
+            this.gcStudentInfo.Controls.Add(this.teLastName);
+            this.gcStudentInfo.Controls.Add(mASVLabel);
+            this.gcStudentInfo.Controls.Add(this.teStudentId);
+            this.gcStudentInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcStudentInfo.Location = new System.Drawing.Point(2, 402);
+            this.gcStudentInfo.Name = "gcStudentInfo";
+            this.gcStudentInfo.Size = new System.Drawing.Size(796, 206);
+            this.gcStudentInfo.TabIndex = 1;
+            this.gcStudentInfo.Text = "Student Info";
+            // 
+            // teStudentClassId
+            // 
+            this.teStudentClassId.Location = new System.Drawing.Point(395, 85);
+            this.teStudentClassId.MenuManager = this.barManager1;
+            this.teStudentClassId.Name = "teStudentClassId";
+            this.teStudentClassId.Size = new System.Drawing.Size(200, 22);
+            this.teStudentClassId.TabIndex = 13;
+            // 
+            // cbxStudentClass
+            // 
+            this.cbxStudentClass.Location = new System.Drawing.Point(395, 57);
+            this.cbxStudentClass.MenuManager = this.barManager1;
+            this.cbxStudentClass.Name = "cbxStudentClass";
+            this.cbxStudentClass.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            this.cbxStudentClass.Size = new System.Drawing.Size(200, 22);
+            this.cbxStudentClass.TabIndex = 11;
             // 
-            // gridView2
+            // teAddress
             // 
-            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.teAddress.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "DIACHI", true));
+            this.teAddress.Location = new System.Drawing.Point(90, 169);
+            this.teAddress.MenuManager = this.barManager1;
+            this.teAddress.Name = "teAddress";
+            this.teAddress.Size = new System.Drawing.Size(200, 22);
+            this.teAddress.TabIndex = 9;
+            // 
+            // deBirthDate
+            // 
+            this.deBirthDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "NGAYSINH", true));
+            this.deBirthDate.EditValue = null;
+            this.deBirthDate.Location = new System.Drawing.Point(90, 141);
+            this.deBirthDate.MenuManager = this.barManager1;
+            this.deBirthDate.Name = "deBirthDate";
+            this.deBirthDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deBirthDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deBirthDate.Size = new System.Drawing.Size(200, 22);
+            this.deBirthDate.TabIndex = 7;
+            // 
+            // teFirstName
+            // 
+            this.teFirstName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "TEN", true));
+            this.teFirstName.Location = new System.Drawing.Point(90, 113);
+            this.teFirstName.MenuManager = this.barManager1;
+            this.teFirstName.Name = "teFirstName";
+            this.teFirstName.Size = new System.Drawing.Size(200, 22);
+            this.teFirstName.TabIndex = 5;
+            // 
+            // teLastName
+            // 
+            this.teLastName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "HO", true));
+            this.teLastName.Location = new System.Drawing.Point(90, 85);
+            this.teLastName.MenuManager = this.barManager1;
+            this.teLastName.Name = "teLastName";
+            this.teLastName.Size = new System.Drawing.Size(200, 22);
+            this.teLastName.TabIndex = 3;
+            // 
+            // teStudentId
+            // 
+            this.teStudentId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "MASV", true));
+            this.teStudentId.Location = new System.Drawing.Point(90, 57);
+            this.teStudentId.MenuManager = this.barManager1;
+            this.teStudentId.Name = "teStudentId";
+            this.teStudentId.Size = new System.Drawing.Size(200, 22);
+            this.teStudentId.TabIndex = 1;
+            // 
+            // gcStudent
+            // 
+            this.gcStudent.ContextMenuStrip = this.ctxMenu;
+            this.gcStudent.DataSource = this.bdsStudent;
+            this.gcStudent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcStudent.Location = new System.Drawing.Point(2, 2);
+            this.gcStudent.MainView = this.gvStudent;
+            this.gcStudent.Name = "gcStudent";
+            this.gcStudent.Size = new System.Drawing.Size(796, 400);
+            this.gcStudent.TabIndex = 0;
+            this.gcStudent.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvStudent});
+            // 
+            // gvStudent
+            // 
+            this.gvStudent.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMASV,
             this.colHO,
             this.colTEN,
             this.colNGAYSINH,
             this.colDIACHI,
-            this.colMALOP,
-            this.colMATKHAU});
-            this.gridView2.GridControl = this.sINHVIENGridControl;
-            this.gridView2.Name = "gridView2";
+            this.colMALOP});
+            this.gvStudent.GridControl = this.gcStudent;
+            this.gvStudent.Name = "gvStudent";
+            this.gvStudent.OptionsBehavior.Editable = false;
             // 
             // colMASV
             // 
@@ -675,253 +849,47 @@
             this.colMALOP.Visible = true;
             this.colMALOP.VisibleIndex = 5;
             // 
-            // colMATKHAU
-            // 
-            this.colMATKHAU.FieldName = "MATKHAU";
-            this.colMATKHAU.Name = "colMATKHAU";
-            this.colMATKHAU.Visible = true;
-            this.colMATKHAU.VisibleIndex = 6;
-            // 
-            // sINHVIENGridControl
-            // 
-            this.sINHVIENGridControl.ContextMenuStrip = this.ctxMenu;
-            this.sINHVIENGridControl.DataSource = this.bdsStudent;
-            this.sINHVIENGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sINHVIENGridControl.Location = new System.Drawing.Point(2, 2);
-            this.sINHVIENGridControl.MainView = this.gridView2;
-            this.sINHVIENGridControl.Name = "sINHVIENGridControl";
-            this.sINHVIENGridControl.Size = new System.Drawing.Size(728, 393);
-            this.sINHVIENGridControl.TabIndex = 0;
-            this.sINHVIENGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMALOP1,
-            this.colTENLOP,
-            this.colMAKH});
-            this.gridView1.GridControl = this.lOPGridControl;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridView1_PopupMenuShowing);
-            // 
-            // colMALOP1
-            // 
-            this.colMALOP1.FieldName = "MALOP";
-            this.colMALOP1.Name = "colMALOP1";
-            this.colMALOP1.Visible = true;
-            this.colMALOP1.VisibleIndex = 0;
-            // 
-            // colTENLOP
-            // 
-            this.colTENLOP.FieldName = "TENLOP";
-            this.colTENLOP.Name = "colTENLOP";
-            this.colTENLOP.Visible = true;
-            this.colTENLOP.VisibleIndex = 1;
-            // 
-            // colMAKH
-            // 
-            this.colMAKH.FieldName = "MAKH";
-            this.colMAKH.Name = "colMAKH";
-            this.colMAKH.Visible = true;
-            this.colMAKH.VisibleIndex = 2;
-            // 
-            // lOPGridControl
-            // 
-            this.lOPGridControl.DataSource = this.bdsClass;
-            this.lOPGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lOPGridControl.Location = new System.Drawing.Point(2, 2);
-            this.lOPGridControl.MainView = this.gridView1;
-            this.lOPGridControl.Name = "lOPGridControl";
-            this.lOPGridControl.Size = new System.Drawing.Size(544, 393);
-            this.lOPGridControl.TabIndex = 5;
-            this.lOPGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // pcStudent
-            // 
-            this.pcStudent.Controls.Add(this.gcStudent);
-            this.pcStudent.Controls.Add(this.sINHVIENGridControl);
-            this.pcStudent.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pcStudent.Location = new System.Drawing.Point(548, 80);
-            this.pcStudent.Name = "pcStudent";
-            this.pcStudent.Size = new System.Drawing.Size(732, 610);
-            this.pcStudent.TabIndex = 11;
-            // 
-            // gcStudent
-            // 
-            this.gcStudent.Controls.Add(mALOPLabel1);
-            this.gcStudent.Controls.Add(this.teStudentClassId);
-            this.gcStudent.Controls.Add(tENLOPLabel1);
-            this.gcStudent.Controls.Add(this.cbxStudentClass);
-            this.gcStudent.Controls.Add(dIACHILabel);
-            this.gcStudent.Controls.Add(this.teAddress);
-            this.gcStudent.Controls.Add(nGAYSINHLabel);
-            this.gcStudent.Controls.Add(this.deBirthDate);
-            this.gcStudent.Controls.Add(tENLabel);
-            this.gcStudent.Controls.Add(this.teFirstName);
-            this.gcStudent.Controls.Add(hOLabel);
-            this.gcStudent.Controls.Add(this.teLastName);
-            this.gcStudent.Controls.Add(mASVLabel);
-            this.gcStudent.Controls.Add(this.teStudentId);
-            this.gcStudent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcStudent.Location = new System.Drawing.Point(2, 395);
-            this.gcStudent.Name = "gcStudent";
-            this.gcStudent.Size = new System.Drawing.Size(728, 213);
-            this.gcStudent.TabIndex = 1;
-            this.gcStudent.Text = "Student Info";
-            // 
-            // teStudentClassId
-            // 
-            this.teStudentClassId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.lOPBindingSource, "MALOP", true));
-            this.teStudentClassId.Location = new System.Drawing.Point(395, 85);
-            this.teStudentClassId.MenuManager = this.barManager1;
-            this.teStudentClassId.Name = "teStudentClassId";
-            this.teStudentClassId.Size = new System.Drawing.Size(100, 22);
-            this.teStudentClassId.TabIndex = 13;
-            // 
-            // lOPBindingSource
-            // 
-            this.lOPBindingSource.DataMember = "FK_LOP_KHOA";
-            this.lOPBindingSource.DataSource = this.bdsDepartment;
-            // 
-            // bdsDepartment
-            // 
-            this.bdsDepartment.DataMember = "KHOA";
-            this.bdsDepartment.DataSource = this.DataSet;
-            // 
-            // cbxStudentClass
-            // 
-            this.cbxStudentClass.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.lOPBindingSource, "TENLOP", true));
-            this.cbxStudentClass.Location = new System.Drawing.Point(395, 57);
-            this.cbxStudentClass.MenuManager = this.barManager1;
-            this.cbxStudentClass.Name = "cbxStudentClass";
-            this.cbxStudentClass.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxStudentClass.Size = new System.Drawing.Size(100, 22);
-            this.cbxStudentClass.TabIndex = 11;
-            this.cbxStudentClass.SelectedIndexChanged += new System.EventHandler(this.cbxStudentClass_SelectedIndexChanged);
-            // 
-            // teAddress
-            // 
-            this.teAddress.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "DIACHI", true));
-            this.teAddress.Location = new System.Drawing.Point(90, 169);
-            this.teAddress.MenuManager = this.barManager1;
-            this.teAddress.Name = "teAddress";
-            this.teAddress.Size = new System.Drawing.Size(100, 22);
-            this.teAddress.TabIndex = 9;
-            // 
-            // deBirthDate
-            // 
-            this.deBirthDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "NGAYSINH", true));
-            this.deBirthDate.EditValue = null;
-            this.deBirthDate.Location = new System.Drawing.Point(90, 141);
-            this.deBirthDate.MenuManager = this.barManager1;
-            this.deBirthDate.Name = "deBirthDate";
-            this.deBirthDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deBirthDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deBirthDate.Size = new System.Drawing.Size(100, 22);
-            this.deBirthDate.TabIndex = 7;
-            this.deBirthDate.EditValueChanged += new System.EventHandler(this.deBirthDate_EditValueChanged);
-            // 
-            // teFirstName
-            // 
-            this.teFirstName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "TEN", true));
-            this.teFirstName.Location = new System.Drawing.Point(90, 113);
-            this.teFirstName.MenuManager = this.barManager1;
-            this.teFirstName.Name = "teFirstName";
-            this.teFirstName.Size = new System.Drawing.Size(100, 22);
-            this.teFirstName.TabIndex = 5;
-            // 
-            // teLastName
-            // 
-            this.teLastName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "HO", true));
-            this.teLastName.Location = new System.Drawing.Point(90, 85);
-            this.teLastName.MenuManager = this.barManager1;
-            this.teLastName.Name = "teLastName";
-            this.teLastName.Size = new System.Drawing.Size(100, 22);
-            this.teLastName.TabIndex = 3;
-            // 
-            // teStudentId
-            // 
-            this.teStudentId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsStudent, "MASV", true));
-            this.teStudentId.Location = new System.Drawing.Point(90, 57);
-            this.teStudentId.MenuManager = this.barManager1;
-            this.teStudentId.Name = "teStudentId";
-            this.teStudentId.Size = new System.Drawing.Size(100, 22);
-            this.teStudentId.TabIndex = 1;
-            // 
-            // pcClass
-            // 
-            this.pcClass.Controls.Add(this.lOPGridControl);
-            this.pcClass.Controls.Add(this.gcClass);
-            this.pcClass.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pcClass.Location = new System.Drawing.Point(0, 80);
-            this.pcClass.Name = "pcClass";
-            this.pcClass.Size = new System.Drawing.Size(548, 610);
-            this.pcClass.TabIndex = 12;
-            // 
-            // popupMenu1
-            // 
-            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
-            // 
-            // taDepartment
-            // 
-            this.taDepartment.ClearBeforeFill = true;
-            // 
-            // repositoryItemComboBox3
-            // 
-            this.repositoryItemComboBox3.AutoHeight = false;
-            this.repositoryItemComboBox3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox3.Name = "repositoryItemComboBox3";
-            // 
             // FormClass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1280, 690);
-            this.Controls.Add(this.pcClass);
             this.Controls.Add(this.pcStudent);
+            this.Controls.Add(this.pcClass);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "FormClass";
-            this.Text = "FormClass";
+            this.Text = "Class Management";
             this.Load += new System.EventHandler(this.FormClass_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcClass)).EndInit();
-            this.gcClass.ResumeLayout(false);
-            this.gcClass.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teClassName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teClassId.Properties)).EndInit();
             this.ctxMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bdsStudent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sINHVIENGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swMode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvClass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcClass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDepartment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcClass)).EndInit();
+            this.pcClass.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcClassInfo)).EndInit();
+            this.gcClassInfo.ResumeLayout(false);
+            this.gcClassInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teClassName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teClassId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcStudent)).EndInit();
             this.pcStudent.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcStudent)).EndInit();
-            this.gcStudent.ResumeLayout(false);
-            this.gcStudent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcStudentInfo)).EndInit();
+            this.gcStudentInfo.ResumeLayout(false);
+            this.gcStudentInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teStudentClassId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDepartment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxStudentClass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deBirthDate.Properties.CalendarTimeProperties)).EndInit();
@@ -929,28 +897,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.teFirstName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teLastName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStudentId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcClass)).EndInit();
-            this.pcClass.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcStudent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStudent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.Bar bar3;
         private System.Windows.Forms.BindingSource bdsClass;
         private TN_CSDLPT_PRODDataSet DataSet;
         private TN_CSDLPT_PRODDataSetTableAdapters.LOPTableAdapter taClass;
         private TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraEditors.GroupControl gcClass;
         private TN_CSDLPT_PRODDataSetTableAdapters.SINHVIENTableAdapter taStudent;
         private System.Windows.Forms.BindingSource bdsStudent;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxDepartment;
-        private DevExpress.XtraEditors.TextEdit teClassName;
-        private DevExpress.XtraEditors.TextEdit teClassId;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnNew;
@@ -961,43 +921,25 @@
         private DevExpress.XtraBars.BarButtonItem btnCancel;
         private DevExpress.XtraBars.BarButtonItem btnRefresh;
         private DevExpress.XtraBars.Bar bar4;
-        private DevExpress.XtraBars.BarEditItem cbxLocation;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
+        private DevExpress.XtraBars.BarEditItem btnLocation;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbxLocation;
         private DevExpress.XtraBars.BarButtonItem btnExit;
         private DevExpress.XtraBars.BarButtonItem btnHelp;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private System.Windows.Forms.ContextMenuStrip ctxMenu;
         private System.Windows.Forms.ToolStripMenuItem btnAddStudent;
-        private DevExpress.XtraGrid.GridControl sINHVIENGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn colMASV;
-        private DevExpress.XtraGrid.Columns.GridColumn colHO;
-        private DevExpress.XtraGrid.Columns.GridColumn colTEN;
-        private DevExpress.XtraGrid.Columns.GridColumn colNGAYSINH;
-        private DevExpress.XtraGrid.Columns.GridColumn colDIACHI;
-        private DevExpress.XtraGrid.Columns.GridColumn colMALOP;
-        private DevExpress.XtraGrid.Columns.GridColumn colMATKHAU;
-        private DevExpress.XtraGrid.GridControl lOPGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gcClass;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvClass;
         private DevExpress.XtraGrid.Columns.GridColumn colMALOP1;
         private DevExpress.XtraGrid.Columns.GridColumn colTENLOP;
         private DevExpress.XtraGrid.Columns.GridColumn colMAKH;
-        private DevExpress.XtraEditors.PanelControl pcStudent;
         private DevExpress.XtraEditors.PanelControl pcClass;
-        private DevExpress.XtraEditors.GroupControl gcStudent;
         private System.Windows.Forms.ToolStripMenuItem btnDeleteStudent;
         private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraEditors.TextEdit teStudentId;
-        private DevExpress.XtraEditors.TextEdit teFirstName;
-        private DevExpress.XtraEditors.TextEdit teLastName;
-        private DevExpress.XtraEditors.TextEdit teAddress;
-        private DevExpress.XtraEditors.DateEdit deBirthDate;
         private System.Windows.Forms.BindingSource bdsDepartment;
         private TN_CSDLPT_PRODDataSetTableAdapters.KHOATableAdapter taDepartment;
         private System.Windows.Forms.ToolStripMenuItem btnEditStudent;
@@ -1005,9 +947,30 @@
         private System.Windows.Forms.ToolStripMenuItem btnSaveStudent;
         private System.Windows.Forms.ToolStripMenuItem btnUndoStudent;
         private System.Windows.Forms.ToolStripMenuItem btnRefreshStudent;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraBars.BarEditItem btnMode;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch swMode;
+        private DevExpress.XtraEditors.PanelControl pcStudent;
+        private DevExpress.XtraEditors.GroupControl gcStudentInfo;
         private DevExpress.XtraEditors.TextEdit teStudentClassId;
-        private System.Windows.Forms.BindingSource lOPBindingSource;
         private DevExpress.XtraEditors.ComboBoxEdit cbxStudentClass;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox3;
+        private DevExpress.XtraEditors.TextEdit teAddress;
+        private DevExpress.XtraEditors.DateEdit deBirthDate;
+        private DevExpress.XtraEditors.TextEdit teFirstName;
+        private DevExpress.XtraEditors.TextEdit teLastName;
+        private DevExpress.XtraEditors.TextEdit teStudentId;
+        private DevExpress.XtraGrid.GridControl gcStudent;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvStudent;
+        private DevExpress.XtraGrid.Columns.GridColumn colMASV;
+        private DevExpress.XtraGrid.Columns.GridColumn colHO;
+        private DevExpress.XtraGrid.Columns.GridColumn colTEN;
+        private DevExpress.XtraGrid.Columns.GridColumn colNGAYSINH;
+        private DevExpress.XtraGrid.Columns.GridColumn colDIACHI;
+        private DevExpress.XtraGrid.Columns.GridColumn colMALOP;
+        private DevExpress.XtraEditors.GroupControl gcClassInfo;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxDepartment;
+        private DevExpress.XtraEditors.TextEdit teClassName;
+        private DevExpress.XtraEditors.TextEdit teClassId;
     }
 }
