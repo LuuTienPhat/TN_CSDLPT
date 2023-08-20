@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnSignOut = new DevExpress.XtraBars.BarButtonItem();
-            this.btnLocation = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDepartment = new DevExpress.XtraBars.BarButtonItem();
             this.btnClass = new DevExpress.XtraBars.BarButtonItem();
             this.btnTeacher = new DevExpress.XtraBars.BarButtonItem();
             this.btnStudent = new DevExpress.XtraBars.BarButtonItem();
@@ -76,7 +76,7 @@
             this.ribbon.ExpandCollapseItem,
             this.ribbon.SearchEditItem,
             this.btnSignOut,
-            this.btnLocation,
+            this.btnDepartment,
             this.btnClass,
             this.btnTeacher,
             this.btnStudent,
@@ -115,14 +115,14 @@
             this.btnSignOut.Name = "btnSignOut";
             this.btnSignOut.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSignOut_ItemClick);
             // 
-            // btnLocation
+            // btnDepartment
             // 
-            this.btnLocation.Caption = "Location";
-            this.btnLocation.Id = 2;
-            this.btnLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLocation.ImageOptions.SvgImage")));
-            this.btnLocation.Name = "btnLocation";
-            this.btnLocation.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.btnLocation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLocation_ItemClick);
+            this.btnDepartment.Caption = "Department";
+            this.btnDepartment.Id = 2;
+            this.btnDepartment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLocation.ImageOptions.SvgImage")));
+            this.btnDepartment.Name = "btnDepartment";
+            this.btnDepartment.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnDepartment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDepartment_ItemClick);
             // 
             // btnClass
             // 
@@ -278,7 +278,7 @@
             // 
             // rpgSchool
             // 
-            this.rpgSchool.ItemLinks.Add(this.btnLocation);
+            this.rpgSchool.ItemLinks.Add(this.btnDepartment);
             this.rpgSchool.ItemLinks.Add(this.btnClass);
             this.rpgSchool.Name = "rpgSchool";
             this.rpgSchool.Text = "School";
@@ -403,7 +403,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage rpReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btnSignOut;
-        private DevExpress.XtraBars.BarButtonItem btnLocation;
+        private DevExpress.XtraBars.BarButtonItem btnDepartment;
         private DevExpress.XtraBars.BarButtonItem btnClass;
         private DevExpress.XtraBars.BarButtonItem btnTeacher;
         private DevExpress.XtraBars.BarButtonItem btnStudent;

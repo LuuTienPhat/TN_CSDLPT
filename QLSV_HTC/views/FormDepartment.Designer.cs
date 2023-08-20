@@ -85,7 +85,7 @@
             this.colMACS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pcTeacher = new DevExpress.XtraEditors.PanelControl();
             this.gcTeacherInfo = new DevExpress.XtraEditors.GroupControl();
-            this.cbxDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxStudentDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
             this.teTeacherAddress = new DevExpress.XtraEditors.TextEdit();
             this.teTeacherFirstName = new DevExpress.XtraEditors.TextEdit();
             this.teTeacherLastName = new DevExpress.XtraEditors.TextEdit();
@@ -125,7 +125,7 @@
             this.pcTeacher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTeacherInfo)).BeginInit();
             this.gcTeacherInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxStudentDepartment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherFirstName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherLastName.Properties)).BeginInit();
@@ -365,7 +365,7 @@
             this.btnLocation.Caption = "Location";
             this.btnLocation.Edit = this.cbxLocation;
             this.btnLocation.Id = 14;
-            this.btnLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cbxLocation.ImageOptions.SvgImage")));
+            this.btnLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLocation.ImageOptions.SvgImage")));
             this.btnLocation.Name = "btnLocation";
             this.btnLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
             // 
@@ -591,7 +591,6 @@
             // 
             // cbxDepartmentLocation
             // 
-            this.cbxDepartmentLocation.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsLocation, "MACS", true));
             this.cbxDepartmentLocation.Location = new System.Drawing.Point(84, 100);
             this.cbxDepartmentLocation.MenuManager = this.barManager1;
             this.cbxDepartmentLocation.Name = "cbxDepartmentLocation";
@@ -682,7 +681,7 @@
             // 
             this.gcTeacherInfo.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("gcTeacherInfo.CaptionImageOptions.SvgImage")));
             this.gcTeacherInfo.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.gcTeacherInfo.Controls.Add(this.cbxDepartment);
+            this.gcTeacherInfo.Controls.Add(this.cbxStudentDepartment);
             this.gcTeacherInfo.Controls.Add(mAKHLabel1);
             this.gcTeacherInfo.Controls.Add(dIACHILabel);
             this.gcTeacherInfo.Controls.Add(this.teTeacherAddress);
@@ -699,16 +698,15 @@
             this.gcTeacherInfo.TabIndex = 15;
             this.gcTeacherInfo.Text = "Teacher Info";
             // 
-            // cbxDepartment
+            // cbxStudentDepartment
             // 
-            this.cbxDepartment.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher, "MAKH", true));
-            this.cbxDepartment.Location = new System.Drawing.Point(413, 44);
-            this.cbxDepartment.MenuManager = this.barManager1;
-            this.cbxDepartment.Name = "cbxDepartment";
-            this.cbxDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxStudentDepartment.Location = new System.Drawing.Point(413, 44);
+            this.cbxStudentDepartment.MenuManager = this.barManager1;
+            this.cbxStudentDepartment.Name = "cbxStudentDepartment";
+            this.cbxStudentDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxDepartment.Size = new System.Drawing.Size(200, 22);
-            this.cbxDepartment.TabIndex = 10;
+            this.cbxStudentDepartment.Size = new System.Drawing.Size(200, 22);
+            this.cbxStudentDepartment.TabIndex = 10;
             // 
             // teTeacherAddress
             // 
@@ -847,7 +845,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcTeacherInfo)).EndInit();
             this.gcTeacherInfo.ResumeLayout(false);
             this.gcTeacherInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxStudentDepartment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherFirstName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherLastName.Properties)).EndInit();
@@ -913,7 +911,7 @@
         private System.Windows.Forms.BindingSource bdsLocation;
         private TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter taLocation;
         private DevExpress.XtraEditors.ComboBoxEdit cbxDepartmentLocation;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxDepartment;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxStudentDepartment;
         private DevExpress.XtraBars.BarButtonItem btnNewTeacher;
         private DevExpress.XtraBars.BarButtonItem btnEditTeacher;
         private DevExpress.XtraBars.BarButtonItem btnCommitTeacher;

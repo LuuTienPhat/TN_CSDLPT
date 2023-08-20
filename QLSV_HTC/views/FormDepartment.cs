@@ -41,13 +41,56 @@ namespace TN_CSDLPT
 
         private void FormDepartment_Load(object sender, EventArgs e)
         {
+            this.DataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'DataSet.COSO' table. You can move, or remove it, as needed.
+            this.taLocation.Connection.ConnectionString = Program.connstr;
             this.taLocation.Fill(this.DataSet.COSO);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
+            this.taTeacher.Connection.ConnectionString = Program.connstr;
             this.taTeacher.Fill(this.DataSet.GIAOVIEN);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.KHOA' table. You can move, or remove it, as needed.
+            this.taDepartment.Connection.ConnectionString = Program.connstr;
             this.taDepartment.Fill(this.DataSet.KHOA);
 
+            Program.FillLocationCombobox(btnLocation, cbxLocation);
+            FormUtils.FillComboBox(cbxStudentDepartment, this.bdsDepartment, new string[] { Database.TABLE_DEPT_COL_DEPT_ID, Database.TABLE_DEPT_COL_DEPT_ID });
+            FormUtils.FillComboBox(cbxDepartmentLocation, this.bdsLocation, new string[] { Database.TABLE_LOCATION_COL_LOCATION_ID, Database.TABLE_LOCATION_COL_LOCATION_NAME });
+            FormUtils.SetDefaultForBarManagerBars(barManager1);
+
+            if (((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            {
+                //class
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNew, btnEdit, btnDelete, btnCommit, btnUndo, btnCancel
+                });
+
+                //student
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNewTeacher, btnEditTeacher, btnDeleteTeacher, btnCommitTeacher, btnUndoTeacher, btnCancelTeacher
+                });
+            }
+            else
+            {
+                //class
+                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNew, btnEdit, btnDelete
+                });
+
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                   btnCancel, btnCommit
+                });
+
+                //student
+                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNewTeacher, btnEditTeacher, btnDeleteTeacher
+                });
+
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                   btnCancelTeacher, btnCommitTeacher
+                });
+            }
+
+            gcDepartmentInfo.Enabled = gcTeacherInfo.Enabled = false;
         }
 
         //dept
@@ -72,6 +115,8 @@ namespace TN_CSDLPT
             teDepartmentId.Enabled = true;
 
             pcTeacher.Enabled = false;
+
+            cbxDepartmentLocation.SelectedIndex = 0;
         }
 
         private void btnEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -103,10 +148,12 @@ namespace TN_CSDLPT
 
             string oldDepartmentId = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_ID);
             string oldDepartmentName = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_NAME);
-            string oldLocationId = FormUtils.GetBindingSourceData(this.bdsLocation, cbxDepartmentLocation.SelectedIndex, Database.TABLE_LOCATION_COL_LOCATION_ID);
+            string oldLocationId = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_LOCATION_ID);
 
-            string classId = teDepartmentId.Text;
+            string departmentId = teDepartmentId.Text;
+            string locationId = FormUtils.GetBindingSourceData(this.bdsLocation, cbxDepartmentLocation.SelectedIndex, Database.TABLE_LOCATION_COL_LOCATION_ID);
 
+            FormUtils.SetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_LOCATION_ID, locationId);
             if (!CommitDepartmentDB()) //Write database failed
             {
                 return;
@@ -123,13 +170,15 @@ namespace TN_CSDLPT
             if (departmentActionMode.Equals(ActionMode.Add))
             {
                 Hashtable refs = new Hashtable();
-                refs.Add(Database.TABLE_CLASS_COL_CLASS_ID, oldDepartmentId);
+                refs.Add(Database.TABLE_DEPT_COL_DEPT_ID, oldDepartmentId);
                 departmentCallBackActions.Add(
                     new CallBackAction(
                         departmentActionMode,
-                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_DEPARTMENT, new string[] { oldDepartmentId }),
+                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_DEPARTMENT, new string[] { departmentId }),
                         refs
                     ));
+
+                CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, DatabaseUtils.BuildQuery2(Database.SP_DELETE_DEPARTMENT, new string[] { departmentId }));
             }
 
             departmentActionMode = ActionMode.None;
@@ -146,22 +195,24 @@ namespace TN_CSDLPT
 
             gcDepartmentInfo.Enabled = false;
             gcDepartment.Enabled = true;
+            pcTeacher.Enabled = true;
 
             btnRefresh.PerformClick();
-            this.bdsDepartment.Position = bdsDepartment.Find(Database.TABLE_DEPT_COL_DEPT_ID, classId);
+            this.bdsDepartment.Position = bdsDepartment.Find(Database.TABLE_DEPT_COL_DEPT_ID, departmentId);
         }
 
         private void btnDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             departmentActionMode = ActionMode.Delete;
-            if (this.bdsDepartment.Count > 0)
+            if (this.bdsTeacher.Count > 0)
             {
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, "Deparment couldn't be deleted, already have teachers");
                 return;
             }
             string departmentId = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_ID);
             string departmentName = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_NAME);
-            string locationId = FormUtils.GetBindingSourceData(this.bdsLocation, cbxDepartmentLocation.SelectedIndex, Database.TABLE_LOCATION_COL_LOCATION_ID);
+            string locationId = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_LOCATION_ID);
+            
             if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
                 string.Format(Translation._argsDeleteWarningMsg, $"Department {departmentName.Trim()}")) == DialogResult.OK)
             {
@@ -198,9 +249,10 @@ namespace TN_CSDLPT
             CallBackAction action = departmentCallBackActions[departmentCallBackActions.Count - 1];
             if (action.BackAction.Equals(ActionMode.Add))
             {
-                string classId = action.Reference[Database.TABLE_CLASS_COL_CLASS_ID].ToString();
+                string classId = action.Reference[Database.TABLE_DEPT_COL_DEPT_ID].ToString();
                 DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, 
                     string.Format(Translation._argsDeleteWarningMsg, $"Department {classId.Trim()}"));
+
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;
@@ -210,12 +262,13 @@ namespace TN_CSDLPT
             try
             {
                 Program.myReader = Program.ExecSqlDataReader(action.Query);
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, action.Query);
                 Program.myReader.Read();
 
                 string affectedId = Program.myReader.GetString(0);
                 if (affectedId != "-1")
                 {
-                    this.bdsDepartment.Position = this.bdsDepartment.Find(Database.TABLE_CLASS_COL_CLASS_ID, affectedId);
+                    this.bdsDepartment.Position = this.bdsDepartment.Find(Database.TABLE_DEPT_COL_DEPT_ID, affectedId);
                 }
 
                 departmentCallBackActions.RemoveAt(departmentCallBackActions.Count - 1);
@@ -269,6 +322,8 @@ namespace TN_CSDLPT
                 departmentActionMode = ActionMode.Refresh;
 
                 gcDepartment.Enabled = false;
+                pcTeacher.Enabled = false;
+
                 SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
                 System.Threading.Thread.Sleep(1000);
 
@@ -285,7 +340,9 @@ namespace TN_CSDLPT
                 this.bdsDepartment.Position = this.bdsDepartmentPosition;
 
                 SplashScreenManager.CloseForm();
+
                 gcDepartment.Enabled = true;
+                pcTeacher.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -359,6 +416,8 @@ namespace TN_CSDLPT
             teTeacherId.Enabled = true;
 
             pcDepartment.Enabled = false;
+
+            cbxStudentDepartment.SelectedIndex = 0;
         }
 
         private void btnEditTeacher_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -396,8 +455,10 @@ namespace TN_CSDLPT
             string oldAddress = FormUtils.GetBindingSourceData(this.bdsTeacher, this.bdsTeacher.Position, Database.TABLE_TEACHER_COL_TEACHER_ADDRESS);
             string oldDepartmentId = FormUtils.GetBindingSourceData(this.bdsTeacher, this.bdsTeacher.Position, Database.TABLE_TEACHER_COL_TEACHER_DEPARTMENT_ID);
 
-            string teTeacherId = this.teTeacherId.Text;
+            string teacherId = this.teTeacherId.Text;
+            string departmentId = FormUtils.GetBindingSourceData(this.bdsDepartment, cbxStudentDepartment.SelectedIndex, Database.TABLE_DEPT_COL_DEPT_ID);
 
+            FormUtils.SetBindingSourceData(this.bdsTeacher, this.bdsTeacher.Position, Database.TABLE_TEACHER_COL_TEACHER_DEPARTMENT_ID, departmentId);
             if (!CommitTeacherDB()) //Write database failed
             {
                 return;
@@ -418,11 +479,11 @@ namespace TN_CSDLPT
             if (teacherActionMode.Equals(ActionMode.Add))
             {
                 Hashtable refs = new Hashtable();
-                refs.Add(Database.TABLE_TEACHER_COL_TEACHER_ID, teTeacherId);
+                refs.Add(Database.TABLE_TEACHER_COL_TEACHER_ID, teacherId);
                 teacherCallBackActions.Add(
                     new CallBackAction(
                         teacherActionMode,
-                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_TEACHER, new string[] { oldTeacherId }),
+                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_TEACHER, new string[] { teacherId }),
                         refs
                     ));
             }
@@ -441,9 +502,10 @@ namespace TN_CSDLPT
 
             gcTeacherInfo.Enabled = false;
             gcTeacher.Enabled = true;
+            pcDepartment.Enabled = true;
 
             btnRefresh.PerformClick();
-            this.bdsTeacher.Position = bdsTeacher.Find(Database.TABLE_TEACHER_COL_TEACHER_ID, teTeacherId);
+            this.bdsTeacher.Position = bdsTeacher.Find(Database.TABLE_TEACHER_COL_TEACHER_ID, teacherId);
         }
 
         private void btnDeleteTeacher_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -540,6 +602,7 @@ namespace TN_CSDLPT
 
             gcTeacherInfo.Enabled = false;
             gcTeacher.Enabled = true;
+            pcDepartment.Enabled = true;
 
             FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
             {
@@ -561,6 +624,8 @@ namespace TN_CSDLPT
                 this.teacherActionMode = ActionMode.Refresh;
 
                 gcTeacher.Enabled = false;
+                pcDepartment.Enabled = false;
+
                 SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
                 System.Threading.Thread.Sleep(1000);
 
@@ -571,7 +636,9 @@ namespace TN_CSDLPT
                 this.bdsTeacher.Position = this.bdsTeacherPosition;
 
                 SplashScreenManager.CloseForm();
+
                 gcTeacher.Enabled = true;
+                pcDepartment.Enabled = true;
 
             }
             catch (Exception ex)
@@ -681,6 +748,13 @@ namespace TN_CSDLPT
             {
                 this.bdsDepartmentPosition = this.bdsDepartment.Position;
             }
+
+            if (this.bdsLocation.Position >= 0 && this.bdsDepartment.Position != -1)
+            {
+                string locationId = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_LOCATION_ID);
+                int index = this.bdsLocation.Find(Database.TABLE_LOCATION_COL_LOCATION_ID, locationId);
+                cbxDepartmentLocation.SelectedIndex = index;
+            }
         }
 
         //Teacher
@@ -706,6 +780,18 @@ namespace TN_CSDLPT
             if (!teacherActionMode.Equals(ActionMode.Refresh))
             {
                 this.bdsTeacherPosition = this.bdsTeacher.Position;
+            }
+
+            if (this.bdsDepartment.Position >= 0 && bdsTeacher.Position != -1)
+            {
+                string departmentId = FormUtils.GetBindingSourceData(this.bdsTeacher, this.bdsTeacher.Position, Database.TABLE_TEACHER_COL_TEACHER_DEPARTMENT_ID);
+                int index = this.bdsDepartment.Find(Database.TABLE_DEPT_COL_DEPT_ID, departmentId);
+                cbxStudentDepartment.SelectedIndex = index;
+            }
+
+            if(bdsTeacher.Position == -1)
+            {
+                cbxStudentDepartment.SelectedIndex = -1; 
             }
         }
 

@@ -44,15 +44,20 @@ namespace TN_CSDLPT.views
 
         private void FormClass_Load(object sender, EventArgs e)
         {
+            this.DataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'DataSet.KHOA' table. You can move, or remove it, as needed.
+            this.taDepartment.Connection.ConnectionString = Program.connstr;
             this.taDepartment.Fill(this.DataSet.KHOA);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.SINHVIEN' table. You can move, or remove it, as needed.
+            this.taStudent.Connection.ConnectionString = Program.connstr;
             this.taStudent.Fill(this.DataSet.SINHVIEN);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
+            this.taClass.Connection.ConnectionString = Program.connstr;
             this.taClass.Fill(this.DataSet.LOP);
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
             FormUtils.FillComboBox(cbxDepartment, this.bdsDepartment, new string[] { Database.TABLE_DEPT_COL_DEPT_ID, Database.TABLE_DEPT_COL_DEPT_NAME });
+            FormUtils.FillComboBox(cbxStudentClass, this.bdsClass, new string[] { Database.TABLE_CLASS_COL_CLASS_ID, Database.TABLE_CLASS_COL_CLASS_NAME });
             FormUtils.SetDefaultForBarManagerBars(barManager1);
 
             if (((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
@@ -112,6 +117,8 @@ namespace TN_CSDLPT.views
             gcClass.Enabled = false;
             pcStudent.Enabled = false;
             teClassId.Enabled = teClassName.Enabled = true;
+
+            cbxDepartment.SelectedIndex = 0;
         }
 
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e)
@@ -165,10 +172,12 @@ namespace TN_CSDLPT.views
 
             string oldClassId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_ID);
             string oldClassName = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_NAME);
-            string oldDeparmentId = FormUtils.GetBindingSourceData(bdsDepartment, cbxDepartment.SelectedIndex, Database.TABLE_DEPT_COL_DEPT_ID);
+            string oldDeparmentId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_DEPARTMENT_ID);
 
             string classId = teClassId.Text;
+            string departmentId = FormUtils.GetBindingSourceData(this.bdsDepartment, cbxDepartment.SelectedIndex, Database.TABLE_DEPT_COL_DEPT_ID);
 
+            FormUtils.SetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_DEPARTMENT_ID, departmentId);
             if (!CommitClassDB()) //Write database failed
             {
                 return;
@@ -189,7 +198,7 @@ namespace TN_CSDLPT.views
                 classCallBackActions.Add(
                     new CallBackAction(
                         classActionMode,
-                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_CLASS, new string[] { oldClassId }),
+                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_CLASS, new string[] { classId }),
                         refs
                     ));
             }
@@ -208,6 +217,7 @@ namespace TN_CSDLPT.views
 
             gcClassInfo.Enabled = false;
             gcClass.Enabled = true;
+            pcStudent.Enabled = true;
 
             btnRefresh.PerformClick();
 
@@ -226,7 +236,7 @@ namespace TN_CSDLPT.views
 
             string classId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_ID);
             string className = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_NAME);
-            string departmentId = FormUtils.GetBindingSourceData(this.bdsDepartment, cbxDepartment.SelectedIndex, Database.TABLE_DEPT_COL_DEPT_ID);
+            string departmentId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_DEPARTMENT_ID);
             if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
                 string.Format(Translation._argsDeleteWarningMsg, $"Class {className.Trim()}")) == DialogResult.OK)
             {
@@ -257,7 +267,7 @@ namespace TN_CSDLPT.views
                 }
             }
 
-           
+
 
             //}
         }
@@ -337,6 +347,8 @@ namespace TN_CSDLPT.views
                 classActionMode = ActionMode.Refresh;
 
                 gcClass.Enabled = false;
+                pcStudent.Enabled = false;
+
                 SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
                 System.Threading.Thread.Sleep(1000);
 
@@ -353,7 +365,9 @@ namespace TN_CSDLPT.views
                 this.bdsClass.Position = this.bdsClassPosition;
 
                 SplashScreenManager.CloseForm();
+
                 gcClass.Enabled = true;
+                pcStudent.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -369,8 +383,6 @@ namespace TN_CSDLPT.views
         private void btnNewStudent_Click(object sender, ItemClickEventArgs e)
         {
             studentActionMode = ActionMode.Add;
-
-            gcClass.Enabled = gcStudent.Enabled = false;
             bdsStudent.AddNew();
 
             FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
@@ -387,6 +399,10 @@ namespace TN_CSDLPT.views
             gcStudentInfo.Enabled = true;
             gcStudent.Enabled = false;
             teStudentId.Enabled = true;
+
+            pcClass.Enabled = false;
+
+            cbxStudentClass.SelectedIndex = 0;
 
             //bdsStudent.AddNew();
             //FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { });
@@ -429,6 +445,8 @@ namespace TN_CSDLPT.views
             gcStudentInfo.Enabled = true;
             gcStudent.Enabled = false;
             teStudentId.Enabled = false;
+
+            pcClass.Enabled = false;
 
             //if (bdsStudent.Count == 0)
             //{
@@ -476,8 +494,15 @@ namespace TN_CSDLPT.views
             string oldPassword = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_PASSWORD);
             string oldClassId = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_CLASS_ID);
 
-            string teStudentId = this.teStudentId.Text;
+            string studentId = this.teStudentId.Text;
+            string classId = FormUtils.GetBindingSourceData(this.bdsClass, cbxStudentClass.SelectedIndex, Database.TABLE_CLASS_COL_CLASS_ID);
 
+            if(studentActionMode.Equals(ActionMode.Add)) {
+                string password = "123";
+                FormUtils.SetBindingSourceData(this.bdsStudent, bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_PASSWORD, password);
+            }
+
+            FormUtils.SetBindingSourceData(bdsStudent, bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_CLASS_ID, classId);
             if (!CommitStudentDB()) //Write database failed
             {
                 return;
@@ -498,11 +523,11 @@ namespace TN_CSDLPT.views
             if (studentActionMode.Equals(ActionMode.Add))
             {
                 Hashtable refs = new Hashtable();
-                refs.Add(Database.TABLE_STUDENT_COL_STUDENT_ID, teStudentId);
+                refs.Add(Database.TABLE_STUDENT_COL_STUDENT_ID, studentId);
                 studentCallBackActions.Add(
                     new CallBackAction(
                         studentActionMode,
-                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_STUDENT, new string[] { oldStudentId }),
+                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_STUDENT, new string[] { studentId }),
                         refs
                     ));
             }
@@ -521,9 +546,10 @@ namespace TN_CSDLPT.views
 
             gcStudentInfo.Enabled = false;
             gcStudent.Enabled = true;
+            pcClass.Enabled = true;
 
             btnRefresh.PerformClick();
-            this.bdsClass.Position = bdsStudent.Find(Database.TABLE_STUDENT_COL_STUDENT_ID, teStudentId);
+            this.bdsClass.Position = bdsStudent.Find(Database.TABLE_STUDENT_COL_STUDENT_ID, studentId);
         }
 
         private void btnDeleteStudent_ItemClick(object sender, ItemClickEventArgs e)
@@ -623,6 +649,7 @@ namespace TN_CSDLPT.views
 
             gcStudentInfo.Enabled = false;
             gcStudent.Enabled = true;
+            pcClass.Enabled = true;
 
             FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
             {
@@ -644,6 +671,8 @@ namespace TN_CSDLPT.views
                 classActionMode = ActionMode.Refresh;
 
                 gcStudent.Enabled = false;
+                pcClass.Enabled = false;
+
                 SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
                 System.Threading.Thread.Sleep(1000);
 
@@ -654,7 +683,9 @@ namespace TN_CSDLPT.views
                 this.bdsStudent.Position = this.bdsStudentPosition;
 
                 SplashScreenManager.CloseForm();
+
                 gcStudent.Enabled = true;
+                pcClass.Enabled = true;
 
             }
             catch (Exception ex)
@@ -886,11 +917,6 @@ namespace TN_CSDLPT.views
             }
         }
 
-        private void btnChangeStudentClass_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
         private void cbxStudentClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             //try
@@ -973,6 +999,13 @@ namespace TN_CSDLPT.views
             {
                 this.bdsClassPosition = this.bdsClass.Position;
             }
+
+            if (this.bdsDepartment.Position >= 0 && this.bdsClass.Position != -1)
+            {
+                string deparmentId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_DEPARTMENT_ID);
+                int index = this.bdsDepartment.Find(Database.TABLE_DEPT_COL_DEPT_ID, deparmentId);
+                cbxDepartment.SelectedIndex = index;
+            }
         }
 
         //Student
@@ -998,6 +1031,18 @@ namespace TN_CSDLPT.views
             if (!studentActionMode.Equals(ActionMode.Refresh))
             {
                 this.bdsStudentPosition = this.bdsStudent.Position;
+            }
+
+            if (this.bdsClass.Position >= 0 && bdsStudent.Position != -1) //khi có student được chọn
+            {
+                string classId = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_CLASS_ID);
+                int index = this.bdsClass.Find(Database.TABLE_CLASS_COL_CLASS_ID, classId);
+                cbxStudentClass.SelectedIndex = index;
+            }
+
+            if (bdsStudent.Position == -1) //khi không có student nào được chọn
+            {
+                cbxStudentClass.SelectedIndex = -1; //combo class sẽ phải bỏ trống
             }
         }
 

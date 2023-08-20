@@ -59,7 +59,7 @@ namespace TN_CSDLPT.utils
                 List<string> args = new List<string>();
                 for (int i = 0; i < paramsCount; i++)
                 {
-                    args.Add($"N'{i}'");
+                    args.Add("N'{" + i + "}'");
                 }
 
                 string param = string.Join(",", args);

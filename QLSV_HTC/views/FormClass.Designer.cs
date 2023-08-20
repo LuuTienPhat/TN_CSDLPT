@@ -187,9 +187,9 @@
             tENLOPLabel1.AutoSize = true;
             tENLOPLabel1.Location = new System.Drawing.Point(336, 60);
             tENLOPLabel1.Name = "tENLOPLabel1";
-            tENLOPLabel1.Size = new System.Drawing.Size(53, 15);
+            tENLOPLabel1.Size = new System.Drawing.Size(37, 15);
             tENLOPLabel1.TabIndex = 10;
-            tENLOPLabel1.Text = "TENLOP:";
+            tENLOPLabel1.Text = "Class:";
             // 
             // dIACHILabel
             // 
@@ -553,8 +553,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnDeleteStudent),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnUndoStudent),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnCancelStudent),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefreshStudent),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnChangeStudentClass)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefreshStudent)});
             this.barStudent.OptionsBar.AllowQuickCustomization = false;
             this.barStudent.OptionsBar.DisableCustomization = true;
             this.barStudent.OptionsBar.DrawDragBorder = false;
@@ -639,7 +638,6 @@
             this.btnChangeStudentClass.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnChangeStudentClass.Name = "btnChangeStudentClass";
             this.btnChangeStudentClass.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnChangeStudentClass.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangeStudentClass_ItemClick);
             // 
             // standaloneBarDockControl1
             // 

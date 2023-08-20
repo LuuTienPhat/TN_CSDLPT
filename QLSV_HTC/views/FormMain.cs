@@ -219,9 +219,17 @@ namespace TN_CSDLPT.views
             }
         }
 
-        private void btnLocation_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnDepartment_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form frm = this.CheckExists(typeof(FormDepartment));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormDepartment f = new FormDepartment();
+                f.MdiParent = this;
+                f.StartPosition = FormStartPosition.CenterScreen;
+                f.Show();
+            }
         }
 
         private void btnClass_ItemClick(object sender, ItemClickEventArgs e)
@@ -239,12 +247,28 @@ namespace TN_CSDLPT.views
 
         private void btnTeacher_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form frm = this.CheckExists(typeof(FormDepartment));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormDepartment f = new FormDepartment();
+                f.MdiParent = this;
+                f.StartPosition = FormStartPosition.CenterScreen;
+                f.Show();
+            }
         }
 
         private void btnStudent_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form frm = this.CheckExists(typeof(FormClass));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormClass f = new FormClass();
+                f.MdiParent = this;
+                f.StartPosition = FormStartPosition.CenterScreen;
+                f.Show();
+            }
         }
     }
 }

@@ -142,7 +142,7 @@ namespace TN_CSDLPT.views
                 callBackActions.Add(
                     new CallBackAction(
                         mode,
-                        DatabaseUtils.BuildQuery(Database.SP_DELETE_SUBJECT, new string[] { oldSujectId }),
+                        DatabaseUtils.BuildQuery(Database.SP_DELETE_SUBJECT, new string[] { subjectId }),
                         refs
                     ));
             }
