@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TN_CSDLPT.constants;
+using TN_CSDLPT.report;
+using TN_CSDLPT.utils;
 
 namespace TN_CSDLPT.views
 {
@@ -40,11 +43,14 @@ namespace TN_CSDLPT.views
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            string classId = FormUtils.GetBindingSourceData(bdsClass, cbxClass.SelectedIndex, Database.TABLE_CLASS_COL_CLASS_ID);
-            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+            string classId = FormUtils.GetBindingSourceData(bdsClass, cbxClass.SelectedIndex, Database.TABLE_CLASS_COL_CLASS_ID).Trim();
+            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID).Trim();
             string numberOfExamTimes = seNumberOfExamTimes.Value.ToString();
 
-            string query = "";
+            string query = DatabaseUtils.BuildQuery2(Database.SP_REPORT_SUBJECT_GRADE_SHEET_CHECK_SUBJECT_AVAILABLE_FOR_CLASS, new string[]
+            {
+                classId, subjectId, numberOfExamTimes
+            });
 
             string className;
 
@@ -66,6 +72,18 @@ namespace TN_CSDLPT.views
             {
                 Program.CloseSqlDataReader();
             }
+
+            XtraReportSubjectGradeSheet xtraReportSubjectGradeSheet = new XtraReportSubjectGradeSheet(classId, subjectId, int.Parse(numberOfExamTimes));
+            //xtraReportBangDiemMonHoc.xrlbTitle.Text = "BẢNG ĐIỂM MÔN " + this.comboBoxMaMonHoc.Text.Trim() + " CỦA LỚP " + tenLop;
+            xtraReportSubjectGradeSheet.xrlbClassId.Text = classId;
+            xtraReportSubjectGradeSheet.xrlbClassName.Text = className;
+
+            //xtraReportBangDiemMonHoc.xrLabelNgayThi.Text = DateTime.Now.ToString("dd/MM/yyyy") + "cần hỏi thầy ngày là lấy ngày của gv đăng kí?";
+            xtraReportSubjectGradeSheet.xrlbSubject.Text = subjectId;
+            //xtraReportBangDiemMonHoc.xrLabelLan.Text = this.spinEditLan.Value.ToString();
+
+            ReportPrintTool printTool = new ReportPrintTool(xtraReportSubjectGradeSheet);
+            printTool.ShowPreviewDialog();
 
         }
 

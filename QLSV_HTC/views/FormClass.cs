@@ -497,7 +497,8 @@ namespace TN_CSDLPT.views
             string studentId = this.teStudentId.Text;
             string classId = FormUtils.GetBindingSourceData(this.bdsClass, cbxStudentClass.SelectedIndex, Database.TABLE_CLASS_COL_CLASS_ID);
 
-            if(studentActionMode.Equals(ActionMode.Add)) {
+            if (studentActionMode.Equals(ActionMode.Add))
+            {
                 string password = "123";
                 FormUtils.SetBindingSourceData(this.bdsStudent, bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_PASSWORD, password);
             }
@@ -1011,6 +1012,11 @@ namespace TN_CSDLPT.views
         //Student
         private void bdsStudent_ListChanged(object sender, ListChangedEventArgs e)
         {
+            if ((Program.mGroup == Database.ROLE_SCHOOL || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            {
+                return;
+            }
+
             if (this.bdsStudent.Count == 0)
             {
                 btnDeleteStudent.Enabled = btnEditStudent.Enabled = false;

@@ -57,7 +57,7 @@ namespace TN_CSDLPT
             FormUtils.FillComboBox(cbxDepartmentLocation, this.bdsLocation, new string[] { Database.TABLE_LOCATION_COL_LOCATION_ID, Database.TABLE_LOCATION_COL_LOCATION_NAME });
             FormUtils.SetDefaultForBarManagerBars(barManager1);
 
-            if (((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            if ((Program.mGroup == Database.ROLE_SCHOOL || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
             {
                 //class
                 FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
@@ -212,7 +212,7 @@ namespace TN_CSDLPT
             string departmentId = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_ID);
             string departmentName = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_NAME);
             string locationId = FormUtils.GetBindingSourceData(this.bdsDepartment, this.bdsDepartment.Position, Database.TABLE_DEPT_COL_DEPT_LOCATION_ID);
-            
+
             if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
                 string.Format(Translation._argsDeleteWarningMsg, $"Department {departmentName.Trim()}")) == DialogResult.OK)
             {
@@ -250,7 +250,7 @@ namespace TN_CSDLPT
             if (action.BackAction.Equals(ActionMode.Add))
             {
                 string classId = action.Reference[Database.TABLE_DEPT_COL_DEPT_ID].ToString();
-                DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, 
+                DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
                     string.Format(Translation._argsDeleteWarningMsg, $"Department {classId.Trim()}"));
 
                 if (dialogResult == DialogResult.Cancel)
@@ -555,7 +555,7 @@ namespace TN_CSDLPT
             if (action.BackAction.Equals(ActionMode.Add))
             {
                 string teacherId = action.Reference[Database.TABLE_CLASS_COL_CLASS_ID].ToString();
-                DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, 
+                DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
                     string.Format(Translation._argsDeleteWarningMsg, $"Teacher {teacherId}"));
                 if (dialogResult == DialogResult.Cancel)
                 {
@@ -760,6 +760,11 @@ namespace TN_CSDLPT
         //Teacher
         private void bdsTeacher_ListChanged(object sender, ListChangedEventArgs e)
         {
+            if ((Program.mGroup == Database.ROLE_SCHOOL || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            {
+                return;
+            }
+
             if (this.bdsTeacher.Count == 0)
             {
                 btnDeleteTeacher.Enabled = btnEditTeacher.Enabled = false;
@@ -789,9 +794,9 @@ namespace TN_CSDLPT
                 cbxStudentDepartment.SelectedIndex = index;
             }
 
-            if(bdsTeacher.Position == -1)
+            if (bdsTeacher.Position == -1)
             {
-                cbxStudentDepartment.SelectedIndex = -1; 
+                cbxStudentDepartment.SelectedIndex = -1;
             }
         }
 

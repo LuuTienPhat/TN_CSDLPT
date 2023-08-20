@@ -314,6 +314,14 @@ class Database
     /// </summary>
     public const string SP_REPORT_EXAM_REPORT_CHECK_BEFORE_HAND = "SP_REPORT_EXAM_REPORT_CHECK_BEFORE_HAND";
 
+    /// <summary>
+    /// 0: class ID
+    /// 1: subject ID
+    /// 2: number of exam times
+    /// </summary>
+    public const string SP_REPORT_SUBJECT_GRADE_SHEET_CHECK_SUBJECT_AVAILABLE_FOR_CLASS = "SP_REPORT_SUBJECT_GRADE_SHEET_CHECK_SUBJECT_AVAILABLE_FOR_CLASS";
+
+
     //TABLES
     public const string TABLE_STUDENT = "SINHVIEN";
     public const string TABLE_LOCATION = "COSO";
