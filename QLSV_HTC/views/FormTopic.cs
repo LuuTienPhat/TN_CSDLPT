@@ -79,24 +79,6 @@ namespace TN_CSDLPT.views
             mode = ActionMode.Add;
             this.bdsTopic.AddNew();
 
-            //string query = "EXEC SP_LAY_STT_CAUHOI_TIEPTHEO";
-            //try
-            //{
-            //    Program.myReader = Program.ExecSqlDataReader(query);
-            //    Program.myReader.Read();
-            //    int nextQuestionNo = Program.myReader.GetInt32(0);
-            //    seQuestionNo.EditValue = nextQuestionNo;
-            //    Program.myReader.Close();
-            //    Program.databaseConnection.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, $"Can't get next question number\n{ex.Message}");
-            //    Program.myReader.Close();
-            //    Program.databaseConnection.Close();
-            //    return;
-            //}
-
             seQuestionNo.Enabled = false;
             teTeacherId.Enabled = false;
 
@@ -234,7 +216,6 @@ namespace TN_CSDLPT.views
             gcTopic.Enabled = true;
 
             btnRefresh.PerformClick();
-
             this.bdsTopic.Position = bdsTopic.Find(Database.TABLE_TOPIC_COL_QUESTION_NO, questionNo);
 
         }
@@ -282,17 +263,15 @@ namespace TN_CSDLPT.views
                     {
                         CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
                             string.Format(Translation._argsDeleteErrorMsg, new string[] { $"Question No {questionNo}", ex.Message }));
-
-                        taTopic.Update(this.DataSet.BODE);
-                        this.bdsTopic.Position = this.bdsTopic.Find(Database.TABLE_TOPIC_COL_QUESTION_NO, questionNo);
+                        //taTopic.Update(this.DataSet.BODE);
                         return;
                     }
                     finally
                     {
-                        btnRefresh.PerformClick();
                         mode = ActionMode.None;
+                        btnRefresh.PerformClick();
+                        this.bdsTopic.Position = this.bdsTopic.Find(Database.TABLE_TOPIC_COL_QUESTION_NO, questionNo);
                     }
-
                 }
             }
         }
@@ -364,6 +343,7 @@ namespace TN_CSDLPT.views
                 this.bdsTopic.EndEdit();
                 this.taTopic.Connection.ConnectionString = Program.connstr;
                 this.taTopic.Fill(this.DataSet.BODE);
+
                 this.bdsTopic.Position = this.position;
 
                 SplashScreenManager.CloseForm();

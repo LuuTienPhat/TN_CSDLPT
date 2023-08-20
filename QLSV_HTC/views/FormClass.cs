@@ -4,6 +4,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Menu;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,26 +16,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TN_CSDLPT.constants;
+using TN_CSDLPT.models;
+using TN_CSDLPT.utils;
 
 namespace TN_CSDLPT.views
 {
     public partial class FormClass : DevExpress.XtraEditors.XtraForm
     {
 
-        private bool checkThem = false;
-        private bool checkXoa = false;
-        private bool checkSua = false;
-        private bool checkThemSV = false;
-        private bool checkXoaSV = false;
-        private bool checkChuyenLop = false;
-        private bool checkSuaSV = false;
-        public static bool checkSave = true;
+        //private bool checkThem = false;
+        //private bool checkXoa = false;
+        //private bool checkSua = false;
+        //private bool checkThemSV = false;
+        //private bool checkXoaSV = false;
+        //private bool checkChuyenLop = false;
+        //private bool checkSuaSV = false;
+        //public static bool checkSave = true;
 
-        ArrayList undoCommands = new ArrayList();
+        public FormClassMode formMode = FormClassMode.Class;
+
+        //class
+        BindingList<CallBackAction> classCallBackActions = new BindingList<CallBackAction>();
+        ActionMode classActionMode = ActionMode.None;
+        int bdsClassPosition = -1;
+
+        //student
+        BindingList<CallBackAction> studentCallBackActions = new BindingList<CallBackAction>();
+        ActionMode studentActionMode = ActionMode.None;
+        int bdsStudentPosition = -1;
 
         public FormClass()
         {
             InitializeComponent();
+            InitializeCallBackActions();
         }
 
         private void FormClass_Load(object sender, EventArgs e)
@@ -46,39 +60,640 @@ namespace TN_CSDLPT.views
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
             this.taClass.Fill(this.DataSet.LOP);
 
+            Program.FillLocationCombobox(btnLocation, cbxLocation);
+            FormUtils.FillComboBox(cbxDepartment, this.bdsDepartment, new string[] { Database.TABLE_DEPT_COL_DEPT_ID, Database.TABLE_DEPT_COL_DEPT_NAME });
             FormUtils.SetDefaultForBarManagerBars(barManager1);
-            
+
+            if (((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            {
+                //class
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNew, btnEdit, btnDelete, btnCommit, btnUndo, btnCancel
+                });
+
+                //student
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNewStudent, btnEditStudent, btnDeleteStudent, btnCommitStudent, btnUndoStudent, btnCancelStudent
+                });
+            }
+            else
+            {
+                //class
+                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNew, btnEdit, btnDelete
+                });
+
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                   btnCancel, btnCommit
+                });
+
+                //student
+                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem> {
+                    btnNewStudent, btnEditStudent, btnDeleteStudent
+                });
+
+                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                   btnCancelStudent, btnCommitStudent
+                });
+            }
+
+            gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
         }
 
-        private void btnAddStudent_Click(object sender, EventArgs e)
+        //class
+        private void btnNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            classActionMode = ActionMode.Add;
+
+            gcClass.Enabled = gcStudent.Enabled = false;
+            bdsClass.AddNew();
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh, btnUndo
+            });
+
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
+
+            gcClassInfo.Enabled = true;
+            gcClass.Enabled = false;
+            teClassId.Enabled = teClassName.Enabled = true;
+
+            //Fill data cho bdsKhoa
+            //taDepartment.Connection.ConnectionString = Program.connstr;
+            //taDepartment.Fill(DataSet.KHOA);
+
+            //cbxDepartment.SelectedIndex = 0;
+            // teDeparmentId.Text = cbxDepartment.SelectedValue.ToString();
+
+            //teClassId.Enabled = teClassName.Enabled = true;
+        }
+
+        private void btnEdit_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //if (bdsClass.Count == 0)
+            //{
+            //    CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._infomationTitle, "No Class available!");
+            //    btnEdit.Enabled = false;
+            //}
+            //else
+            //{
+            classActionMode = ActionMode.Edit;
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh, btnUndo
+            });
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
+
+            gcClassInfo.Enabled = true;
+            teClassId.Enabled = false;
+            gcClass.Enabled = false;
+
+            pcStudent.Enabled = false;
+            //ctxMenu.Enabled = false;
+            //pcClass.Enabled = true;
+
+
+            //Fill data cho bdsKhoa
+            //taDepartment.Connection.ConnectionString = Program.connstr;
+            //taDepartment.Fill(DataSet.KHOA);
+            //this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
+
+            //cbbTenKhoa.SelectedValue = ((DataRowView)this.bdsLop.Current).Row["MAKH"].ToString();
+            //edtMaKH.Text = cbbTenKhoa.SelectedValue.ToString();
+            //checkSua = true;
+            //panelTimGV.Enabled = false;
+            //checkSave = false;
+            //}
+        }
+
+        private void btnCommit_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (!ValidateClassInput())
+            {
+                return;
+            }
+
+            string oldClassId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_ID);
+            string oldClassName = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_NAME);
+            string oldDeparmentId = FormUtils.GetBindingSourceData(bdsDepartment, cbxDepartment.SelectedIndex, Database.TABLE_DEPT_COL_DEPT_ID);
+
+            string classId = teClassId.Text;
+
+            if (!CommitClassDB()) //Write database failed
+            {
+                return;
+            }
+
+            if (classActionMode.Equals(ActionMode.Edit))
+            {
+                classCallBackActions.Add(
+                    new CallBackAction(classActionMode,
+                    DatabaseUtils.BuildQuery2(Database.SP_UPDATE_CLASS, new string[] { oldClassId, oldClassName, oldDeparmentId })
+                    ));
+            }
+
+            if (classActionMode.Equals(ActionMode.Add))
+            {
+                Hashtable refs = new Hashtable();
+                refs.Add(Database.TABLE_CLASS_COL_CLASS_ID, oldClassId);
+                classCallBackActions.Add(
+                    new CallBackAction(
+                        classActionMode,
+                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_CLASS, new string[] { oldClassId }),
+                        refs
+                    ));
+            }
+
+            classActionMode = ActionMode.None;
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh
+            });
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
+
+            gcClassInfo.Enabled = false;
+            gcClass.Enabled = true;
+
+            btnRefresh.PerformClick();
+
+            this.bdsClass.Position = bdsClass.Find(Database.TABLE_CLASS_COL_CLASS_ID, classId);
+
+        }
+
+        private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            classActionMode = ActionMode.Delete;
+            //if (bdsClass.Count == 0)
+            //{
+            //    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, "No Class available to delete");
+            //}
+
+            //else
+            //{
+            if (bdsStudent.Count > 0)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, "Class couldn't be deleted, already have students");
+                return;
+            }
+
+            //if (bdsGiaoVienDK.Count > 0)
+            //{
+            //    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, "Class couldn't be deleted, already have teacher");
+            //    return;
+            //}
+            string classId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_ID);
+            string className = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_NAME);
+            if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
+                string.Format(Translation._argsDeleteWarningMsg, $"Class {className}")) == DialogResult.OK)
+            {
+                try
+                {
+                    this.bdsClass.RemoveCurrent();
+                    this.taClass.Connection.ConnectionString = Program.connstr;
+                    this.taClass.Update(this.DataSet.LOP);
+
+                    classCallBackActions.Add(
+                        new CallBackAction(
+                            classActionMode,
+                            DatabaseUtils.BuildQuery2(Database.SP_INSERT_CLASS, new string[] { classId, className })
+                        ));
+                }
+                catch (Exception ex)
+                {
+                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
+                        string.Format(Translation._argsDeleteErrorMsg, new string[] { $"Class {className}", ex.Message }));
+                    //this.taSubject.Update(this.DataSet.MONHOC);
+                    return;
+                }
+                finally
+                {
+                    classActionMode = ActionMode.None;
+                    btnRefresh.PerformClick();
+                    this.bdsClass.Position = this.bdsClass.Find(Database.TABLE_CLASS_COL_CLASS_ID, classId);
+                }
+            }
+
+           
+
+            //}
+        }
+
+        private void btnUndo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            CallBackAction action = classCallBackActions[classCallBackActions.Count - 1];
+            if (action.BackAction.Equals(ActionMode.Add))
+            {
+                string classId = action.Reference[Database.TABLE_CLASS_COL_CLASS_ID].ToString();
+                DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, string.Format(Translation._argsDeleteWarningMsg, $"Class {classId}"));
+                if (dialogResult == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(action.Query);
+                Program.myReader.Read();
+
+                string affectedId = Program.myReader.GetString(0);
+                if (affectedId != "-1")
+                {
+                    this.bdsClass.Position = this.bdsClass.Find(Database.TABLE_CLASS_COL_CLASS_ID, affectedId);
+                }
+
+                classCallBackActions.RemoveAt(classCallBackActions.Count - 1);
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
+            }
+
+            finally
+            {
+                btnRefresh.PerformClick();
+                Program.CloseSqlDataReader();
+            }
+        }
+
+        private void btnCancel_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (classActionMode.Equals(ActionMode.Add))
+            {
+                classActionMode = ActionMode.Cancel;
+                gvClass.DeleteRow(gvClass.FocusedRowHandle);
+            }
+
+            classActionMode = ActionMode.Cancel;
+            this.bdsClass.CancelEdit();
+            this.bdsClass.Position = bdsClassPosition;
+
+            gcClassInfo.Enabled = false;
+            gcClass.Enabled = true;
+
+            pcStudent.Enabled = true;
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNew, btnEdit, btnDelete, btnExit, btnRefresh
+            });
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommit, btnCancel
+            });
+
+            classActionMode = ActionMode.None;
+        }
+
+        private void btnRefresh_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
             {
-                bdsStudent.AddNew();
-                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { });
+                classActionMode = ActionMode.Refresh;
 
-                pcClass.Enabled = false;
-                pcStudent.Enabled = true;
+                gcClass.Enabled = false;
+                SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
+                System.Threading.Thread.Sleep(1000);
 
-                gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
-                FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem> {
-                    btnAddStudent, btnEditStudent, btnMoveStudent, btnDeleteStudent, btnSaveStudent, btnUndoStudent, btnRefreshStudent
-                });
-                teStudentId.Enabled = teLastName.Enabled = teFirstName.Enabled = deBirthDate.Enabled
-                    = teAddress.Enabled = true;
+                this.bdsClass.EndEdit();
 
-                cbxStudentClass.Enabled = false;
-                checkThemSV = true;
+                this.taStudent.Connection.ConnectionString = Program.connstr;
+                this.taStudent.Fill(this.DataSet.SINHVIEN);
 
-                //cbbTenLop.SelectedValue = edtMaLop.Text;
-                SetCbxStudentClass(teClassId.Text);
-                teStudentClassId.Text = ((DataRowView)this.bdsClass.Current).Row["MALOP"].ToString();
-                checkSave = false;
+                this.taDepartment.Connection.ConnectionString = Program.connstr;
+                this.taDepartment.Fill(this.DataSet.KHOA);
+
+                this.taClass.Connection.ConnectionString = Program.connstr;
+                this.taClass.Fill(this.DataSet.LOP);
+                this.bdsClass.Position = this.bdsClassPosition;
+
+                SplashScreenManager.CloseForm();
+                gcClass.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsRefreshErrorMsg, ex.Message));
+            }
+            finally
+            {
+                classActionMode = ActionMode.None;
+            }
+        }
+
+        //student
+        private void btnNewStudent_Click(object sender, ItemClickEventArgs e)
+        {
+            studentActionMode = ActionMode.Add;
+
+            gcClass.Enabled = gcStudent.Enabled = false;
+            bdsStudent.AddNew();
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNewStudent, btnEditStudent, btnDeleteStudent, btnRefreshStudent, btnUndoStudent, btnExit
+            });
+
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommitStudent, btnCancelStudent
+            });
+
+            gcStudentInfo.Enabled = true;
+            gcStudent.Enabled = false;
+            teStudentId.Enabled = true;
+
+            //bdsStudent.AddNew();
+            //FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { });
+
+            //pcClass.Enabled = false;
+            //pcStudent.Enabled = true;
+
+            //gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
+            //FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem> {
+            //        btnCtxAddStudent, btnCtxEditStudent, btnCtxMoveStudent, btnCtxDeleteStudent, btnCtxSaveStudent, btnCtxUndoStudent, btnCtxRefreshStudent
+            //    });
+
+            //teStudentId.Enabled = teLastName.Enabled = teFirstName.Enabled = deBirthDate.Enabled
+            //    = teAddress.Enabled = true;
+
+            //cbxStudentClass.Enabled = false;
+            //checkThemSV = true;
+
+            ////cbbTenLop.SelectedValue = edtMaLop.Text;
+            //SetCbxStudentClass(teClassId.Text);
+            //teStudentClassId.Text = ((DataRowView)this.bdsClass.Current).Row["MALOP"].ToString();
+            //checkSave = false;
+        }
+
+        private void btnEditStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            classActionMode = ActionMode.Add;
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNewStudent, btnEditStudent, btnDeleteStudent, btnRefreshStudent, btnUndoStudent, btnExit
+            });
+
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommitStudent, btnCancelStudent
+            });
+
+            gcStudentInfo.Enabled = true;
+            gcStudent.Enabled = false;
+            teStudentId.Enabled = false;
+
+            //if (bdsStudent.Count == 0)
+            //{
+            //    CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION,
+            //         Translation._infomationTitle, string.Format(Translation._argsNotEmptyMsg, "No student available!"));
+
+            //}
+            //else
+            //{
+            //FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            //    {
+            //        btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
+            //    });
+
+            //pcClass.Enabled = false;
+            //pcStudent.Enabled = true;
+            //gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
+
+            //FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
+            //    {
+            //        btnCtxAddStudent, btnCtxEditStudent, btnCtxMoveStudent, btnCtxDeleteStudent
+            //    });
+
+            //teFirstName.Enabled = teLastName.Enabled = deBirthDate.Enabled = teAddress.Enabled = true;
+            //cbxStudentClass.Enabled = false;
+
+            //checkSuaSV = true;
+            //checkSave = false;
+
+            //}
+        }
+
+        private void btnCommitStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (!ValidateStudentInput())
+            {
+                return;
+            }
+
+            string oldStudentId = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_ID);
+            string oldLastName = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_LASTNAME);
+            string oldFirstName = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_FIRSTNAME);
+            string oldBirthDate = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_BIRTHDATE);
+            string oldAddress = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_ADDRESS);
+            string oldPassword = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_PASSWORD);
+            string oldClassId = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_CLASS_ID);
+
+            string teStudentId = this.teStudentId.Text;
+
+            if (!CommitStudentDB()) //Write database failed
+            {
+                return;
+            }
+
+            if (studentActionMode.Equals(ActionMode.Edit))
+            {
+                studentCallBackActions.Add(
+                    new CallBackAction(
+                        studentActionMode,
+                        DatabaseUtils.BuildQuery2(Database.SP_UPDATE_STUDENT, new string[]
+                        {
+                            oldStudentId, oldLastName, oldFirstName, oldBirthDate, oldAddress, oldPassword, oldClassId
+                        })
+                    ));
+            }
+
+            if (studentActionMode.Equals(ActionMode.Add))
+            {
+                Hashtable refs = new Hashtable();
+                refs.Add(Database.TABLE_STUDENT_COL_STUDENT_ID, teStudentId);
+                studentCallBackActions.Add(
+                    new CallBackAction(
+                        studentActionMode,
+                        DatabaseUtils.BuildQuery2(Database.SP_DELETE_STUDENT, new string[] { oldStudentId }),
+                        refs
+                    ));
+            }
+
+            studentActionMode = ActionMode.None;
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNewStudent, btnEditStudent, btnDeleteStudent, btnRefreshStudent, btnExit
+            });
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommitStudent, btnCancelStudent
+            });
+
+            gcStudentInfo.Enabled = false;
+            gcStudent.Enabled = true;
+
+            this.bdsClassPosition = bdsStudent.Find(Database.TABLE_STUDENT_COL_STUDENT_ID, teStudentId);
+            btnRefresh.PerformClick();         
+        }
+
+        private void btnDeleteStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            studentActionMode = ActionMode.Delete;
+            string studentId = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_ID);
+            string lastName = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_LASTNAME);
+            string firstName = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_FIRSTNAME);
+            string birthDate = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_BIRTHDATE);
+            string address = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_ADDRESS);
+            string password = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_PASSWORD);
+            string classId = FormUtils.GetBindingSourceData(this.bdsStudent, this.bdsStudent.Position, Database.TABLE_STUDENT_COL_STUDENT_CLASS_ID);
+
+            if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
+               string.Format(Translation._argsDeleteWarningMsg, $"Student {studentId}")) == DialogResult.OK)
+            {
+
+                try
+                {
+                    this.bdsStudent.RemoveCurrent();
+                    this.taStudent.Connection.ConnectionString = Program.connstr;
+                    this.taStudent.Update(this.DataSet.SINHVIEN);
+
+                    studentCallBackActions.Add(
+                        new CallBackAction(
+                            studentActionMode,
+                            DatabaseUtils.BuildQuery(Database.SP_INSERT_SUBJECT, new string[] { studentId, lastName, firstName, birthDate, address, password, classId })
+                        ));
+                }
+                catch (Exception ex)
+                {
+                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
+                        string.Format(Translation._argsDeleteErrorMsg, new string[] { $"Student {studentId}", ex.Message }));
+                    //this.taSubject.Update(this.DataSet.MONHOC);
+                    return;
+                }
+                finally
+                {
+                    studentActionMode = ActionMode.None;
+                    btnRefreshStudent.PerformClick();
+                    this.bdsStudent.Position = this.bdsStudent.Find(Database.TABLE_STUDENT_COL_STUDENT_ID, studentId);
+                }
+            }
+
+
+        }
+
+        private void btnUndoStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            CallBackAction action = studentCallBackActions[studentCallBackActions.Count - 1];
+            if (action.BackAction.Equals(ActionMode.Add))
+            {
+                string classId = action.Reference[Database.TABLE_CLASS_COL_CLASS_ID].ToString();
+                DialogResult dialogResult = CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, string.Format(Translation._argsDeleteWarningMsg, $"Class {classId}"));
+                if (dialogResult == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(action.Query);
+                Program.myReader.Read();
+
+                string affectedId = Program.myReader.GetString(0);
+                if (affectedId != "-1")
+                {
+                    this.bdsStudentPosition = this.bdsStudent.Find(Database.TABLE_CLASS_COL_CLASS_ID, affectedId);
+                }
+
+                studentCallBackActions.RemoveAt(studentCallBackActions.Count - 1);
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsUndoErrorMsg, ex.Message));
+            }
+
+            finally
+            {
+                btnRefreshStudent.PerformClick();
+                Program.CloseSqlDataReader();
+            }
+        }
+
+        private void btnCancelStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (studentActionMode.Equals(ActionMode.Add))
+            {
+                studentActionMode = ActionMode.Cancel;
+                gvStudent.DeleteRow(gvStudent.FocusedRowHandle);
+            }
+
+            studentActionMode = ActionMode.Cancel;
+            this.bdsStudent.CancelEdit();
+            this.bdsStudent.Position = bdsStudentPosition;
+
+            gcStudentInfo.Enabled = false;
+            gcStudent.Enabled = true;
+
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnNewStudent, btnEditStudent, btnDeleteStudent, btnRefreshStudent, btnExit
+            });
+
+            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+            {
+                btnCommitStudent, btnCancelStudent
+            });
+
+            studentActionMode = ActionMode.None;
+        }
+
+        private void btnRefreshStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                classActionMode = ActionMode.Refresh;
+
+                gcStudent.Enabled = false;
+                SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
+                System.Threading.Thread.Sleep(1000);
+
+                this.bdsStudent.EndEdit();
+                this.taStudent.Connection.ConnectionString = Program.connstr;
+                this.taStudent.Fill(this.DataSet.SINHVIEN);
+
+                this.bdsStudent.Position = this.bdsStudentPosition;
+
+                SplashScreenManager.CloseForm();
+                gcStudent.Enabled = true;
 
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, $"Couldn't add new student\n{ex.Message}");
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsRefreshErrorMsg, ex.Message));
+            }
+            finally
+            {
+                classActionMode = ActionMode.None;
             }
         }
 
@@ -86,180 +701,6 @@ namespace TN_CSDLPT.views
         {
             int position = bdsClass.Find("MALOP", classId);
             cbxStudentClass.SelectedIndex = position;
-        }
-
-        private void gridView1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
-        {
-            if (e.MenuType == GridMenuType.Column)
-            {
-                GridViewColumnMenu menu = e.Menu as GridViewColumnMenu;
-                menu.Items.Clear();
-                if (menu.Column != null)
-                {
-                    menu.Items.Add(CreateCheckItem("Lock this column", menu.Column, null));
-                }
-            }
-        }
-
-        DXMenuCheckItem CreateCheckItem(string caption, GridColumn column, Image image)
-        {
-            DXMenuCheckItem item = new DXMenuCheckItem(caption,
-              !column.OptionsColumn.AllowMove, image, new EventHandler(OnCanMoveItemClick));
-            item.Tag = new MenuColumnInfo(column);
-            return item;
-        }
-
-        // Menu item click handler.
-        void OnCanMoveItemClick(object sender, EventArgs e)
-        {
-            DXMenuCheckItem item = sender as DXMenuCheckItem;
-            MenuColumnInfo info = item.Tag as MenuColumnInfo;
-            if (info == null) return;
-            info.Column.OptionsColumn.AllowMove = !item.Checked;
-        }
-
-        private void btnNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            try
-            {
-                gcClass.Enabled = gcStudent.Enabled = false;
-                bdsClass.AddNew();
-
-                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
-                ctxMenu.Enabled = false;
-
-                //Fill data cho bdsKhoa
-                taDepartment.Connection.ConnectionString = Program.connstr;
-                taDepartment.Fill(DataSet.KHOA);
-
-                cbxDepartment.SelectedIndex = 0;
-                // teDeparmentId.Text = cbxDepartment.SelectedValue.ToString();
-                teClassId.Enabled = teClassName.Enabled = true;
-                //checkThem = true;
-                //panelTimGV.Enabled = false;
-                //checkSave = false;
-
-            }
-            catch (Exception ex)
-            {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, $"Failed to add new Class\n{ex.Message}");
-            }
-        }
-
-        private void btnEdit_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (bdsClass.Count == 0)
-            {
-                CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._infomationTitle, "No Class available!");
-                btnEdit.Enabled = false;
-            }
-            else
-            {
-                teClassId.Enabled = false;
-                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> { btnNew, btnEdit, btnDelete });
-                ctxMenu.Enabled = false;
-                pcClass.Enabled = true;
-                gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
-
-                //Fill data cho bdsKhoa
-                taDepartment.Connection.ConnectionString = Program.connstr;
-                taDepartment.Fill(DataSet.KHOA);
-                //this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
-
-                //cbbTenKhoa.SelectedValue = ((DataRowView)this.bdsLop.Current).Row["MAKH"].ToString();
-                //edtMaKH.Text = cbbTenKhoa.SelectedValue.ToString();
-                //checkSua = true;
-                //panelTimGV.Enabled = false;
-                //checkSave = false;
-            }
-        }
-
-        private void btnCommit_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (checkThem)
-            {
-                if (ValidateClassInput())
-                {
-                    WriteDB();
-                    checkThem = false;
-                }
-
-            }
-            else if (checkSua)
-            {
-                if (ValidateClassInput())
-                {
-                    WriteDB();
-                    checkSua = false;
-                }
-            }
-            else
-            {
-                WriteDB();
-                checkSua = false;
-                checkThem = false;
-            }
-
-        }
-
-        private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (bdsClass.Count == 0)
-            {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, "No Class available to delete");
-            }
-
-            else
-            {
-                if (bdsStudent.Count > 0)
-                {
-                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, "Class couldn't be deleted, already have students");
-                    return;
-                }
-
-                //if (bdsGiaoVienDK.Count > 0)
-                //{
-                //    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, "Class couldn't be deleted, already have teacher");
-                //    return;
-                //}
-                string className = ((DataRowView)this.bdsClass.Current).Row["TENLOP"].ToString();
-                string warningDeleteMsg = $"Are you sure to delete this class {className}";
-                if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING, Translation._warningTitle, warningDeleteMsg) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        //phải chạy lệnh del from where mới chính xác
-                        bdsClass.RemoveCurrent();
-                        //đẩy dữ liệu về adapter
-                        this.taClass.Update(this.DataSet.LOP);
-                    }
-                    catch (Exception ex)
-                    {
-                        CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, $"Unable to delete class\n{ex.Message}");
-                    }
-                }
-
-            }
-        }
-
-        private void btnUndo_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btnCancel_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btnRefresh_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            // TODO: This line of code loads data into the 'DataSet.KHOA' table. You can move, or remove it, as needed.
-            this.taDepartment.Fill(this.DataSet.KHOA);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.SINHVIEN' table. You can move, or remove it, as needed.
-            this.taStudent.Fill(this.DataSet.SINHVIEN);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
-            this.taClass.Fill(this.DataSet.LOP);
         }
 
         private bool ValidateClassInput()
@@ -283,97 +724,42 @@ namespace TN_CSDLPT.views
             return isValidated;
         }
 
-        private bool WriteDB()
+        private bool CommitClassDB()
         {
-            bool isSuccessully = true;
-
+            bool isCommitted = false;
             try
             {
-                bdsClass.EndEdit();
-                //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
-                bdsClass.ResetCurrentItem();
+                this.bdsClass.EndEdit();
+                this.bdsClass.ResetCurrentItem();
+                this.taClass.Connection.ConnectionString = Program.connstr;
+                this.taClass.Update(this.DataSet.LOP);
 
-                //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
-                // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                taClass.Update(DataSet.LOP);
-
-                //FormUtils.DisableMatrixBarMangagerItems(barManager1, new List<BarItem> { 
-
-                //});
-
-                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
-            {
-                btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
-            });
-
-                pcClass.Enabled = pcStudent.Enabled = false;
-                gcClassInfo.Enabled = gcStudentInfo.Enabled = true;
-                checkThem = checkSua = checkXoa = false;
-
-                ctxMenu.Enabled = true;
-
-                FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
-            {
-                btnAddStudent, btnEditStudent, btnMoveStudent, btnDeleteStudent, btnSaveStudent, btnUndoStudent, btnRefreshStudent
-            });
-
-                checkSave = true;
-                isSuccessully = true;
+                isCommitted = true;
             }
             catch (Exception ex)
             {
-
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, $"Couldn't save class\n{ex.Message}");
-
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitDatabaseErrorMsg, ex.Message));
             }
-
-            return isSuccessully;
+            return isCommitted;
         }
 
-        private bool WriteStudent()
+        private bool CommitStudentDB()
         {
-            bool isSucessfully = false;
-            //string query = $"EXEC SP_INSERT_STUDENT '{teClassId}', ''"
+            bool isCommitted = false;
             try
             {
-                bdsStudent.EndEdit();
-                bdsStudent.ResetCurrentItem();
-
-                //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
-                // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
+                this.bdsStudent.EndEdit();
+                this.bdsStudent.ResetCurrentItem();
+                this.taStudent.Connection.ConnectionString = Program.connstr;
                 this.taStudent.Update(this.DataSet.SINHVIEN);
 
-                this.taStudent.Connection.ConnectionString = Program.connstr;
-                this.taStudent.Fill(this.DataSet.SINHVIEN);
-                // TODO: This line of code loads data into the 'tNDataSet.DSKHOA' table. You can move, or remove it, as needed.
-                this.taDepartment.Connection.ConnectionString = Program.connstr;
-                //this.taDepartment.Fill(this.DataSet.DSKHOA);
-
-                FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
-                {
-                    btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
-                });
-
-                pcClass.Enabled = pcStudent.Enabled = false;
-                gcClassInfo.Enabled = gcStudentInfo.Enabled = true;
-                checkThemSV = checkSuaSV = checkXoaSV = false;
-
-                FormUtils.EnableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
-                {
-                    btnAddStudent, btnEditStudent, btnMoveStudent, btnDeleteStudent, btnSaveStudent, btnUndoStudent, btnRefreshStudent
-                });
-
-                checkSave = true;
-
-                isSucessfully = true;
+                isCommitted = true;
             }
             catch (Exception ex)
             {
-                checkSave = false;
-                isSucessfully = false;
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, $"Couldn't save student\n{ex.Message}");
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitDatabaseErrorMsg, ex.Message));
             }
-            return isSucessfully;
+            return isCommitted;
         }
 
         private void btnDeleteStudent_Click(object sender, EventArgs e)
@@ -393,41 +779,8 @@ namespace TN_CSDLPT.views
                 }
                 else
                 {
-                    btnRefreshStudent.PerformClick();
+                    btnCtxRefreshStudent.PerformClick();
                 }
-
-            }
-        }
-
-        private void btnEditStudent_Click(object sender, EventArgs e)
-        {
-            if (bdsStudent.Count == 0)
-            {
-                CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION,
-                     Translation._infomationTitle, string.Format(Translation._argsNotEmptyMsg, "No student available!"));
-
-            }
-            else
-            {
-                FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
-                {
-                    btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
-                });
-
-                pcClass.Enabled = false;
-                pcStudent.Enabled = true;
-                gcClassInfo.Enabled = gcStudentInfo.Enabled = false;
-
-                FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
-                {
-                    btnAddStudent, btnEditStudent, btnMoveStudent, btnDeleteStudent
-                });
-
-                teFirstName.Enabled = teLastName.Enabled = deBirthDate.Enabled = teAddress.Enabled = true;
-                cbxStudentClass.Enabled = false;
-
-                checkSuaSV = true;
-                checkSave = false;
 
             }
         }
@@ -476,50 +829,50 @@ namespace TN_CSDLPT.views
 
         private void btnSaveStudent_Click(object sender, EventArgs e)
         {
-            if (checkThemSV == true)
-            {
-                if (ValidateStudentInput())
-                {
-                    WriteStudent();
-                }
-            }
-            else if (checkSuaSV)
-            {
-                if (ValidateStudentInput())
-                {
-                    checkSuaSV = false;
-                    WriteStudent();
-                }
-            }
-            else if (checkChuyenLop)
-            {
-                string query = $"EXEC SP_CHANGE_CLASS N'{teStudentClassId.Text.Trim()}', N'{teStudentId.Text.Trim()}'";
-                int result = Program.ExecSqlNonQuery(query);
-                if (result == 1)
-                {
+            //if (checkThemSV == true)
+            //{
+            //    if (ValidateStudentInput())
+            //    {
+            //        WriteStudent();
+            //    }
+            //}
+            //else if (checkSuaSV)
+            //{
+            //    if (ValidateStudentInput())
+            //    {
+            //        checkSuaSV = false;
+            //        WriteStudent();
+            //    }
+            //}
+            //else if (checkChuyenLop)
+            //{
+            //    string query = $"EXEC SP_CHANGE_CLASS N'{teStudentClassId.Text.Trim()}', N'{teStudentId.Text.Trim()}'";
+            //    int result = Program.ExecSqlNonQuery(query);
+            //    if (result == 1)
+            //    {
 
-                    FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
-                    {
-                        btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
-                    });
+            //        FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
+            //        {
+            //            btnNew, btnEdit, btnDelete, btnCommit, btnRefresh, btnUndo
+            //        });
 
-                    pcClass.Enabled = pcStudent.Enabled = false;
-                    gcClassInfo.Enabled = gcStudentInfo.Enabled = true;
-                    checkThemSV = checkSuaSV = checkXoaSV = false;
+            //        pcClass.Enabled = pcStudent.Enabled = false;
+            //        gcClassInfo.Enabled = gcStudentInfo.Enabled = true;
+            //        checkThemSV = checkSuaSV = checkXoaSV = false;
 
-                    FormUtils.EnableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
-                    {
-                        btnAddStudent, btnEditStudent, btnMoveStudent, btnDeleteStudent, btnSaveStudent, btnUndoStudent, btnRefreshStudent
-                    });
+            //        FormUtils.EnableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
+            //        {
+            //            btnCtxAddStudent, btnCtxEditStudent, btnCtxMoveStudent, btnCtxDeleteStudent, btnCtxSaveStudent, btnCtxUndoStudent, btnCtxRefreshStudent
+            //        });
 
-                    checkChuyenLop = false;
-                    btnRefresh.PerformClick();
-                }
-                else
-                {
-                    WriteStudent();
-                }
-            }
+            //        checkChuyenLop = false;
+            //        btnRefresh.PerformClick();
+            //    }
+            //    else
+            //    {
+            //        WriteStudent();
+            //    }
+            //}
         }
 
         private void btnMoveStudent_Click(object sender, EventArgs e)
@@ -551,38 +904,179 @@ namespace TN_CSDLPT.views
 
                     FormUtils.DisableMatrixContexMenuItems(ctxMenu, new List<ToolStripMenuItem>
                     {
-                        btnAddStudent, btnEditStudent, btnMoveStudent, btnDeleteStudent
+                        btnCtxAddStudent, btnCtxEditStudent, btnCtxMoveStudent, btnCtxDeleteStudent
                     });
 
                     teFirstName.Enabled = teLastName.Enabled = deBirthDate.Enabled = teAddress.Enabled = false;
                     cbxStudentClass.Enabled = false;
 
-                    checkChuyenLop = true;
-                    checkSave = false;
+                    //checkChuyenLop = true;
+                    //checkSave = false;
                 }
             }
         }
 
+        private void btnChangeStudentClass_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
         private void cbxStudentClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            //    int position = cbxStudentClass.SelectedIndex;
+            //    teStudentClassId.Text = ((DataRowView)this.bdsClass[position]).Row["MALOP"].ToString();
+            //}
+            //catch (Exception ex)
+            //{
+            //    CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
+            //        Translation._errorTitle, $"cbxStudentClass\n{ex.Message}");
+            //}
+        }
+
+        private void btnMode_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void swMode_Toggled(object sender, EventArgs e)
+        {
+
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch.IsOn)
             {
-                int position = cbxStudentClass.SelectedIndex;
-                teStudentClassId.Text = ((DataRowView)this.bdsClass[position]).Row["MALOP"].ToString();
+                formMode = FormClassMode.Student;
+                pcClass.Enabled = false;
+                pcStudent.Enabled = true;
+
             }
-            catch (Exception ex)
+            else
             {
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, 
-                    Translation._errorTitle, $"cbxStudentClass\n{ex.Message}");
+                formMode = FormClassMode.Class;
+                pcClass.Enabled = true;
+                pcStudent.Enabled = false;
+            }
+
+        }
+
+        private void InitializeCallBackActions()
+        {
+            //Class
+            classCallBackActions = new BindingList<CallBackAction>();
+            classCallBackActions.RaiseListChangedEvents = true;
+            classCallBackActions.ListChanged += new ListChangedEventHandler(classCallBackActions_ListChanged);
+            this.bdsClass.ListChanged += new ListChangedEventHandler(bdsClass_ListChanged);
+            classCallBackActions_ListChanged(null, null);
+            bdsClass_ListChanged(null, null);
+
+            //Student
+            studentCallBackActions = new BindingList<CallBackAction>();
+            studentCallBackActions.RaiseListChangedEvents = true;
+            studentCallBackActions.ListChanged += new ListChangedEventHandler(studentCallBackActions_ListChanged);
+            this.bdsStudent.ListChanged += new ListChangedEventHandler(bdsStudent_ListChanged);
+            studentCallBackActions_ListChanged(null, null);
+            bdsStudent_ListChanged(null, null);
+        }
+
+        //Class
+        private void bdsClass_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (this.bdsClass.Count == 0)
+            {
+                btnDelete.Enabled = btnEdit.Enabled = false;
+            }
+            else
+            {
+                btnDelete.Enabled = btnEdit.Enabled = true;
             }
         }
 
-        private void deBirthDate_EditValueChanged(object sender, EventArgs e)
+        private void classCallBackActions_ListChanged(object sender, ListChangedEventArgs e)
         {
+            btnUndo.Enabled = classCallBackActions.Count != 0;
+        }
 
+        private void gvClass_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (!classActionMode.Equals(ActionMode.Refresh))
+            {
+                this.bdsClassPosition = this.bdsClass.Position;
+            }
+        }
+
+        //Student
+        private void bdsStudent_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (this.bdsStudent.Count == 0)
+            {
+                btnDeleteStudent.Enabled = btnEditStudent.Enabled = false;
+            }
+            else
+            {
+                btnDeleteStudent.Enabled = btnEditStudent.Enabled = true;
+            }
+        }
+
+        private void studentCallBackActions_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            btnUndoStudent.Enabled = studentCallBackActions.Count != 0;
+        }
+
+        private void gvStudent_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (!studentActionMode.Equals(ActionMode.Refresh))
+            {
+                this.bdsStudentPosition = this.bdsStudent.Position;
+            }
+        }
+
+        private void cbxLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxEdit comboboxEdit = (ComboBoxEdit)sender;
+            object editValue = comboboxEdit.EditValue;
+            if (comboboxEdit.SelectedItem.ToString() != "System.Data.DataRowView")
+            {
+                Program.servername = FormUtils.GetBindingSourceData(Program.bdsSubcriber, comboboxEdit.SelectedIndex, Database.VIEW_ALL_LOCATION_COL_LOCATION_SERVER);
+                if (comboboxEdit.SelectedIndex != Program.indexCoSo)
+                {
+                    Program.mlogin = Program.remoteLogin;
+                    Program.password = Program.remotePassword;
+                }
+                else
+                {
+                    Program.mlogin = Program.mLoginDN;
+                    Program.password = Program.passwordDN;
+                }
+                if (!Program.ConnectDatabase())
+                {
+                    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsDatabaseConnectErrorMsg, comboboxEdit.SelectedText));
+                }
+                else
+                {
+                    this.DataSet.EnforceConstraints = false;
+
+                    //this.taSubject.Connection.ConnectionString = Program.connstr;
+                    //this.taSubject.Fill(this.DataSet.MONHOC);
+
+                    //this.taScore.Connection.ConnectionString = Program.connstr;
+                    //this.taScore.Fill(this.DataSet.BANGDIEM);
+
+                    //this.taTopic.Connection.ConnectionString = Program.connstr;
+                    //this.taTopic.Fill(this.DataSet.BODE);
+
+                    //this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
+                    //this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
+                }
+            }
         }
     }
 
+    public enum FormClassMode
+    {
+        Class,
+        Student
+    }
 
     class MenuColumnInfo
     {
@@ -592,4 +1086,7 @@ namespace TN_CSDLPT.views
         }
         public GridColumn Column;
     }
+
+
 }
+

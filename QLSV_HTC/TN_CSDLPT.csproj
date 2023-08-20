@@ -222,6 +222,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormClass.resx">
       <DependentUpon>FormClass.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormDepartment.resx">
       <DependentUpon>FormDepartment.cs</DependentUpon>
@@ -266,6 +267,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormSubject.resx">
       <DependentUpon>FormSubject.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>

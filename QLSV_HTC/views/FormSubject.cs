@@ -163,7 +163,6 @@ namespace TN_CSDLPT.views
             gcSubject.Enabled = true;
 
             btnRefresh.PerformClick();
-
             this.bdsSubject.Position = bdsSubject.Find(Database.TABLE_SUBJECT_COL_SUBJECT_ID, subjectId);
         }
 
@@ -272,8 +271,11 @@ namespace TN_CSDLPT.views
         {
             if (mode.Equals(ActionMode.Add))
             {
+                mode = ActionMode.Cancel;
                 gvSubject.DeleteRow(gvSubject.FocusedRowHandle);
             }
+
+            mode = ActionMode.Cancel;
             this.bdsSubject.CancelEdit();
             this.bdsSubject.Position = position;
 
@@ -303,9 +305,11 @@ namespace TN_CSDLPT.views
                 SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
                 System.Threading.Thread.Sleep(1000);
 
-                this.bdsTopic.EndEdit();
-                this.taTopic.Connection.ConnectionString = Program.connstr;
+                this.bdsSubject.EndEdit();
+
+                this.taSubject.Connection.ConnectionString = Program.connstr;
                 this.taSubject.Fill(this.DataSet.MONHOC);
+
                 this.bdsSubject.Position = this.position;
 
                 SplashScreenManager.CloseForm();

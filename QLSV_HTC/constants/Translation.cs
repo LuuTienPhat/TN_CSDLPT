@@ -19,6 +19,7 @@ class Translation
 
     public const string _argsDeleteWarningMsg = "Are you sure to delete this {0}?";
 
+
     public const string _incorectSignInUsernamePasswordMsg = "Username or Password are incorrect!";
     public const string _userPriviledgeNotValidMsg = "Your account does not have priviledge.Please check again!";
     public const string _subjectAlreadyHasScoreListMsg = "Subject already has Score list";

@@ -37,58 +37,90 @@ class Database
     //STORE PROCEDUES
 
     /// <summary>
-    /// {0} : student ID
-    /// {1} : subject ID
-    /// {2} : number of exam times
+    /// {0}: student ID
+    /// {1}: subject ID
+    /// {2}: number of exam times
     /// </summary>
     public const string SP_CHECK_STUDENT_ALREADY_FINISHED_EXAM = "SP_CHECK_STUDENT_ALREADY_FINISHED_EXAM";
 
 
     /// <summary>
-    /// {0} : subject ID
-    /// {1} : level
-    /// {2} : number of exam times
+    /// {0}: subject ID
+    /// {1}: level
+    /// {2}: number of exam times
     /// </summary>
     public const string SP_GET_QUESTIONS = "SP_GET_QUESTIONS";
 
     /// <summary>
-    /// {0} : student ID
-    /// {1} : level
-    /// {2} : exam date
-    /// {3} : number of exam times
+    /// {0}: student ID
+    /// {1}: level
+    /// {2}: exam date
+    /// {3}: number of exam times
     /// </summary>
     public const string SP_FIND_EXAM_SUBECT = "SP_FIND_EXAM_SUBECT";
 
     /// <summary>
-    /// {0} : id
+    /// {0}: id
+    /// {1}: name
     /// </summary>
     public const string SP_INSERT_SUBJECT = "EXEC SP_INSERT_SUBJECT N'{0}', N'{1}'";
+
+    /// <summary>
+    /// {0}: id
+    /// {1}: name
+    /// </summary>
     public const string SP_UPDATE_SUBJECT = "EXEC SP_UPDATE_SUBJECT N'{0}', N'{1}'";
+
+    /// <summary>
+    /// {0}: id
+    /// </summary>
     public const string SP_DELETE_SUBJECT = "EXEC SP_DELETE_SUBJECT N'{0}'";
 
     /// <summary>
-    /// 0: login name
-    /// 1: password
-    /// 2: username
-    /// 3: role
+    /// {0}: id
+    /// {1}: name
+    /// {2}: deparment ID
     /// </summary>
-    public const string SP_INSERT_STUDENT = "EXEC SP_INSERT_STUDENT N'{0}', N'{1}', N'{2}', N'{3}', N'{4}'";
+    public const string SP_INSERT_CLASS = "SP_INSERT_CLASS";
 
     /// <summary>
-    /// 0: login name
-    /// 1: password
-    /// 2: username
-    /// 3: role
+    /// {0}: id
+    /// {1}: name
+    /// {2}: deparment ID
     /// </summary>
-    public const string SP_UPDATE_STUDENT = "EXEC SP_UPDATE_STUDENT N'{0}', N'{1}'";
+    public const string SP_UPDATE_CLASS = "SP_UPDATE_CLASS";
 
     /// <summary>
-    /// 0: login name
-    /// 1: password
-    /// 2: username
-    /// 3: role
+    /// {0}: id
     /// </summary>
-    public const string SP_DELETE_STUDENT = "EXEC SP_DELETE_STUDENT N'{0}'";
+    public const string SP_DELETE_CLASS = "SP_DELETE_CLASS";
+
+    /// <summary>
+    /// 0: student ID
+    /// 1: last name
+    /// 2: first name
+    /// 3: birth date
+    /// 4: address
+    /// 5: password
+    /// 6: class ID
+    /// </summary>
+    public const string SP_INSERT_STUDENT = "SP_INSERT_STUDENT";
+
+    /// <summary>
+    /// 0: student ID
+    /// 1: last name
+    /// 2: first name
+    /// 3: birth date
+    /// 4: address
+    /// 5: password
+    /// 6: class ID
+    /// </summary>
+    public const string SP_UPDATE_STUDENT = "SP_UPDATE_STUDENT";
+
+    /// <summary>
+    /// 0: student ID
+    /// </summary>
+    public const string SP_DELETE_STUDENT = "SP_DELETE_STUDENT";
 
     /// <summary>
     /// {0} : user name
@@ -260,6 +292,10 @@ class Database
     public const string TABLE_SUBJECT_COL_SUBJECT_ID = "MAMH";
     public const string TABLE_SUBJECT_COL_SUBJECT_NAME = "TENMH";
 
+    public const string TABLE_DEPT_COL_DEPT_ID = "MAKH";
+    public const string TABLE_DEPT_COL_DEPT_NAME = "TENKH";
+    public const string TABLE_DEPT_COL_DEPT_LOCATION_ID = "MACS";
+
     public const string TABLE_CLASS_COL_CLASS_ID = "MALOP";
     public const string TABLE_CLASS_COL_CLASS_NAME = "TENLOP";
     public const string TABLE_CLASS_COL_CLASS_DEPARTMENT_ID = "MAKH";
@@ -267,6 +303,10 @@ class Database
     public const string TABLE_STUDENT_COL_STUDENT_ID = "MASV";
     public const string TABLE_STUDENT_COL_STUDENT_LASTNAME = "HO";
     public const string TABLE_STUDENT_COL_STUDENT_FIRSTNAME = "TEN";
+    public const string TABLE_STUDENT_COL_STUDENT_BIRTHDATE = "NGAYSINH";
+    public const string TABLE_STUDENT_COL_STUDENT_ADDRESS = "DIACHI";
+    public const string TABLE_STUDENT_COL_STUDENT_PASSWORD = "MATKHAU";
+    public const string TABLE_STUDENT_COL_STUDENT_CLASS_ID = "MALOP";
 
     public const string TABLE_TEACHER_REGISTRATION_CLASS_ID = "MALOP";
     public const string TABLE_TEACHER_REGISTRATION_SUBJECT_ID = "MAMH";
