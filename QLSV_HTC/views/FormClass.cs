@@ -24,15 +24,6 @@ namespace TN_CSDLPT.views
     public partial class FormClass : DevExpress.XtraEditors.XtraForm
     {
 
-        //private bool checkThem = false;
-        //private bool checkXoa = false;
-        //private bool checkSua = false;
-        //private bool checkThemSV = false;
-        //private bool checkXoaSV = false;
-        //private bool checkChuyenLop = false;
-        //private bool checkSuaSV = false;
-        //public static bool checkSave = true;
-
         public FormClassMode formMode = FormClassMode.Class;
 
         //class
@@ -104,8 +95,6 @@ namespace TN_CSDLPT.views
         private void btnNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             classActionMode = ActionMode.Add;
-
-            gcClass.Enabled = gcStudent.Enabled = false;
             bdsClass.AddNew();
 
             FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
@@ -121,16 +110,8 @@ namespace TN_CSDLPT.views
 
             gcClassInfo.Enabled = true;
             gcClass.Enabled = false;
+            pcStudent.Enabled = false;
             teClassId.Enabled = teClassName.Enabled = true;
-
-            //Fill data cho bdsKhoa
-            //taDepartment.Connection.ConnectionString = Program.connstr;
-            //taDepartment.Fill(DataSet.KHOA);
-
-            //cbxDepartment.SelectedIndex = 0;
-            // teDeparmentId.Text = cbxDepartment.SelectedValue.ToString();
-
-            //teClassId.Enabled = teClassName.Enabled = true;
         }
 
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e)
@@ -237,28 +218,17 @@ namespace TN_CSDLPT.views
         private void btnDelete_ItemClick(object sender, ItemClickEventArgs e)
         {
             classActionMode = ActionMode.Delete;
-            //if (bdsClass.Count == 0)
-            //{
-            //    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, "No Class available to delete");
-            //}
-
-            //else
-            //{
             if (bdsStudent.Count > 0)
             {
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, "Class couldn't be deleted, already have students");
                 return;
             }
 
-            //if (bdsGiaoVienDK.Count > 0)
-            //{
-            //    CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._errorTitle, "Class couldn't be deleted, already have teacher");
-            //    return;
-            //}
             string classId = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_ID);
             string className = FormUtils.GetBindingSourceData(this.bdsClass, this.bdsClass.Position, Database.TABLE_CLASS_COL_CLASS_NAME);
+            string departmentId = FormUtils.GetBindingSourceData(this.bdsDepartment, cbxDepartment.SelectedIndex, Database.TABLE_DEPT_COL_DEPT_ID);
             if (CustomMessageBox.Show(CustomMessageBox.Type.QUESTION_WARNING,
-                string.Format(Translation._argsDeleteWarningMsg, $"Class {className}")) == DialogResult.OK)
+                string.Format(Translation._argsDeleteWarningMsg, $"Class {className.Trim()}")) == DialogResult.OK)
             {
                 try
                 {
@@ -269,13 +239,13 @@ namespace TN_CSDLPT.views
                     classCallBackActions.Add(
                         new CallBackAction(
                             classActionMode,
-                            DatabaseUtils.BuildQuery2(Database.SP_INSERT_CLASS, new string[] { classId, className })
+                            DatabaseUtils.BuildQuery2(Database.SP_INSERT_CLASS, new string[] { classId, className, departmentId })
                         ));
                 }
                 catch (Exception ex)
                 {
                     CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
-                        string.Format(Translation._argsDeleteErrorMsg, new string[] { $"Class {className}", ex.Message }));
+                        string.Format(Translation._argsDeleteErrorMsg, new string[] { $"Class {className.Trim()}", ex.Message }));
                     //this.taSubject.Update(this.DataSet.MONHOC);
                     return;
                 }
@@ -443,7 +413,7 @@ namespace TN_CSDLPT.views
 
         private void btnEditStudent_ItemClick(object sender, ItemClickEventArgs e)
         {
-            classActionMode = ActionMode.Add;
+            classActionMode = ActionMode.Edit;
 
             FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
             {
@@ -552,8 +522,8 @@ namespace TN_CSDLPT.views
             gcStudentInfo.Enabled = false;
             gcStudent.Enabled = true;
 
-            this.bdsClassPosition = bdsStudent.Find(Database.TABLE_STUDENT_COL_STUDENT_ID, teStudentId);
-            btnRefresh.PerformClick();         
+            btnRefresh.PerformClick();
+            this.bdsClass.Position = bdsStudent.Find(Database.TABLE_STUDENT_COL_STUDENT_ID, teStudentId);
         }
 
         private void btnDeleteStudent_ItemClick(object sender, ItemClickEventArgs e)
@@ -1056,17 +1026,14 @@ namespace TN_CSDLPT.views
                 {
                     this.DataSet.EnforceConstraints = false;
 
-                    //this.taSubject.Connection.ConnectionString = Program.connstr;
-                    //this.taSubject.Fill(this.DataSet.MONHOC);
+                    this.taClass.Connection.ConnectionString = Program.connstr;
+                    this.taClass.Fill(this.DataSet.LOP);
 
-                    //this.taScore.Connection.ConnectionString = Program.connstr;
-                    //this.taScore.Fill(this.DataSet.BANGDIEM);
+                    this.taStudent.Connection.ConnectionString = Program.connstr;
+                    this.taStudent.Fill(this.DataSet.SINHVIEN);
 
-                    //this.taTopic.Connection.ConnectionString = Program.connstr;
-                    //this.taTopic.Fill(this.DataSet.BODE);
-
-                    //this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
-                    //this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
+                    this.taDepartment.Connection.ConnectionString = Program.connstr;
+                    this.taDepartment.Fill(this.DataSet.KHOA);
                 }
             }
         }
@@ -1077,16 +1044,6 @@ namespace TN_CSDLPT.views
         Class,
         Student
     }
-
-    class MenuColumnInfo
-    {
-        public MenuColumnInfo(GridColumn column)
-        {
-            this.Column = column;
-        }
-        public GridColumn Column;
-    }
-
 
 }
 

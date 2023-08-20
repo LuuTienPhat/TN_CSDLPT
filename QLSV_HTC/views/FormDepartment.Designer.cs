@@ -49,11 +49,18 @@
             this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.bar3 = new DevExpress.XtraBars.Bar();
-            this.cbxLocation = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.btnLocation = new DevExpress.XtraBars.BarEditItem();
+            this.cbxLocation = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.btnExit = new DevExpress.XtraBars.BarButtonItem();
             this.btnHelp = new DevExpress.XtraBars.BarButtonItem();
             this.barTeacher = new DevExpress.XtraBars.Bar();
+            this.btnNewTeacher = new DevExpress.XtraBars.BarButtonItem();
+            this.btnEditTeacher = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCommitTeacher = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDeleteTeacher = new DevExpress.XtraBars.BarButtonItem();
+            this.btnUndoTeacher = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCancelTeacher = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefreshTeacher = new DevExpress.XtraBars.BarButtonItem();
             this.standaloneBarDockControl2 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -76,8 +83,9 @@
             this.colMAKH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENKH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMACS = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pcStudent = new DevExpress.XtraEditors.PanelControl();
+            this.pcTeacher = new DevExpress.XtraEditors.PanelControl();
             this.gcTeacherInfo = new DevExpress.XtraEditors.GroupControl();
+            this.cbxDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
             this.teTeacherAddress = new DevExpress.XtraEditors.TextEdit();
             this.teTeacherFirstName = new DevExpress.XtraEditors.TextEdit();
             this.teTeacherLastName = new DevExpress.XtraEditors.TextEdit();
@@ -90,7 +98,6 @@
             this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKH1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.taLocation = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter();
-            this.cbxDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
             mACSLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
             mAKHLabel = new System.Windows.Forms.Label();
@@ -100,7 +107,7 @@
             dIACHILabel = new System.Windows.Forms.Label();
             mAKHLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher)).BeginInit();
@@ -114,23 +121,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.teDepartmentId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDepartment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcStudent)).BeginInit();
-            this.pcStudent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcTeacher)).BeginInit();
+            this.pcTeacher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTeacherInfo)).BeginInit();
             this.gcTeacherInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherFirstName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherLastName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTeacher)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTeacher)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mACSLabel
             // 
             mACSLabel.AutoSize = true;
-            mACSLabel.Location = new System.Drawing.Point(98, 103);
+            mACSLabel.Location = new System.Drawing.Point(35, 103);
             mACSLabel.Name = "mACSLabel";
             mACSLabel.Size = new System.Drawing.Size(43, 15);
             mACSLabel.TabIndex = 5;
@@ -139,7 +146,7 @@
             // tENKHLabel
             // 
             tENKHLabel.AutoSize = true;
-            tENKHLabel.Location = new System.Drawing.Point(94, 75);
+            tENKHLabel.Location = new System.Drawing.Point(31, 75);
             tENKHLabel.Name = "tENKHLabel";
             tENKHLabel.Size = new System.Drawing.Size(47, 15);
             tENKHLabel.TabIndex = 3;
@@ -148,7 +155,7 @@
             // mAKHLabel
             // 
             mAKHLabel.AutoSize = true;
-            mAKHLabel.Location = new System.Drawing.Point(96, 47);
+            mAKHLabel.Location = new System.Drawing.Point(33, 47);
             mAKHLabel.Name = "mAKHLabel";
             mAKHLabel.Size = new System.Drawing.Size(45, 15);
             mAKHLabel.TabIndex = 1;
@@ -157,7 +164,7 @@
             // mAGVLabel
             // 
             mAGVLabel.AutoSize = true;
-            mAGVLabel.Location = new System.Drawing.Point(47, 69);
+            mAGVLabel.Location = new System.Drawing.Point(44, 47);
             mAGVLabel.Name = "mAGVLabel";
             mAGVLabel.Size = new System.Drawing.Size(44, 15);
             mAGVLabel.TabIndex = 0;
@@ -166,7 +173,7 @@
             // hOLabel
             // 
             hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(63, 97);
+            hOLabel.Location = new System.Drawing.Point(60, 75);
             hOLabel.Name = "hOLabel";
             hOLabel.Size = new System.Drawing.Size(28, 15);
             hOLabel.TabIndex = 2;
@@ -175,7 +182,7 @@
             // tENLabel
             // 
             tENLabel.AutoSize = true;
-            tENLabel.Location = new System.Drawing.Point(60, 125);
+            tENLabel.Location = new System.Drawing.Point(57, 103);
             tENLabel.Name = "tENLabel";
             tENLabel.Size = new System.Drawing.Size(31, 15);
             tENLabel.TabIndex = 4;
@@ -184,7 +191,7 @@
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(42, 153);
+            dIACHILabel.Location = new System.Drawing.Point(39, 131);
             dIACHILabel.Name = "dIACHILabel";
             dIACHILabel.Size = new System.Drawing.Size(49, 15);
             dIACHILabel.TabIndex = 6;
@@ -193,7 +200,7 @@
             // mAKHLabel1
             // 
             mAKHLabel1.AutoSize = true;
-            mAKHLabel1.Location = new System.Drawing.Point(365, 69);
+            mAKHLabel1.Location = new System.Drawing.Point(362, 47);
             mAKHLabel1.Name = "mAKHLabel1";
             mAKHLabel1.Size = new System.Drawing.Size(45, 15);
             mAKHLabel1.TabIndex = 8;
@@ -223,11 +230,18 @@
             this.btnExit,
             this.btnRefresh,
             this.btnHelp,
-            this.cbxLocation});
+            this.btnLocation,
+            this.btnNewTeacher,
+            this.btnEditTeacher,
+            this.btnCommitTeacher,
+            this.btnDeleteTeacher,
+            this.btnUndoTeacher,
+            this.btnCancelTeacher,
+            this.btnRefreshTeacher});
             this.barManager1.MainMenu = this.bar3;
-            this.barManager1.MaxItemId = 15;
+            this.barManager1.MaxItemId = 22;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemComboBox2});
+            this.cbxLocation});
             // 
             // barDepartment
             // 
@@ -257,6 +271,7 @@
             this.btnNew.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnNew.Name = "btnNew";
             this.btnNew.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNew_ItemClick);
             // 
             // btnEdit
             // 
@@ -266,6 +281,7 @@
             this.btnEdit.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEdit_ItemClick);
             // 
             // btnCommit
             // 
@@ -275,6 +291,7 @@
             this.btnCommit.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnCommit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCommit_ItemClick);
             // 
             // btnDelete
             // 
@@ -284,6 +301,7 @@
             this.btnDelete.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDelete_ItemClick);
             // 
             // btnUndo
             // 
@@ -293,6 +311,7 @@
             this.btnUndo.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
             // 
             // btnCancel
             // 
@@ -302,6 +321,7 @@
             this.btnCancel.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnCancel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancel_ItemClick);
             // 
             // btnRefresh
             // 
@@ -311,6 +331,7 @@
             this.btnRefresh.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
             // 
             // standaloneBarDockControl1
             // 
@@ -331,7 +352,7 @@
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.cbxLocation, "", false, true, true, 250),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btnLocation, "", false, true, true, 250),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHelp)});
             this.bar3.OptionsBar.DrawDragBorder = false;
@@ -339,21 +360,22 @@
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Main menu";
             // 
+            // btnLocation
+            // 
+            this.btnLocation.Caption = "Location";
+            this.btnLocation.Edit = this.cbxLocation;
+            this.btnLocation.Id = 14;
+            this.btnLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cbxLocation.ImageOptions.SvgImage")));
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
+            // 
             // cbxLocation
             // 
-            this.cbxLocation.Caption = "Location";
-            this.cbxLocation.Edit = this.repositoryItemComboBox2;
-            this.cbxLocation.Id = 14;
-            this.cbxLocation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cbxLocation.ImageOptions.SvgImage")));
-            this.cbxLocation.Name = "cbxLocation";
-            this.cbxLocation.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
-            // 
-            // repositoryItemComboBox2
-            // 
-            this.repositoryItemComboBox2.AutoHeight = false;
-            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbxLocation.AutoHeight = false;
+            this.cbxLocation.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            this.cbxLocation.Name = "cbxLocation";
+            this.cbxLocation.SelectedIndexChanged += new System.EventHandler(this.cbxLocation_SelectedIndexChanged);
             // 
             // btnExit
             // 
@@ -375,10 +397,88 @@
             this.barTeacher.DockCol = 0;
             this.barTeacher.DockRow = 0;
             this.barTeacher.DockStyle = DevExpress.XtraBars.BarDockStyle.Standalone;
+            this.barTeacher.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnNewTeacher),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnEditTeacher),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnCommitTeacher),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDeleteTeacher),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnUndoTeacher),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnCancelTeacher),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefreshTeacher)});
             this.barTeacher.OptionsBar.DrawBorder = false;
             this.barTeacher.OptionsBar.DrawDragBorder = false;
             this.barTeacher.StandaloneBarDockControl = this.standaloneBarDockControl2;
             this.barTeacher.Text = "Custom 4";
+            // 
+            // btnNewTeacher
+            // 
+            this.btnNewTeacher.Caption = "New";
+            this.btnNewTeacher.Id = 15;
+            this.btnNewTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNewTeacher.ImageOptions.SvgImage")));
+            this.btnNewTeacher.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
+            this.btnNewTeacher.Name = "btnNewTeacher";
+            this.btnNewTeacher.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnNewTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNewTeacher_ItemClick);
+            // 
+            // btnEditTeacher
+            // 
+            this.btnEditTeacher.Caption = "Edit";
+            this.btnEditTeacher.Id = 16;
+            this.btnEditTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEditTeacher.ImageOptions.SvgImage")));
+            this.btnEditTeacher.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
+            this.btnEditTeacher.Name = "btnEditTeacher";
+            this.btnEditTeacher.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnEditTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEditTeacher_ItemClick);
+            // 
+            // btnCommitTeacher
+            // 
+            this.btnCommitTeacher.Caption = "Commit";
+            this.btnCommitTeacher.Id = 17;
+            this.btnCommitTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCommitTeacher.ImageOptions.SvgImage")));
+            this.btnCommitTeacher.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
+            this.btnCommitTeacher.Name = "btnCommitTeacher";
+            this.btnCommitTeacher.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnCommitTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCommitTeacher_ItemClick);
+            // 
+            // btnDeleteTeacher
+            // 
+            this.btnDeleteTeacher.Caption = "Delete";
+            this.btnDeleteTeacher.Id = 18;
+            this.btnDeleteTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDeleteTeacher.ImageOptions.SvgImage")));
+            this.btnDeleteTeacher.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
+            this.btnDeleteTeacher.Name = "btnDeleteTeacher";
+            this.btnDeleteTeacher.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnDeleteTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDeleteTeacher_ItemClick);
+            // 
+            // btnUndoTeacher
+            // 
+            this.btnUndoTeacher.Caption = "Undo";
+            this.btnUndoTeacher.Id = 19;
+            this.btnUndoTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUndoTeacher.ImageOptions.SvgImage")));
+            this.btnUndoTeacher.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
+            this.btnUndoTeacher.Name = "btnUndoTeacher";
+            this.btnUndoTeacher.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnUndoTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndoTeacher_ItemClick);
+            // 
+            // btnCancelTeacher
+            // 
+            this.btnCancelTeacher.Caption = "Cancel";
+            this.btnCancelTeacher.Id = 20;
+            this.btnCancelTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancelTeacher.ImageOptions.SvgImage")));
+            this.btnCancelTeacher.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
+            this.btnCancelTeacher.Name = "btnCancelTeacher";
+            this.btnCancelTeacher.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnCancelTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelTeacher_ItemClick);
+            // 
+            // btnRefreshTeacher
+            // 
+            this.btnRefreshTeacher.Caption = "Refresh";
+            this.btnRefreshTeacher.Id = 21;
+            this.btnRefreshTeacher.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRefreshTeacher.ImageOptions.SvgImage")));
+            this.btnRefreshTeacher.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
+            this.btnRefreshTeacher.Name = "btnRefreshTeacher";
+            this.btnRefreshTeacher.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnRefreshTeacher.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefreshTeacher_ItemClick);
             // 
             // standaloneBarDockControl2
             // 
@@ -388,7 +488,7 @@
             this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl2.Manager = this.barManager1;
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
-            this.standaloneBarDockControl2.Size = new System.Drawing.Size(636, 20);
+            this.standaloneBarDockControl2.Size = new System.Drawing.Size(796, 42);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
             // 
             // barDockControlTop
@@ -397,7 +497,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1280, 38);
+            this.barDockControlTop.Size = new System.Drawing.Size(1440, 38);
             // 
             // barDockControlBottom
             // 
@@ -405,7 +505,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 690);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1280, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1440, 0);
             // 
             // barDockControlLeft
             // 
@@ -419,7 +519,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1280, 38);
+            this.barDockControlRight.Location = new System.Drawing.Point(1440, 38);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 652);
             // 
@@ -492,7 +592,7 @@
             // cbxDepartmentLocation
             // 
             this.cbxDepartmentLocation.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsLocation, "MACS", true));
-            this.cbxDepartmentLocation.Location = new System.Drawing.Point(147, 100);
+            this.cbxDepartmentLocation.Location = new System.Drawing.Point(84, 100);
             this.cbxDepartmentLocation.MenuManager = this.barManager1;
             this.cbxDepartmentLocation.Name = "cbxDepartmentLocation";
             this.cbxDepartmentLocation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -508,7 +608,7 @@
             // teDepartmentName
             // 
             this.teDepartmentName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsDepartment, "TENKH", true));
-            this.teDepartmentName.Location = new System.Drawing.Point(147, 72);
+            this.teDepartmentName.Location = new System.Drawing.Point(84, 72);
             this.teDepartmentName.MenuManager = this.barManager1;
             this.teDepartmentName.Name = "teDepartmentName";
             this.teDepartmentName.Size = new System.Drawing.Size(200, 22);
@@ -517,7 +617,7 @@
             // teDepartmentId
             // 
             this.teDepartmentId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsDepartment, "MAKH", true));
-            this.teDepartmentId.Location = new System.Drawing.Point(147, 44);
+            this.teDepartmentId.Location = new System.Drawing.Point(84, 44);
             this.teDepartmentId.MenuManager = this.barManager1;
             this.teDepartmentId.Name = "teDepartmentId";
             this.teDepartmentId.Size = new System.Drawing.Size(200, 22);
@@ -544,6 +644,7 @@
             this.colMACS});
             this.gvDepartment.GridControl = this.gcDepartment;
             this.gvDepartment.Name = "gvDepartment";
+            this.gvDepartment.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvDepartment_FocusedRowChanged);
             // 
             // colMAKH
             // 
@@ -566,16 +667,16 @@
             this.colMACS.Visible = true;
             this.colMACS.VisibleIndex = 2;
             // 
-            // pcStudent
+            // pcTeacher
             // 
-            this.pcStudent.Controls.Add(this.gcTeacherInfo);
-            this.pcStudent.Controls.Add(this.gcTeacher);
-            this.pcStudent.Controls.Add(this.standaloneBarDockControl2);
-            this.pcStudent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pcStudent.Location = new System.Drawing.Point(640, 38);
-            this.pcStudent.Name = "pcStudent";
-            this.pcStudent.Size = new System.Drawing.Size(640, 652);
-            this.pcStudent.TabIndex = 13;
+            this.pcTeacher.Controls.Add(this.gcTeacherInfo);
+            this.pcTeacher.Controls.Add(this.gcTeacher);
+            this.pcTeacher.Controls.Add(this.standaloneBarDockControl2);
+            this.pcTeacher.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcTeacher.Location = new System.Drawing.Point(640, 38);
+            this.pcTeacher.Name = "pcTeacher";
+            this.pcTeacher.Size = new System.Drawing.Size(800, 652);
+            this.pcTeacher.TabIndex = 13;
             // 
             // gcTeacherInfo
             // 
@@ -592,16 +693,27 @@
             this.gcTeacherInfo.Controls.Add(mAGVLabel);
             this.gcTeacherInfo.Controls.Add(this.teTeacherId);
             this.gcTeacherInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcTeacherInfo.Location = new System.Drawing.Point(2, 422);
+            this.gcTeacherInfo.Location = new System.Drawing.Point(2, 444);
             this.gcTeacherInfo.Name = "gcTeacherInfo";
-            this.gcTeacherInfo.Size = new System.Drawing.Size(636, 228);
+            this.gcTeacherInfo.Size = new System.Drawing.Size(796, 206);
             this.gcTeacherInfo.TabIndex = 15;
             this.gcTeacherInfo.Text = "Teacher Info";
+            // 
+            // cbxDepartment
+            // 
+            this.cbxDepartment.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher, "MAKH", true));
+            this.cbxDepartment.Location = new System.Drawing.Point(413, 44);
+            this.cbxDepartment.MenuManager = this.barManager1;
+            this.cbxDepartment.Name = "cbxDepartment";
+            this.cbxDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxDepartment.Size = new System.Drawing.Size(200, 22);
+            this.cbxDepartment.TabIndex = 10;
             // 
             // teTeacherAddress
             // 
             this.teTeacherAddress.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher, "DIACHI", true));
-            this.teTeacherAddress.Location = new System.Drawing.Point(97, 150);
+            this.teTeacherAddress.Location = new System.Drawing.Point(94, 128);
             this.teTeacherAddress.MenuManager = this.barManager1;
             this.teTeacherAddress.Name = "teTeacherAddress";
             this.teTeacherAddress.Size = new System.Drawing.Size(200, 22);
@@ -610,7 +722,7 @@
             // teTeacherFirstName
             // 
             this.teTeacherFirstName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher, "TEN", true));
-            this.teTeacherFirstName.Location = new System.Drawing.Point(97, 122);
+            this.teTeacherFirstName.Location = new System.Drawing.Point(94, 100);
             this.teTeacherFirstName.MenuManager = this.barManager1;
             this.teTeacherFirstName.Name = "teTeacherFirstName";
             this.teTeacherFirstName.Size = new System.Drawing.Size(200, 22);
@@ -619,7 +731,7 @@
             // teTeacherLastName
             // 
             this.teTeacherLastName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher, "HO", true));
-            this.teTeacherLastName.Location = new System.Drawing.Point(97, 94);
+            this.teTeacherLastName.Location = new System.Drawing.Point(94, 72);
             this.teTeacherLastName.MenuManager = this.barManager1;
             this.teTeacherLastName.Name = "teTeacherLastName";
             this.teTeacherLastName.Size = new System.Drawing.Size(200, 22);
@@ -628,7 +740,7 @@
             // teTeacherId
             // 
             this.teTeacherId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher, "MAGV", true));
-            this.teTeacherId.Location = new System.Drawing.Point(97, 66);
+            this.teTeacherId.Location = new System.Drawing.Point(94, 44);
             this.teTeacherId.MenuManager = this.barManager1;
             this.teTeacherId.Name = "teTeacherId";
             this.teTeacherId.Size = new System.Drawing.Size(200, 22);
@@ -638,11 +750,11 @@
             // 
             this.gcTeacher.DataSource = this.bdsTeacher;
             this.gcTeacher.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gcTeacher.Location = new System.Drawing.Point(2, 22);
+            this.gcTeacher.Location = new System.Drawing.Point(2, 44);
             this.gcTeacher.MainView = this.gvTeacher;
             this.gcTeacher.MenuManager = this.barManager1;
             this.gcTeacher.Name = "gcTeacher";
-            this.gcTeacher.Size = new System.Drawing.Size(636, 400);
+            this.gcTeacher.Size = new System.Drawing.Size(796, 400);
             this.gcTeacher.TabIndex = 14;
             this.gcTeacher.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTeacher});
@@ -657,6 +769,7 @@
             this.colMAKH1});
             this.gvTeacher.GridControl = this.gcTeacher;
             this.gvTeacher.Name = "gvTeacher";
+            this.gvTeacher.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvTeacher_FocusedRowChanged);
             // 
             // colMAGV
             // 
@@ -697,23 +810,12 @@
             // 
             this.taLocation.ClearBeforeFill = true;
             // 
-            // cbxDepartment
-            // 
-            this.cbxDepartment.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher, "MAKH", true));
-            this.cbxDepartment.Location = new System.Drawing.Point(416, 66);
-            this.cbxDepartment.MenuManager = this.barManager1;
-            this.cbxDepartment.Name = "cbxDepartment";
-            this.cbxDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxDepartment.Size = new System.Drawing.Size(200, 22);
-            this.cbxDepartment.TabIndex = 10;
-            // 
             // FormDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 690);
-            this.Controls.Add(this.pcStudent);
+            this.ClientSize = new System.Drawing.Size(1440, 690);
+            this.Controls.Add(this.pcTeacher);
             this.Controls.Add(this.pcDepartment);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -723,7 +825,7 @@
             this.Text = "Department Manager";
             this.Load += new System.EventHandler(this.FormDepartment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDepartment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher)).EndInit();
@@ -739,19 +841,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.teDepartmentId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcDepartment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDepartment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcStudent)).EndInit();
-            this.pcStudent.ResumeLayout(false);
-            this.pcStudent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcTeacher)).EndInit();
+            this.pcTeacher.ResumeLayout(false);
+            this.pcTeacher.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTeacherInfo)).EndInit();
             this.gcTeacherInfo.ResumeLayout(false);
             this.gcTeacherInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherFirstName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherLastName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTeacherId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTeacher)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTeacher)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxDepartment.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -769,8 +871,8 @@
         private DevExpress.XtraBars.BarButtonItem btnCancel;
         private DevExpress.XtraBars.BarButtonItem btnRefresh;
         private DevExpress.XtraBars.Bar bar3;
-        private DevExpress.XtraBars.BarEditItem cbxLocation;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
+        private DevExpress.XtraBars.BarEditItem btnLocation;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbxLocation;
         private DevExpress.XtraBars.BarButtonItem btnExit;
         private DevExpress.XtraBars.BarButtonItem btnHelp;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
@@ -793,7 +895,7 @@
         private DevExpress.XtraEditors.GroupControl gcDepartmentInfo;
         private DevExpress.XtraEditors.TextEdit teDepartmentName;
         private DevExpress.XtraEditors.TextEdit teDepartmentId;
-        private DevExpress.XtraEditors.PanelControl pcStudent;
+        private DevExpress.XtraEditors.PanelControl pcTeacher;
         private DevExpress.XtraBars.StandaloneBarDockControl standaloneBarDockControl2;
         private DevExpress.XtraBars.Bar barTeacher;
         private DevExpress.XtraGrid.GridControl gcTeacher;
@@ -812,5 +914,12 @@
         private TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter taLocation;
         private DevExpress.XtraEditors.ComboBoxEdit cbxDepartmentLocation;
         private DevExpress.XtraEditors.ComboBoxEdit cbxDepartment;
+        private DevExpress.XtraBars.BarButtonItem btnNewTeacher;
+        private DevExpress.XtraBars.BarButtonItem btnEditTeacher;
+        private DevExpress.XtraBars.BarButtonItem btnCommitTeacher;
+        private DevExpress.XtraBars.BarButtonItem btnDeleteTeacher;
+        private DevExpress.XtraBars.BarButtonItem btnUndoTeacher;
+        private DevExpress.XtraBars.BarButtonItem btnCancelTeacher;
+        private DevExpress.XtraBars.BarButtonItem btnRefreshTeacher;
     }
 }

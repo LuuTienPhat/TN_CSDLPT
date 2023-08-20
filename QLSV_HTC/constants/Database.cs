@@ -62,6 +62,48 @@ class Database
     /// <summary>
     /// {0}: id
     /// {1}: name
+    /// {2}: location ID
+    /// </summary>
+    public const string SP_INSERT_DEPARTMENT = "SP_INSERT_DEPARTMENT";
+
+    /// <summary>
+    /// {0}: id
+    /// {1}: name
+    /// {2}: location ID
+    /// </summary>
+    public const string SP_UPDATE_DEPARTMENT = "SP_UPDATE_DEPARTMENT";
+
+    /// <summary>
+    /// {0}: id
+    /// </summary>
+    public const string SP_DELETE_DEPARTMENT = "SP_DELETE_DEPARTMENT";
+
+    /// <summary>
+    /// 0: teacher ID
+    /// 1: last name
+    /// 2: first name
+    /// 4: address
+    /// 6: department ID
+    /// </summary>
+    public const string SP_INSERT_TEACHER = "SP_INSERT_TEACHER";
+
+    /// <summary>
+    /// 0: teacher ID
+    /// 1: last name
+    /// 2: first name
+    /// 4: address
+    /// 6: department ID
+    /// </summary>
+    public const string SP_UPDATE_TEACHER = "SP_UPDATE_TEACHER";
+
+    /// <summary>
+    /// 0: teacher ID
+    /// </summary>
+    public const string SP_DELETE_TEACHER = "SP_DELETE_TEACHER";
+
+    /// <summary>
+    /// {0}: id
+    /// {1}: name
     /// </summary>
     public const string SP_INSERT_SUBJECT = "EXEC SP_INSERT_SUBJECT N'{0}', N'{1}'";
 
@@ -289,6 +331,9 @@ class Database
     public const string VIEW_ALL_LOCATION_COL_LOCATION_NAME = "TENCS";
     public const string VIEW_ALL_LOCATION_COL_LOCATION_SERVER = "TENSERVER";
 
+    public const string TABLE_LOCATION_COL_LOCATION_ID = "MACS";
+    public const string TABLE_LOCATION_COL_LOCATION_NAME = "TENCS";
+
     public const string TABLE_SUBJECT_COL_SUBJECT_ID = "MAMH";
     public const string TABLE_SUBJECT_COL_SUBJECT_NAME = "TENMH";
 
@@ -299,6 +344,12 @@ class Database
     public const string TABLE_CLASS_COL_CLASS_ID = "MALOP";
     public const string TABLE_CLASS_COL_CLASS_NAME = "TENLOP";
     public const string TABLE_CLASS_COL_CLASS_DEPARTMENT_ID = "MAKH";
+
+    public const string TABLE_TEACHER_COL_TEACHER_ID = "MAGV";
+    public const string TABLE_TEACHER_COL_TEACHER_LASTNAME = "HO";
+    public const string TABLE_TEACHER_COL_TEACHER_FIRSTNAME = "TEN";
+    public const string TABLE_TEACHER_COL_TEACHER_ADDRESS = "DIACHI";
+    public const string TABLE_TEACHER_COL_TEACHER_DEPARTMENT_ID = "MAKH";
 
     public const string TABLE_STUDENT_COL_STUDENT_ID = "MASV";
     public const string TABLE_STUDENT_COL_STUDENT_LASTNAME = "HO";
