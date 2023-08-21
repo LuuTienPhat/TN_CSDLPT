@@ -77,7 +77,7 @@
             // tENMHLabel
             // 
             tENMHLabel.AutoSize = true;
-            tENMHLabel.Location = new System.Drawing.Point(114, 148);
+            tENMHLabel.Location = new System.Drawing.Point(118, 154);
             tENMHLabel.Name = "tENMHLabel";
             tENMHLabel.Size = new System.Drawing.Size(49, 15);
             tENMHLabel.TabIndex = 5;
@@ -86,7 +86,7 @@
             // mASVLabel
             // 
             mASVLabel.AutoSize = true;
-            mASVLabel.Location = new System.Drawing.Point(98, 120);
+            mASVLabel.Location = new System.Drawing.Point(102, 126);
             mASVLabel.Name = "mASVLabel";
             mASVLabel.Size = new System.Drawing.Size(65, 15);
             mASVLabel.TabIndex = 6;
@@ -95,7 +95,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(29, 176);
+            label1.Location = new System.Drawing.Point(33, 182);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(134, 15);
             label1.TabIndex = 21;
@@ -319,7 +319,7 @@
             // 
             // cbxSubject
             // 
-            this.cbxSubject.Location = new System.Drawing.Point(183, 145);
+            this.cbxSubject.Location = new System.Drawing.Point(187, 151);
             this.cbxSubject.MenuManager = this.barManager1;
             this.cbxSubject.Name = "cbxSubject";
             this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -339,7 +339,7 @@
             0,
             0,
             0});
-            this.seNumberOfExamTimes.Location = new System.Drawing.Point(183, 173);
+            this.seNumberOfExamTimes.Location = new System.Drawing.Point(187, 179);
             this.seNumberOfExamTimes.MenuManager = this.barManager1;
             this.seNumberOfExamTimes.Name = "seNumberOfExamTimes";
             this.seNumberOfExamTimes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -351,7 +351,7 @@
             // 
             this.btnPreview.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
             this.btnPreview.Appearance.Options.UseBackColor = true;
-            this.btnPreview.Location = new System.Drawing.Point(183, 201);
+            this.btnPreview.Location = new System.Drawing.Point(187, 207);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 23);
             this.btnPreview.TabIndex = 22;
@@ -360,7 +360,7 @@
             // 
             // teStudentID
             // 
-            this.teStudentID.Location = new System.Drawing.Point(183, 117);
+            this.teStudentID.Location = new System.Drawing.Point(187, 123);
             this.teStudentID.MenuManager = this.barManager1;
             this.teStudentID.Name = "teStudentID";
             this.teStudentID.Size = new System.Drawing.Size(400, 22);
