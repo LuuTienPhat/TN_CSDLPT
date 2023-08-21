@@ -590,6 +590,7 @@
             this.tcChoices.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[LUACHON]")});
             this.tcChoices.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
+            this.tcChoices.Multiline = true;
             this.tcChoices.Name = "tcChoices";
             this.tcChoices.StyleName = "DetailData1";
             this.tcChoices.StylePriority.UseBorderColor = false;
