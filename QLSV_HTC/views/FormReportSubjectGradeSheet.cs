@@ -53,6 +53,7 @@ namespace TN_CSDLPT.views
             });
 
             string className;
+            string subjectName = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_NAME).Trim();
 
             try
             {
@@ -75,11 +76,11 @@ namespace TN_CSDLPT.views
 
             XtraReportSubjectGradeSheet xtraReportSubjectGradeSheet = new XtraReportSubjectGradeSheet(classId, subjectId, int.Parse(numberOfExamTimes));
             //xtraReportBangDiemMonHoc.xrlbTitle.Text = "BẢNG ĐIỂM MÔN " + this.comboBoxMaMonHoc.Text.Trim() + " CỦA LỚP " + tenLop;
-            xtraReportSubjectGradeSheet.xrlbClassId.Text = classId;
-            xtraReportSubjectGradeSheet.xrlbClassName.Text = className;
+            xtraReportSubjectGradeSheet.xrlbClass.Text = string.Format("{0} - {1}", new string[] { classId, className });
+            xtraReportSubjectGradeSheet.xrlbNumberOfExamTimes.Text = numberOfExamTimes;
 
             //xtraReportBangDiemMonHoc.xrLabelNgayThi.Text = DateTime.Now.ToString("dd/MM/yyyy") + "cần hỏi thầy ngày là lấy ngày của gv đăng kí?";
-            xtraReportSubjectGradeSheet.xrlbSubject.Text = subjectId;
+            xtraReportSubjectGradeSheet.xrlbSubject.Text = string.Format("{0} - {1}", new string[] { subjectId, subjectName });
             //xtraReportBangDiemMonHoc.xrLabelLan.Text = this.spinEditLan.Value.ToString();
 
             ReportPrintTool printTool = new ReportPrintTool(xtraReportSubjectGradeSheet);
