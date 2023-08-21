@@ -24,5 +24,22 @@ namespace TN_CSDLPT.report
 
         }
 
+        //xử lý lựa chọn abcd thành các dòng trong 1 ô trong report
+        private void tcChoices_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            // lấy nguồn sự kiện thành tablecell
+            XRTableCell cell = sender as XRTableCell;
+            // lấy giá trị trong cell
+            string choicesString = cell.Report.GetCurrentColumnValue("LUACHON").ToString();
+            // phân tách theo dấu ; (khi lấy các lựa chọn trong sql đã concat với ;)
+            string[] choices = choicesString.Split(';');
+            choicesString = "";
+            foreach (string choice in choices)
+            {
+                choicesString = choicesString + choice + Environment.NewLine;
+            }
+            //cell.BackColor = Color.Khaki;
+            cell.Text = choicesString;
+        }
     }
 }
