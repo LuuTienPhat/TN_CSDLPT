@@ -39,6 +39,8 @@ namespace TN_CSDLPT.views
             }
 
             FillFormComboBoxes();
+            cbxSubject.SelectedIndex = 0;
+            cbxClass.SelectedIndex = 0;
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
@@ -135,15 +137,18 @@ namespace TN_CSDLPT.views
         {
             FormUtils.FillComboBox(cbxClass, this.bdsClass, new string[] { Database.TABLE_CLASS_COL_CLASS_ID, Database.TABLE_CLASS_COL_CLASS_NAME });
             FormUtils.FillComboBox(cbxSubject, this.bdsSubject, new string[] { Database.TABLE_SUBJECT_COL_SUBJECT_ID, Database.TABLE_SUBJECT_COL_SUBJECT_NAME });
+            
         }
 
         private void FillTableAdapters()
         {
             DataSet.EnforceConstraints = false;
-            this.tableAdapterManager.Connection.ConnectionString = Program.connstr;
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.taSubject.Connection.ConnectionString = Program.connstr;
             this.taSubject.Fill(this.DataSet.MONHOC);
+
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
+            this.taClass.Connection.ConnectionString = Program.connstr;
             this.taClass.Fill(this.DataSet.LOP);
         }
 

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TN_CSDLPT.constants;
+using TN_CSDLPT.report;
 using TN_CSDLPT.utils;
 
 namespace TN_CSDLPT.views
@@ -50,10 +52,10 @@ namespace TN_CSDLPT.views
         private void btnPreview_Click(object sender, EventArgs e)
         {
             string studentId = teStudentID.Text;
-            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+            string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID).Trim();
             string numberOfExamTimes = seNumberOfExamTimes.Value.ToString();
 
-            string examResultReportQuery = DatabaseUtils.BuildQuery2(Database.SP_REPORT_EXAM_REPORT_CHECK_BEFORE_HAND, new string[]
+            string examResultReportQuery = DatabaseUtils.BuildQuery2(Database.SP_REPORT_EXAM_RESULT_CHECK_BEFORE_HAND, new string[]
             {
                 studentId, subjectId, numberOfExamTimes
             });
@@ -61,6 +63,7 @@ namespace TN_CSDLPT.views
             string studenFullName = "";
             string className = "";
             bool hasFinisedExam = false;
+            //DateTime examDate;
 
             try
             {
@@ -70,8 +73,9 @@ namespace TN_CSDLPT.views
                 className = Program.myReader.GetString(0).Trim();
                 studenFullName = Program.myReader.GetString(1).Trim();
                 hasFinisedExam = Program.myReader.GetBoolean(2);
-                
-                if (hasFinisedExam)
+                //examDate = Program.myReader.GetDateTime(3);
+
+                if (!hasFinisedExam)
                 {
                     CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, string.Format(Translation._argsStudentHasNeverDoneAnyExamErrorMsg, numberOfExamTimes));
                     return;
@@ -86,6 +90,22 @@ namespace TN_CSDLPT.views
             {
                 Program.CloseSqlDataReader();
             }
+
+            string stringFormat = "{0} - {1}";
+            string subjectName = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_NAME).Trim();
+
+            XtraReportExamResult xtraReportKQThi = new XtraReportExamResult(studentId, subjectId, int.Parse(numberOfExamTimes));
+
+            ///xtraReportKQThi.labelTieuDe.Text = "KẾT QUẢ THI MÔN " + this.comboBoxMaMonHoc.Text.Trim() + " CỦA SINH VIÊN " + hoTenSinhVien;
+            xtraReportKQThi.xrlbFullName.Text = studenFullName;
+            xtraReportKQThi.xrlbClass.Text = className;
+
+            xtraReportKQThi.xrlbExamDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            xtraReportKQThi.xrlbSubject.Text = string.Format(stringFormat, new string[] {subjectId, subjectName});
+            xtraReportKQThi.xrlbNumberOfExamTimes.Text = numberOfExamTimes;
+
+            ReportPrintTool printTool = new ReportPrintTool(xtraReportKQThi);
+            printTool.ShowPreviewDialog();
         }
 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -149,10 +169,11 @@ namespace TN_CSDLPT.views
         private void FillTableAdapters()
         {
             DataSet.EnforceConstraints = false;
-            this.tableAdapterManager.Connection.ConnectionString = Program.connstr;
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.SINHVIEN' table. You can move, or remove it, as needed.
+            this.taStudent.Connection.ConnectionString = Program.connstr;
             this.taStudent.Fill(this.DataSet.SINHVIEN);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.taSubject.Connection.ConnectionString = Program.connstr;
             this.taSubject.Fill(this.DataSet.MONHOC);
         }
 

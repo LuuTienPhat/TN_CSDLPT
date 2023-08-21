@@ -361,7 +361,6 @@
             // 
             // cbxClass
             // 
-            this.cbxClass.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsClass, "TENLOP", true));
             this.cbxClass.Location = new System.Drawing.Point(187, 123);
             this.cbxClass.MenuManager = this.barManager1;
             this.cbxClass.Name = "cbxClass";

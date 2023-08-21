@@ -90,10 +90,23 @@
   <ItemGroup>
     <Compile Include="constants\ActionMode.cs" />
     <Compile Include="constants\CustomMessageBox.cs" />
+    <Compile Include="constants\StringFormat.cs" />
     <Compile Include="constants\Translation.cs" />
     <Compile Include="constants\Database.cs" />
     <Compile Include="constants\FormUtils.cs" />
     <Compile Include="models\UserRole.cs" />
+    <Compile Include="report\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="report\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="report\XtraReportExamResult.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="report\XtraReportExamResult.Designer.cs">
+      <DependentUpon>XtraReportExamResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="report\XtraReportSubjectGradeSheet.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -234,6 +247,12 @@
     <Compile Include="views\WaitRefreshForm.Designer.cs">
       <DependentUpon>WaitRefreshForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="report\XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\XtraReportExamResult.resx">
+      <DependentUpon>XtraReportExamResult.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="report\XtraReportSubjectGradeSheet.resx">
       <DependentUpon>XtraReportSubjectGradeSheet.cs</DependentUpon>
     </EmbeddedResource>

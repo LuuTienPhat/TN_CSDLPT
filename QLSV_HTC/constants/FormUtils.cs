@@ -41,6 +41,11 @@ namespace TN_CSDLPT.constants
             }
         }
 
+        public static void SetDefaultForComboBoxEdit(ComboBoxEdit comboBox)
+        {
+            comboBox.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+        }
+
         public static void DisableMatrixButtons(BarManager barManager, List<BarButtonItem> disabledBarButtonItems)
         {
             foreach (object item in barManager.Items)
@@ -229,6 +234,7 @@ namespace TN_CSDLPT.constants
                 finally
                 {
                     itemsCollection.EndUpdate();
+                    SetDefaultForComboBoxEdit(comboBox);
                     comboBox.SelectedIndex = 0;
                 }
             }
@@ -310,6 +316,7 @@ namespace TN_CSDLPT.constants
                 finally
                 {
                     itemsCollection.EndUpdate();
+                    SetDefaultForComboBoxEdit(comboBox);
                     comboBox.SelectedIndex = 0;
                 }
             }
@@ -331,6 +338,7 @@ namespace TN_CSDLPT.constants
             finally
             {
                 itemsCollection.EndUpdate();
+                SetDefaultForComboBoxEdit(comboBox);
                 comboBox.SelectedIndex = 0;
             }
         }

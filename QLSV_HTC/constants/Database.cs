@@ -310,9 +310,9 @@ class Database
     /// <summary>
     /// 0: student ID
     /// 1: subject ID
-    /// 2: number of exam times:
+    /// 2: number of exam times
     /// </summary>
-    public const string SP_REPORT_EXAM_REPORT_CHECK_BEFORE_HAND = "SP_REPORT_EXAM_REPORT_CHECK_BEFORE_HAND";
+    public const string SP_REPORT_EXAM_RESULT_CHECK_BEFORE_HAND = "SP_REPORT_EXAM_RESULT_CHECK_BEFORE_HAND";
 
     /// <summary>
     /// 0: class ID
