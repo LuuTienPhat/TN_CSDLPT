@@ -30,12 +30,7 @@ namespace TN_CSDLPT.views
 
         private void FormTopic_Load(object sender, EventArgs e)
         {
-            this.DataSet.EnforceConstraints = false;
-            // TODO: This line of code loads data into the 'DataSet.MONHOC' table. You can move, or remove it, as needed.
-            this.taSubject.Fill(this.DataSet.MONHOC);
-
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.BODE' table. You can move, or remove it, as needed.
-            this.taTopic.Fill(this.DataSet.BODE);
+            FillTables();
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
 
@@ -69,8 +64,6 @@ namespace TN_CSDLPT.views
             seQuestionNo.Enabled = false;
 
             gcInfo.Enabled = false;
-
-
 
         }
 
@@ -341,8 +334,12 @@ namespace TN_CSDLPT.views
                 System.Threading.Thread.Sleep(1000);
 
                 this.bdsTopic.EndEdit();
+
                 this.taTopic.Connection.ConnectionString = Program.connstr;
                 this.taTopic.Fill(this.DataSet.BODE);
+
+                this.taSubject.Connection.ConnectionString = Program.connstr;
+                this.taSubject.Fill(this.DataSet.MONHOC);
 
                 this.bdsTopic.Position = this.position;
 
@@ -460,6 +457,15 @@ namespace TN_CSDLPT.views
             return nextQuestionNo;
         }
 
+        private void FillTables()
+        {
+            this.DataSet.EnforceConstraints = false;
+            // TODO: This line of code loads data into the 'DataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.taSubject.Fill(this.DataSet.MONHOC);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.BODE' table. You can move, or remove it, as needed.
+            this.taTopic.Fill(this.DataSet.BODE);
+        }
+
         private void InitializeCallBackActions()
         {
             callBackActions = new BindingList<CallBackAction>();
@@ -558,10 +564,7 @@ namespace TN_CSDLPT.views
                 }
                 else
                 {
-                    this.DataSet.EnforceConstraints = false;
-
-                    this.taTopic.Connection.ConnectionString = Program.connstr;
-                    this.taTopic.Update(this.DataSet.BODE);
+                    btnRefresh.PerformClick();
                 }
             }
         }

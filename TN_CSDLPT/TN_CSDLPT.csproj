@@ -101,6 +101,12 @@
     <Compile Include="report\XtraReport1.Designer.cs">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
+    <Compile Include="report\XtraReportExamRegistration2Locations.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="report\XtraReportExamRegistration2Locations.Designer.cs">
+      <DependentUpon>XtraReportExamRegistration2Locations.cs</DependentUpon>
+    </Compile>
     <Compile Include="report\XtraReportExamResult.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </Compile>
     <EmbeddedResource Include="report\XtraReport1.resx">
       <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="report\XtraReportExamRegistration2Locations.resx">
+      <DependentUpon>XtraReportExamRegistration2Locations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="report\XtraReportExamResult.resx">
       <DependentUpon>XtraReportExamResult.cs</DependentUpon>

@@ -2,6 +2,8 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,12 +18,34 @@ namespace TN_CSDLPT.constants
 {
     public class FormUtils
     {
+
+        public static void SetDefaultGridViews(GridView[] gridViews)
+        {
+            foreach (GridView gridView in gridViews)
+            {
+                SetDefaultGridView(gridView);
+            }
+        }
+
+        public static void SetDefaultGridView(GridView gridView)
+        {
+            gridView.OptionsBehavior.Editable = false;
+        }
+
+        public static void SetDefaultPropertiesForSpinEdits(SpinEdit[] spinEdits)
+        {
+            foreach (SpinEdit edit in spinEdits)
+            {
+                SetDefaultPropertiesForSpinEdit(edit);
+            }
+        }
+
         public static void SetDefaultPropertiesForSpinEdit(SpinEdit spinEdit)
         {
             spinEdit.Properties.IsFloatValue = false;
             spinEdit.Properties.MinValue = 0;
             spinEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            spinEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;   
+            spinEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
         }
 
         public static void SetDefaultForBarManagerBars(BarManager barManager)
@@ -38,6 +62,14 @@ namespace TN_CSDLPT.constants
                         bar.OptionsBar.DrawDragBorder = false;
                     }
                 }
+            }
+        }
+
+        public static void SetDefaultForComboBoxEdits(ComboBoxEdit[] comboBoxes)
+        {
+            foreach (ComboBoxEdit comboBoxEdit in comboBoxes)
+            {
+                SetDefaultForComboBoxEdit(comboBoxEdit);
             }
         }
 

@@ -727,6 +727,11 @@ namespace TN_CSDLPT
         //Dept
         private void bdsDepartment_ListChanged(object sender, ListChangedEventArgs e)
         {
+            if ((Program.mGroup == Database.ROLE_SCHOOL || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            {
+                return;
+            }
+
             if (this.bdsDepartment.Count == 0)
             {
                 btnDelete.Enabled = btnEdit.Enabled = false;
@@ -823,13 +828,7 @@ namespace TN_CSDLPT
                 }
                 else
                 {
-                    this.DataSet.EnforceConstraints = false;
-
-                    this.taDepartment.Connection.ConnectionString = Program.connstr;
-                    this.taDepartment.Fill(this.DataSet.KHOA);
-
-                    this.taTeacher.Connection.ConnectionString = Program.connstr;
-                    this.taTeacher.Fill(this.DataSet.GIAOVIEN);
+                    btnRefresh.PerformClick();
                 }
             }
         }

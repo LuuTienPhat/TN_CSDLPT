@@ -65,20 +65,20 @@
             // tENMHLabel
             // 
             tENMHLabel.AutoSize = true;
-            tENMHLabel.Location = new System.Drawing.Point(58, 117);
+            tENMHLabel.Location = new System.Drawing.Point(107, 154);
             tENMHLabel.Name = "tENMHLabel";
-            tENMHLabel.Size = new System.Drawing.Size(49, 15);
+            tENMHLabel.Size = new System.Drawing.Size(57, 15);
             tENMHLabel.TabIndex = 6;
-            tENMHLabel.Text = "To Date:";
+            tENMHLabel.Text = "End Date:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(42, 89);
+            label1.Location = new System.Drawing.Point(103, 126);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(65, 15);
+            label1.Size = new System.Drawing.Size(61, 15);
             label1.TabIndex = 7;
-            label1.Text = "From Date:";
+            label1.Text = "Start Date:";
             // 
             // barManager1
             // 
@@ -253,7 +253,7 @@
             // deFrom
             // 
             this.deFrom.EditValue = null;
-            this.deFrom.Location = new System.Drawing.Point(130, 86);
+            this.deFrom.Location = new System.Drawing.Point(187, 123);
             this.deFrom.MenuManager = this.barManager1;
             this.deFrom.Name = "deFrom";
             this.deFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -266,7 +266,7 @@
             // deTo
             // 
             this.deTo.EditValue = null;
-            this.deTo.Location = new System.Drawing.Point(130, 114);
+            this.deTo.Location = new System.Drawing.Point(187, 151);
             this.deTo.MenuManager = this.barManager1;
             this.deTo.Name = "deTo";
             this.deTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -280,7 +280,7 @@
             // 
             this.btnPreview.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
             this.btnPreview.Appearance.Options.UseBackColor = true;
-            this.btnPreview.Location = new System.Drawing.Point(130, 142);
+            this.btnPreview.Location = new System.Drawing.Point(187, 179);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 23);
             this.btnPreview.TabIndex = 23;

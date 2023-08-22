@@ -1,6 +1,6 @@
 ﻿namespace TN_CSDLPT.views
 {
-    partial class FormTest
+    partial class Examination
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTest));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Examination));
             this.sidePanel1 = new DevExpress.XtraEditors.SidePanel();
             this.gcExaminee = new DevExpress.XtraEditors.GroupControl();
             this.teClassName = new DevExpress.XtraEditors.LabelControl();
@@ -78,7 +78,6 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
             this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
             this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
@@ -103,7 +102,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcAnswerSheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
             this.SuspendLayout();
             // 
@@ -451,9 +449,9 @@
             // lcAnswerSheet
             // 
             this.lcAnswerSheet.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lcAnswerSheet.Location = new System.Drawing.Point(953, 44);
+            this.lcAnswerSheet.Location = new System.Drawing.Point(905, 44);
             this.lcAnswerSheet.Name = "lcAnswerSheet";
-            this.lcAnswerSheet.Size = new System.Drawing.Size(104, 618);
+            this.lcAnswerSheet.Size = new System.Drawing.Size(152, 618);
             this.lcAnswerSheet.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -500,7 +498,6 @@
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 13;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1,
             this.repositoryItemProgressBar1});
             // 
             // bar1
@@ -621,11 +618,6 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 662);
             // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
@@ -655,7 +647,7 @@
             // 
             this.bODETableAdapter.ClearBeforeFill = true;
             // 
-            // FormTest
+            // Examination
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -666,7 +658,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "FormTest";
+            this.Name = "Examination";
             this.Text = "FormTest";
             this.Load += new System.EventHandler(this.FormTest_Load);
             this.sidePanel1.ResumeLayout(false);
@@ -693,7 +685,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcAnswerSheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -742,7 +733,6 @@
         private DevExpress.XtraBars.BarHeaderItem lbTimeLeft;
         private DevExpress.XtraBars.BarEditItem progressBar;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private TN_CSDLPT_PRODDataSet Dataset;
         private TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager tableAdapterManager;

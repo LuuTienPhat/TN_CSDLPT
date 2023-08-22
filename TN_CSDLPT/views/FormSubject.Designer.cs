@@ -61,8 +61,6 @@
             this.lbId = new DevExpress.XtraEditors.LabelControl();
             this.teName = new DevExpress.XtraEditors.TextEdit();
             this.teID = new DevExpress.XtraEditors.TextEdit();
-            this.bdsLocation = new System.Windows.Forms.BindingSource(this.components);
-            this.taLocation = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter();
             this.bdsScore = new System.Windows.Forms.BindingSource(this.components);
             this.taScore = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.BANGDIEMTableAdapter();
             this.bdsTopic = new System.Windows.Forms.BindingSource(this.components);
@@ -79,7 +77,6 @@
             this.gcInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsScore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTopic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher_Register)).BeginInit();
@@ -399,15 +396,6 @@
             this.teID.Size = new System.Drawing.Size(289, 22);
             this.teID.TabIndex = 1;
             // 
-            // bdsLocation
-            // 
-            this.bdsLocation.DataMember = "COSO";
-            this.bdsLocation.DataSource = this.DataSet;
-            // 
-            // taLocation
-            // 
-            this.taLocation.ClearBeforeFill = true;
-            // 
             // bdsScore
             // 
             this.bdsScore.DataMember = "FK_BANGDIEM_MONHOC";
@@ -461,7 +449,6 @@
             this.gcInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsScore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTopic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher_Register)).EndInit();
@@ -494,8 +481,6 @@
         private DevExpress.XtraBars.BarButtonItem btnExit;
         private DevExpress.XtraBars.BarButtonItem btnRefresh;
         private DevExpress.XtraBars.BarButtonItem btnHelp;
-        private System.Windows.Forms.BindingSource bdsLocation;
-        private TN_CSDLPT_PRODDataSetTableAdapters.COSOTableAdapter taLocation;
         private DevExpress.XtraBars.BarEditItem btnLocation;
         private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
         private DevExpress.XtraGrid.Columns.GridColumn colTENMH;

@@ -195,6 +195,8 @@ namespace TN_CSDLPT
             {
                 button.Enabled = false;
             }
+
+            cbxLocation.TextEditStyle = TextEditStyles.DisableTextEditor;
         }
 
         public static void SetDefaultForSeNumberOfExamTimes(SpinEdit seNumberOfExamTimes)

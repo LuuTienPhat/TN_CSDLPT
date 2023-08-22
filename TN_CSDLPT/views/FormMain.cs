@@ -178,11 +178,11 @@ namespace TN_CSDLPT.views
 
         private void btnDoExam_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Form frm = this.CheckExists(typeof(FormTest));
+            Form frm = this.CheckExists(typeof(Examination));
             if (frm != null) frm.Activate();
             else
             {
-                FormTest f = new FormTest();
+                Examination f = new Examination();
                 f.MdiParent = this;
                 f.Show();
             }

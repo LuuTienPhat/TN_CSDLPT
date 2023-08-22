@@ -17,14 +17,14 @@ using System.Globalization;
 
 namespace TN_CSDLPT.views
 {
-    public partial class FormTest : DevExpress.XtraEditors.XtraForm
+    public partial class Examination : DevExpress.XtraEditors.XtraForm
     {
         public static List<CauHoi> questionList = new List<CauHoi>();
         System.Timers.Timer timer;
         Boolean isSubmitted = false;
         int h, m, s;
 
-        public FormTest()
+        public Examination()
         {
             InitializeComponent();
             InitializeTimer();
@@ -43,8 +43,9 @@ namespace TN_CSDLPT.views
             // để khi vừa vào đã ấn thoát thì thoát luôn
             isSubmitted = true;
 
-            FormUtils.FillComboBox(cbxSubject, bdsSubject,
-                new string[] { Database.TABLE_SUBJECT_COL_SUBJECT_ID, Database.TABLE_SUBJECT_COL_SUBJECT_NAME });
+            FormUtils.SetDefaultPropertiesForSpinEdits(new SpinEdit[] { seNumberOfExamTimes, seTotalQuestions, seTotalMinutes });
+            FormUtils.SetDefaultForComboBoxEdits(new ComboBoxEdit[] { cbxLevel, cbxSubject });
+
             seTotalQuestions.Enabled = seTotalMinutes.Enabled = cbxLevel.Enabled;
             btnSubmit.Enabled = btnStart.Enabled = false;
             deExamDate.DateTime = DateTime.Now;

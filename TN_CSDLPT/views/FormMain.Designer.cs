@@ -119,7 +119,7 @@
             // 
             this.btnDepartment.Caption = "Department";
             this.btnDepartment.Id = 2;
-            this.btnDepartment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLocation.ImageOptions.SvgImage")));
+            this.btnDepartment.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDepartment.ImageOptions.SvgImage")));
             this.btnDepartment.Name = "btnDepartment";
             this.btnDepartment.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnDepartment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDepartment_ItemClick);
@@ -176,13 +176,15 @@
             // 
             this.btnExamResultReport.Caption = "Exam Result";
             this.btnExamResultReport.Id = 9;
+            this.btnExamResultReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnExamResultReport.ImageOptions.SvgImage")));
             this.btnExamResultReport.Name = "btnExamResultReport";
             this.btnExamResultReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExamResultReport_ItemClick);
             // 
             // btnSubjectScoreSheet
             // 
-            this.btnSubjectScoreSheet.Caption = "Subject Score Sheet";
+            this.btnSubjectScoreSheet.Caption = "Subject Grade Sheet";
             this.btnSubjectScoreSheet.Id = 10;
+            this.btnSubjectScoreSheet.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSubjectScoreSheet.ImageOptions.SvgImage")));
             this.btnSubjectScoreSheet.Name = "btnSubjectScoreSheet";
             this.btnSubjectScoreSheet.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubjectScoreSheet_ItemClick);
             // 
@@ -190,6 +192,7 @@
             // 
             this.btnExamRegistrationList.Caption = "Exam Registration List";
             this.btnExamRegistrationList.Id = 11;
+            this.btnExamRegistrationList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnExamRegistrationList.ImageOptions.SvgImage")));
             this.btnExamRegistrationList.Name = "btnExamRegistrationList";
             this.btnExamRegistrationList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExamRegistrationList_ItemClick);
             // 

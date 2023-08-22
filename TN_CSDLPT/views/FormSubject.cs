@@ -29,18 +29,10 @@ namespace TN_CSDLPT.views
 
         private void FormSubject_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'this.DataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
-            this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
-            // TODO: This line of code loads data into the 'this.DataSet.BODE' table. You can move, or remove it, as needed.
-            this.taTopic.Fill(this.DataSet.BODE);
-            // TODO: This line of code loads data into the 'this.DataSet.BANGDIEM' table. You can move, or remove it, as needed.
-            this.taScore.Fill(this.DataSet.BANGDIEM);
-            // TODO: This line of code loads data into the 'this.DataSet.COSO' table. You can move, or remove it, as needed.
-            this.taLocation.Fill(this.DataSet.COSO);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODthis.DataSet.MONHOC' table. You can move, or remove it, as needed.
-            this.taSubject.Fill(this.DataSet.MONHOC);
+            FillTables();
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
+            FormUtils.SetDefaultGridView(gvSubject);
 
             if (Program.mGroup == Database.ROLE_SCHOOL)
             {
@@ -69,7 +61,7 @@ namespace TN_CSDLPT.views
                 });
             }
             gcInfo.Enabled = false;
-
+            
         }
 
         private void btnNew_ItemClick(object sender, ItemClickEventArgs e)
@@ -310,6 +302,15 @@ namespace TN_CSDLPT.views
                 this.taSubject.Connection.ConnectionString = Program.connstr;
                 this.taSubject.Fill(this.DataSet.MONHOC);
 
+                this.taScore.Connection.ConnectionString = Program.connstr;
+                this.taScore.Fill(this.DataSet.BANGDIEM);
+
+                this.taTopic.Connection.ConnectionString = Program.connstr;
+                this.taTopic.Fill(this.DataSet.BODE);
+
+                this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
+                this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
+
                 this.bdsSubject.Position = this.position;
 
                 SplashScreenManager.CloseForm();
@@ -341,13 +342,6 @@ namespace TN_CSDLPT.views
             return validated;
         }
 
-        private void FillTable()
-        {
-            this.DataSet.EnforceConstraints = false;
-            this.taSubject.Connection.ConnectionString = Program.connstr;
-            this.taSubject.Fill(this.DataSet.MONHOC);
-        }
-
         private bool CommitDB()
         {
             bool isCommitted = false;
@@ -365,6 +359,23 @@ namespace TN_CSDLPT.views
                 CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitDatabaseErrorMsg, ex.Message));
             }
             return isCommitted;
+        }
+
+        private void FillTables()
+        {
+            this.DataSet.EnforceConstraints = true;
+            // TODO: This line of code loads data into the 'this.DataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+            this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
+            this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
+            // TODO: This line of code loads data into the 'this.DataSet.BODE' table. You can move, or remove it, as needed.
+            this.taTopic.Connection.ConnectionString = Program.connstr;
+            this.taTopic.Fill(this.DataSet.BODE);
+            // TODO: This line of code loads data into the 'this.DataSet.BANGDIEM' table. You can move, or remove it, as needed.
+            this.taScore.Connection.ConnectionString = Program.connstr;
+            this.taScore.Fill(this.DataSet.BANGDIEM);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODthis.DataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.taSubject.Connection.ConnectionString = Program.connstr;
+            this.taSubject.Fill(this.DataSet.MONHOC);
         }
 
         private void InitializeCallBackActions()
@@ -417,19 +428,7 @@ namespace TN_CSDLPT.views
                 }
                 else
                 {
-                    this.DataSet.EnforceConstraints = false;
-
-                    this.taSubject.Connection.ConnectionString = Program.connstr;
-                    this.taSubject.Fill(this.DataSet.MONHOC);
-
-                    this.taScore.Connection.ConnectionString = Program.connstr;
-                    this.taScore.Fill(this.DataSet.BANGDIEM);
-
-                    this.taTopic.Connection.ConnectionString = Program.connstr;
-                    this.taTopic.Fill(this.DataSet.BODE);
-
-                    this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
-                    this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
+                    btnRefresh.PerformClick();
                 }
             }
         }

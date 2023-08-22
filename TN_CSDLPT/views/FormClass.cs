@@ -362,6 +362,7 @@ namespace TN_CSDLPT.views
 
                 this.taClass.Connection.ConnectionString = Program.connstr;
                 this.taClass.Fill(this.DataSet.LOP);
+
                 this.bdsClass.Position = this.bdsClassPosition;
 
                 SplashScreenManager.CloseForm();
@@ -979,6 +980,11 @@ namespace TN_CSDLPT.views
         //Class
         private void bdsClass_ListChanged(object sender, ListChangedEventArgs e)
         {
+            if ((Program.mGroup == Database.ROLE_SCHOOL || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
+            {
+                return;
+            }
+
             if (this.bdsClass.Count == 0)
             {
                 btnDelete.Enabled = btnEdit.Enabled = false;
@@ -1075,16 +1081,7 @@ namespace TN_CSDLPT.views
                 }
                 else
                 {
-                    this.DataSet.EnforceConstraints = false;
-
-                    this.taClass.Connection.ConnectionString = Program.connstr;
-                    this.taClass.Fill(this.DataSet.LOP);
-
-                    this.taStudent.Connection.ConnectionString = Program.connstr;
-                    this.taStudent.Fill(this.DataSet.SINHVIEN);
-
-                    this.taDepartment.Connection.ConnectionString = Program.connstr;
-                    this.taDepartment.Fill(this.DataSet.KHOA);
+                    btnRefresh.PerformClick();
                 }
             }
         }

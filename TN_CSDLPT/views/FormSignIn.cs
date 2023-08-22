@@ -175,6 +175,10 @@ namespace TN_CSDLPT
                             Program.formMain.lbUserFullName.Caption = Program.mHoTen;
                             Program.formMain.lbUserRole.Caption = Program.mGroup;
                         }
+                        else
+                        {
+                            return;
+                        }
                     }
                 }
 
