@@ -53,6 +53,7 @@ namespace TN_CSDLPT.views
             finally
             {
                 itemsCollection.EndUpdate();
+                FormUtils.SetDefaultForComboBoxEdit(cbxRole);
                 cbxRole.SelectedIndex = 0;
             }
         }
@@ -98,8 +99,10 @@ namespace TN_CSDLPT.views
                         }
                     }
 
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._signUpFailedMsg, ex.Message);
+
                         string deleteLoginQuery = DatabaseUtils.BuildQuery(Database.SP_DELETE_LOGIN, new string[]
                         {
                             loginName, teacherId
@@ -126,12 +129,17 @@ namespace TN_CSDLPT.views
         {
             bool isValidated = true;
 
+            if (teTeacherID.Text.Trim().Length == 0)
+            {
+                isValidated = false;
+                teTeacherID.ErrorText = string.Format(Translation._argsNotEmptyMsg, "Teacher ID");
+            }
             if (teLoginName.Text.Trim().Length == 0)
             {
                 isValidated = false;
                 teLoginName.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._usernameLabel);
             }
-            else if (tePassword.Text.Trim().Length == 0)
+            if (tePassword.Text.Trim().Length == 0)
             {
                 isValidated = false;
                 tePassword.ErrorText = string.Format(Translation._argsNotEmptyMsg, Translation._passwordLabel);
@@ -155,9 +163,13 @@ namespace TN_CSDLPT.views
 
                 }
             }
+            catch (Exception ex)
+            {
+                
+            }
             finally
             {
-                Program.myReader.Close();
+                Program.CloseSqlDataReader();
             }
 
             return exists;
@@ -177,9 +189,13 @@ namespace TN_CSDLPT.views
                     exists = true;
                 }
             }
+            catch (Exception ex)
+            {
+
+            }
             finally
             {
-                Program.myReader.Close();
+                Program.CloseSqlDataReader();
             }
 
             return exists;

@@ -26,15 +26,16 @@ class Translation
     public const string _subjectAlreadyHasTopicMsg = "Subject already has Topic";
     public const string _subjectAlreadyHasTeacherMsg = "Subject already has Teacher Register";
     public const string _examSubjectNotFoundMsg = "Couldn't find the exam subjects. Please make sure this subject was assigned to your class.";
-    
+    public const string _examSubjectFoundMsg = "Found exam in registration. Please press START to do exam";
+
     public const string _teacherExamResultMsg = "Your Exam result is {0}";
     public const string _studentExamResultMsg = "Your Exam result is {0}.\nOK view details.";
 
     public const string _incorrectNumberOfExamTimesErrorMsg = "Number Of Exam Times must be twice at least.";
     public const string _incorrectTotalQuestionErrorMsg = "The exam must have a minimum of 10 questions and a maximum of 100 questions.";
     public const string _incorrectTotalMinutesErrorMsg = "Exam time must be more than 15 minutes.";
-    public const string _noTestHeldOnSundayErrorMsg = "There are no exams on Sundays.";
-    public const string _invalidExamDateErrorMsg = "Invalid Exam date";
+    public const string _noTestHeldOnSundayErrorMsg = "Exam can't be held on Sunday";
+    public const string _invalidExamDateErrorMsg = "Exam Date must be greater than or equal today";
 
     public const string _teacherCannotEditQuestionOfOtherTeacherMsg = "You can't modify question of other teacher!";
     public const string _argsFailedToGetNextQuestionNoErrorMsg = "Couldn't get next question no\n{0}";
@@ -55,6 +56,7 @@ class Translation
     public static string _idLabel = "Id";
     public static string _nameLabel = "Name";
     public static string _teacherInfoLabel = "Teacher Info";
+    public static string _studentInfoLabel = "Student Info";
 
     //FormSignUp
     public static string _loginNameExistsMsg = "Login Name is already exists. Please choose another!";

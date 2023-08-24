@@ -44,21 +44,13 @@ namespace TN_CSDLPT.views
 
         private void FormClass_Load(object sender, EventArgs e)
         {
-            this.DataSet.EnforceConstraints = false;
-            // TODO: This line of code loads data into the 'DataSet.KHOA' table. You can move, or remove it, as needed.
-            this.taDepartment.Connection.ConnectionString = Program.connstr;
-            this.taDepartment.Fill(this.DataSet.KHOA);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.SINHVIEN' table. You can move, or remove it, as needed.
-            this.taStudent.Connection.ConnectionString = Program.connstr;
-            this.taStudent.Fill(this.DataSet.SINHVIEN);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
-            this.taClass.Connection.ConnectionString = Program.connstr;
-            this.taClass.Fill(this.DataSet.LOP);
+            FillTables();
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
             FormUtils.FillComboBox(cbxDepartment, this.bdsDepartment, new string[] { Database.TABLE_DEPT_COL_DEPT_ID, Database.TABLE_DEPT_COL_DEPT_NAME });
             FormUtils.FillComboBox(cbxStudentClass, this.bdsClass, new string[] { Database.TABLE_CLASS_COL_CLASS_ID, Database.TABLE_CLASS_COL_CLASS_NAME });
             FormUtils.SetDefaultForBarManagerBars(barManager1);
+            FormUtils.SetDefaultGridViews(new GridView[] { gvClass, gvStudent });
 
             if (((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
             {
@@ -1084,6 +1076,20 @@ namespace TN_CSDLPT.views
                     btnRefresh.PerformClick();
                 }
             }
+        }
+
+        private void FillTables()
+        {
+            this.DataSet.EnforceConstraints = false;
+            // TODO: This line of code loads data into the 'DataSet.KHOA' table. You can move, or remove it, as needed.
+            this.taDepartment.Connection.ConnectionString = Program.connstr;
+            this.taDepartment.Fill(this.DataSet.KHOA);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.SINHVIEN' table. You can move, or remove it, as needed.
+            this.taStudent.Connection.ConnectionString = Program.connstr;
+            this.taStudent.Fill(this.DataSet.SINHVIEN);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.LOP' table. You can move, or remove it, as needed.
+            this.taClass.Connection.ConnectionString = Program.connstr;
+            this.taClass.Fill(this.DataSet.LOP);
         }
     }
 

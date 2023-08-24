@@ -31,35 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Examination));
             this.sidePanel1 = new DevExpress.XtraEditors.SidePanel();
-            this.gcExaminee = new DevExpress.XtraEditors.GroupControl();
-            this.teClassName = new DevExpress.XtraEditors.LabelControl();
-            this.lbTitleClassname = new DevExpress.XtraEditors.LabelControl();
-            this.teClassId = new DevExpress.XtraEditors.LabelControl();
-            this.lbTitleClassId = new DevExpress.XtraEditors.LabelControl();
-            this.teName = new DevExpress.XtraEditors.LabelControl();
-            this.lbTitleFullName = new DevExpress.XtraEditors.LabelControl();
-            this.teId = new DevExpress.XtraEditors.LabelControl();
-            this.lbTitleId = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.sidePanel3 = new DevExpress.XtraEditors.SidePanel();
-            this.seTotalMinutes = new DevExpress.XtraEditors.SpinEdit();
-            this.seTotalQuestions = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.btnStart = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxLevel = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.bODEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bdsTopic = new System.Windows.Forms.BindingSource(this.components);
             this.Dataset = new TN_CSDLPT.TN_CSDLPT_PRODDataSet();
-            this.sidePanel2 = new DevExpress.XtraEditors.SidePanel();
-            this.btnFindExam = new DevExpress.XtraEditors.SimpleButton();
-            this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.deExamDate = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.sidePanel4 = new DevExpress.XtraEditors.SidePanel();
             this.lcAnswerSheet = new DevExpress.XtraEditors.ListBoxControl();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -81,131 +55,67 @@
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
             this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
             this.taSubject = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter();
-            this.bODETableAdapter = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter();
+            this.taTopic = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter();
+            this.gcExaminee = new DevExpress.XtraEditors.GroupControl();
+            this.teClassName = new DevExpress.XtraEditors.LabelControl();
+            this.lbTitleClassname = new DevExpress.XtraEditors.LabelControl();
+            this.teClassId = new DevExpress.XtraEditors.LabelControl();
+            this.lbTitleClassId = new DevExpress.XtraEditors.LabelControl();
+            this.teName = new DevExpress.XtraEditors.LabelControl();
+            this.lbTitleFullName = new DevExpress.XtraEditors.LabelControl();
+            this.teId = new DevExpress.XtraEditors.LabelControl();
+            this.lbTitleId = new DevExpress.XtraEditors.LabelControl();
+            this.gcFindExam = new DevExpress.XtraEditors.GroupControl();
+            this.btnFindExam = new DevExpress.XtraEditors.SimpleButton();
+            this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.deExamDate = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.gcExamInfo = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.btnStart = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.teTotalQuestions = new DevExpress.XtraEditors.TextEdit();
+            this.teLevel = new DevExpress.XtraEditors.TextEdit();
+            this.teTotalMinutes = new DevExpress.XtraEditors.TextEdit();
             this.sidePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcExaminee)).BeginInit();
-            this.gcExaminee.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            this.sidePanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seTotalMinutes.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.seTotalQuestions.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTopic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dataset)).BeginInit();
-            this.sidePanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).BeginInit();
             this.sidePanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcAnswerSheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcExaminee)).BeginInit();
+            this.gcExaminee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcFindExam)).BeginInit();
+            this.gcFindExam.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcExamInfo)).BeginInit();
+            this.gcExamInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teTotalQuestions.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teLevel.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teTotalMinutes.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel1
             // 
+            this.sidePanel1.Controls.Add(this.gcExamInfo);
+            this.sidePanel1.Controls.Add(this.gcFindExam);
             this.sidePanel1.Controls.Add(this.gcExaminee);
             this.sidePanel1.Controls.Add(this.labelControl1);
-            this.sidePanel1.Controls.Add(this.groupControl1);
             this.sidePanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel1.Location = new System.Drawing.Point(0, 28);
             this.sidePanel1.Name = "sidePanel1";
             this.sidePanel1.Size = new System.Drawing.Size(327, 662);
             this.sidePanel1.TabIndex = 1;
             this.sidePanel1.Text = "sidePanel1";
-            // 
-            // gcExaminee
-            // 
-            this.gcExaminee.Controls.Add(this.teClassName);
-            this.gcExaminee.Controls.Add(this.lbTitleClassname);
-            this.gcExaminee.Controls.Add(this.teClassId);
-            this.gcExaminee.Controls.Add(this.lbTitleClassId);
-            this.gcExaminee.Controls.Add(this.teName);
-            this.gcExaminee.Controls.Add(this.lbTitleFullName);
-            this.gcExaminee.Controls.Add(this.teId);
-            this.gcExaminee.Controls.Add(this.lbTitleId);
-            this.gcExaminee.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcExaminee.GroupStyle = DevExpress.Utils.GroupStyle.Title;
-            this.gcExaminee.Location = new System.Drawing.Point(0, 57);
-            this.gcExaminee.Name = "gcExaminee";
-            this.gcExaminee.Size = new System.Drawing.Size(326, 177);
-            this.gcExaminee.TabIndex = 3;
-            this.gcExaminee.Text = "STUDENT INFO";
-            // 
-            // teClassName
-            // 
-            this.teClassName.Location = new System.Drawing.Point(131, 135);
-            this.teClassName.Name = "teClassName";
-            this.teClassName.Size = new System.Drawing.Size(69, 15);
-            this.teClassName.TabIndex = 7;
-            this.teClassName.Text = "teClassName";
-            // 
-            // lbTitleClassname
-            // 
-            this.lbTitleClassname.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lbTitleClassname.Appearance.Options.UseFont = true;
-            this.lbTitleClassname.Location = new System.Drawing.Point(28, 135);
-            this.lbTitleClassname.Name = "lbTitleClassname";
-            this.lbTitleClassname.Size = new System.Drawing.Size(63, 15);
-            this.lbTitleClassname.TabIndex = 6;
-            this.lbTitleClassname.Text = "Class name:";
-            // 
-            // teClassId
-            // 
-            this.teClassId.Location = new System.Drawing.Point(131, 105);
-            this.teClassId.Name = "teClassId";
-            this.teClassId.Size = new System.Drawing.Size(47, 15);
-            this.teClassId.TabIndex = 5;
-            this.teClassId.Text = "teClassId";
-            // 
-            // lbTitleClassId
-            // 
-            this.lbTitleClassId.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lbTitleClassId.Appearance.Options.UseFont = true;
-            this.lbTitleClassId.Location = new System.Drawing.Point(28, 105);
-            this.lbTitleClassId.Name = "lbTitleClassId";
-            this.lbTitleClassId.Size = new System.Drawing.Size(43, 15);
-            this.lbTitleClassId.TabIndex = 4;
-            this.lbTitleClassId.Text = "Class Id:";
-            // 
-            // teName
-            // 
-            this.teName.Location = new System.Drawing.Point(131, 74);
-            this.teName.Name = "teName";
-            this.teName.Size = new System.Drawing.Size(42, 15);
-            this.teName.TabIndex = 3;
-            this.teName.Text = "teName";
-            // 
-            // lbTitleFullName
-            // 
-            this.lbTitleFullName.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lbTitleFullName.Appearance.Options.UseFont = true;
-            this.lbTitleFullName.Location = new System.Drawing.Point(28, 74);
-            this.lbTitleFullName.Name = "lbTitleFullName";
-            this.lbTitleFullName.Size = new System.Drawing.Size(58, 15);
-            this.lbTitleFullName.TabIndex = 2;
-            this.lbTitleFullName.Text = "Full Name:";
-            // 
-            // teId
-            // 
-            this.teId.Location = new System.Drawing.Point(131, 44);
-            this.teId.Name = "teId";
-            this.teId.Size = new System.Drawing.Size(20, 15);
-            this.teId.TabIndex = 1;
-            this.teId.Text = "teId";
-            // 
-            // lbTitleId
-            // 
-            this.lbTitleId.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lbTitleId.Appearance.Options.UseFont = true;
-            this.lbTitleId.Location = new System.Drawing.Point(28, 44);
-            this.lbTitleId.Name = "lbTitleId";
-            this.lbTitleId.Size = new System.Drawing.Size(16, 15);
-            this.lbTitleId.TabIndex = 0;
-            this.lbTitleId.Text = "ID:";
             // 
             // labelControl1
             // 
@@ -225,214 +135,15 @@
             this.labelControl1.TabIndex = 3;
             this.labelControl1.Text = "EXAMINATION";
             // 
-            // groupControl1
+            // bdsTopic
             // 
-            this.groupControl1.Controls.Add(this.sidePanel3);
-            this.groupControl1.Controls.Add(this.sidePanel2);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl1.GroupStyle = DevExpress.Utils.GroupStyle.Title;
-            this.groupControl1.Location = new System.Drawing.Point(0, 234);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(326, 428);
-            this.groupControl1.TabIndex = 2;
-            this.groupControl1.Text = "EXAM INFO";
-            // 
-            // sidePanel3
-            // 
-            this.sidePanel3.Controls.Add(this.seTotalMinutes);
-            this.sidePanel3.Controls.Add(this.seTotalQuestions);
-            this.sidePanel3.Controls.Add(this.labelControl11);
-            this.sidePanel3.Controls.Add(this.btnStart);
-            this.sidePanel3.Controls.Add(this.labelControl10);
-            this.sidePanel3.Controls.Add(this.labelControl8);
-            this.sidePanel3.Controls.Add(this.cbxLevel);
-            this.sidePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sidePanel3.Location = new System.Drawing.Point(0, 192);
-            this.sidePanel3.Name = "sidePanel3";
-            this.sidePanel3.Size = new System.Drawing.Size(326, 236);
-            this.sidePanel3.TabIndex = 44;
-            this.sidePanel3.Text = "sidePanel3";
-            // 
-            // seTotalMinutes
-            // 
-            this.seTotalMinutes.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.seTotalMinutes.Location = new System.Drawing.Point(131, 126);
-            this.seTotalMinutes.Name = "seTotalMinutes";
-            this.seTotalMinutes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.seTotalMinutes.Size = new System.Drawing.Size(175, 22);
-            this.seTotalMinutes.TabIndex = 43;
-            // 
-            // seTotalQuestions
-            // 
-            this.seTotalQuestions.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.seTotalQuestions.Location = new System.Drawing.Point(131, 70);
-            this.seTotalQuestions.Name = "seTotalQuestions";
-            this.seTotalQuestions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.seTotalQuestions.Size = new System.Drawing.Size(175, 22);
-            this.seTotalQuestions.TabIndex = 42;
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(28, 73);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(87, 15);
-            this.labelControl11.TabIndex = 37;
-            this.labelControl11.Text = "Total questions:";
-            // 
-            // btnStart
-            // 
-            this.btnStart.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success;
-            this.btnStart.Appearance.Options.UseBackColor = true;
-            this.btnStart.Location = new System.Drawing.Point(28, 172);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(278, 30);
-            this.btnStart.TabIndex = 41;
-            this.btnStart.Text = "START";
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // labelControl10
-            // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(28, 101);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(33, 15);
-            this.labelControl10.TabIndex = 38;
-            this.labelControl10.Text = "Level:";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(28, 129);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(79, 15);
-            this.labelControl8.TabIndex = 40;
-            this.labelControl8.Text = "Total minutes:";
-            // 
-            // cbxLevel
-            // 
-            this.cbxLevel.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bODEBindingSource, "TRINHDO", true));
-            this.cbxLevel.Location = new System.Drawing.Point(131, 98);
-            this.cbxLevel.Name = "cbxLevel";
-            this.cbxLevel.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxLevel.Size = new System.Drawing.Size(175, 22);
-            this.cbxLevel.TabIndex = 39;
-            // 
-            // bODEBindingSource
-            // 
-            this.bODEBindingSource.DataMember = "BODE";
-            this.bODEBindingSource.DataSource = this.Dataset;
+            this.bdsTopic.DataMember = "BODE";
+            this.bdsTopic.DataSource = this.Dataset;
             // 
             // Dataset
             // 
             this.Dataset.DataSetName = "TN_CSDLPT_PRODDataSet";
             this.Dataset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sidePanel2
-            // 
-            this.sidePanel2.Controls.Add(this.btnFindExam);
-            this.sidePanel2.Controls.Add(this.seNumberOfExamTimes);
-            this.sidePanel2.Controls.Add(this.labelControl3);
-            this.sidePanel2.Controls.Add(this.cbxSubject);
-            this.sidePanel2.Controls.Add(this.labelControl4);
-            this.sidePanel2.Controls.Add(this.deExamDate);
-            this.sidePanel2.Controls.Add(this.labelControl6);
-            this.sidePanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sidePanel2.Location = new System.Drawing.Point(0, 26);
-            this.sidePanel2.Name = "sidePanel2";
-            this.sidePanel2.Size = new System.Drawing.Size(326, 166);
-            this.sidePanel2.TabIndex = 2;
-            this.sidePanel2.Text = "sidePanel2";
-            // 
-            // btnFindExam
-            // 
-            this.btnFindExam.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
-            this.btnFindExam.Appearance.Options.UseBackColor = true;
-            this.btnFindExam.Location = new System.Drawing.Point(28, 117);
-            this.btnFindExam.Name = "btnFindExam";
-            this.btnFindExam.Size = new System.Drawing.Size(278, 30);
-            this.btnFindExam.TabIndex = 36;
-            this.btnFindExam.Text = "Find Exam";
-            this.btnFindExam.Click += new System.EventHandler(this.btnFindExam_Click);
-            // 
-            // seNumberOfExamTimes
-            // 
-            this.seNumberOfExamTimes.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.seNumberOfExamTimes.Location = new System.Drawing.Point(131, 79);
-            this.seNumberOfExamTimes.Name = "seNumberOfExamTimes";
-            this.seNumberOfExamTimes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.seNumberOfExamTimes.Size = new System.Drawing.Size(175, 22);
-            this.seNumberOfExamTimes.TabIndex = 30;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(28, 26);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(45, 15);
-            this.labelControl3.TabIndex = 32;
-            this.labelControl3.Text = "Subject:";
-            // 
-            // cbxSubject
-            // 
-            this.cbxSubject.Location = new System.Drawing.Point(131, 23);
-            this.cbxSubject.Name = "cbxSubject";
-            this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxSubject.Size = new System.Drawing.Size(175, 22);
-            this.cbxSubject.TabIndex = 33;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(28, 54);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(30, 15);
-            this.labelControl4.TabIndex = 34;
-            this.labelControl4.Text = "Date:";
-            // 
-            // deExamDate
-            // 
-            this.deExamDate.EditValue = null;
-            this.deExamDate.Location = new System.Drawing.Point(131, 51);
-            this.deExamDate.Name = "deExamDate";
-            this.deExamDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deExamDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deExamDate.Size = new System.Drawing.Size(175, 22);
-            this.deExamDate.TabIndex = 31;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(28, 82);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(68, 15);
-            this.labelControl6.TabIndex = 35;
-            this.labelControl6.Text = "Exam count:";
             // 
             // sidePanel4
             // 
@@ -643,9 +354,274 @@
             // 
             this.taSubject.ClearBeforeFill = true;
             // 
-            // bODETableAdapter
+            // taTopic
             // 
-            this.bODETableAdapter.ClearBeforeFill = true;
+            this.taTopic.ClearBeforeFill = true;
+            // 
+            // gcExaminee
+            // 
+            this.gcExaminee.Controls.Add(this.teClassName);
+            this.gcExaminee.Controls.Add(this.lbTitleClassname);
+            this.gcExaminee.Controls.Add(this.teClassId);
+            this.gcExaminee.Controls.Add(this.lbTitleClassId);
+            this.gcExaminee.Controls.Add(this.teName);
+            this.gcExaminee.Controls.Add(this.lbTitleFullName);
+            this.gcExaminee.Controls.Add(this.teId);
+            this.gcExaminee.Controls.Add(this.lbTitleId);
+            this.gcExaminee.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcExaminee.GroupStyle = DevExpress.Utils.GroupStyle.Title;
+            this.gcExaminee.Location = new System.Drawing.Point(0, 57);
+            this.gcExaminee.Name = "gcExaminee";
+            this.gcExaminee.Size = new System.Drawing.Size(326, 183);
+            this.gcExaminee.TabIndex = 5;
+            this.gcExaminee.Text = "STUDENT INFO";
+            // 
+            // teClassName
+            // 
+            this.teClassName.Location = new System.Drawing.Point(131, 135);
+            this.teClassName.Name = "teClassName";
+            this.teClassName.Size = new System.Drawing.Size(69, 15);
+            this.teClassName.TabIndex = 7;
+            this.teClassName.Text = "teClassName";
+            // 
+            // lbTitleClassname
+            // 
+            this.lbTitleClassname.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lbTitleClassname.Appearance.Options.UseFont = true;
+            this.lbTitleClassname.Location = new System.Drawing.Point(28, 135);
+            this.lbTitleClassname.Name = "lbTitleClassname";
+            this.lbTitleClassname.Size = new System.Drawing.Size(63, 15);
+            this.lbTitleClassname.TabIndex = 6;
+            this.lbTitleClassname.Text = "Class name:";
+            // 
+            // teClassId
+            // 
+            this.teClassId.Location = new System.Drawing.Point(131, 105);
+            this.teClassId.Name = "teClassId";
+            this.teClassId.Size = new System.Drawing.Size(47, 15);
+            this.teClassId.TabIndex = 5;
+            this.teClassId.Text = "teClassId";
+            // 
+            // lbTitleClassId
+            // 
+            this.lbTitleClassId.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lbTitleClassId.Appearance.Options.UseFont = true;
+            this.lbTitleClassId.Location = new System.Drawing.Point(28, 105);
+            this.lbTitleClassId.Name = "lbTitleClassId";
+            this.lbTitleClassId.Size = new System.Drawing.Size(43, 15);
+            this.lbTitleClassId.TabIndex = 4;
+            this.lbTitleClassId.Text = "Class Id:";
+            // 
+            // teName
+            // 
+            this.teName.Location = new System.Drawing.Point(131, 74);
+            this.teName.Name = "teName";
+            this.teName.Size = new System.Drawing.Size(42, 15);
+            this.teName.TabIndex = 3;
+            this.teName.Text = "teName";
+            // 
+            // lbTitleFullName
+            // 
+            this.lbTitleFullName.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lbTitleFullName.Appearance.Options.UseFont = true;
+            this.lbTitleFullName.Location = new System.Drawing.Point(28, 74);
+            this.lbTitleFullName.Name = "lbTitleFullName";
+            this.lbTitleFullName.Size = new System.Drawing.Size(58, 15);
+            this.lbTitleFullName.TabIndex = 2;
+            this.lbTitleFullName.Text = "Full Name:";
+            // 
+            // teId
+            // 
+            this.teId.Location = new System.Drawing.Point(131, 44);
+            this.teId.Name = "teId";
+            this.teId.Size = new System.Drawing.Size(20, 15);
+            this.teId.TabIndex = 1;
+            this.teId.Text = "teId";
+            // 
+            // lbTitleId
+            // 
+            this.lbTitleId.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lbTitleId.Appearance.Options.UseFont = true;
+            this.lbTitleId.Location = new System.Drawing.Point(28, 44);
+            this.lbTitleId.Name = "lbTitleId";
+            this.lbTitleId.Size = new System.Drawing.Size(16, 15);
+            this.lbTitleId.TabIndex = 0;
+            this.lbTitleId.Text = "ID:";
+            // 
+            // gcFindExam
+            // 
+            this.gcFindExam.Controls.Add(this.btnFindExam);
+            this.gcFindExam.Controls.Add(this.seNumberOfExamTimes);
+            this.gcFindExam.Controls.Add(this.labelControl3);
+            this.gcFindExam.Controls.Add(this.cbxSubject);
+            this.gcFindExam.Controls.Add(this.labelControl4);
+            this.gcFindExam.Controls.Add(this.deExamDate);
+            this.gcFindExam.Controls.Add(this.labelControl6);
+            this.gcFindExam.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcFindExam.GroupStyle = DevExpress.Utils.GroupStyle.Title;
+            this.gcFindExam.Location = new System.Drawing.Point(0, 240);
+            this.gcFindExam.Name = "gcFindExam";
+            this.gcFindExam.Size = new System.Drawing.Size(326, 208);
+            this.gcFindExam.TabIndex = 6;
+            this.gcFindExam.Text = "FIND EXAM";
+            // 
+            // btnFindExam
+            // 
+            this.btnFindExam.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
+            this.btnFindExam.Appearance.Options.UseBackColor = true;
+            this.btnFindExam.Location = new System.Drawing.Point(24, 143);
+            this.btnFindExam.Name = "btnFindExam";
+            this.btnFindExam.Size = new System.Drawing.Size(278, 30);
+            this.btnFindExam.TabIndex = 51;
+            this.btnFindExam.Text = "Find Exam";
+            this.btnFindExam.Click += new System.EventHandler(this.btnFindExam_Click);
+            // 
+            // seNumberOfExamTimes
+            // 
+            this.seNumberOfExamTimes.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.seNumberOfExamTimes.Location = new System.Drawing.Point(127, 105);
+            this.seNumberOfExamTimes.Name = "seNumberOfExamTimes";
+            this.seNumberOfExamTimes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.seNumberOfExamTimes.Size = new System.Drawing.Size(175, 22);
+            this.seNumberOfExamTimes.TabIndex = 45;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(24, 52);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(45, 15);
+            this.labelControl3.TabIndex = 47;
+            this.labelControl3.Text = "Subject:";
+            // 
+            // cbxSubject
+            // 
+            this.cbxSubject.Location = new System.Drawing.Point(127, 49);
+            this.cbxSubject.Name = "cbxSubject";
+            this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSubject.Size = new System.Drawing.Size(175, 22);
+            this.cbxSubject.TabIndex = 48;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(24, 80);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(30, 15);
+            this.labelControl4.TabIndex = 49;
+            this.labelControl4.Text = "Date:";
+            // 
+            // deExamDate
+            // 
+            this.deExamDate.EditValue = null;
+            this.deExamDate.Location = new System.Drawing.Point(127, 77);
+            this.deExamDate.Name = "deExamDate";
+            this.deExamDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deExamDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deExamDate.Size = new System.Drawing.Size(175, 22);
+            this.deExamDate.TabIndex = 46;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(24, 108);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(91, 15);
+            this.labelControl6.TabIndex = 50;
+            this.labelControl6.Text = "No. Exam Times:";
+            // 
+            // gcExamInfo
+            // 
+            this.gcExamInfo.Controls.Add(this.labelControl11);
+            this.gcExamInfo.Controls.Add(this.btnStart);
+            this.gcExamInfo.Controls.Add(this.labelControl10);
+            this.gcExamInfo.Controls.Add(this.labelControl8);
+            this.gcExamInfo.Controls.Add(this.teTotalQuestions);
+            this.gcExamInfo.Controls.Add(this.teLevel);
+            this.gcExamInfo.Controls.Add(this.teTotalMinutes);
+            this.gcExamInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcExamInfo.Location = new System.Drawing.Point(0, 448);
+            this.gcExamInfo.Name = "gcExamInfo";
+            this.gcExamInfo.Size = new System.Drawing.Size(326, 214);
+            this.gcExamInfo.TabIndex = 53;
+            this.gcExamInfo.Text = "EXAM INFO";
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Location = new System.Drawing.Point(24, 55);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(87, 15);
+            this.labelControl11.TabIndex = 44;
+            this.labelControl11.Text = "Total questions:";
+            // 
+            // btnStart
+            // 
+            this.btnStart.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success;
+            this.btnStart.Appearance.Options.UseBackColor = true;
+            this.btnStart.Location = new System.Drawing.Point(24, 154);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(278, 30);
+            this.btnStart.TabIndex = 48;
+            this.btnStart.Text = "START";
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(24, 83);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(33, 15);
+            this.labelControl10.TabIndex = 45;
+            this.labelControl10.Text = "Level:";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Location = new System.Drawing.Point(24, 111);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(79, 15);
+            this.labelControl8.TabIndex = 47;
+            this.labelControl8.Text = "Total minutes:";
+            // 
+            // teTotalQuestions
+            // 
+            this.teTotalQuestions.EditValue = "";
+            this.teTotalQuestions.Location = new System.Drawing.Point(127, 52);
+            this.teTotalQuestions.Name = "teTotalQuestions";
+            this.teTotalQuestions.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.teTotalQuestions.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.teTotalQuestions.Size = new System.Drawing.Size(175, 22);
+            this.teTotalQuestions.TabIndex = 49;
+            // 
+            // teLevel
+            // 
+            this.teLevel.Location = new System.Drawing.Point(127, 80);
+            this.teLevel.Name = "teLevel";
+            this.teLevel.Size = new System.Drawing.Size(175, 22);
+            this.teLevel.TabIndex = 46;
+            // 
+            // teTotalMinutes
+            // 
+            this.teTotalMinutes.EditValue = "";
+            this.teTotalMinutes.Location = new System.Drawing.Point(127, 108);
+            this.teTotalMinutes.Name = "teTotalMinutes";
+            this.teTotalMinutes.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.teTotalMinutes.Size = new System.Drawing.Size(175, 22);
+            this.teTotalMinutes.TabIndex = 50;
             // 
             // Examination
             // 
@@ -662,30 +638,30 @@
             this.Text = "FormTest";
             this.Load += new System.EventHandler(this.FormTest_Load);
             this.sidePanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcExaminee)).EndInit();
-            this.gcExaminee.ResumeLayout(false);
-            this.gcExaminee.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.sidePanel3.ResumeLayout(false);
-            this.sidePanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seTotalMinutes.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.seTotalQuestions.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsTopic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dataset)).EndInit();
-            this.sidePanel2.ResumeLayout(false);
-            this.sidePanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).EndInit();
             this.sidePanel4.ResumeLayout(false);
             this.sidePanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcAnswerSheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcExaminee)).EndInit();
+            this.gcExaminee.ResumeLayout(false);
+            this.gcExaminee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcFindExam)).EndInit();
+            this.gcFindExam.ResumeLayout(false);
+            this.gcFindExam.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.seNumberOfExamTimes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcExamInfo)).EndInit();
+            this.gcExamInfo.ResumeLayout(false);
+            this.gcExamInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teTotalQuestions.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teLevel.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teTotalMinutes.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,33 +669,7 @@
 
         #endregion
         private DevExpress.XtraEditors.SidePanel sidePanel1;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.GroupControl gcExaminee;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl teClassName;
-        private DevExpress.XtraEditors.LabelControl lbTitleClassname;
-        private DevExpress.XtraEditors.LabelControl teClassId;
-        private DevExpress.XtraEditors.LabelControl lbTitleClassId;
-        private DevExpress.XtraEditors.LabelControl teName;
-        private DevExpress.XtraEditors.LabelControl lbTitleFullName;
-        private DevExpress.XtraEditors.LabelControl teId;
-        private DevExpress.XtraEditors.LabelControl lbTitleId;
-        private DevExpress.XtraEditors.SidePanel sidePanel3;
-        private DevExpress.XtraEditors.SidePanel sidePanel2;
-        private DevExpress.XtraEditors.SpinEdit seNumberOfExamTimes;
-        private DevExpress.XtraEditors.SpinEdit seTotalQuestions;
-        private DevExpress.XtraEditors.SimpleButton btnStart;
-        private DevExpress.XtraEditors.DateEdit deExamDate;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.SimpleButton btnFindExam;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxLevel;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxSubject;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.SpinEdit seTotalMinutes;
         private DevExpress.XtraEditors.SidePanel sidePanel4;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
@@ -742,7 +692,32 @@
         private DevExpress.XtraBars.BarButtonItem btnHelp;
         private System.Windows.Forms.BindingSource bdsSubject;
         private TN_CSDLPT_PRODDataSetTableAdapters.MONHOCTableAdapter taSubject;
-        private System.Windows.Forms.BindingSource bODEBindingSource;
-        private TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter bODETableAdapter;
+        private System.Windows.Forms.BindingSource bdsTopic;
+        private TN_CSDLPT_PRODDataSetTableAdapters.BODETableAdapter taTopic;
+        private DevExpress.XtraEditors.GroupControl gcExamInfo;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.SimpleButton btnStart;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.TextEdit teTotalQuestions;
+        private DevExpress.XtraEditors.TextEdit teLevel;
+        private DevExpress.XtraEditors.TextEdit teTotalMinutes;
+        private DevExpress.XtraEditors.GroupControl gcFindExam;
+        private DevExpress.XtraEditors.SimpleButton btnFindExam;
+        private DevExpress.XtraEditors.SpinEdit seNumberOfExamTimes;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.ComboBoxEdit cbxSubject;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.DateEdit deExamDate;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.GroupControl gcExaminee;
+        private DevExpress.XtraEditors.LabelControl teClassName;
+        private DevExpress.XtraEditors.LabelControl lbTitleClassname;
+        private DevExpress.XtraEditors.LabelControl teClassId;
+        private DevExpress.XtraEditors.LabelControl lbTitleClassId;
+        private DevExpress.XtraEditors.LabelControl teName;
+        private DevExpress.XtraEditors.LabelControl lbTitleFullName;
+        private DevExpress.XtraEditors.LabelControl teId;
+        private DevExpress.XtraEditors.LabelControl lbTitleId;
     }
 }

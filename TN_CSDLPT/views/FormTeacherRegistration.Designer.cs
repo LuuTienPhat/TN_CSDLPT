@@ -62,14 +62,6 @@
             this.tableAdapterManager = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.TableAdapterManager();
             this.gcTeacher_Registration = new DevExpress.XtraGrid.GridControl();
             this.gvTeacher_Registration = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcInfo = new DevExpress.XtraEditors.GroupControl();
-            this.cbxLevel = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.seTotalMinutes = new DevExpress.XtraEditors.SpinEdit();
-            this.seTotalQuestions = new DevExpress.XtraEditors.SpinEdit();
-            this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
-            this.deExamDate = new DevExpress.XtraEditors.DateEdit();
-            this.cbxClass = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
             this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAMH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,7 +70,15 @@
             this.colLAN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOCAUTHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTHOIGIAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcInfo = new DevExpress.XtraEditors.GroupControl();
             this.cbxTeacher = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxLevel = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.seTotalMinutes = new DevExpress.XtraEditors.SpinEdit();
+            this.seTotalQuestions = new DevExpress.XtraEditors.SpinEdit();
+            this.seNumberOfExamTimes = new DevExpress.XtraEditors.SpinEdit();
+            this.deExamDate = new DevExpress.XtraEditors.DateEdit();
+            this.cbxClass = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cbxSubject = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bdsTeacher = new System.Windows.Forms.BindingSource(this.components);
             this.taTeacher = new TN_CSDLPT.TN_CSDLPT_PRODDataSetTableAdapters.GIAOVIENTableAdapter();
             this.bdsSubject = new System.Windows.Forms.BindingSource(this.components);
@@ -101,6 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvTeacher_Registration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInfo)).BeginInit();
             this.gcInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTeacher.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seTotalMinutes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seTotalQuestions.Properties)).BeginInit();
@@ -109,7 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxClass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTeacher.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).BeginInit();
@@ -438,6 +438,64 @@
             this.gvTeacher_Registration.Name = "gvTeacher_Registration";
             this.gvTeacher_Registration.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvTeacher_Registration_FocusedRowChanged);
             // 
+            // colMAGV
+            // 
+            this.colMAGV.FieldName = "MAGV";
+            this.colMAGV.Name = "colMAGV";
+            this.colMAGV.Visible = true;
+            this.colMAGV.VisibleIndex = 0;
+            // 
+            // colMAMH
+            // 
+            this.colMAMH.FieldName = "MAMH";
+            this.colMAMH.Name = "colMAMH";
+            this.colMAMH.Visible = true;
+            this.colMAMH.VisibleIndex = 1;
+            // 
+            // colMALOP
+            // 
+            this.colMALOP.FieldName = "MALOP";
+            this.colMALOP.Name = "colMALOP";
+            this.colMALOP.Visible = true;
+            this.colMALOP.VisibleIndex = 2;
+            // 
+            // colTRINHDO
+            // 
+            this.colTRINHDO.FieldName = "TRINHDO";
+            this.colTRINHDO.Name = "colTRINHDO";
+            this.colTRINHDO.Visible = true;
+            this.colTRINHDO.VisibleIndex = 3;
+            // 
+            // colNGAYTHI
+            // 
+            this.colNGAYTHI.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.colNGAYTHI.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colNGAYTHI.FieldName = "NGAYTHI";
+            this.colNGAYTHI.Name = "colNGAYTHI";
+            this.colNGAYTHI.Visible = true;
+            this.colNGAYTHI.VisibleIndex = 4;
+            // 
+            // colLAN
+            // 
+            this.colLAN.FieldName = "LAN";
+            this.colLAN.Name = "colLAN";
+            this.colLAN.Visible = true;
+            this.colLAN.VisibleIndex = 5;
+            // 
+            // colSOCAUTHI
+            // 
+            this.colSOCAUTHI.FieldName = "SOCAUTHI";
+            this.colSOCAUTHI.Name = "colSOCAUTHI";
+            this.colSOCAUTHI.Visible = true;
+            this.colSOCAUTHI.VisibleIndex = 6;
+            // 
+            // colTHOIGIAN
+            // 
+            this.colTHOIGIAN.FieldName = "THOIGIAN";
+            this.colTHOIGIAN.Name = "colTHOIGIAN";
+            this.colTHOIGIAN.Visible = true;
+            this.colTHOIGIAN.VisibleIndex = 7;
+            // 
             // gcInfo
             // 
             this.gcInfo.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("gcInfo.CaptionImageOptions.SvgImage")));
@@ -464,6 +522,17 @@
             this.gcInfo.Size = new System.Drawing.Size(1280, 210);
             this.gcInfo.TabIndex = 6;
             this.gcInfo.Text = "Info";
+            // 
+            // cbxTeacher
+            // 
+            this.cbxTeacher.Location = new System.Drawing.Point(153, 57);
+            this.cbxTeacher.MenuManager = this.barManager1;
+            this.cbxTeacher.Name = "cbxTeacher";
+            this.cbxTeacher.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxTeacher.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbxTeacher.Size = new System.Drawing.Size(400, 22);
+            this.cbxTeacher.TabIndex = 17;
             // 
             // cbxLevel
             // 
@@ -553,7 +622,6 @@
             // 
             // cbxClass
             // 
-            this.cbxClass.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher_Registration, "MALOP", true));
             this.cbxClass.Location = new System.Drawing.Point(153, 113);
             this.cbxClass.MenuManager = this.barManager1;
             this.cbxClass.Name = "cbxClass";
@@ -565,7 +633,6 @@
             // 
             // cbxSubject
             // 
-            this.cbxSubject.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher_Registration, "MAMH", true));
             this.cbxSubject.Location = new System.Drawing.Point(153, 85);
             this.cbxSubject.MenuManager = this.barManager1;
             this.cbxSubject.Name = "cbxSubject";
@@ -574,77 +641,6 @@
             this.cbxSubject.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbxSubject.Size = new System.Drawing.Size(400, 22);
             this.cbxSubject.TabIndex = 3;
-            // 
-            // colMAGV
-            // 
-            this.colMAGV.FieldName = "MAGV";
-            this.colMAGV.Name = "colMAGV";
-            this.colMAGV.Visible = true;
-            this.colMAGV.VisibleIndex = 0;
-            // 
-            // colMAMH
-            // 
-            this.colMAMH.FieldName = "MAMH";
-            this.colMAMH.Name = "colMAMH";
-            this.colMAMH.Visible = true;
-            this.colMAMH.VisibleIndex = 1;
-            // 
-            // colMALOP
-            // 
-            this.colMALOP.FieldName = "MALOP";
-            this.colMALOP.Name = "colMALOP";
-            this.colMALOP.Visible = true;
-            this.colMALOP.VisibleIndex = 2;
-            // 
-            // colTRINHDO
-            // 
-            this.colTRINHDO.FieldName = "TRINHDO";
-            this.colTRINHDO.Name = "colTRINHDO";
-            this.colTRINHDO.Visible = true;
-            this.colTRINHDO.VisibleIndex = 3;
-            // 
-            // colNGAYTHI
-            // 
-            this.colNGAYTHI.DisplayFormat.FormatString = "dd/MM/yyyy";
-            this.colNGAYTHI.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colNGAYTHI.FieldName = "NGAYTHI";
-            this.colNGAYTHI.Name = "colNGAYTHI";
-            this.colNGAYTHI.Visible = true;
-            this.colNGAYTHI.VisibleIndex = 4;
-            // 
-            // colLAN
-            // 
-            this.colLAN.FieldName = "LAN";
-            this.colLAN.Name = "colLAN";
-            this.colLAN.Visible = true;
-            this.colLAN.VisibleIndex = 5;
-            // 
-            // colSOCAUTHI
-            // 
-            this.colSOCAUTHI.FieldName = "SOCAUTHI";
-            this.colSOCAUTHI.Name = "colSOCAUTHI";
-            this.colSOCAUTHI.Visible = true;
-            this.colSOCAUTHI.VisibleIndex = 6;
-            // 
-            // colTHOIGIAN
-            // 
-            this.colTHOIGIAN.FieldName = "THOIGIAN";
-            this.colTHOIGIAN.Name = "colTHOIGIAN";
-            this.colTHOIGIAN.Visible = true;
-            this.colTHOIGIAN.VisibleIndex = 7;
-            // 
-            // cbxTeacher
-            // 
-            this.cbxTeacher.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsTeacher_Registration, "MAGV", true));
-            this.cbxTeacher.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsTeacher, "HO", true));
-            this.cbxTeacher.Location = new System.Drawing.Point(153, 57);
-            this.cbxTeacher.MenuManager = this.barManager1;
-            this.cbxTeacher.Name = "cbxTeacher";
-            this.cbxTeacher.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxTeacher.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbxTeacher.Size = new System.Drawing.Size(400, 22);
-            this.cbxTeacher.TabIndex = 17;
             // 
             // bdsTeacher
             // 
@@ -685,8 +681,8 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "FormTeacherRegistration";
-            this.Text = "Teacher Registration";
-            this.Load += new System.EventHandler(this.FormTestPreparation_Load);
+            this.Text = "Exam Registration";
+            this.Load += new System.EventHandler(this.FormTeacherRegistration_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
@@ -696,6 +692,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcInfo)).EndInit();
             this.gcInfo.ResumeLayout(false);
             this.gcInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTeacher.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxLevel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seTotalMinutes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seTotalQuestions.Properties)).EndInit();
@@ -704,7 +701,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.deExamDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxClass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxSubject.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTeacher.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTeacher)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSubject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsClass)).EndInit();

@@ -15,7 +15,7 @@ namespace TN_CSDLPT.utils
             string dateTimeString = null;
             try
             {
-                dateTime.ToString(format);
+                dateTimeString = dateTime.ToString(format);
             }
             catch (Exception ex)
             {

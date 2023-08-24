@@ -120,7 +120,7 @@ namespace TN_CSDLPT
             catch (Exception ex)
             {
                 Program.databaseConnection.Close();
-                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, ex.Message);
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, "ExecSqlDataReader() failed", ex.Message);
             }
 
             return sqlDataReader;
@@ -170,15 +170,20 @@ namespace TN_CSDLPT
             try
             {
                 Sqlcmd.ExecuteNonQuery();
-                int result = (int)Sqlcmd.Parameters["@RETURN_VALUE"].Value;
-                return result;
+                return 0;
+                //int result = (int)Sqlcmd.Parameters["@RETURN_VALUE"].Value;
+                //return result;
 
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
-                databaseConnection.Close();
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, "ExecSqlNonQuery() failed", ex.Message);
+                //databaseConnection.Close();
                 return ex.State; // lấy trạng thái lỗi gởi từ RAISERROR trong SQL Server qua
+            }
+            finally
+            {
+                Program.CloseSqlDataReader();
             }
         }
 

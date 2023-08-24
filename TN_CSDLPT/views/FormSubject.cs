@@ -292,25 +292,13 @@ namespace TN_CSDLPT.views
             try
             {
                 mode = ActionMode.Refresh;
+                this.bdsSubject.EndEdit();
 
                 gcSubject.Enabled = false;
                 SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
                 System.Threading.Thread.Sleep(1000);
 
-                this.bdsSubject.EndEdit();
-
-                this.taSubject.Connection.ConnectionString = Program.connstr;
-                this.taSubject.Fill(this.DataSet.MONHOC);
-
-                this.taScore.Connection.ConnectionString = Program.connstr;
-                this.taScore.Fill(this.DataSet.BANGDIEM);
-
-                this.taTopic.Connection.ConnectionString = Program.connstr;
-                this.taTopic.Fill(this.DataSet.BODE);
-
-                this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
-                this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);
-
+                FillTables();
                 this.bdsSubject.Position = this.position;
 
                 SplashScreenManager.CloseForm();
@@ -363,7 +351,7 @@ namespace TN_CSDLPT.views
 
         private void FillTables()
         {
-            this.DataSet.EnforceConstraints = true;
+            this.DataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'this.DataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
             this.taTeacher_Register.Connection.ConnectionString = Program.connstr;
             this.taTeacher_Register.Fill(this.DataSet.GIAOVIEN_DANGKY);

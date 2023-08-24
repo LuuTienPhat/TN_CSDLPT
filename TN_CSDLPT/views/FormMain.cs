@@ -30,6 +30,7 @@ namespace TN_CSDLPT.views
             // vì xem danh sách đăng kí cả 2 cơ sở nên chỉ cho trường xem
             this.rpgExamRegistrationList.Visible = false;
             this.rpgSubjectScoreSheet.Visible = true;
+            this.btnChangePassword.Visibility = BarItemVisibility.Never;
 
             if (Program.mGroup == Database.ROLE_STUDENT)
             {
@@ -38,6 +39,7 @@ namespace TN_CSDLPT.views
                 this.rpgTeacherRegistration.Visible = false;
                 this.rpgExam.Visible = true;
                 this.rpgSubjectScoreSheet.Visible = false;
+                this.btnChangePassword.Visibility = BarItemVisibility.Always;
 
                 return;
             }
@@ -108,10 +110,11 @@ namespace TN_CSDLPT.views
             Program.password = "";
             Program.mLoginDN = "";
             Program.passwordDN = "";
-            Program.databaseConnection.Close();
+            
+            Program.CloseSqlDataReader();
 
             this.Hide();
-
+            
             Program.formSignIn.tePassword.Text = "";
             Program.formSignIn.Show();
         }

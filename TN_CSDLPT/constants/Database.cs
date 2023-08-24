@@ -57,7 +57,14 @@ class Database
     /// {2}: exam date
     /// {3}: number of exam times
     /// </summary>
-    public const string SP_FIND_EXAM_SUBECT = "SP_FIND_EXAM_SUBECT";
+    public const string SP_FIND_EXAM_SUBJECT = "SP_FIND_EXAM_SUBJECT";
+
+    /// <summary>
+    /// {0}: subject ID
+    /// {1}: exam date
+    /// {2}: number of exam times
+    /// </summary>
+    public const string SP_FIND_EXAM_FOR_TEACHER = "SP_FIND_EXAM_FOR_TEACHER";
 
     /// <summary>
     /// {0}: id
@@ -203,7 +210,7 @@ class Database
     /// 8: answer
     /// 9: teacher ID
     /// </summary>
-    public const string SP_INSERT_TOPIC = "EXEC SP_INSERT_TOPIC N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', N'{9}'";
+    public const string SP_INSERT_TOPIC = "SP_INSERT_TOPIC";
 
     /// <summary>
     /// 0: question NO
@@ -217,12 +224,12 @@ class Database
     /// 8: answer
     /// 9: teacher ID
     /// </summary>
-    public const string SP_UPDATE_TOPIC = "EXEC SP_UPDATE_TOPIC N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', N'{9}'";
+    public const string SP_UPDATE_TOPIC = "SP_UPDATE_TOPIC";
 
     /// <summary>
     /// 0: question NO
     /// </summary>
-    public const string SP_DELETE_TOPIC = "EXEC SP_DELETE_TOPIC";
+    public const string SP_DELETE_TOPIC = "SP_DELETE_TOPIC";
 
     /// <summary>
     /// 0: question NO
@@ -255,6 +262,14 @@ class Database
     /// 3: exam date
     /// </summary>
     public const string SP_CHECK_TEACHER_REGISTRATION_EXISTS = "SP_CHECK_TEACHER_REGISTRATION_EXISTS";
+
+    /// <summary>
+    /// 0: class ID
+    /// 1: subject ID
+    /// 2: number Of Exam Times
+    /// 3: exam date
+    /// </summary>
+    public const string SP_CHECK_UPDATE_TEACHER_REGISTRATION = "SP_CHECK_UPDATE_TEACHER_REGISTRATION";
 
     /// <summary>
     /// 0: class ID
@@ -329,7 +344,7 @@ class Database
     public const string TABLE_EXAM_DETAIL = "CT_BAITHI";
     public const string TABLE_SUBJECT = "MONHOC";
     public const string TABLE_TEACHER = "GIAOVIEN";
-    public const string TABLE_TEACHER_EXAM = "GIAOVIEN_DANGKY";
+    public const string TABLE_TEACHER_REGISTRATION = "GIAOVIEN_DANGKY";
     public const string TABLE_CLASS = "LOP";
     public const string TABLE_DEPARTMENT = "KHOA";
     public const string TABLE_TOPIC = "BODE";
@@ -373,7 +388,7 @@ class Database
     public const string TABLE_TEACHER_REGISTRATION_LEVEL = "TRINHDO";
     public const string TABLE_TEACHER_REGISTRATION_EXAM_DATE = "NGAYTHI";
     public const string TABLE_TEACHER_REGISTRATION_NUMBER_OF_EXAM_TIMES = "LAN";
-    public const string TABLE_TEACHER_REGISTRATION_NUMBER_OF_QUESTIONS = "SOCAUHOI";
+    public const string TABLE_TEACHER_REGISTRATION_NUMBER_OF_QUESTIONS = "SOCAUTHI";
     public const string TABLE_TEACHER_REGISTRATION_EXAM_TIME = "THOIGIAN";
 
     public const string TABLE_TOPIC_COL_QUESTION_NO = "CAUHOI";

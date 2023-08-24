@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections;
@@ -41,21 +42,13 @@ namespace TN_CSDLPT
 
         private void FormDepartment_Load(object sender, EventArgs e)
         {
-            this.DataSet.EnforceConstraints = false;
-            // TODO: This line of code loads data into the 'DataSet.COSO' table. You can move, or remove it, as needed.
-            this.taLocation.Connection.ConnectionString = Program.connstr;
-            this.taLocation.Fill(this.DataSet.COSO);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
-            this.taTeacher.Connection.ConnectionString = Program.connstr;
-            this.taTeacher.Fill(this.DataSet.GIAOVIEN);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.KHOA' table. You can move, or remove it, as needed.
-            this.taDepartment.Connection.ConnectionString = Program.connstr;
-            this.taDepartment.Fill(this.DataSet.KHOA);
+            FillTables();
 
             Program.FillLocationCombobox(btnLocation, cbxLocation);
             FormUtils.FillComboBox(cbxStudentDepartment, this.bdsDepartment, new string[] { Database.TABLE_DEPT_COL_DEPT_ID, Database.TABLE_DEPT_COL_DEPT_ID });
             FormUtils.FillComboBox(cbxDepartmentLocation, this.bdsLocation, new string[] { Database.TABLE_LOCATION_COL_LOCATION_ID, Database.TABLE_LOCATION_COL_LOCATION_NAME });
             FormUtils.SetDefaultForBarManagerBars(barManager1);
+            FormUtils.SetDefaultGridViews(new GridView[] { gvDepartment, gvTeacher });
 
             if ((Program.mGroup == Database.ROLE_SCHOOL || (Program.mGroup == Database.ROLE_TEACHER)) || (Program.mGroup == Database.ROLE_STUDENT))
             {
@@ -803,6 +796,20 @@ namespace TN_CSDLPT
             {
                 cbxStudentDepartment.SelectedIndex = -1;
             }
+        }
+
+        private void FillTables()
+        {
+            this.DataSet.EnforceConstraints = false;
+            // TODO: This line of code loads data into the 'DataSet.COSO' table. You can move, or remove it, as needed.
+            this.taLocation.Connection.ConnectionString = Program.connstr;
+            this.taLocation.Fill(this.DataSet.COSO);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
+            this.taTeacher.Connection.ConnectionString = Program.connstr;
+            this.taTeacher.Fill(this.DataSet.GIAOVIEN);
+            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.KHOA' table. You can move, or remove it, as needed.
+            this.taDepartment.Connection.ConnectionString = Program.connstr;
+            this.taDepartment.Fill(this.DataSet.KHOA);
         }
 
         private void cbxLocation_SelectedIndexChanged(object sender, EventArgs e)

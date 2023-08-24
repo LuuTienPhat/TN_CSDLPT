@@ -186,7 +186,7 @@ namespace TN_CSDLPT.views
                 callBackActions.Add(
                     new CallBackAction(
                         mode,
-                        DatabaseUtils.BuildQuery(Database.SP_UPDATE_TOPIC, new string[]
+                        DatabaseUtils.BuildQuery2(Database.SP_UPDATE_TOPIC, new string[]
                         {
                                 oldQuestionNo, oldSubjectId, oldLevel, oldContent, oldAnswerA, oldAnswerB, oldAnswerC, oldAnswerD, oldAnswer, teacherId
                         }) //tính ra khỏi cần sửa mã giáo viên cũng đc, vì có chỉnh sửa gì đâu nó bị disable r mà
@@ -245,7 +245,7 @@ namespace TN_CSDLPT.views
                         callBackActions.Add(
                             new CallBackAction(
                                 mode,
-                                DatabaseUtils.BuildQuery(Database.SP_INSERT_TOPIC, new string[]
+                                DatabaseUtils.BuildQuery2(Database.SP_INSERT_TOPIC, new string[]
                                 {
                                     questionNo, subjectId, level, content, a, b, c, d, answer, teacherId
                                 })
@@ -277,8 +277,8 @@ namespace TN_CSDLPT.views
                 Program.myReader = Program.ExecSqlDataReader(action.Query);
                 Program.myReader.Read();
 
-                string affectedId = Program.myReader.GetString(0);
-                if (affectedId != "-1")
+                int affectedId = Program.myReader.GetInt32(0); //trả về effected row count
+                if (affectedId != 0)
                 {
                     this.bdsTopic.Position = this.bdsTopic.Find(Database.TABLE_TOPIC_COL_QUESTION_NO, affectedId);
                 }
@@ -301,9 +301,11 @@ namespace TN_CSDLPT.views
         {
             if (mode.Equals(ActionMode.Add))
             {
+                mode = ActionMode.Cancel;
                 gvTopic.DeleteRow(gvTopic.FocusedRowHandle);
             }
 
+            mode = ActionMode.Cancel;
             this.bdsTopic.CancelEdit();
             this.bdsTopic.Position = position;
 
@@ -328,12 +330,12 @@ namespace TN_CSDLPT.views
             try
             {
                 mode = ActionMode.Refresh;
+                this.bdsTopic.EndEdit();
 
                 gcTopic.Enabled = false;
+
                 SplashScreenManager.ShowForm(typeof(WaitRefreshForm));
                 System.Threading.Thread.Sleep(1000);
-
-                this.bdsTopic.EndEdit();
 
                 this.taTopic.Connection.ConnectionString = Program.connstr;
                 this.taTopic.Fill(this.DataSet.BODE);
@@ -461,8 +463,10 @@ namespace TN_CSDLPT.views
         {
             this.DataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'DataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.taSubject.Connection.ConnectionString = Program.connstr;
             this.taSubject.Fill(this.DataSet.MONHOC);
             // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.BODE' table. You can move, or remove it, as needed.
+            this.taTopic.Connection.ConnectionString = Program.connstr;
             this.taTopic.Fill(this.DataSet.BODE);
         }
 
@@ -484,6 +488,11 @@ namespace TN_CSDLPT.views
 
         private void bdsTopic_ListChanged(object sender, ListChangedEventArgs e)
         {
+            //if ((Program.mGroup == Database.ROLE_SCHOOL) || (Program.mGroup == Database.ROLE_STUDENT))
+            //{
+            //    return;
+            //}
+
             if (this.bdsTopic.Count == 0)
             {
                 btnDelete.Enabled = btnEdit.Enabled = false;
@@ -510,8 +519,8 @@ namespace TN_CSDLPT.views
             GridView view = sender as GridView;
             if (e.FocusedRowHandle >= 0)
             {
-                string s = view.GetRowCellDisplayText(e.FocusedRowHandle, view.Columns[Database.TABLE_TOPIC_COL_TEACHER_ID]).Trim();
-                if (s != Program.username)
+                string teacherIdOfSelectedQuestion = view.GetRowCellDisplayText(e.FocusedRowHandle, view.Columns[Database.TABLE_TOPIC_COL_TEACHER_ID]).Trim();
+                if (teacherIdOfSelectedQuestion != Program.username) //teacher id của câu hỏi khác với mình
                 {
 
                     //gvTopic.Appearance.FocusedRow.BackColor = Color.FromArgb(98, 106, 150);
@@ -522,20 +531,26 @@ namespace TN_CSDLPT.views
 
                     FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
                     {
-                        btnNew, btnEdit, btnDelete, btnCommit, btnUndo, btnCancel
+                        //btnNew, 
+                        btnEdit, btnDelete, 
+                        //btnCommit, 
+                        //btnUndo, 
+                        //btnCancel
                     });
                 }
                 else
                 {
                     FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem>
                     {
-                        btnNew, btnEdit, btnDelete
+                        //btnNew, 
+                        btnEdit, btnDelete
                     });
 
-                    FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
-                    {
-                        btnCancel, btnCommit
-                    });
+                    //btnUndo.Enabled = callBackActions.Count != 0;
+                    //FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem>
+                    //{
+                    //    btnCancel, btnCommit
+                    //});
                 }
             }
 
@@ -583,6 +598,6 @@ namespace TN_CSDLPT.views
                     //e.Appearance.ForeColor = Color.FromArgb(255, 255, 255);
                 }
             }
-        }
+        }        
     }
 }

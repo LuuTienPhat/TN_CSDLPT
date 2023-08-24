@@ -50,12 +50,10 @@
             this.labelControl1.Appearance.Options.UseTextOptions = true;
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelControl1.Location = new System.Drawing.Point(0, 0);
+            this.labelControl1.Location = new System.Drawing.Point(103, 43);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(364, 80);
+            this.labelControl1.Size = new System.Drawing.Size(157, 25);
             this.labelControl1.TabIndex = 13;
             this.labelControl1.Text = "Change Password";
             // 
@@ -63,7 +61,7 @@
             // 
             this.btnCancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
             this.btnCancel.Appearance.Options.UseBackColor = true;
-            this.btnCancel.Location = new System.Drawing.Point(203, 396);
+            this.btnCancel.Location = new System.Drawing.Point(203, 374);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 40);
@@ -75,9 +73,9 @@
             this.btnAccept.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnAccept.Appearance.Options.UseFont = true;
             this.btnAccept.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.RightBottom;
-            this.btnAccept.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSignIn.ImageOptions.SvgImage")));
+            this.btnAccept.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAccept.ImageOptions.SvgImage")));
             this.btnAccept.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            this.btnAccept.Location = new System.Drawing.Point(58, 396);
+            this.btnAccept.Location = new System.Drawing.Point(58, 374);
             this.btnAccept.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(100, 40);

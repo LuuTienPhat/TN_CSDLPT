@@ -32,32 +32,20 @@ namespace TN_CSDLPT.views
 
         private void FormTest_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'Dataset.BODE' table. You can move, or remove it, as needed.
-            this.bODETableAdapter.Fill(this.Dataset.BODE);
-            this.Dataset.EnforceConstraints = false;
-            // TODO: This line of code loads data into the 'Dataset.MONHOC' table. You can move, or remove it, as needed.
-            this.taSubject.Fill(this.Dataset.MONHOC);
-            // TODO: This line of code loads data into the 'tN_CSDLPT_PRODDataSet.BODE' table. You can move, or remove it, as needed.
-            //this.bODETableAdapter.Fill(this.Dataset.BODE);
+            FillTables();
+            FormUtils.SetDefaultPropertiesForSpinEdits(new SpinEdit[] { seNumberOfExamTimes });
+            FormUtils.FillComboBox(cbxSubject, this.bdsSubject, new string[] { Database.TABLE_SUBJECT_COL_SUBJECT_ID, Database.TABLE_SUBJECT_COL_SUBJECT_NAME });
+            //DatabaseUtils.FillCbxLevel(teLevel);
 
             // để khi vừa vào đã ấn thoát thì thoát luôn
             isSubmitted = true;
 
-            FormUtils.SetDefaultPropertiesForSpinEdits(new SpinEdit[] { seNumberOfExamTimes, seTotalQuestions, seTotalMinutes });
-            FormUtils.SetDefaultForComboBoxEdits(new ComboBoxEdit[] { cbxLevel, cbxSubject });
-
-            seTotalQuestions.Enabled = seTotalMinutes.Enabled = cbxLevel.Enabled;
-            btnSubmit.Enabled = btnStart.Enabled = false;
-            deExamDate.DateTime = DateTime.Now;
-
-
             //if the login role is TEACHER OR LOCATION
             if (Program.mGroup == Database.ROLE_TEACHER || Program.mGroup == Database.ROLE_LOCATION)
             {
-                gcExaminee.Text = Translation._teacherInfoLabel;
-                //lbTitleId.Text = "Teacher Id:";
-                lbTitleFullName.Text = Program.mHoTen;
-                teId.Text = "";//lấy mã giáo viên
+                gcExaminee.Text = Translation._teacherInfoLabel.ToUpper();
+                teName.Text = Program.mHoTen;
+                teId.Text = Program.username;//lấy mã giáo viên
 
                 lbTitleClassname.Text = "";
                 lbTitleClassId.Text = "";
@@ -67,11 +55,16 @@ namespace TN_CSDLPT.views
 
             if (Program.mGroup == Database.ROLE_STUDENT)
             {
+                gcExaminee.Text = Translation._studentInfoLabel.ToUpper();
                 teName.Text = Program.mHoTen;
                 teId.Text = Program.maSinhVien;
                 teClassId.Text = Program.maLop;
                 teClassName.Text = Program.tenLop;
             }
+
+            teTotalQuestions.Enabled = teTotalMinutes.Enabled = teLevel.Enabled = false;
+            btnSubmit.Enabled = btnStart.Enabled = false;
+            deExamDate.DateTime = DateTime.Now;
 
         }
 
@@ -261,7 +254,7 @@ namespace TN_CSDLPT.views
         private double GetGrade()
         {
             double mark = 0;
-            double markPerRightAnswer = (double)10 / Decimal.ToDouble(seTotalQuestions.Value);
+            double markPerRightAnswer = (double)10 / Convert.ToDouble(teTotalQuestions.Text);
             foreach (CauHoi question in questionList)
             {
                 if (question.CauDaChon == question.CauDapAn)
@@ -274,26 +267,30 @@ namespace TN_CSDLPT.views
 
         private void btnFindExam_Click(object sender, EventArgs e)
         {
-            if (validateSearchExamInput())
+            if (ValidateSearchExamInput())
             {
                 string studentId = Program.maSinhVien.Trim();
-                string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
+                string subjectId = FormUtils.GetBindingSourceData(this.bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
                 string examDate = DateTimeHelper.DateTimeToString(deExamDate.DateTime, "yyyy-MM-dd");
+                string numberOfExamTimes = seNumberOfExamTimes.Value.ToString();
 
                 string queryFindExamSubject = "";
+                //nếu là sinh viên thi thì phải ĐĂNG KÝ được tạo bởi giáo viên
                 if (Program.mGroup == Database.ROLE_STUDENT)
                 {
-                    queryFindExamSubject = DatabaseUtils.BuildQuery2(Database.SP_FIND_EXAM_SUBECT, new string[]
+                    queryFindExamSubject = DatabaseUtils.BuildQuery2(Database.SP_FIND_EXAM_SUBJECT, new string[]
                     {
-                        studentId, subjectId, examDate, seNumberOfExamTimes.Value.ToString()
+                        studentId, subjectId, examDate, numberOfExamTimes
                     });
                 }
 
-                //nếu là giáo viên thi thử hoặc giáo viên quyền COSO thì tìm môn thi để THI THỬ
+                //nếu user có quyền GIAOVIEN hoặc COSO => giáo viên thi thử
                 if (Program.mGroup == Database.ROLE_TEACHER || Program.mGroup == Database.ROLE_LOCATION)
                 {
-                    queryFindExamSubject = "EXEC SP_TIM_MONTHI_GVTHITHU '" + FormUtils.getSelectedStringOfComboBox(null, cbxSubject, "MAMH") + "', '" +
-                        deExamDate.DateTime.ToString("yyyy-MM-dd") + "', " + seNumberOfExamTimes.Value;
+                    queryFindExamSubject = DatabaseUtils.BuildQuery2(Database.SP_FIND_EXAM_FOR_TEACHER, new string[]
+                    {
+                        subjectId, examDate, numberOfExamTimes
+                    });
                 }
 
                 try
@@ -304,16 +301,18 @@ namespace TN_CSDLPT.views
                 catch (Exception ex)
                 {
                     CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsExamSubjectNotFoundMsg, ex.Message));
-                    Program.myReader.Close();
-                    Program.databaseConnection.Close();
+                    //Program.myReader.Close();
+                    //Program.databaseConnection.Close();
                     return;
                 }
 
                 try
                 {
-                    seTotalQuestions.Value = Program.myReader.GetInt16(3);
-                    cbxLevel.Text = Program.myReader.GetString(4);
-                    seTotalMinutes.Value = Program.myReader.GetInt16(5);
+                    teTotalQuestions.Text = Program.myReader.GetInt16(3).ToString();
+                    teLevel.Text = Program.myReader.GetString(4);
+                    teTotalMinutes.Text = Program.myReader.GetInt16(5).ToString();
+
+                    CustomMessageBox.Show(CustomMessageBox.Type.INFORMATION, Translation._examSubjectFoundMsg);
                     btnStart.Enabled = true;
                 }
                 catch (Exception ex)
@@ -323,8 +322,7 @@ namespace TN_CSDLPT.views
                 }
                 finally
                 {
-                    Program.myReader.Close();
-                    Program.databaseConnection.Close();
+                    Program.CloseSqlDataReader();
                 }
 
             }
@@ -332,15 +330,18 @@ namespace TN_CSDLPT.views
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            FormUtils.DisableBarMangagerItems(barManager1, new List<BarItem> {
+            FormUtils.EnableBarMangagerItems(barManager1, new List<BarItem> {
                 btnSubmit
             });
-            btnFindExam.Enabled = false;
+
+            //btnFindExam.Enabled = false;
+            gcExamInfo.Enabled = false;
 
             string studentId = Program.maSinhVien.Trim();
             string subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
-            string queryCheckStudentAlreadyFinisedExam = DatabaseUtils.BuildQuery2(Database.SP_CHECK_STUDENT_ALREADY_FINISHED_EXAM, new string[]
-            {
+            string level = teLevel.SelectedText.Trim();
+
+            string queryCheckStudentAlreadyFinisedExam = DatabaseUtils.BuildQuery2(Database.SP_CHECK_STUDENT_ALREADY_FINISHED_EXAM, new string[] {
                 studentId, subjectId, seNumberOfExamTimes.Value.ToString()
             });
 
@@ -360,11 +361,9 @@ namespace TN_CSDLPT.views
 
             }
 
-            string level = cbxLevel.SelectedText.Trim();
-            subjectId = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID);
             string queryRetrieveQuestions = DatabaseUtils.BuildQuery2(Database.SP_GET_QUESTIONS, new string[]
             {
-                subjectId, level, seTotalQuestions.Value.ToString()
+                subjectId, level, teTotalQuestions.ToString()
             });
 
             try
@@ -391,7 +390,7 @@ namespace TN_CSDLPT.views
 
                 }
 
-                int thoiGianGiay = decimal.ToInt16(seTotalMinutes.Value) * 60;
+                int thoiGianGiay = Convert.ToInt16(teTotalMinutes.Text) * 60;
 
                 //thoiGianGiay = 100; // de test
 
@@ -422,8 +421,7 @@ namespace TN_CSDLPT.views
             }
             finally
             {
-                Program.myReader.Close();
-                Program.databaseConnection.Close();
+                Program.CloseSqlDataReader();
             }
             //totalsecs = int.Parse(spinEditThoiGian.Value.ToString()) * 60;
         }
@@ -465,15 +463,41 @@ namespace TN_CSDLPT.views
             Dispose();
         }
 
-        private bool validateSearchExamInput()
+        private bool ValidateSearchExamInput()
         {
-            bool isValid = false;
+            bool isValidated = true;
             if (deExamDate.Text.Trim().Length == 0)
             {
-                isValid = false;
-                CustomMessageBox.Show(CustomMessageBox.Type.WARNING, "Please choose Exam Date", "Warning");
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR,
+                    Translation._errorTitle, string.Format(Translation._argsNotEmptyMsg, "Exam Date"));
+                deExamDate.Focus();
+                isValidated = false;
+                return isValidated;
             }
-            return isValid;
+            if (deExamDate.DateTime.DayOfWeek.Equals(DayOfWeek.Sunday))
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._noTestHeldOnSundayErrorMsg);
+                deExamDate.Focus();
+                isValidated = false;
+                return isValidated;
+            }
+            if (deExamDate.DateTime.Date < DateTime.Now.Date)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._invalidExamDateErrorMsg);
+                deExamDate.Focus();
+                isValidated = false;
+                return isValidated;
+            }
+
+            int numberOfExamTimes = int.Parse(seNumberOfExamTimes.Value.ToString());
+            if (numberOfExamTimes < 1 || numberOfExamTimes > 2)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, Translation._incorrectNumberOfExamTimesErrorMsg);
+                seNumberOfExamTimes.Focus();
+                isValidated = false;
+                return isValidated;
+            }
+            return isValidated;
         }
 
         private bool validateStartExamInput()
@@ -487,6 +511,17 @@ namespace TN_CSDLPT.views
         private void RetrieveAllQuestion()
         {
 
+        }
+
+        private void FillTables()
+        {
+            this.Dataset.EnforceConstraints = false;
+            // TODO: This line of code loads data into the 'Dataset.BODE' table. You can move, or remove it, as needed.
+            this.taTopic.Connection.ConnectionString = Program.connstr;
+            this.taTopic.Fill(this.Dataset.BODE);
+            // TODO: This line of code loads data into the 'Dataset.MONHOC' table. You can move, or remove it, as needed.
+            this.taSubject.Connection.ConnectionString = Program.connstr;
+            this.taSubject.Fill(this.Dataset.MONHOC);
         }
     }
 }
