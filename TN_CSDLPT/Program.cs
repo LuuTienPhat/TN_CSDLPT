@@ -63,12 +63,20 @@ namespace TN_CSDLPT
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            formMain = new FormMain();
-            formSignIn = new FormSignIn();
-            FormReportSubjectGradeSheet formReportSubjectScoreTable = new FormReportSubjectGradeSheet();
-            Application.Run(formSignIn);
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                formMain = new FormMain();
+                formSignIn = new FormSignIn();
+                FormReportSubjectGradeSheet formReportSubjectScoreTable = new FormReportSubjectGradeSheet();
+                Application.Run(formSignIn);
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(CustomMessageBox.Type.ERROR, $"Application Error!\n{e}");
+            }
+            
             //Application.Run(formReportSubjectScoreTable);
         }
 

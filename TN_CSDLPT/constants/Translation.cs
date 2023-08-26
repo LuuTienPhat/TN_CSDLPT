@@ -15,7 +15,7 @@ class Translation
     public const string _argsLocationConnectErrorMsg = "Couldn't connect to {0}";
     public const string _argsDeleteErrorMsg = "Couldn't delete {0}.Try again!\n{1}";
     public const string _argFieldNotValidErrorMsg = "{0} is not valid!";
-    public const string _argsExamSubjectNotFoundMsg = "Couldn't find exam subjects\n{0}";
+    public const string _argsExamSubjectNotFoundMsg = "Couldn't find Exam\n{0}";
 
     public const string _argsDeleteWarningMsg = "Are you sure to delete this {0}?";
 
@@ -28,8 +28,8 @@ class Translation
     public const string _examSubjectNotFoundMsg = "Couldn't find the exam subjects. Please make sure this subject was assigned to your class.";
     public const string _examSubjectFoundMsg = "Found exam in registration. Please press START to do exam";
 
-    public const string _teacherExamResultMsg = "Your Exam result is {0}";
-    public const string _studentExamResultMsg = "Your Exam result is {0}.\nOK view details.";
+    public const string _teacherExamResultMsg = "Your Grade is {0}";
+    public const string _studentExamResultMsg = "Your Grade is {0}.\nOK view details.";
 
     public const string _incorrectNumberOfExamTimesErrorMsg = "Number Of Exam Times must be twice at least.";
     public const string _incorrectTotalQuestionErrorMsg = "The exam must have a minimum of 10 questions and a maximum of 100 questions.";
@@ -44,6 +44,8 @@ class Translation
     public const string _examResultNotFoundErrorMsg = "Couldn't find any exam result";
 
     public const string _scoreSheetNotFoundErrorMsg = "Couldn't find any score sheet";
+
+    public const string _argsRetrieveQuestionsErrorMsg = "Couldn't get enought questions for Exam\n{0}";
 
     public static string _errorTitle = "Error";
     public static string _warningTitle = "Warning";

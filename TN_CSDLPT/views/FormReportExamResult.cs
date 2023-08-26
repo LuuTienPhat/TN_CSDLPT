@@ -94,17 +94,17 @@ namespace TN_CSDLPT.views
             string stringFormat = "{0} - {1}";
             string subjectName = FormUtils.GetBindingSourceData(bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_NAME).Trim();
 
-            XtraReportExamResult xtraReportKQThi = new XtraReportExamResult(studentId, subjectId, int.Parse(numberOfExamTimes));
+            XtraReportExamResult ExamResultReport = new XtraReportExamResult(studentId, subjectId, int.Parse(numberOfExamTimes));
 
             ///xtraReportKQThi.labelTieuDe.Text = "KẾT QUẢ THI MÔN " + this.comboBoxMaMonHoc.Text.Trim() + " CỦA SINH VIÊN " + hoTenSinhVien;
-            xtraReportKQThi.xrlbFullName.Text = studenFullName;
-            xtraReportKQThi.xrlbClass.Text = className;
+            ExamResultReport.xrlbFullName.Text = studenFullName;
+            ExamResultReport.xrlbClass.Text = className;
 
-            xtraReportKQThi.xrlbExamDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            xtraReportKQThi.xrlbSubject.Text = string.Format(stringFormat, new string[] {subjectId, subjectName});
-            xtraReportKQThi.xrlbNumberOfExamTimes.Text = numberOfExamTimes;
+            ExamResultReport.xrlbExamDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            ExamResultReport.xrlbSubject.Text = string.Format(stringFormat, new string[] {subjectId, subjectName});
+            ExamResultReport.xrlbNumberOfExamTimes.Text = numberOfExamTimes;
 
-            ReportPrintTool printTool = new ReportPrintTool(xtraReportKQThi);
+            ReportPrintTool printTool = new ReportPrintTool(ExamResultReport);
             printTool.ShowPreviewDialog();
         }
 

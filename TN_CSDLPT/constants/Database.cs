@@ -57,7 +57,7 @@ class Database
     /// {2}: exam date
     /// {3}: number of exam times
     /// </summary>
-    public const string SP_FIND_EXAM_SUBJECT = "SP_FIND_EXAM_SUBJECT";
+    public const string SP_FIND_EXAM_FOR_STUDENT = "SP_FIND_EXAM_FOR_STUDENT";
 
     /// <summary>
     /// {0}: subject ID
@@ -253,7 +253,7 @@ class Database
     /// 3: exam date
     /// 4: grade
     /// </summary>
-    public const string SP_INSERT_SCORE = "SP_INSERT_SCORE";
+    public const string SP_INSERT_GRADE = "SP_INSERT_GRADE";
 
     /// <summary>
     /// 0: class ID
