@@ -170,6 +170,7 @@
             this.btnChangePassword.Id = 8;
             this.btnChangePassword.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChangePassword.ImageOptions.SvgImage")));
             this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnChangePassword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChangePassword_ItemClick);
             // 
             // btnExamResultReport

@@ -345,62 +345,7 @@ namespace TN_CSDLPT.views
                 }
                 conn.Close();
             }
-
-
-            //if (Program.ConnectDatabase())
-            //{
-
-            //    SqlTransaction trans = Program.databaseConnection.BeginTransaction();
-            //    SqlCommand cmd = new SqlCommand(
-            //            "INSERT INTO CT_BAITHI (CAUSO, MASV, MAMH, LAN, CAUHOI, DACHON) " +
-            //            " VALUES (@CAUSO, @MASV, @MAMH, @LAN, @CAUHOI, @DACHON)");
-
-            //    cmd.CommandType = CommandType.Text;
-            //    cmd.Connection = Program.databaseConnection;
-            //    cmd.Transaction = trans;
-            //    cmd.Parameters.AddWithValue("@CAUSO", DbType.Int16);
-            //    cmd.Parameters.AddWithValue("@MASV", DbType.String);
-            //    cmd.Parameters.AddWithValue("@MAMH", DbType.String);
-            //    cmd.Parameters.AddWithValue("@LAN", DbType.Int16);
-            //    cmd.Parameters.AddWithValue("@CAUHOI", DbType.Int16);
-            //    cmd.Parameters.AddWithValue("@DACHON", DbType.String);
-
-            //    try
-            //    {
-
-            //        string subjectId = FormUtils.GetBindingSourceData(this.bdsSubject, cbxSubject.SelectedIndex, Database.TABLE_SUBJECT_COL_SUBJECT_ID).Trim();
-            //        int numberOfExamTimes = decimal.ToInt16(seNumberOfExamTimes.Value);
-
-            //        foreach (Question question in questionList2)
-            //        {
-            //            cmd.Parameters[0].Value = question.QuestionNo;
-            //            cmd.Parameters[1].Value = Program.maSinhVien.Trim();
-            //            cmd.Parameters[2].Value = subjectId;
-            //            cmd.Parameters[3].Value = numberOfExamTimes;
-            //            cmd.Parameters[4].Value = question.QuestionID;
-            //            cmd.Parameters[5].Value = question.SelectedAnswer;
-
-            //            cmd.ExecuteNonQuery();
-            //        }
-
-            //        trans.Commit();
-            //        commitSucessfully = true;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        trans.Rollback();
-            //        CustomMessageBox.Show(CustomMessageBox.Type.ERROR, string.Format(Translation._argsCommitDatabaseErrorMsg, ex.Message));
-            //    }
-            //    finally
-            //    {
-            //        Program.databaseConnection.Close();
-            //    }
-
-            //}
-            //else
-            //{
-
-            //}
+            
             return commitSucessfully;
         }
 
@@ -597,19 +542,6 @@ namespace TN_CSDLPT.views
                 return isValidated;
             }
             return isValidated;
-        }
-
-        private bool validateStartExamInput()
-        {
-            bool isValid = false;
-
-
-            return isValid;
-        }
-
-        private void RetrieveAllQuestion()
-        {
-
         }
 
         private void FillTables()

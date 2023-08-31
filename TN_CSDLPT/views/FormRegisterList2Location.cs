@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TN_CSDLPT.constants;
+using TN_CSDLPT.report;
+using TN_CSDLPT.utils;
 
 namespace TN_CSDLPT.views
 {
@@ -43,7 +46,18 @@ namespace TN_CSDLPT.views
         {
             if(ValidateInput())
             {
+                DateTime startDate = this.deFrom.DateTime;
+                DateTime endDate = this.deTo.DateTime;
 
+                XtraReportExamRegistration2Locations reportAllLocations = new XtraReportExamRegistration2Locations(startDate, endDate);
+                //xtraReportDSDKThi..Text = "DANH SÁCH ĐĂNG KÝ THI TRẮC NGHIỆM 2 CƠ SỞ TỪ NGÀY "
+                //    + this.dateEditTuNgay.DateTime.ToString("dd/M/yyyy") + " ĐẾN NGÀY " + this.dateEditDenNgay.DateTime.ToString("dd/M/yyyy");
+
+                reportAllLocations.xrlbStartDate.Text = DateTimeHelper.DateTimeToString(startDate, "dd/MM/yyyy");
+                reportAllLocations.xrlbEndDate.Text = DateTimeHelper.DateTimeToString(endDate, "dd/MM/yyyy");
+
+                ReportPrintTool printTool = new ReportPrintTool(reportAllLocations);
+                printTool.ShowPreviewDialog();
             }
         }
 

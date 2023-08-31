@@ -39,7 +39,7 @@ namespace TN_CSDLPT.views
                 this.rpgTeacherRegistration.Visible = false;
                 this.rpgExam.Visible = true;
                 this.rpgSubjectScoreSheet.Visible = false;
-                this.btnChangePassword.Visibility = BarItemVisibility.Always;
+                //this.btnChangePassword.Visibility = BarItemVisibility.Always;
 
                 return;
             }

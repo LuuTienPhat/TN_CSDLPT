@@ -283,6 +283,7 @@
             this.cbxSubject.Location = new System.Drawing.Point(127, 49);
             this.cbxSubject.Name = "cbxSubject";
             this.cbxSubject.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.cbxSubject.Properties.Appearance.Options.UseBackColor = true;
             this.cbxSubject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbxSubject.Size = new System.Drawing.Size(175, 22);
@@ -467,12 +468,12 @@
             // 
             // lbQuestion
             // 
-            this.lbQuestion.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.lbQuestion.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lbQuestion.Appearance.Options.UseFont = true;
             this.lbQuestion.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
             this.lbQuestion.Location = new System.Drawing.Point(27, 104);
             this.lbQuestion.Name = "lbQuestion";
-            this.lbQuestion.Size = new System.Drawing.Size(148, 25);
+            this.lbQuestion.Size = new System.Drawing.Size(157, 25);
             this.lbQuestion.TabIndex = 17;
             this.lbQuestion.Text = "Question Content";
             // 
