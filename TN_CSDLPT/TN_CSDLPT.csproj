@@ -96,7 +96,6 @@
     <Compile Include="constants\Translation.cs" />
     <Compile Include="constants\Database.cs" />
     <Compile Include="constants\FormUtils.cs" />
-    <Compile Include="models\AGuage.cs" />
     <Compile Include="models\Question.cs" />
     <Compile Include="models\UserRole.cs" />
     <Compile Include="report\XtraReport1.cs">
@@ -153,42 +152,12 @@
     <Compile Include="views\FormDepartment.Designer.cs">
       <DependentUpon>FormDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="models\InputValidation.cs" />
-    <Compile Include="Share\Action.cs" />
-    <Compile Include="Share\CallBackAction1.cs" />
-    <Compile Include="Share\ErrorCode.cs" />
-    <Compile Include="Share\ErrorHandler.cs" />
-    <Compile Include="Share\ExamTest.cs" />
-    <Compile Include="Share\RegisterExamInfo.cs" />
-    <Compile Include="Share\StringLibrary.cs" />
-    <Compile Include="Share\StudentInfo.cs" />
-    <Compile Include="Share\TestInfo.cs" />
-    <Compile Include="Share\TimerAction.cs" />
-    <Compile Include="Share\Transcript.cs" />
-    <Compile Include="SupportForm\Frm_ActionInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SupportForm\Frm_ActionInfo.Designer.cs">
-      <DependentUpon>Frm_ActionInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SupportForm\Frm_RegisterExamSuccess.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SupportForm\Frm_RegisterExamSuccess.Designer.cs">
-      <DependentUpon>Frm_RegisterExamSuccess.cs</DependentUpon>
-    </Compile>
     <Compile Include="TN_CSDLPT_PRODDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TN_CSDLPT_PRODDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="utils\DatabaseUtils.cs" />
-    <Compile Include="views\CauHoi.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="views\CauHoi.Designer.cs">
-      <DependentUpon>CauHoi.cs</DependentUpon>
-    </Compile>
     <Compile Include="views\FormRegisterList2Location.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,15 +250,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormDepartment.resx">
       <DependentUpon>FormDepartment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SupportForm\Frm_ActionInfo.resx">
-      <DependentUpon>Frm_ActionInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SupportForm\Frm_RegisterExamSuccess.resx">
-      <DependentUpon>Frm_RegisterExamSuccess.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="views\CauHoi.resx">
-      <DependentUpon>CauHoi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\FormRegisterList2Location.resx">
       <DependentUpon>FormRegisterList2Location.cs</DependentUpon>

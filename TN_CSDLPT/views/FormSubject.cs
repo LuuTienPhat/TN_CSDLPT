@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using TN_CSDLPT.constants;
 using TN_CSDLPT.models;
 using TN_CSDLPT.utils;
-using TracNghiem_CSDLPT.Share;
-using TracNghiem_CSDLPT.SupportForm;
 
 namespace TN_CSDLPT.views
 {
